@@ -1,0 +1,9 @@
+# Netlify clean URL rewrites
+# This makes leadintel.in/login work instead of leadintel.in/login.html
+
+/login      /login.html     200
+/signup     /signup.html    200
+
+# Redirect .html to clean URL (301 = permanent redirect)
+/login.html     /login      301
+/signup.html    /signup     301
