@@ -3,27 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LeadintelAI — India's #1 B2B Intelligence Platform</title>
+<title>LeadintelAI � India's #1 B2B Intelligence Platform</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #050a12;
-  --bg2: #07101c;
-  --bg3: #0a1828;
-  --blue: #0d4f8c;
-  --blue2: #1464b4;
-  --blue3: #1e7fd4;
-  --gold: #c9a84c;
-  --gold2: #e2c47a;
-  --white: #f0f4fa;
-  --muted: #6b88ab;
-  --border: rgba(100,140,200,0.12);
+  --bg: #001F24;
+  --bg2: #002D35;
+  --bg3: #003A42;
+  --teal: #004E64;
+  --teal2: #006B85;
+  --teal3: #00879C;
+  --grey: #E0E5E9;
+  --grey2: #C5CCD3;
+  --grey3: #A8B2BD;
+  --white: #F5F7FA;
+  --muted: #8A9AA8;
+  --border: rgba(224,229,233,0.15);
+  --gold: #D4AF37;
+  --gold2: #C9A84C;
+  --accent: #00D4AA;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;background:var(--bg);color:var(--grey);overflow-x:hidden}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:72px;background:rgba(5,10,18,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
@@ -75,7 +79,7 @@ canvas#particles{position:absolute;inset:0;width:100%;height:100%}
 .marquee-track{display:flex;gap:0;animation:marquee 28s linear infinite}
 .marquee-track:hover{animation-play-state:paused}
 .marquee-item{white-space:nowrap;padding:0 36px;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px}
-.marquee-item::before{content:'◆';color:var(--gold);font-size:0.5rem}
+.marquee-item::before{content:'?';color:var(--gold);font-size:0.5rem}
 @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* SECTION BASE */
@@ -277,7 +281,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 5% 
   .footer-bottom{flex-direction:column;gap:12px;text-align:center}
 }
 
-/* ─── CHATBOT ─── */
+/* --- CHATBOT --- */
 .chatbot-fab{position:fixed;bottom:28px;right:28px;z-index:1100;width:58px;height:58px;background:linear-gradient(135deg,var(--blue2),var(--blue3));border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(30,127,212,0.5);cursor:pointer;border:none;transition:all 0.3s;animation:fabPulse 3s ease-in-out infinite}
 .chatbot-fab:hover{transform:scale(1.1);box-shadow:0 6px 32px rgba(30,127,212,0.7)}
 .chatbot-fab svg{width:28px;height:28px;fill:#fff;transition:all 0.3s}
@@ -422,7 +426,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 5% 
     <div class="typing-wrap"><span id="typingText"></span><span class="cursor"></span></div>
     <div class="hero-btns">
       <a class="btn-primary" href="/signup">Start Free Trial</a>
-      <a class="btn-outline" href="#pillars">Explore Platform →</a>
+      <a class="btn-outline" href="#pillars">Explore Platform ?</a>
     </div>
     <div class="hero-stats">
       <div class="stat-item"><div class="stat-val"><span class="count-hero" data-val="10">0</span><span>M+</span></div><div class="stat-label">B2B Contacts</div></div>
@@ -461,21 +465,21 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 5% 
   <div class="pillars-grid">
     <div class="pillar reveal">
       <div class="pillar-num">01</div>
-      <div class="pillar-icon">🎯</div>
+      <div class="pillar-icon">??</div>
       <h3>B2B Data Intelligence</h3>
-      <p>Access 10M+ verified business contacts spanning every industry, region, and seniority level. Find exactly who you need with precision filters — company size, sector, revenue, and location.</p>
+      <p>Access 10M+ verified business contacts spanning every industry, region, and seniority level. Find exactly who you need with precision filters � company size, sector, revenue, and location.</p>
     </div>
     <div class="pillar reveal" style="transition-delay:0.12s">
       <div class="pillar-num">02</div>
-      <div class="pillar-icon">📧</div>
+      <div class="pillar-icon">??</div>
       <h3>Mass Email Outreach</h3>
-      <p>Launch high-deliverability email campaigns at scale. Automated sequences, smart scheduling, open tracking, and bounce management — everything your sales team needs to convert.</p>
+      <p>Launch high-deliverability email campaigns at scale. Automated sequences, smart scheduling, open tracking, and bounce management � everything your sales team needs to convert.</p>
     </div>
     <div class="pillar reveal" style="transition-delay:0.24s">
       <div class="pillar-num">03</div>
-      <div class="pillar-icon">💬</div>
+      <div class="pillar-icon">??</div>
       <h3>WhatsApp API Campaigns</h3>
-      <p>Reach decision-makers where they respond. Our WhatsApp Business API integration delivers 5× higher open rates with personalized, compliant messaging at enterprise scale.</p>
+      <p>Reach decision-makers where they respond. Our WhatsApp Business API integration delivers 5� higher open rates with personalized, compliant messaging at enterprise scale.</p>
     </div>
   </div>
 </section>
@@ -508,7 +512,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 5% 
     <div>
       <span class="section-label reveal">Coverage & Quality</span>
       <h2 class="section-title reveal">India's Most Comprehensive<br>B2B Database</h2>
-      <p class="section-sub reveal">From startups to enterprise — every sector, every city, decision-makers across the full org chart.</p>
+      <p class="section-sub reveal">From startups to enterprise � every sector, every city, decision-makers across the full org chart.</p>
     </div>
     <div>
       <div class="ds-bars">
@@ -561,33 +565,33 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 5% 
   </div>
   <div class="bento-grid">
     <div class="bento-card wide reveal">
-      <div class="bento-icon">⚡</div>
+      <div class="bento-icon">?</div>
       <h4>Real-Time Data Enrichment</h4>
-      <p>Automatically enrich incomplete lead records with verified emails, phone numbers, LinkedIn profiles, company revenue, headcount, and technology stack — in seconds.</p>
+      <p>Automatically enrich incomplete lead records with verified emails, phone numbers, LinkedIn profiles, company revenue, headcount, and technology stack � in seconds.</p>
       <span class="bento-tag">AI-Powered</span>
     </div>
     <div class="bento-card reveal" style="transition-delay:0.1s">
-      <div class="bento-icon">🔍</div>
+      <div class="bento-icon">??</div>
       <h4>Advanced Filtering</h4>
       <p>50+ filter dimensions including seniority, department, funding stage, tech stack, and intent signals.</p>
     </div>
     <div class="bento-card reveal" style="transition-delay:0.05s">
-      <div class="bento-icon">📊</div>
+      <div class="bento-icon">??</div>
       <h4>Campaign Analytics</h4>
       <p>Track opens, clicks, replies, and conversions across all channels in a unified dashboard with exportable reports.</p>
     </div>
     <div class="bento-card reveal" style="transition-delay:0.15s">
-      <div class="bento-icon">🔗</div>
+      <div class="bento-icon">??</div>
       <h4>CRM Integration</h4>
       <p>Native sync with Salesforce, HubSpot, Zoho, and 30+ tools. Push qualified leads directly to your pipeline.</p>
     </div>
     <div class="bento-card reveal" style="transition-delay:0.1s">
-      <div class="bento-icon">🤖</div>
+      <div class="bento-icon">??</div>
       <h4>AI Sequence Builder</h4>
       <p>Auto-generate personalized email and WhatsApp sequences tailored to each prospect's industry and role.</p>
     </div>
     <div class="bento-card reveal" style="transition-delay:0.2s">
-      <div class="bento-icon">🛡️</div>
+      <div class="bento-icon">???</div>
       <h4>Compliance & Privacy</h4>
       <p>GDPR, PDPB, and CAN-SPAM compliant. Built-in opt-out management and data governance for enterprise peace of mind.</p>
     </div>
@@ -619,71 +623,71 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 5% 
   <div class="plans" id="plansGrid">
     <!-- STARTER -->
     <div class="plan reveal">
-      <div class="plan-icon">🚀</div>
+      <div class="plan-icon">??</div>
       <div class="plan-name">Starter</div>
       <div class="plan-price-wrap">
-        <div class="plan-price"><sup>₹</sup><span class="price-num" data-monthly="2,999" data-annual="2,399">2,999</span></div>
+        <div class="plan-price"><sup>?</sup><span class="price-num" data-monthly="2,999" data-annual="2,399">2,999</span></div>
         <span class="plan-per">/mo</span>
       </div>
       <div class="plan-gst">+ 18% GST &nbsp;<span class="plan-annual-save">2 months FREE</span></div>
       <div class="plan-divider"></div>
       <ul class="plan-features">
-        <li><span class="chk">✓</span>5,000 B2B Contacts / month</li>
-        <li><span class="chk">✓</span>Email campaign tool</li>
-        <li><span class="chk">✓</span>Basic filters &amp; segments</li>
-        <li><span class="chk">✓</span>CSV export</li>
-        <li><span class="chk">✓</span>Email support</li>
-        <li><span class="chk">✓</span>1 user seat</li>
+        <li><span class="chk">?</span>5,000 B2B Contacts / month</li>
+        <li><span class="chk">?</span>Email campaign tool</li>
+        <li><span class="chk">?</span>Basic filters &amp; segments</li>
+        <li><span class="chk">?</span>CSV export</li>
+        <li><span class="chk">?</span>Email support</li>
+        <li><span class="chk">?</span>1 user seat</li>
       </ul>
-      <button class="plan-btn" onclick="window.location.href='checkout.html?plan=starter'">Get Started →</button>
+      <button class="plan-btn" onclick="window.location.href='checkout.html?plan=starter'">Get Started ?</button>
       <div class="plan-value-bar"><div class="plan-value-fill" data-width="30"></div></div>
     </div>
 
     <!-- GROWTH (POPULAR) -->
     <div class="plan popular reveal" style="transition-delay:0.1s">
       <div class="plan-glow"></div>
-      <span class="plan-badge">⭐ Most Popular</span>
-      <div class="plan-icon">⚡</div>
+      <span class="plan-badge">? Most Popular</span>
+      <div class="plan-icon">?</div>
       <div class="plan-name">Growth</div>
       <div class="plan-price-wrap">
-        <div class="plan-price"><sup>₹</sup><span class="price-num" data-monthly="7,999" data-annual="6,399">7,999</span></div>
+        <div class="plan-price"><sup>?</sup><span class="price-num" data-monthly="7,999" data-annual="6,399">7,999</span></div>
         <span class="plan-per">/mo</span>
       </div>
       <div class="plan-gst">+ 18% GST &nbsp;<span class="plan-annual-save">2 months FREE</span></div>
       <div class="plan-divider"></div>
       <ul class="plan-features">
-        <li><span class="chk">✓</span>25,000 B2B Contacts / month</li>
-        <li><span class="chk">✓</span>Email + WhatsApp campaigns</li>
-        <li><span class="chk">✓</span>Advanced 50+ filters</li>
-        <li><span class="chk">✓</span>CRM integration</li>
-        <li><span class="chk">✓</span>Priority phone support</li>
-        <li><span class="chk">✓</span>3 user seats</li>
-        <li><span class="chk">✓</span>AI sequence builder</li>
+        <li><span class="chk">?</span>25,000 B2B Contacts / month</li>
+        <li><span class="chk">?</span>Email + WhatsApp campaigns</li>
+        <li><span class="chk">?</span>Advanced 50+ filters</li>
+        <li><span class="chk">?</span>CRM integration</li>
+        <li><span class="chk">?</span>Priority phone support</li>
+        <li><span class="chk">?</span>3 user seats</li>
+        <li><span class="chk">?</span>AI sequence builder</li>
       </ul>
-      <button class="plan-btn" onclick="window.location.href='checkout.html?plan=growth'">Start Free Trial →</button>
+      <button class="plan-btn" onclick="window.location.href='checkout.html?plan=growth'">Start Free Trial ?</button>
       <div class="plan-value-bar"><div class="plan-value-fill" data-width="65"></div></div>
     </div>
 
     <!-- ENTERPRISE -->
     <div class="plan reveal" style="transition-delay:0.2s">
-      <div class="plan-icon">🏢</div>
+      <div class="plan-icon">??</div>
       <div class="plan-name">Enterprise</div>
       <div class="plan-price-wrap">
-        <div class="plan-price"><sup>₹</sup><span class="price-num" data-monthly="19,999" data-annual="15,999">19,999</span></div>
+        <div class="plan-price"><sup>?</sup><span class="price-num" data-monthly="19,999" data-annual="15,999">19,999</span></div>
         <span class="plan-per">/mo</span>
       </div>
       <div class="plan-gst">+ 18% GST &nbsp;<span class="plan-annual-save">2 months FREE</span></div>
       <div class="plan-divider"></div>
       <ul class="plan-features">
-        <li><span class="chk">✓</span>Unlimited contacts</li>
-        <li><span class="chk">✓</span>All channels + API access</li>
-        <li><span class="chk">✓</span>Custom data enrichment</li>
-        <li><span class="chk">✓</span>Dedicated account manager</li>
-        <li><span class="chk">✓</span>SLA-backed uptime 99.9%</li>
-        <li><span class="chk">✓</span>Unlimited user seats</li>
-        <li><span class="chk">✓</span>White-label reports</li>
+        <li><span class="chk">?</span>Unlimited contacts</li>
+        <li><span class="chk">?</span>All channels + API access</li>
+        <li><span class="chk">?</span>Custom data enrichment</li>
+        <li><span class="chk">?</span>Dedicated account manager</li>
+        <li><span class="chk">?</span>SLA-backed uptime 99.9%</li>
+        <li><span class="chk">?</span>Unlimited user seats</li>
+        <li><span class="chk">?</span>White-label reports</li>
       </ul>
-      <button class="plan-btn" onclick="window.location.href='checkout.html?plan=enterprise'">Contact Sales →</button>
+      <button class="plan-btn" onclick="window.location.href='checkout.html?plan=enterprise'">Contact Sales ?</button>
       <div class="plan-value-bar"><div class="plan-value-fill" data-width="100"></div></div>
     </div>
   </div>
@@ -697,17 +701,17 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 5% 
   </div>
   <div class="test-grid">
     <div class="test-card reveal">
-      <div class="test-stars">★★★★★</div>
-      <p class="test-text">"LeadintelAI transformed our prospecting. We went from chasing unverified lists to booking 3× more qualified demo calls within the first month."</p>
+      <div class="test-stars">?????</div>
+      <p class="test-text">"LeadintelAI transformed our prospecting. We went from chasing unverified lists to booking 3� more qualified demo calls within the first month."</p>
       <div class="test-author"><div class="test-avatar">RK</div><div class="test-info"><div class="test-name">Rohit Kapoor</div><div class="test-role">VP Sales, TechNova Systems</div></div></div>
     </div>
     <div class="test-card reveal" style="transition-delay:0.1s">
-      <div class="test-stars">★★★★★</div>
-      <p class="test-text">"The WhatsApp campaign feature is a game-changer. Our response rate jumped to 42% — ten times better than cold email alone."</p>
+      <div class="test-stars">?????</div>
+      <p class="test-text">"The WhatsApp campaign feature is a game-changer. Our response rate jumped to 42% � ten times better than cold email alone."</p>
       <div class="test-author"><div class="test-avatar">PS</div><div class="test-info"><div class="test-name">Priya Sharma</div><div class="test-role">Marketing Director, FinBridge</div></div></div>
     </div>
     <div class="test-card reveal" style="transition-delay:0.2s">
-      <div class="test-stars">★★★★★</div>
+      <div class="test-stars">?????</div>
       <p class="test-text">"For manufacturing outreach, their database depth is unmatched. We found SME buyers we'd never have discovered through traditional channels."</p>
       <div class="test-author"><div class="test-avatar">AM</div><div class="test-info"><div class="test-name">Arjun Mehta</div><div class="test-role">CEO, IndoMach Industries</div></div></div>
     </div>
@@ -734,8 +738,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 5% 
         <span class="logo-text">LEADINTEL<span>AI</span></span>
       </div>
       <p>India's #1 B2B intelligence platform powering sales teams with verified data, intelligent outreach, and actionable insights.</p>
-      <p style="margin-top:12px;font-size:0.82rem;color:var(--muted)">📧 <a href="/cdn-cgi/l/email-protection#84e8e1e5e0edeaf0e1e8e5edc4e3e9e5ede8aae7ebe9" style="color:var(--muted);text-decoration:none"><span class="__cf_email__" data-cfemail="dab6bfbbbeb3b4aebfb6bbb39abdb7bbb3b6f4b9b5b7">[email&#160;protected]</span></a></p>
-      <p style="font-size:0.82rem;color:var(--muted)">🌐 leadintelai.in</p>
+      <p style="margin-top:12px;font-size:0.82rem;color:var(--muted)">?? <a href="/cdn-cgi/l/email-protection#84e8e1e5e0edeaf0e1e8e5edc4e3e9e5ede8aae7ebe9" style="color:var(--muted);text-decoration:none"><span class="__cf_email__" data-cfemail="dab6bfbbbeb3b4aebfb6bbb39abdb7bbb3b6f4b9b5b7">[email&#160;protected]</span></a></p>
+      <p style="font-size:0.82rem;color:var(--muted)">?? leadintelai.in</p>
     </div>
     <div class="footer-col">
       <h5>Platform</h5>
@@ -751,12 +755,12 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 5% 
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2025 LeadintelAI. All rights reserved.</span>
-    <span class="footer-copy">Made with ❤️ in India</span>
+    <span class="footer-copy">� 2025 LeadintelAI. All rights reserved.</span>
+    <span class="footer-copy">Made with ?? in India</span>
   </div>
 </footer>
 
-<!-- ─── CHATBOT FAB ─── -->
+<!-- --- CHATBOT FAB --- -->
 <button class="chatbot-fab" id="chatFab" aria-label="LeadintelAI Chatbot" onclick="toggleChat()">
   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" fill="white" opacity="0.9"/>
@@ -766,18 +770,18 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 5% 
   </svg>
 </button>
 
-<!-- ─── CHATBOT WINDOW ─── -->
+<!-- --- CHATBOT WINDOW --- -->
 <div class="chatbot-window" id="chatWindow">
   <div class="chat-header">
     <div class="chat-avatar">LI</div>
     <div class="chat-header-info">
       <div class="chat-header-name">LeadintelAI Assistant</div>
-      <div class="chat-header-status">Online — B2B Intelligence Expert</div>
+      <div class="chat-header-status">Online � B2B Intelligence Expert</div>
     </div>
-    <button class="chat-close" onclick="toggleChat()">✕</button>
+    <button class="chat-close" onclick="toggleChat()">?</button>
   </div>
   <div class="chat-messages" id="chatMessages">
-    <div class="chat-msg bot">👋 Hi! I'm your LeadintelAI assistant. I can help you with B2B data, pricing, campaigns, or getting started. What would you like to know?</div>
+    <div class="chat-msg bot">?? Hi! I'm your LeadintelAI assistant. I can help you with B2B data, pricing, campaigns, or getting started. What would you like to know?</div>
   </div>
   <div class="chat-quick" id="chatQuick">
     <button class="chat-quick-btn" onclick="sendQuick('What is LeadintelAI?')">What is LeadintelAI?</button>
@@ -786,17 +790,17 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 5% 
     <button class="chat-quick-btn" onclick="sendQuick('Tell me about B2B data')">B2B Data</button>
   </div>
   <div class="chat-input-row">
-    <input class="chat-input" id="chatInput" type="text" placeholder="Ask me anything…" onkeydown="if(event.key==='Enter')sendChat()">
+    <input class="chat-input" id="chatInput" type="text" placeholder="Ask me anything�" onkeydown="if(event.key==='Enter')sendChat()">
     <button class="chat-send" onclick="sendChat()">
       <svg viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
   </div>
 </div>
 
-<!-- ─── AUTH MODAL ─── -->
+<!-- --- AUTH MODAL --- -->
 <div class="auth-overlay" id="authOverlay" onclick="if(event.target===this)closeAuth()">
   <div class="auth-modal">
-    <button class="auth-close" onclick="closeAuth()" aria-label="Close">✕</button>
+    <button class="auth-close" onclick="closeAuth()" aria-label="Close">?</button>
 
     <div class="auth-brand">
       <img class="auth-brand-img" id="authBrandImg" src="logo.svg" alt="LeadintelAI">
@@ -821,20 +825,20 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 5% 
       <div class="auth-field">
         <span class="auth-label">Password</span>
         <div class="auth-input-wrap">
-          <input class="auth-input has-toggle" id="loginPassword" type="password" placeholder="••••••••" required autocomplete="current-password">
+          <input class="auth-input has-toggle" id="loginPassword" type="password" placeholder="��������" required autocomplete="current-password">
           <button type="button" class="pw-toggle" onclick="togglePw('loginPassword',this)" aria-label="Toggle password visibility">
             <svg id="eyeLogin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           </button>
         </div>
       </div>
       <div class="auth-forgot"><a onclick="showForgotPassword()">Forgot password?</a></div>
-      <button type="submit" class="auth-btn" id="loginBtn">Sign In to Dashboard →</button>
+      <button type="submit" class="auth-btn" id="loginBtn">Sign In to Dashboard ?</button>
       <div class="auth-divider">or continue with</div>
       <button type="button" class="auth-google" onclick="handleGoogleAuth()">
         <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
         Continue with Google
       </button>
-      <div class="auth-switch">Don't have an account? <a onclick="switchTab('signup')">Sign up free →</a></div>
+      <div class="auth-switch">Don't have an account? <a onclick="switchTab('signup')">Sign up free ?</a></div>
     </form>
 
     <!-- SIGNUP FORM -->
@@ -874,18 +878,18 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 5% 
         </div>
         <div class="pw-strength-label" id="pwLabel"></div>
       </div>
-      <button type="submit" class="auth-btn" id="signupBtn">Create Free Account →</button>
+      <button type="submit" class="auth-btn" id="signupBtn">Create Free Account ?</button>
       <div class="auth-divider">or continue with</div>
       <button type="button" class="auth-google" onclick="handleGoogleAuth()">
         <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
         Continue with Google
       </button>
-      <div class="auth-switch">Already have an account? <a onclick="switchTab('login')">Sign in →</a></div>
+      <div class="auth-switch">Already have an account? <a onclick="switchTab('login')">Sign in ?</a></div>
     </form>
 
     <!-- SUCCESS STATE -->
     <div class="auth-success" id="authSuccess">
-      <div class="auth-success-icon">✓</div>
+      <div class="auth-success-icon">?</div>
       <h3>Welcome aboard!</h3>
       <p>Your account has been created.<br>Check your email for a confirmation link to get started.</p>
     </div>
@@ -893,7 +897,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 5% 
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ── AUTH MODAL ──
+// -- AUTH MODAL --
 function openAuth(tab) {
   document.getElementById('authOverlay').classList.add('active');
   switchTab(tab || 'login');
@@ -914,8 +918,8 @@ function closeAuth() {
     // reset button text
     const lb = document.getElementById('loginBtn');
     const sb = document.getElementById('signupBtn');
-    if(lb){lb.textContent='Sign In to Dashboard →';lb.disabled=false;}
-    if(sb){sb.textContent='Create Free Account →';sb.disabled=false;}
+    if(lb){lb.textContent='Sign In to Dashboard ?';lb.disabled=false;}
+    if(sb){sb.textContent='Create Free Account ?';sb.disabled=false;}
   }, 400);
 }
 function switchTab(tab) {
@@ -964,7 +968,7 @@ function showForgotPassword() {
   err.style.background = 'rgba(30,127,212,0.1)';
   err.style.borderColor = 'rgba(30,127,212,0.3)';
   err.style.color = 'var(--blue3)';
-  err.textContent = '📧 Password reset link will be sent to your email. (Connect backend to enable.)';
+  err.textContent = '?? Password reset link will be sent to your email. (Connect backend to enable.)';
 }
 function handleLogin(e) {
   e.preventDefault();
@@ -975,17 +979,17 @@ function handleLogin(e) {
   const pw = document.getElementById('loginPassword').value;
   // Basic validation
   if(!validateEmail(email)) {
-    err.style.display='block';err.textContent='⚠ Please enter a valid email address.';return;
+    err.style.display='block';err.textContent='? Please enter a valid email address.';return;
   }
   if(pw.length < 6) {
-    err.style.display='block';err.textContent='⚠ Password must be at least 6 characters.';return;
+    err.style.display='block';err.textContent='? Password must be at least 6 characters.';return;
   }
   const btn = document.getElementById('loginBtn');
-  btn.textContent = 'Signing in…'; btn.disabled = true;
+  btn.textContent = 'Signing in�'; btn.disabled = true;
   setTimeout(() => {
-    btn.disabled = false; btn.textContent = 'Sign In to Dashboard →';
+    btn.disabled = false; btn.textContent = 'Sign In to Dashboard ?';
     err.style.display = 'block';
-    err.textContent = '⚠ Demo mode — connect your backend API to enable authentication.';
+    err.textContent = '? Demo mode � connect your backend API to enable authentication.';
   }, 1200);
 }
 function handleSignup(e) {
@@ -997,14 +1001,14 @@ function handleSignup(e) {
   const first = document.getElementById('signupFirst').value.trim();
   const last = document.getElementById('signupLast').value.trim();
   const company = document.getElementById('signupCompany').value.trim();
-  if(!first || !last) { err.style.display='block';err.textContent='⚠ Please enter your full name.';return; }
-  if(!validateEmail(email)) { err.style.display='block';err.textContent='⚠ Please enter a valid work email.';return; }
-  if(!company) { err.style.display='block';err.textContent='⚠ Please enter your company name.';return; }
-  if(pw.length < 8) { err.style.display='block';err.textContent='⚠ Password must be at least 8 characters.';return; }
+  if(!first || !last) { err.style.display='block';err.textContent='? Please enter your full name.';return; }
+  if(!validateEmail(email)) { err.style.display='block';err.textContent='? Please enter a valid work email.';return; }
+  if(!company) { err.style.display='block';err.textContent='? Please enter your company name.';return; }
+  if(pw.length < 8) { err.style.display='block';err.textContent='? Password must be at least 8 characters.';return; }
   const btn = document.getElementById('signupBtn');
-  btn.textContent = 'Creating account…'; btn.disabled = true;
+  btn.textContent = 'Creating account�'; btn.disabled = true;
   setTimeout(() => {
-    btn.disabled = false; btn.textContent = 'Create Free Account →';
+    btn.disabled = false; btn.textContent = 'Create Free Account ?';
     document.getElementById('signupForm').classList.add('hidden');
     const s = document.getElementById('authSuccess');
     s.style.display = 'block';
@@ -1017,8 +1021,8 @@ function handleGoogleAuth() {
 // close on ESC
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAuth(); });
 
-// ── CHATBOT ──
-// ── CHATBOT INTELLIGENCE ENGINE ──
+// -- CHATBOT --
+// -- CHATBOT INTELLIGENCE ENGINE --
 const BOT_NAME = 'Aria';
 const FOUNDER_NAME = 'Gaurav Yadav';
 
@@ -1076,7 +1080,7 @@ function findReply(msg) {
     return "You're welcome! \ud83d\ude0a Happy to help.\n\nFeel free to ask if you have more questions about LeadintelAI. I'm here 24/7!";
   }
 
-  // Founder / CEO â€” most important
+  // Founder / CEO — most important
   if (/founder|co.?founder|who (started|created|built|made|founded|runs|owns)|who is (the|your|its)|ceo|chief executive|owner|creator|leadership|who is behind/.test(l)) {
     lastTopic = 'founder';
     if (/ceo|chief executive/.test(l) && !/founder/.test(l)) return botReplies['ceo'];
@@ -1170,7 +1174,7 @@ function sendChat() {
 
 
 
-// ── PARTICLES ──
+// -- PARTICLES --
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
 let particles = [];
@@ -1203,7 +1207,7 @@ function drawParticles() {
 }
 drawParticles();
 
-// ── TYPING ──
+// -- TYPING --
 const phrases = ['10M+ Verified B2B Contacts','Precision Email Outreach','WhatsApp API at Scale','Real-Time Data Intelligence'];
 let pi=0,ci=0,del=false;
 function type() {
@@ -1215,18 +1219,18 @@ function type() {
 }
 type();
 
-// ── HAMBURGER ──
+// -- HAMBURGER --
 document.getElementById('hamburger').addEventListener('click',function(){
   document.getElementById('mobileMenu').classList.toggle('open');
 });
 
-// ── SCROLL REVEAL ──
+// -- SCROLL REVEAL --
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// ── COUNTER ANIMATION ──
+// -- COUNTER ANIMATION --
 function animateCounter(el, target, duration=1800) {
   let start=0, startTime=null;
   function step(ts) {
@@ -1254,7 +1258,7 @@ const counterObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.3 });
 document.querySelectorAll('.counters,.hero').forEach(el => counterObserver.observe(el));
 
-// ── BAR ANIMATION ──
+// -- BAR ANIMATION --
 const barObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -1267,7 +1271,7 @@ const barObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.25 });
 document.querySelectorAll('.data-showcase').forEach(el => barObserver.observe(el));
 
-// ── PRICING BILLING TOGGLE ──
+// -- PRICING BILLING TOGGLE --
 let isAnnual = false;
 function setBilling(mode) {
   if (mode === 'monthly') isAnnual = false;
@@ -1290,7 +1294,7 @@ function setBilling(mode) {
   });
 }
 
-// ── PRICING VALUE BARS ──
+// -- PRICING VALUE BARS --
 const pricingObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
