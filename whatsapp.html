@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Automation Dashboard | LeadintelAI</title>
+    <meta name="description" content="Manage your WhatsApp API campaigns, chats, and analytics.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: var(--clr-night);
+            color: var(--clr-cloud);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Dashboard Navbar Settings from project.html */
+        .dash-nav {
+            background: rgba(30, 39, 46, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 3%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .dash-logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--clr-cloud);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .dash-logo span { color: var(--clr-electric); }
+        .module-name {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: rgba(245,246,250,0.6);
+            border-left: 1px solid rgba(255,255,255,0.2);
+            padding-left: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .wallet-pill {
+            background: rgba(37, 211, 102, 0.1);
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            color: #25D366;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .back-btn {
+            background: rgba(255,255,255,0.05);
+            color: var(--clr-cloud);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition-fast);
+        }
+        .back-btn:hover { background: rgba(255,255,255,0.1); }
+
+        /* Main App Area */
+        .app-container {
+            display: flex;
+            flex: 1;
+            box-sizing: border-box;
+            height: calc(100vh - 72px);
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 250px;
+            background: rgba(255, 255, 255, 0.02);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 0;
+            overflow-y: auto;
+        }
+
+        .nav-item {
+            padding: 1rem 2rem;
+            color: rgba(245,246,250,0.7);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 500;
+            transition: 0.2s;
+            border-left: 3px solid transparent;
+        }
+        .nav-item:hover {
+            color: var(--clr-cloud);
+            background: rgba(255,255,255,0.05);
+        }
+        .nav-item.active {
+            color: #25D366; /* WhatsApp Green */
+            background: rgba(37, 211, 102, 0.05);
+            border-left-color: #25D366;
+        }
+
+        /* Main Content Panel */
+        .main-panel {
+            flex: 1;
+            padding: 2rem 3%;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: relative;
+        }
+        
+        /* Blur effect overlay */
+        .main-panel::before {
+             content: '';
+             position: absolute;
+             top: 0; right: 0; width: 50%; height: 50%;
+             background: radial-gradient(circle at top right, rgba(37, 211, 102, 0.05), transparent 70%);
+             z-index: -1;
+             pointer-events: none;
+        }
+
+        /* Quick Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .stat-label { font-size: 0.9rem; color: rgba(245,246,250,0.6); display: flex; align-items: center; gap: 8px;}
+        .stat-value { font-size: 2rem; font-family: var(--font-heading); color: var(--clr-cloud); display: flex; align-items: baseline; gap: 10px;}
+        .stat-trend { font-size: 0.85rem; padding: 3px 8px; border-radius: 10px; background: rgba(37, 211, 102, 0.2); color: #25D366;}
+
+        /* Content Header */
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .content-header h2 { font-size: 1.5rem; font-family: var(--font-heading); margin: 0; }
+        
+        .btn-wa {
+            background: #25D366;
+            color: #111;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+        .btn-wa:hover { background: #20b858; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); transform: translateY(-2px);}
+
+        /* Campaigns Table */
+        .table-wrapper {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            min-width: 800px;
+        }
+        th {
+            padding: 15px;
+            color: rgba(245, 246, 250, 0.7);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+        }
+        tbody tr:hover { background: rgba(37, 211, 102, 0.05); }
+
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .status-active { background: rgba(37, 211, 102, 0.2); color: #25D366; }
+        .status-paused { background: rgba(253, 203, 110, 0.2); color: #fdcb6e; }
+        .status-draft { background: rgba(255, 255, 255, 0.1); color: rgba(245,246,250,0.7); }
+
+        .metric-bar-container {
+             width: 100px;
+             height: 6px;
+             background: rgba(255,255,255,0.1);
+             border-radius: 3px;
+             margin-top: 5px;
+             overflow: hidden;
+        }
+        .metric-bar { height: 100%; background: #25D366; }
+
+        @media (max-width: 900px) {
+            .app-container { flex-direction: column; height: auto; }
+            .sidebar { width: 100%; flex-direction: row; overflow-x: auto; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 0;}
+            .nav-item { border-left: none; border-bottom: 3px solid transparent; white-space: nowrap;}
+            .nav-item.active { border-left-color: transparent; border-bottom-color: #25D366;}
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        if(localStorage.getItem('leadintel_auth') !== 'true') { window.location.href = 'login.html'; }
+    </script>
+
+    <nav class="dash-nav">
+        <div class="dash-logo">
+            Leadintel<span>AI</span>
+            <div class="module-name">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                WhatsApp Manager
+            </div>
+        </div>
+        
+        <div class="nav-actions">
+            <div class="wallet-pill">
+                Official API Connected
+            </div>
+            <a href="project.html" class="back-btn">Go to Hub</a>
+        </div>
+    </nav>
+
+    <div class="app-container">
+        
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <a href="#" class="nav-item active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+                Overview
+            </a>
+            <a href="#" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                Broadcast Campaigns
+            </a>
+            <a href="#" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                Live Team Inbox
+            </a>
+            <a href="#" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path></svg>
+                Chatbot Flows
+            </a>
+            <a href="#" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                Opt-in Contacts
+            </a>
+            <a href="#" class="nav-item" style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                API Settings
+            </a>
+        </aside>
+
+        <!-- MAIN PANEL -->
+        <main class="main-panel">
+            
+            <div class="content-header">
+                <h2>Overview Dashboard</h2>
+                <button class="btn-wa" onclick="alert('Opening Template Builder...')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    New Broadcast
+                </button>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">Messages Sent Today</span>
+                    <div class="stat-value">12,450 <span class="stat-trend">↑ 14%</span></div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Avg. Open Rate</span>
+                    <div class="stat-value">94.2% <span class="stat-trend" style="color: rgba(245,246,250,0.7); background: rgba(255,255,255,0.1);">− 0%</span></div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Avg. Click Rate (CTA)</span>
+                    <div class="stat-value">42.8% <span class="stat-trend">↑ 5%</span></div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Active Chatbot Sessions</span>
+                    <div class="stat-value">342</div>
+                </div>
+            </div>
+
+            <div class="content-header" style="margin-top: 1rem;">
+                <h3 style="font-family: var(--font-heading); margin: 0; font-size: 1.2rem;">Recent Broadcasts</h3>
+                <a href="#" style="color: var(--clr-electric); font-size: 0.9rem; text-decoration: none;">View All</a>
+            </div>
+
+            <!-- Table -->
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Campaign Name</th>
+                            <th>Status</th>
+                            <th>Sent To</th>
+                            <th>Delivered Rate</th>
+                            <th>Read Rate</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>Diwali Mega Sale Alert</strong><br>
+                                <span style="font-size: 0.8rem; color: rgba(245,246,250,0.5);">Template: offer_diwali_v2</span>
+                            </td>
+                            <td><span class="status-badge status-active">Completed</span></td>
+                            <td>45,000 users</td>
+                            <td>
+                                99.8%
+                                <div class="metric-bar-container"><div class="metric-bar" style="width: 99.8%;"></div></div>
+                            </td>
+                            <td>
+                                95.1%
+                                <div class="metric-bar-container"><div class="metric-bar" style="width: 95.1%; background: #0984E3;"></div></div>
+                            </td>
+                            <td><button style="background:transparent; border:none; color: var(--clr-electric); cursor:pointer;">View Report</button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Abandoned Cart Reminder</strong><br>
+                                <span style="font-size: 0.8rem; color: rgba(245,246,250,0.5);">Trigger: API Integration</span>
+                            </td>
+                            <td><span class="status-badge status-active" style="background: rgba(9, 132, 227, 0.2); color: var(--clr-electric);">Running</span></td>
+                            <td>120 / day</td>
+                            <td>
+                                100%
+                                <div class="metric-bar-container"><div class="metric-bar" style="width: 100%;"></div></div>
+                            </td>
+                            <td>
+                                88.4%
+                                <div class="metric-bar-container"><div class="metric-bar" style="width: 88.4%; background: #0984E3;"></div></div>
+                            </td>
+                            <td><button style="background:transparent; border:none; color: var(--clr-electric); cursor:pointer;">Manage</button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>B2B Webinar Invite</strong><br>
+                                <span style="font-size: 0.8rem; color: rgba(245,246,250,0.5);">Template: webinar_invite_1</span>
+                            </td>
+                            <td><span class="status-badge status-draft">Draft</span></td>
+                            <td>2,500 users</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td><button style="background:transparent; border:none; color: var(--clr-electric); cursor:pointer;">Edit Draft</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+
+</body>
+</html>

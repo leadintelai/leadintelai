@@ -1,324 +1,175 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pricing — LeadintelAI</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg: #004E64;
-  --bg2: #005A73;
-  --bg3: #006B85;
-  --teal: #004E64;
-  --teal2: #006B85;
-  --teal3: #00879C;
-  --blue: #004E64;
-  --blue2: #006B85;
-  --blue3: #00879C;
-  --grey: #E0E5E9;
-  --grey2: #C5CCD3;
-  --grey3: #A8B2BD;
-  --white: #F5F7FA;
-  --muted: #8A9AA8;
-  --border: rgba(224,229,233,0.15);
-  --gold: #D4AF37;
-  --gold2: #C9A84C;
-  --accent: #00D4AA;
-}
-
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter",sans-serif;background:var(--bg);color:var(--grey);overflow-x:hidden;min-height:100vh}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:72px;background:rgba(5,10,18,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.logo-wrap{display:flex;align-items:center;gap:12px;text-decoration:none}
-.nav-logo{height:44px;width:44px;object-fit:contain;mix-blend-mode:screen;filter:brightness(1.1)}
-.logo-text{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;letter-spacing:0.12em;color:var(--white)}
-.logo-text span{color:var(--gold)}
-.nav-back{font-size:0.85rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:6px;padding:8px 16px;border:1px solid var(--border);border-radius:8px;transition:all 0.3s}
-.nav-back:hover{color:var(--white);border-color:var(--blue3);background:rgba(30,127,212,0.1)}
-
-/* PAGE HEADER */
-.page-header{padding:140px 5% 60px;text-align:center;position:relative}
-.page-header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,3.5rem);font-weight:400;line-height:1.2;margin-bottom:16px;letter-spacing:-0.01em}
-.page-header h1 span{color:var(--gold)}
-.page-header p{font-size:1.1rem;color:var(--muted);max-width:600px;margin:0 auto;line-height:1.7}
-
-/* PRODUCT SECTIONS */
-.product-section{padding:60px 5%;position:relative}
-.product-section:nth-child(even){background:var(--bg2)}
-.product-title{text-align:center;margin-bottom:48px}
-.product-title h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,2.8rem);font-weight:400;margin-bottom:12px}
-.product-title h2 span{color:var(--gold)}
-.product-title p{font-size:1rem;color:var(--muted);max-width:500px;margin:0 auto;line-height:1.7}
-
-/* PRICING CARDS */
-.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;max-width:1200px;margin:0 auto}
-.plan-card{background:rgba(10,24,40,0.7);border:1px solid rgba(30,127,212,0.12);border-radius:20px;padding:40px 32px;position:relative;overflow:hidden;transition:all 0.45s cubic-bezier(0.34,1.2,0.64,1);backdrop-filter:blur(12px)}
-.plan-card::before{content:'';position:absolute;inset:0;border-radius:20px;background:linear-gradient(135deg,rgba(30,127,212,0.06),transparent 60%);opacity:0;transition:opacity 0.4s}
-.plan-card:hover{transform:translateY(-8px);border-color:rgba(30,127,212,0.35);box-shadow:0 24px 64px rgba(0,0,0,0.4),0 0 0 1px rgba(30,127,212,0.2)}
-.plan-card:hover::before{opacity:1}
-.plan-card.popular{background:linear-gradient(160deg,rgba(13,50,95,0.9),rgba(10,28,60,0.95));border:1px solid rgba(30,127,212,0.5);box-shadow:0 0 40px rgba(13,79,140,0.25),0 0 0 1px rgba(30,127,212,0.2)}
-.plan-card.popular:hover{transform:translateY(-12px);box-shadow:0 32px 80px rgba(0,0,0,0.5),0 0 40px rgba(30,127,212,0.35)}
-.plan-badge{position:absolute;top:20px;right:20px;padding:5px 14px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border-radius:100px;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;box-shadow:0 4px 16px rgba(201,168,76,0.4)}
-
-.plan-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:24px;background:rgba(13,79,140,0.12);border:1px solid rgba(13,79,140,0.25);transition:all 0.4s}
-.plan-card:hover .plan-icon{transform:scale(1.1) rotate(-5deg);background:rgba(13,79,140,0.25)}
-.plan-name{font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;font-weight:600}
-.plan-price{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:600;color:var(--white);line-height:1;margin-bottom:8px}
-.plan-price sup{font-size:1.1rem;font-weight:400;vertical-align:top;margin-top:10px;margin-right:1px;color:var(--gold)}
-.plan-per{font-size:0.78rem;color:var(--muted);margin-left:4px}
-.plan-gst{font-size:0.72rem;color:var(--muted);margin-bottom:24px}
-
-.plan-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(30,127,212,0.25),transparent);margin:24px 0}
-.plan-features{list-style:none;margin-bottom:32px}
-.plan-features li{font-size:0.84rem;color:var(--muted);display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(30,127,212,0.06)}
-.plan-features li:last-child{border-bottom:none}
-.plan-features li .chk{width:18px;height:18px;border-radius:50%;background:rgba(30,127,212,0.15);border:1px solid rgba(30,127,212,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.6rem;color:var(--blue3)}
-.plan-card.popular .plan-features li .chk{background:rgba(30,127,212,0.25);border-color:var(--blue3)}
-
-.plan-btn{width:100%;padding:14px;border-radius:10px;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter",sans-serif;font-size:0.87rem;font-weight:600;cursor:pointer;transition:all 0.35s;letter-spacing:-0.01em;border:1px solid rgba(30,127,212,0.3);background:rgba(13,79,140,0.15);color:var(--white);text-decoration:none;display:block;text-align:center}
-.plan-btn:hover{background:rgba(13,79,140,0.4);border-color:var(--blue3);transform:translateY(-2px);box-shadow:0 8px 24px rgba(13,79,140,0.3)}
-.plan-card.popular .plan-btn{background:linear-gradient(135deg,var(--blue2),var(--blue3));color:#fff;border-color:var(--blue3);box-shadow:0 4px 20px rgba(30,127,212,0.4)}
-.plan-card.popular .plan-btn:hover{box-shadow:0 12px 36px rgba(30,127,212,0.6);transform:translateY(-3px)}
-
-/* CTA SECTION */
-.cta-section{padding:80px 5%;text-align:center;background:linear-gradient(135deg,rgba(13,50,95,0.6),rgba(5,10,18,0.9));border-top:1px solid var(--border)}
-.cta-section h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,2.8rem);font-weight:400;margin-bottom:16px}
-.cta-section p{color:var(--muted);margin-bottom:32px;max-width:500px;margin:0 auto}
-.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.btn-primary{padding:14px 32px;background:linear-gradient(135deg,var(--teal2),var(--teal3));border:1px solid rgba(0,135,156,0.3);color:var(--white);border-radius:4px;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter",sans-serif;font-size:0.9rem;font-weight:500;cursor:pointer;transition:all 0.3s;text-decoration:none;letter-spacing:-0.01em;box-shadow:0 4px 16px rgba(0,135,156,0.3),0 0 20px rgba(30,127,212,0.15)}
-.btn-primary:hover{background:linear-gradient(135deg,var(--teal3),#00A3B5);box-shadow:0 8px 24px rgba(0,135,156,0.5),0 0 30px rgba(30,127,212,0.3);transform:translateY(-2px)}
-.btn-outline{padding:14px 32px;background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--white);border-radius:4px;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter",sans-serif;font-size:0.9rem;font-weight:500;cursor:pointer;transition:all 0.3s;text-decoration:none;letter-spacing:-0.01em}
-.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
-
-@media(max-width:768px){
-  .pricing-grid{grid-template-columns:1fr;gap:16px}
-  .plan-card.popular{transform:none}
-  .plan-card.popular:hover{transform:translateY(-8px)}
-  .cta-btns{flex-direction:column;align-items:center}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing | Leadintelai.in</title>
+    <meta name="description" content="Transparent pricing for Leadintelai.in services: Marketing (WhatsApp API, Mail, Chatbot) and B2B Data Selling.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Specific overrides for pricing page to ensure content is visible without hero */
+        body {
+            padding-top: 100px;
+        }
+        .pricing-section {
+            padding: 4rem 0;
+        }
+        .pricing-header-tab {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--clr-electric);
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            border-bottom: 2px solid rgba(9, 132, 227, 0.2);
+            padding-bottom: 1rem;
+        }
+    </style>
 </head>
 <body>
+    <header class="navbar scrolled">
+        <div class="container nav-content">
+            <div class="logo">Leadintel<span>AI</span></div>
+            <nav class="nav-links">
+                <a href="index.html#services">Services</a>
+                <a href="index.html#about">About</a>
+                <a href="price.html" style="color: var(--clr-electric);">Pricing</a>
+                <a href="login.html" class="btn btn-primary">Get Started</a>
+            </nav>
+        </div>
+    </header>
 
-<!-- NAV -->
-<nav>
-  <a href="index.html" class="logo-wrap">
-    <img class="nav-logo" src="logo.svg" alt="LeadintelAI">
-    <span class="logo-text">LEADINTEL<span>AI</span></span>
-  </a>
-  <a href="index.html" class="nav-back">
-    ← Back to Home
-  </a>
-</nav>
+    <main>
+        <div class="container">
+            <div class="section-header" style="margin-top: 2rem;">
+                <h1 style="font-size: 3rem; margin-bottom: 1rem;">Transparent Pricing</h1>
+                <p>Choose the right plan to fuel your growth. No hidden fees.</p>
+            </div>
+        </div>
 
-<!-- HEADER -->
-<section class="page-header">
-  <h1>Choose Your <span>Plan</span></h1>
-  <p>Select the perfect solution for your business needs. Simple pricing, no hidden fees.</p>
-</section>
+        <!-- Marketing Section (WhatsApp API, Mass Mailing, AI Chatbot) -->
+        <section class="pricing-section">
+            <div class="container">
+                <h2 class="pricing-header-tab">Marketing Suite (WhatsApp, Email & AI)</h2>
+                <div class="pricing-grid">
+                    <!-- Basic Marketing -->
+                    <div class="pricing-card glass-panel">
+                        <h3>Starter</h3>
+                        <div class="price"><span>₹</span>4,999<span>/mo</span></div>
+                        <ul class="pricing-features">
+                            <li>Basic WhatsApp API Access</li>
+                            <li>Up to 10,000 Messages/mo</li>
+                            <li>Standard Email Campaigns</li>
+                            <li>Basic FAQ AI Chatbot</li>
+                            <li>Email Support</li>
+                        </ul>
+                        <a href="login.html" class="btn btn-secondary">Choose Plan</a>
+                    </div>
+                    <!-- Pro Marketing -->
+                    <div class="pricing-card glass-panel featured">
+                        <div class="popular-badge">Most Popular</div>
+                        <h3>Professional</h3>
+                        <div class="price"><span>₹</span>14,999<span>/mo</span></div>
+                        <ul class="pricing-features">
+                            <li>Advanced WhatsApp Business API</li>
+                            <li>Up to 100,000 Messages/mo</li>
+                            <li>High-Volume Mass Mailing</li>
+                            <li>Custom-Trained AI Chatbot</li>
+                            <li>Priority 24/7 Support</li>
+                        </ul>
+                        <a href="login.html" class="btn btn-primary">Choose Plan</a>
+                    </div>
+                    <!-- Enterprise Marketing -->
+                    <div class="pricing-card glass-panel">
+                        <h3>Enterprise</h3>
+                        <div class="price">Custom</div>
+                        <ul class="pricing-features">
+                            <li>Dedicated WhatsApp Nodes</li>
+                            <li>Unlimited Messaging</li>
+                            <li>Dedicated IP for Emails</li>
+                            <li>White-Labeled AI Solution</li>
+                            <li>Dedicated Account Manager</li>
+                        </ul>
+                        <a href="index.html#contact" class="btn btn-secondary">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- PRODUCT 1: MASS MAILING & WHATSAPP API -->
-<section class="product-section">
-  <div class="product-title">
-    <h2>Mass Mailing & <span>WhatsApp API</span></h2>
-    <p>Powerful communication tools to reach your audience effectively</p>
-  </div>
-  
-  <div class="pricing-grid">
-    <!-- Starter Plan -->
-    <div class="plan-card">
-      <div class="plan-icon">📧</div>
-      <div class="plan-name">Starter</div>
-      <div class="plan-price">₹2,999<sup>/mo</sup></div>
-      <div class="plan-per">+ 18% GST</div>
-      <div class="plan-gst">Perfect for small businesses</div>
-      
-      <div class="plan-divider"></div>
-      
-      <ul class="plan-features">
-        <li><span class="chk">✓</span> 10,000 Emails/month</li>
-        <li><span class="chk">✓</span> 500 WhatsApp messages</li>
-        <li><span class="chk">✓</span> Email template builder</li>
-        <li><span class="chk">✓</span> Basic analytics</li>
-        <li><span class="chk">✓</span> Email support</li>
-        <li><span class="chk">✓</span> 1 user seat</li>
-      </ul>
-      
-      <a href="/signup?plan=mailing-starter" class="plan-btn">Get Started</a>
-    </div>
-    
-    <!-- Growth Plan -->
-    <div class="plan-card popular">
-      <div class="plan-badge">Most Popular</div>
-      <div class="plan-icon">🚀</div>
-      <div class="plan-name">Growth</div>
-      <div class="plan-price">₹7,999<sup>/mo</sup></div>
-      <div class="plan-per">+ 18% GST</div>
-      <div class="plan-gst">Best for growing teams</div>
-      
-      <div class="plan-divider"></div>
-      
-      <ul class="plan-features">
-        <li><span class="chk">✓</span> 50,000 Emails/month</li>
-        <li><span class="chk">✓</span> 5,000 WhatsApp messages</li>
-        <li><span class="chk">✓</span> WhatsApp API access</li>
-        <li><span class="chk">✓</span> Advanced templates</li>
-        <li><span class="chk">✓</span> Analytics & reports</li>
-        <li><span class="chk">✓</span> Priority support</li>
-        <li><span class="chk">✓</span> 3 user seats</li>
-        <li><span class="chk">✓</span> Automation workflows</li>
-      </ul>
-      
-      <a href="/signup?plan=mailing-growth" class="plan-btn">Get Started</a>
-    </div>
-    
-    <!-- Enterprise Plan -->
-    <div class="plan-card">
-      <div class="plan-icon">🏢</div>
-      <div class="plan-name">Enterprise</div>
-      <div class="plan-price">₹19,999<sup>/mo</sup></div>
-      <div class="plan-per">+ 18% GST</div>
-      <div class="plan-gst">For large organizations</div>
-      
-      <div class="plan-divider"></div>
-      
-      <ul class="plan-features">
-        <li><span class="chk">✓</span> Unlimited emails</li>
-        <li><span class="chk">✓</span> Unlimited WhatsApp messages</li>
-        <li><span class="chk">✓</span> Full WhatsApp API</li>
-        <li><span class="chk">✓</span> Custom templates</li>
-        <li><span class="chk">✓</span> Advanced analytics</li>
-        <li><span class="chk">✓</span> Dedicated support manager</li>
-        <li><span class="chk">✓</span> Unlimited users</li>
-        <li><span class="chk">✓</span> White-label option</li>
-        <li><span class="chk">✓</span> SLA guarantee</li>
-      </ul>
-      
-      <a href="/signup?plan=mailing-enterprise" class="plan-btn">Get Started</a>
-    </div>
-  </div>
-</section>
+        <!-- B2B Data Section -->
+        <section class="pricing-section" style="padding-bottom: 8rem;">
+            <div class="container">
+                <h2 class="pricing-header-tab">B2B Data & Leads</h2>
+                <div class="pricing-grid">
+                    <!-- Basic Data -->
+                    <div class="pricing-card glass-panel">
+                        <h3>Startup Database</h3>
+                        <div class="price"><span>₹</span>9,999<span>/mo</span></div>
+                        <ul class="pricing-features">
+                            <li>5,000 Verified B2B Leads</li>
+                            <li>Emails & Phone Numbers</li>
+                            <li>Standard Decision Makers Filter</li>
+                            <li>Monthly Data Standard Refreshes</li>
+                        </ul>
+                        <a href="login.html" class="btn btn-secondary">Get Data</a>
+                    </div>
+                    <!-- Pro Data -->
+                    <div class="pricing-card glass-panel featured">
+                        <div class="popular-badge">High Value</div>
+                        <h3>Growth Database</h3>
+                        <div class="price"><span>₹</span>24,999<span>/mo</span></div>
+                        <ul class="pricing-features">
+                            <li>25,000 Verified B2B Leads</li>
+                            <li>Direct Dials & Verified Emails</li>
+                            <li>C-Level & HR Specific Targeting</li>
+                            <li>Weekly Data Updates</li>
+                        </ul>
+                        <a href="login.html" class="btn btn-primary">Get Data</a>
+                    </div>
+                    <!-- Enterprise Data -->
+                    <div class="pricing-card glass-panel">
+                        <h3>Enterprise Volume</h3>
+                        <div class="price">Custom</div>
+                        <ul class="pricing-features">
+                            <li>Unlimited Data Access</li>
+                            <li>API Integration for CRM</li>
+                            <li>Hyper-Targeted Global Data</li>
+                            <li>Real-time Data Enrichment</li>
+                        </ul>
+                        <a href="index.html#contact" class="btn btn-secondary">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-<!-- PRODUCT 2: B2B DATA SELLING -->
-<section class="product-section">
-  <div class="product-title">
-    <h2>B2B Data <span>Selling</span></h2>
-    <p>Access India's largest verified B2B contact database</p>
-  </div>
-  
-  <div class="pricing-grid">
-    <!-- Starter Plan -->
-    <div class="plan-card">
-      <div class="plan-icon">📊</div>
-      <div class="plan-name">Starter</div>
-      <div class="plan-price">₹4,999<sup>/mo</sup></div>
-      <div class="plan-per">+ 18% GST</div>
-      <div class="plan-gst">Essential data access</div>
-      
-      <div class="plan-divider"></div>
-      
-      <ul class="plan-features">
-        <li><span class="chk">✓</span> 5,000 B2B contacts/month</li>
-        <li><span class="chk">✓</span> Basic company filters</li>
-        <li><span class="chk">✓</span> Email & phone access</li>
-        <li><span class="chk">✓</span> CSV export (500/month)</li>
-        <li><span class="chk">✓</span> Standard support</li>
-        <li><span class="chk">✓</span> 1 user seat</li>
-      </ul>
-      
-      <a href="/signup?plan=data-starter" class="plan-btn">Get Started</a>
-    </div>
-    
-    <!-- Growth Plan -->
-    <div class="plan-card popular">
-      <div class="plan-badge">Best Value</div>
-      <div class="plan-icon">💎</div>
-      <div class="plan-name">Growth</div>
-      <div class="plan-price">₹12,999<sup>/mo</sup></div>
-      <div class="plan-per">+ 18% GST</div>
-      <div class="plan-gst">Advanced data intelligence</div>
-      
-      <div class="plan-divider"></div>
-      
-      <ul class="plan-features">
-        <li><span class="chk">✓</span> 25,000 B2B contacts/month</li>
-        <li><span class="chk">✓</span> 50+ advanced filters</li>
-        <li><span class="chk">✓</span> Verified emails & phones</li>
-        <li><span class="chk">✓</span> CSV export (5,000/month)</li>
-        <li><span class="chk">✓</span> CRM integration</li>
-        <li><span class="chk">✓</span> Priority support</li>
-        <li><span class="chk">✓</span> 5 user seats</li>
-        <li><span class="chk">✓</span> AI enrichment</li>
-        <li><span class="chk">✓</span> Intent data access</li>
-      </ul>
-      
-      <a href="/signup?plan=data-growth" class="plan-btn">Get Started</a>
-    </div>
-    
-    <!-- Enterprise Plan -->
-    <div class="plan-card">
-      <div class="plan-icon">👑</div>
-      <div class="plan-name">Enterprise</div>
-      <div class="plan-price">₹29,999<sup>/mo</sup></div>
-      <div class="plan-per">+ 18% GST</div>
-      <div class="plan-gst">Unlimited data access</div>
-      
-      <div class="plan-divider"></div>
-      
-      <ul class="plan-features">
-        <li><span class="chk">✓</span> Unlimited B2B contacts</li>
-        <li><span class="chk">✓</span> All filters + custom</li>
-        <li><span class="chk">✓</span> Real-time verification</li>
-        <li><span class="chk">✓</span> Unlimited CSV exports</li>
-        <li><span class="chk">✓</span> API access</li>
-        <li><span class="chk">✓</span> Dedicated account manager</li>
-        <li><span class="chk">✓</span> Unlimited users</li>
-        <li><span class="chk">✓</span> Custom data enrichment</li>
-        <li><span class="chk">✓</span> White-label reports</li>
-        <li><span class="chk">✓</span> 99.9% SLA uptime</li>
-      </ul>
-      
-      <a href="/signup?plan=data-enterprise" class="plan-btn">Get Started</a>
-    </div>
-  </div>
-</section>
-
-<!-- CTA SECTION -->
-<section class="cta-section">
-  <h2>Still Confused?</h2>
-  <p>Our experts are here to help you choose the right plan</p>
-  <div class="cta-btns">
-    <a href="/login" class="btn-primary">Sign In to Continue</a>
-    <a href="mailto:support@leadintelai.in" class="btn-outline">Contact Sales</a>
-  </div>
-</section>
-
-<script>
-// Check if user is already logged in
-const user = sessionStorage.getItem('leadintel_user');
-
-document.querySelectorAll('.plan-btn').forEach(btn=>{
-  btn.addEventListener('click',(e)=>{
-    e.preventDefault();
-    const planParam = btn.getAttribute('href').split('?plan=')[1];
-    
-    if(user){
-      // User is logged in, redirect to projects page
-      sessionStorage.setItem('selected_plan', planParam);
-      window.location.href = '/projects';
-    } else {
-      // User is NOT logged in, redirect to signup/login
-      sessionStorage.setItem('selected_plan', planParam);
-      window.location.href = '/signup';
-    }
-  });
-});
-</script>
-
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-brand">
+            <div class="logo">Leadintel<span>AI</span></div>
+                <p>Leading the way in digital B2B solutions.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Solutions</h4>
+                <a href="index.html#services">B2B Data</a>
+                <a href="index.html#services">WhatsApp API</a>
+                <a href="index.html#services">Mass Mailing</a>
+                <a href="index.html#services">AI Chatbot</a>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <a href="index.html#about">About</a>
+                <a href="price.html">Pricing</a>
+            </div>
+            <div class="footer-links" id="contact">
+                <h4>Contact</h4>
+                <a href="mailto:hello@leadintelai.com">hello@leadintelai.com</a>
+                <a href="#">+1 (555) 123-4567</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Leadintelai.in. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
