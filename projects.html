@@ -8,15 +8,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#050a12;--bg2:#07101c;--bg3:#0a1828;
-  --teal:#0d4f8c;--teal2:#1464b4;--teal3:#1e7fd4;
+  --bg:#004E64;--bg2:#005A73;--bg3:#006B85;
+  --teal:#004E64;--teal2:#006B85;--teal3:#00879C;
+  --blue:#004E64;--blue2:#006B85;--blue3:#00879C;
   --gold:#c9a84c;--gold2:#e2c47a;
   --white:#f0f4fa;--muted:#6b88ab;
   --border:rgba(100,140,200,0.12);
   --green:#4ade80;--red:#f87171;--purple:#a855f7;--orange:#fb923c;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden}
+html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter",sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden}
 
 /* ── BG CANVAS ── */
 #bgCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
@@ -32,7 +33,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);colo
 .user-pill:hover{border-color:rgba(30,127,212,0.35);background:rgba(30,127,212,0.08)}
 .user-av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--blue2),var(--blue3));display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;color:#fff}
 .user-pname{font-size:0.82rem;font-weight:500;color:var(--white)}
-.signout-btn{padding:7px 16px;background:transparent;border:1px solid var(--border);border-radius:100px;font-size:0.78rem;color:var(--muted);cursor:pointer;transition:all 0.3s;font-family:'DM Sans',sans-serif}
+.signout-btn{padding:7px 16px;background:transparent;border:1px solid var(--border);border-radius:100px;font-size:0.78rem;color:var(--muted);cursor:pointer;transition:all 0.3s;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter",sans-serif}
 .signout-btn:hover{border-color:rgba(248,113,113,0.4);color:#f87171;background:rgba(248,113,113,0.06)}
 
 /* ── MAIN ── */
@@ -96,9 +97,9 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);colo
 .proj-card.mailing .feat-check{background:rgba(201,168,76,0.15);color:var(--gold)}
 
 .card-footer{margin-top:28px;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1}
-.launch-btn{padding:11px 22px;border:none;border-radius:11px;font-family:'DM Sans',sans-serif;font-size:0.84rem;font-weight:600;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;gap:6px}
-.proj-card.data .launch-btn{background:linear-gradient(135deg,var(--blue2),var(--blue3));color:#fff;box-shadow:0 4px 16px rgba(30,127,212,0.3)}
-.proj-card.data .launch-btn:hover{box-shadow:0 8px 28px rgba(30,127,212,0.5);transform:translateY(-1px)}
+.launch-btn{padding:11px 22px;border:none;border-radius:11px;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter",sans-serif;font-size:0.84rem;font-weight:600;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;gap:6px}
+.proj-card.data .launch-btn{background:linear-gradient(135deg,var(--teal2),var(--teal3));color:#fff;box-shadow:0 4px 16px rgba(0,135,156,0.3),0 0 20px rgba(30,127,212,0.15)}
+.proj-card.data .launch-btn:hover{box-shadow:0 8px 28px rgba(0,135,156,0.5),0 0 30px rgba(30,127,212,0.3);transform:translateY(-1px)}
 .proj-card.whatsapp .launch-btn{background:linear-gradient(135deg,#128C7E,#25D366);color:#fff;box-shadow:0 4px 16px rgba(37,211,102,0.25)}
 .proj-card.whatsapp .launch-btn:hover{box-shadow:0 8px 28px rgba(37,211,102,0.4);transform:translateY(-1px)}
 .proj-card.mailing .launch-btn{background:linear-gradient(135deg,#9a7c2a,var(--gold2));color:#1a1200;box-shadow:0 4px 16px rgba(201,168,76,0.25)}
@@ -290,7 +291,7 @@ function launch(url, name) {
   overlay.style.cssText = 'position:fixed;inset:0;background:rgba(5,10,18,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;animation:fadeIn 0.3s ease';
   overlay.innerHTML = `<style>@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes spin{to{transform:rotate(360deg)}}</style>
     <div style="width:48px;height:48px;border:3px solid rgba(30,127,212,0.2);border-top-color:#1e7fd4;border-radius:50%;animation:spin 0.8s linear infinite"></div>
-    <div style="font-family:'DM Sans',sans-serif;color:#f0f4fa;font-size:0.92rem">Launching <strong style="color:#1e7fd4">${name}</strong>…</div>`;
+    <div style="font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter",sans-serif;color:#f0f4fa;font-size:0.92rem">Launching <strong style="color:#1e7fd4">${name}</strong>…</div>`;
   document.body.appendChild(overlay);
   setTimeout(() => window.location.href = url, 800);
 }

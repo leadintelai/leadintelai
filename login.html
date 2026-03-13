@@ -8,8 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#050a12;--bg2:#07101c;--bg3:#0a1828;
-  --teal:#0d4f8c;--teal2:#1464b4;--teal3:#1e7fd4;
+  --bg:#004E64;--bg2:#005A73;--bg3:#006B85;
+  --teal:#004E64;--teal2:#006B85;--teal3:#00879C;
+  --blue:#004E64;--blue2:#006B85;--blue3:#00879C;
   --gold:#c9a84c;--gold2:#e2c47a;
   --white:#f0f4fa;--muted:#6b88ab;
   --border:rgba(100,140,200,0.12);
@@ -17,7 +18,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;overflow:hidden}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);display:flex;flex-direction:column}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter",sans-serif;background:var(--bg);color:var(--white);display:flex;flex-direction:column}
 
 /* ── NAV ── */
 nav{position:relative;z-index:100;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:64px;border-bottom:1px solid var(--border);background:rgba(5,10,18,0.8);backdrop-filter:blur(24px);flex-shrink:0}
@@ -39,7 +40,7 @@ nav{position:relative;z-index:100;padding:0 40px;display:flex;align-items:center
 .viz-content{position:relative;z-index:2}
 .viz-title{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:400;line-height:1.2;margin-bottom:8px;color:var(--white)}
 .viz-title span{color:var(--gold)}
-.viz-sub{font-size:0.86rem;color:var(--muted);margin-bottom:40px;line-height:1.6}
+.viz-sub{font-size:0.86rem;color:var(--muted);margin-bottom:40px;line-height:1.7}
 
 /* ── CHART CARD ── */
 .chart-card{background:rgba(7,16,28,0.7);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px;backdrop-filter:blur(12px)}
@@ -70,11 +71,11 @@ nav{position:relative;z-index:100;padding:0 40px;display:flex;align-items:center
 .card-brand-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;letter-spacing:0.1em;color:var(--white)}
 .card-brand-text span{color:var(--blue3)}
 .card-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;margin-bottom:6px}
-.card-sub{font-size:0.83rem;color:var(--muted);margin-bottom:32px;line-height:1.6}
+.card-sub{font-size:0.83rem;color:var(--muted);margin-bottom:32px;line-height:1.7}
 
 /* ── FLOATING LABEL FIELDS ── */
 .field{position:relative;margin-bottom:20px}
-.field input{width:100%;background:rgba(5,10,18,0.9);border:1px solid rgba(30,127,212,0.2);border-radius:12px;padding:18px 16px 6px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.92rem;outline:none;transition:all 0.3s}
+.field input{width:100%;background:rgba(5,10,18,0.9);border:1px solid rgba(30,127,212,0.2);border-radius:12px;padding:18px 16px 6px;color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter",sans-serif;font-size:0.92rem;outline:none;transition:all 0.3s}
 .field input:focus{border-color:var(--blue3);box-shadow:0 0 0 3px rgba(30,127,212,0.1),0 0 20px rgba(30,127,212,0.05)}
 .field label{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:0.86rem;color:var(--muted);pointer-events:none;transition:all 0.25s;background:transparent}
 .field input:focus ~ label,
@@ -92,10 +93,10 @@ nav{position:relative;z-index:100;padding:0 40px;display:flex;align-items:center
 
 /* ── BUTTON ── */
 .btn-wrap{position:relative;margin-bottom:20px}
-.btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--blue2),var(--blue3));border:none;border-radius:12px;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;transition:all 0.3s;letter-spacing:0.04em;position:relative;overflow:hidden}
+.btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--teal2),var(--teal3));border:none;border-radius:12px;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter",sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;transition:all 0.3s;letter-spacing:0.04em;position:relative;overflow:hidden;box-shadow:0 4px 16px rgba(0,135,156,0.3),0 0 20px rgba(30,127,212,0.15)}
 .btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.08),transparent);opacity:0;transition:opacity 0.3s}
 .btn:hover::before{opacity:1}
-.btn:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(30,127,212,0.4)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(0,135,156,0.5),0 0 30px rgba(30,127,212,0.3)}
 .btn:active{transform:translateY(0)}
 .btn:disabled{opacity:0.55;cursor:not-allowed;transform:none;box-shadow:none}
 .btn-shine{position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.12),transparent);transform:skewX(-20deg);transition:left 0.6s}
@@ -106,7 +107,7 @@ nav{position:relative;z-index:100;padding:0 40px;display:flex;align-items:center
 .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
 
 /* ── GOOGLE BTN ── */
-.google-btn{width:100%;padding:11px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.86rem;cursor:pointer;transition:all 0.25s;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px}
+.google-btn{width:100%;padding:11px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter",sans-serif;font-size:0.86rem;cursor:pointer;transition:all 0.25s;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px}
 .google-btn:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.18)}
 .google-btn svg{width:17px;height:17px;flex-shrink:0}
 
