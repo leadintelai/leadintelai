@@ -57,6 +57,29 @@ nav{position:relative;z-index:100;padding:0 40px;display:flex;align-items:center
 .field .pw-toggle svg{width:16px;height:16px}
 .field input.has-toggle{padding-right:44px}
 
+/* Get OTP Button */
+.field .get-otp-btn{position:absolute;right:8px;top:50%;transform:translateY(-50%);padding:8px 16px;background:linear-gradient(135deg,var(--blue2),var(--blue3));border:none;border-radius:8px;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.3s;white-space:nowrap;z-index:2}
+.field .get-otp-btn:hover{box-shadow:0 4px 16px rgba(30,127,212,0.4);transform:translateY(-50%) translateX(-2px)}
+.field .get-otp-btn:disabled{opacity:0.5;cursor:not-allowed}
+
+/* OTP Section */
+.otp-section{margin-top:-8px;margin-bottom:16px;padding:16px;background:rgba(30,127,212,0.08);border:1px solid rgba(30,127,212,0.2);border-radius:12px;animation:slideIn 0.3s ease}
+@keyframes slideIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.otp-label{font-size:0.75rem;color:var(--muted);margin-bottom:12px;line-height:1.6}
+.otp-label span{color:var(--blue3);font-weight:600}
+.otp-inputs-row{display:flex;gap:10px;justify-content:center;margin-bottom:14px}
+.otp-box{width:52px;height:56px;border:2px solid rgba(30,127,212,0.25);border-radius:12px;background:rgba(5,10,18,0.7);text-align:center;font-size:1.6rem;font-weight:700;color:var(--white);outline:none;transition:all 0.3s;font-family:'DM Sans',sans-serif}
+.otp-box:focus{border-color:rgba(30,127,212,0.6);background:rgba(30,127,212,0.12);box-shadow:0 0 0 3px rgba(30,127,212,0.15)}
+.otp-box.filled{border-color:rgba(30,127,212,0.5);background:rgba(30,127,212,0.15)}
+.otp-actions{display:flex;flex-direction:column;gap:10px}
+.verify-otp-btn{width:100%;padding:12px;background:linear-gradient(135deg,#128C7E,#25D366);border:none;border-radius:10px;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.84rem;font-weight:600;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 16px rgba(37,211,102,0.3)}
+.verify-otp-btn:hover{box-shadow:0 6px 22px rgba(37,211,102,0.45);transform:translateY(-1px)}
+.verify-otp-btn:disabled{opacity:0.5;cursor:not-allowed}
+.otp-resend-row{font-size:0.78rem;color:var(--muted);text-align:center}
+.otp-resend-row strong{color:var(--blue3);cursor:pointer;font-weight:600}
+.otp-resend-row strong:hover{text-decoration:underline}
+.otp-resend-row #otpTimer{color:var(--gold);font-weight:600;margin-left:4px}
+
 /* ── 2-COL ROW ── */
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
@@ -189,6 +212,22 @@ nav{position:relative;z-index:100;padding:0 40px;display:flex;align-items:center
       <div class="field">
         <input class="inp" id="email" type="email" placeholder="x" autocomplete="email">
         <label for="email">Work Email</label>
+        <button type="button" class="get-otp-btn" id="getOtpBtn" onclick="sendOTP()">Get OTP →</button>
+      </div>
+
+      <!-- OTP SECTION -->
+      <div class="otp-section" id="otpSection" style="display:none">
+        <div class="otp-label">Enter 4-digit code sent to <span id="otpEmailDisplay"></span></div>
+        <div class="otp-inputs-row">
+          <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" autofocus>
+          <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+          <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+          <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+        </div>
+        <div class="otp-actions">
+          <button class="verify-otp-btn" id="verifyOtpBtn" onclick="verifyOTP()">Confirm & Create Account ✓</button>
+          <div class="otp-resend-row">Didn't receive code? <strong onclick="resendOTP()">Resend</strong> <span id="otpTimer">(30s)</span></div>
+        </div>
       </div>
 
       <div class="field">
@@ -219,6 +258,7 @@ nav{position:relative;z-index:100;padding:0 40px;display:flex;align-items:center
       </button>
 
       <div class="switch-link">Already have an account? <a href="/login">Sign in →</a></div>
+      
       <div class="terms">By creating an account, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></div>
     </div>
   </div>
@@ -314,14 +354,162 @@ function doSignup(){
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showErr('⚠ Please enter a valid work email.');return;}
   if(!company){showErr('⚠ Company name is required.');return;}
   if(pw.length<8){showErr('⚠ Password must be at least 8 characters.');return;}
-  const btn=document.getElementById('signupBtn');
-  btn.innerHTML='<span class="btn-shine"></span>Creating account<span class="dots"><span></span><span></span><span></span></span>';
-  btn.disabled=true;
-  setTimeout(()=>{
-    btn.disabled=false;
-    btn.innerHTML='<span class="btn-shine"></span>Create Free Account →';
-    showErr('⚠ Demo mode — connect your backend API to enable real authentication.');
-  },2000);
+  
+  // First send OTP before creating account
+  sendOTP();
+}
+
+let otpSent = false;
+let currentOtp = '';
+let resendTimer;
+
+function sendOTP(){
+  const email = document.getElementById('email').value;
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    showErr('⚠ Please enter a valid work email first.');
+    return;
+  }
+  
+  const btn = document.getElementById('getOtpBtn');
+  btn.disabled = true;
+  btn.innerHTML = 'Sending...';
+  
+  setTimeout(() => {
+    // Generate random 4-digit OTP
+    currentOtp = Math.floor(1000 + Math.random() * 9000).toString();
+    sessionStorage.setItem('otpCode', currentOtp);
+    
+    btn.innerHTML = '✓ Sent!';
+    
+    // Show OTP section
+    document.getElementById('otpEmailDisplay').textContent = email;
+    document.getElementById('otpSection').style.display = 'block';
+    
+    // DEMO MODE: Show OTP in console and as toast
+    console.log('🔐 DEMO OTP:', currentOtp);
+    const demoToast = document.createElement('div');
+    demoToast.style.cssText = 'position:fixed;top:20px;right:20px;background:rgba(30,127,212,0.15);border:1px solid rgba(30,127,212,0.4);border-radius:10px;padding:12px 16px;font-size:0.82rem;color:var(--blue3);z-index:10001;animation:slideIn 0.3s ease';
+    demoToast.innerHTML = `<strong style="color:var(--white)">🔑 Demo OTP:</strong> <span style="font-size:1.1rem;font-weight:700;color:var(--gold)">${currentOtp}</span> <span style="opacity:0.7;margin-left:6px">(check console)</span>`;
+    document.body.appendChild(demoToast);
+    setTimeout(() => demoToast.remove(), 8000);
+    
+    // Focus first OTP box
+    setTimeout(() => {
+      const boxes = document.querySelectorAll('.otp-box');
+      boxes[0].focus();
+      
+      // Handle input navigation
+      boxes.forEach((box, idx) => {
+        box.addEventListener('input', e => {
+          const val = e.target.value;
+          if(val && idx < boxes.length - 1) boxes[idx + 1].focus();
+          box.classList.toggle('filled', !!val);
+        });
+        box.addEventListener('keydown', e => {
+          if(e.key === 'Backspace' && !val && idx > 0) boxes[idx - 1].focus();
+          if(e.key === 'Enter') verifyOTP();
+        });
+      });
+    }, 100);
+    
+    // Start resend timer
+    startResendTimer();
+    
+    // Disable signup button until OTP verified
+    document.getElementById('signupBtn').disabled = true;
+    document.getElementById('signupBtn').innerHTML = '<span class="btn-shine"></span>Verify Email First →';
+    
+  }, 800);
+}
+
+function startResendTimer(){
+  let secs = 30;
+  const timerEl = document.getElementById('otpTimer');
+  resendTimer = setInterval(() => {
+    secs--;
+    const m = Math.floor(secs / 60), s = secs % 60;
+    timerEl.textContent = `(${m}:${s < 10 ? '0' : ''}${s})`;
+    if(secs <= 0){ 
+      clearInterval(resendTimer); 
+      timerEl.textContent = '';
+    }
+  }, 1000);
+}
+
+function resendOTP(){
+  const newOtp = Math.floor(1000 + Math.random() * 9000).toString();
+  currentOtp = newOtp;
+  sessionStorage.setItem('otpCode', newOtp);
+  
+  // Clear inputs
+  document.querySelectorAll('.otp-box').forEach(b => { b.value = ''; b.classList.remove('filled'); });
+  document.querySelectorAll('.otp-box')[0].focus();
+  
+  // Show success toast
+  const msg = document.createElement('div');
+  msg.style.cssText = 'position:fixed;top:24px;left:50%;transform:translateX(-50%);background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.4);border-radius:10px;padding:12px 20px;font-size:0.84rem;color:#4ade80;z-index:10000;animation:slideDown 0.3s ease';
+  msg.innerHTML = `<style>@keyframes slideDown{from{transform:translateX(-50%) translateY(-20px);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}</style>✓ New OTP sent to your email!`;
+  document.body.appendChild(msg);
+  setTimeout(() => msg.remove(), 3000);
+  
+  // Restart timer
+  startResendTimer();
+}
+
+function verifyOTP(){
+  const boxes = document.querySelectorAll('.otp-box');
+  const entered = Array.from(boxes).map(b => b.value).join('');
+  
+  if(entered.length !== 4){
+    showErr('⚠ Please enter all 4 digits of the OTP.');
+    return;
+  }
+  
+  if(entered === currentOtp){
+    // Success - enable account creation
+    document.getElementById('errBox').style.display = 'none';
+    document.getElementById('verifyOtpBtn').disabled = true;
+    document.getElementById('verifyOtpBtn').innerHTML = '✓ Verified!';
+    document.getElementById('verifyOtpBtn').style.background = 'linear-gradient(135deg, #4ade80, #22c55e)';
+    
+    // Enable signup button
+    const signupBtn = document.getElementById('signupBtn');
+    signupBtn.disabled = false;
+    signupBtn.innerHTML = '<span class="btn-shine"></span>Create Account & Continue →';
+    
+    // Hide OTP section after short delay
+    setTimeout(() => {
+      document.getElementById('otpSection').style.display = 'none';
+      // Auto-submit signup
+      createAccount();
+    }, 800);
+  } else {
+    // Wrong OTP
+    showErr('⚠ Incorrect OTP. Please check and try again.');
+    boxes.forEach(b => { b.value = ''; b.classList.remove('filled'); });
+    boxes[0].focus();
+  }
+}
+
+function createAccount(){
+  const email = document.getElementById('email').value;
+  const fn = document.getElementById('fname').value.trim();
+  const ln = document.getElementById('lname').value.trim();
+  const company = document.getElementById('company').value.trim();
+  
+  // Save user info
+  const name = email.split('@')[0].replace(/[^a-zA-Z]/g,' ').trim();
+  sessionStorage.setItem('userName', name.charAt(0).toUpperCase() + name.slice(1));
+  sessionStorage.setItem('userEmail', email);
+  sessionStorage.setItem('userFirst', fn);
+  sessionStorage.setItem('userLast', ln);
+  sessionStorage.setItem('userCompany', company);
+  sessionStorage.setItem('userPlan', 'Growth');
+  
+  // Redirect to projects
+  setTimeout(() => {
+    window.location.href = 'projects.html';
+  }, 1200);
 }
 
 /* ── BG PARTICLE CANVAS ── */

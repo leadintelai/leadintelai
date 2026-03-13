@@ -516,7 +516,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);mi
             <div class="sd-row"><span>Email</span><span id="sEmail">—</span></div>
             <div class="sd-row"><span>Transaction ID</span><span id="sTxn">—</span></div>
           </div>
-          <a class="btn-dashboard" href="index.html">← Back to LeadintelAI</a>
+          <a class="btn-dashboard" href="projects.html">Go to Dashboard →</a>
         </div>
       </div>
     </div>
@@ -723,9 +723,16 @@ function showSuccess(method) {
   document.getElementById('sdot2').querySelector('span').textContent = '✓';
   const sc = document.getElementById('successScreen');
   sc.style.display = 'block';
+  const email = document.getElementById('fEmail')?.value || '';
+  const first = document.getElementById('fFirst')?.value || 'User';
+  const last  = document.getElementById('fLast')?.value  || '';
+  sessionStorage.setItem('userName',  first);
+  sessionStorage.setItem('userLast',  last);
+  sessionStorage.setItem('userEmail', email);
+  sessionStorage.setItem('userPlan',  plan.name);
   document.getElementById('sPlan').textContent    = plan.name;
   document.getElementById('sAmount').textContent  = '₹' + total.toLocaleString('en-IN') + ' (incl. GST)';
-  document.getElementById('sEmail').textContent   = document.getElementById('fEmail')?.value || '—';
+  document.getElementById('sEmail').textContent   = email || '—';
   document.getElementById('sTxn').textContent     = 'LI' + Date.now().toString().slice(-10);
 }
 
