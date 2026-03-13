@@ -283,8 +283,28 @@ document.getElementById('topAv').textContent   = uInitial;
 document.getElementById('topName').textContent = uName;
 document.getElementById('greetChip').textContent = 'Welcome back, ' + uName + ' — choose your workspace';
 
+// ── CHECK PAYMENT STATUS ──
+const hasPaid = sessionStorage.getItem('payment_completed');
+const selectedPlan = sessionStorage.getItem('selected_plan');
+
+if(!hasPaid && selectedPlan){
+  // User has selected a plan but hasn't paid yet - redirect to checkout
+  setTimeout(() => {
+    window.location.href = '/checkout.html?plan=' + selectedPlan;
+  }, 1500);
+}
+
 // ── LAUNCH with ripple effect ──
 function launch(url, name) {
+  // Check if user has paid before launching dashboard
+  if(!sessionStorage.getItem('payment_completed')){
+    alert('Please complete payment first to access this feature.');
+    // Redirect to checkout with current plan
+    const plan = sessionStorage.getItem('selected_plan') || 'growth';
+    window.location.href = '/checkout.html?plan=' + plan;
+    return;
+  }
+  
   sessionStorage.setItem('activeModule', name);
   // Add click ripple
   const overlay = document.createElement('div');

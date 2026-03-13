@@ -731,6 +731,10 @@ function showSuccess(method) {
   sessionStorage.setItem('userLast',  last);
   sessionStorage.setItem('userEmail', email);
   sessionStorage.setItem('userPlan',  plan.name);
+  
+  // Set payment flag to true
+  sessionStorage.setItem('payment_completed', 'true');
+  
   document.getElementById('sPlan').textContent    = plan.name;
   document.getElementById('sAmount').textContent  = '₹' + total.toLocaleString('en-IN') + ' (incl. GST)';
   document.getElementById('sEmail').textContent   = email || '—';

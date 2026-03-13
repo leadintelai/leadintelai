@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Create Account — LeadintelAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2&#10003;family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#004E64;--bg2:#005A73;--bg3:#006B85;
@@ -227,7 +227,7 @@ nav{position:relative;z-index:100;padding:0 40px;display:flex;align-items:center
         </div>
         <div class="otp-actions">
           <button class="verify-otp-btn" id="verifyOtpBtn" onclick="verifyOTP()">Confirm & Create Account ✓</button>
-          <div class="otp-resend-row">Didn't receive code? <strong onclick="resendOTP()">Resend</strong> <span id="otpTimer">(30s)</span></div>
+          <div class="otp-resend-row">Didn't receive code&#10003; <strong onclick="resendOTP()">Resend</strong> <span id="otpTimer">(30s)</span></div>
         </div>
       </div>
 
@@ -258,7 +258,7 @@ nav{position:relative;z-index:100;padding:0 40px;display:flex;align-items:center
         Continue with Google
       </button>
 
-      <div class="switch-link">Already have an account? <a href="/login">Sign in →</a></div>
+      <div class="switch-link">Already have an account&#10003; <a href="/login">Sign in →</a></div>
       
       <div class="terms">By creating an account, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></div>
     </div>
@@ -323,9 +323,9 @@ nav{position:relative;z-index:100;padding:0 40px;display:flex;align-items:center
 function togglePw(id,btn){
   const i=document.getElementById(id);
   const show=i.type==='password';
-  i.type=show?'text':'password';
+  i.type=show&#10003;'text':'password';
   btn.innerHTML=show
-    ?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>'
+    &#10003;'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>'
     :'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
 }
 /* ── PASSWORD STRENGTH ── */
@@ -339,7 +339,7 @@ function checkStr(pw){
   const cls=['weak','fair','good','strong'],lbs=['Weak','Fair','Good','Strong'];
   for(let i=0;i<s;i++)bars[i].classList.add(cls[s-1]);
   lbl.textContent=lbs[s-1]||'';
-  lbl.style.color=s<=1?'#f87171':s===2?'#fbbf24':s===3?'#34d399':'#4ade80';
+  lbl.style.color=s<=1&#10003;'#f87171':s===2&#10003;'#fbbf24':s===3&#10003;'#34d399':'#4ade80';
 }
 /* ── SHOW ERROR ── */
 function showErr(m){const e=document.getElementById('errBox');e.style.display='block';e.textContent=m;}
@@ -429,7 +429,7 @@ function startResendTimer(){
   resendTimer = setInterval(() => {
     secs--;
     const m = Math.floor(secs / 60), s = secs % 60;
-    timerEl.textContent = `(${m}:${s < 10 ? '0' : ''}${s})`;
+    timerEl.textContent = `(${m}:${s < 10 &#10003; '0' : ''}${s})`;
     if(secs <= 0){ 
       clearInterval(resendTimer); 
       timerEl.textContent = '';
@@ -534,10 +534,10 @@ function drawBg(){
     if(p.y<0)p.y=bgC.height;if(p.y>bgC.height)p.y=0;
     pts.forEach(q=>{
       const d=Math.hypot(p.x-q.x,p.y-q.y);
-      if(d<100){bgX.beginPath();bgX.moveTo(p.x,p.y);bgX.lineTo(q.x,q.y);bgX.strokeStyle=`rgba(${p.gold?'201,168,76':'30,127,212'},${0.07*(1-d/100)})`;bgX.stroke();}
+      if(d<100){bgX.beginPath();bgX.moveTo(p.x,p.y);bgX.lineTo(q.x,q.y);bgX.strokeStyle=`rgba(${p.gold&#10003;'201,168,76':'30,127,212'},${0.07*(1-d/100)})`;bgX.stroke();}
     });
     bgX.beginPath();bgX.arc(p.x,p.y,p.r,0,Math.PI*2);
-    bgX.fillStyle=p.gold?`rgba(201,168,76,${p.o})`:`rgba(30,127,212,${p.o})`;
+    bgX.fillStyle=p.gold&#10003;`rgba(201,168,76,${p.o})`:`rgba(30,127,212,${p.o})`;
     bgX.fill();
   });
   requestAnimationFrame(drawBg);

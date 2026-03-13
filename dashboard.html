@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard — LeadintelAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2&#10003;family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#004E64;--bg2:#005A73;--bg3:#006B85;--bg4:#0d1e30;
@@ -454,8 +454,8 @@ document.getElementById('topAv').textContent      = uInitial;
 document.getElementById('topbarPlan').textContent = uPlan + ' Plan';
 document.getElementById('todayDate').textContent  = new Date().toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
 const hr = new Date().getHours();
-const greeting = hr<12?'Good morning':hr<18?'Good afternoon':'Good evening';
-const icon = hr<12?'☀️':hr<18?'🌤️':'🌙';
+const greeting = hr<12&#10003;'Good morning':hr<18&#10003;'Good afternoon':'Good evening';
+const icon = hr<12&#10003;'☀️':hr<18&#10003;'🌤️':'🌙';
 document.querySelector('.welcome-text h2').innerHTML =
   `${greeting}, <span style="color:var(--gold)">${uName}</span> ${icon}`;
 
@@ -483,7 +483,7 @@ function drawSparkline(id, data, color) {
   pts.forEach(p=>ctx.lineTo(p.x,p.y));
   ctx.lineTo(pts[pts.length-1].x,h); ctx.closePath();
   ctx.fillStyle=grad; ctx.fill();
-  ctx.beginPath(); pts.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
+  ctx.beginPath(); pts.forEach((p,i)=>i===0&#10003;ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
   ctx.strokeStyle=color; ctx.lineWidth=2; ctx.stroke();
 }
 const sp1=[40,55,48,70,65,80,95,88,102,110,98,120];
@@ -531,7 +531,7 @@ function drawLeadChart(period) {
   ctx.lineTo(points[points.length-1].x,pad.t+ch); ctx.closePath();
   ctx.fillStyle=grad; ctx.fill();
   // Line
-  ctx.beginPath(); points.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
+  ctx.beginPath(); points.forEach((p,i)=>i===0&#10003;ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
   ctx.strokeStyle='#1e7fd4'; ctx.lineWidth=2.5; ctx.lineJoin='round'; ctx.stroke();
   // Dots
   points.forEach(p=>{
@@ -588,8 +588,8 @@ let activeFilter='all';
 function renderLeads(data) {
   const body=document.getElementById('leadsBody'); body.innerHTML='';
   data.forEach((l,i)=>{
-    const cls=l.status==='hot'?'hot':l.status==='warm'?'warm':l.status==='new'?'new':'cold';
-    const label=l.status==='hot'?'🔥 Hot':l.status==='warm'?'🌡 Warm':l.status==='new'?'✨ New':'❄ Cold';
+    const cls=l.status==='hot'&#10003;'hot':l.status==='warm'&#10003;'warm':l.status==='new'&#10003;'new':'cold';
+    const label=l.status==='hot'&#10003;'🔥 Hot':l.status==='warm'&#10003;'🌡 Warm':l.status==='new'&#10003;'✨ New':'❄ Cold';
     const tr=document.createElement('tr');
     tr.style.animationDelay=i*0.05+'s';
     tr.innerHTML=`
@@ -611,7 +611,7 @@ function filterStatus(s, btn) {
   activeFilter=s;
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  renderLeads(s==='all'?leadsData:leadsData.filter(l=>l.status===s));
+  renderLeads(s==='all'&#10003;leadsData:leadsData.filter(l=>l.status===s));
 }
 renderLeads(leadsData);
 

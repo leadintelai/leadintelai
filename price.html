@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -301,17 +301,23 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 5%;display:flex;a
 <script>
 // Check if user is already logged in
 const user = sessionStorage.getItem('leadintel_user');
-if(user){
-  // User is logged in, redirect to projects page after clicking any plan
-  document.querySelectorAll('.plan-btn').forEach(btn=>{
-    btn.addEventListener('click',(e)=>{
-      e.preventDefault();
-      const planParam = btn.getAttribute('href').split('?plan=')[1];
+
+document.querySelectorAll('.plan-btn').forEach(btn=>{
+  btn.addEventListener('click',(e)=>{
+    e.preventDefault();
+    const planParam = btn.getAttribute('href').split('?plan=')[1];
+    
+    if(user){
+      // User is logged in, redirect to projects page
       sessionStorage.setItem('selected_plan', planParam);
       window.location.href = '/projects';
-    });
+    } else {
+      // User is NOT logged in, redirect to signup/login
+      sessionStorage.setItem('selected_plan', planParam);
+      window.location.href = '/signup';
+    }
   });
-}
+});
 </script>
 
 </body>
