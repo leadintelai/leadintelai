@@ -191,22 +191,21 @@ window.addEventListener('resize', () => {
 // ---------- AI Chatbot Logic ---------- //
 const chatbotToggle = document.getElementById('chatbot-toggle');
 const chatbotWindow = document.getElementById('chatbot-window');
-const chatbotClose = document.getElementById('chatbot-close');
 const chatbotMessages = document.getElementById('chatbot-messages');
 const chatbotInput = document.getElementById('chatbot-input');
 const chatbotSend = document.getElementById('chatbot-send');
 
 // Open Chatbot
 chatbotToggle.addEventListener('click', () => {
-    chatbotWindow.classList.add('active');
-    if (chatbotMessages.children.length === 0) {
-        addBotMessage("Hi there! 👋 I'm the LeadintelAI Assistant. How can I help you grow your business today?");
+    // Toggle active state instead of just adding
+    if(chatbotWindow.classList.contains('active')){
+        chatbotWindow.classList.remove('active');
+    } else {
+        chatbotWindow.classList.add('active');
+        if (chatbotMessages.children.length === 0) {
+            addBotMessage("Hi there! 👋 I'm the LeadintelAI Assistant. How can I help you grow your business today?");
+        }
     }
-});
-
-// Close Chatbot
-chatbotClose.addEventListener('click', () => {
-    chatbotWindow.classList.remove('active');
 });
 
 // Close Chatbot when clicking outside
@@ -217,7 +216,10 @@ document.addEventListener('click', (event) => {
         const isClickInsideWindow = chatbotWindow.contains(event.target);
         const isClickOnToggle = chatbotToggle.contains(event.target);
         
-        if (!isClickInsideWindow && !isClickOnToggle) {
+        // Ensure we aren't clicking on service modals before closing chat
+        const isClickOnModal = event.target.closest('.service-modal') !== null;
+        
+        if (!isClickInsideWindow && !isClickOnToggle && !isClickOnModal) {
             chatbotWindow.classList.remove('active');
         }
     }
@@ -345,4 +347,24 @@ function addTypingIndicator(id) {
 function removeTypingIndicator(id) {
     const el = document.getElementById(id);
     if (el) el.remove();
+}
+
+// ---------- Service Modals Logic ---------- //
+
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        document.getElementById('modal-overlay').classList.add('active');
+        modal.classList.add('active');
+    }
+}
+
+function closeModals() {
+    const overlay = document.getElementById('modal-overlay');
+    if (overlay) overlay.classList.remove('active');
+    
+    const modals = document.querySelectorAll('.service-modal');
+    modals.forEach((modal) => {
+        modal.classList.remove('active');
+    });
 }

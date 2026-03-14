@@ -30,9 +30,6 @@
                 <h1 class="hero-title">Empower Your Enterprise with <span>Intelligent Tools</span></h1>
                 <p class="hero-subtitle" id="typing-text"></p>
                 <!-- Original text kept as fallback or for reference, but hidden by script initially if needed. We will inject it via script.js -->
-                <div class="hero-cta">
-                    <a href="login.html" class="btn btn-primary btn-large">Talk to an Expert</a>
-                </div>
             </div>
         </section>
 
@@ -54,6 +51,7 @@
                     </div>
                         <h3>B2B Data Selling</h3>
                         <p>Access high-quality B2B leads complete with phone numbers, email IDs, and key decision-maker titles (HR, CIO, CXO, CTO, etc.) for supercharged lead generation.</p>
+                        <a href="javascript:void(0)" onclick="openModal('modal-data')" class="learn-more-link" style="color: var(--clr-electric); font-weight: 600; text-decoration: none; margin-top: 15px; display: inline-block; transition: all 0.3s ease;">Learn More →</a>
                     </div>
                     <!-- Service 2 -->
                     <div class="service-card">
@@ -65,13 +63,20 @@
                     </div>
                         <h3>WhatsApp API</h3>
                         <p>Connect with leads within a second on WhatsApp. Get a WhatsApp Chatbot for 24/7 automated assistance and seamless customer engagement.</p>
-                        <a href="whatsapp.html" style="color: #25D366; font-weight: 600; text-decoration: none; margin-top: 15px; display: inline-block;">Learn More →</a>
+                        <a href="javascript:void(0)" onclick="openModal('modal-whatsapp')" class="learn-more-link" style="color: #25D366; font-weight: 600; text-decoration: none; margin-top: 15px; display: inline-block; transition: all 0.3s ease;">Learn More →</a>
                     </div>
                     <!-- Service 3 -->
                     <div class="service-card">
-                        <div class="service-icon">✉️</div>
+                        <div class="icon pb-4" style="color: var(--clr-electric);">
+                        <!-- Mail Icon -->
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </div>
                         <h3>Mass Mailing</h3>
                         <p>Connect with your entire lead database within a second. Deliver personalized, high-volume email campaigns with exceptional deliverability.</p>
+                        <a href="javascript:void(0)" onclick="openModal('modal-mailing')" class="learn-more-link" style="color: var(--clr-electric); font-weight: 600; text-decoration: none; margin-top: 15px; display: inline-block; transition: all 0.3s ease;">Learn More →</a>
                     </div>
                 </div>
             </div>
@@ -97,7 +102,7 @@
                 <p>Get data here, connect with them within a second. All three solutions in one place at <strong>India's biggest B2B leadgen platform</strong>.</p>
                 <div class="cta-buttons" style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem;">
                     <a href="login.html" class="btn btn-primary btn-large">Start Dominating Your Market</a>
-                    <a href="login.html" class="btn btn-secondary btn-large">Explore LeadintelAI</a>
+                    <a href="login.html" class="btn btn-secondary btn-large">Plan Your Business Growth in a Single Tap</a>
                 </div>
             </div>
         </section>
@@ -123,8 +128,8 @@
             </div>
             <div class="footer-links" id="contact">
                 <h4>Contact</h4>
-                <a href="mailto:hello@leadintelai.com">hello@leadintelai.com</a>
-                <a href="#">+1 (555) 123-4567</a>
+                <a href="mailto:leadintelai@gmail.com">leadintelai@gmail.com</a>
+                <a href="#">+91 7903820302</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -143,7 +148,6 @@
                 <span class="status-dot"></span>
                 LeadintelAI Assistant
             </div>
-            <button class="chatbot-close" id="chatbot-close">&times;</button>
         </div>
         <div class="chatbot-messages" id="chatbot-messages">
             <!-- Messages will be injected here via JS -->
@@ -154,6 +158,31 @@
                 <svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
             </button>
         </div>
+
+    <!-- Modals for Services -->
+    <div class="modal-overlay" id="modal-overlay" onclick="closeModals()"></div>
+
+    <div class="service-modal glass-panel" id="modal-data">
+        <button class="modal-close" onclick="closeModals()">&times;</button>
+        <h3>B2B Data Selling Details</h3>
+        <p>Unlock access to our deeply verified, high-quality B2B database. Get complete contact details including direct phone numbers, verified email IDs, and precise job designations for key decision-makers (HR, CIO, CXO, CTO, and more).</p>
+        <p>Perfect for supercharging your outbound sales and executing highly targeted campaigns.</p>
+    </div>
+
+    <div class="service-modal glass-panel" id="modal-whatsapp">
+        <button class="modal-close" onclick="closeModals()">&times;</button>
+        <h3>WhatsApp API Details</h3>
+        <p>Connect with leads within a second on the platform they use most. Our robust WhatsApp Business API integration allows for massive outreach, automated support, and transactional messages.</p>
+        <p>Additionally, you get a powerful WhatsApp Chatbot for 24/7 automated customer assistance and lead qualification.</p>
+        <a href="whatsapp.html" class="btn btn-primary" style="margin-top: 1rem;">View Full Dedicated Page</a>
+    </div>
+
+    <div class="service-modal glass-panel" id="modal-mailing">
+        <button class="modal-close" onclick="closeModals()">&times;</button>
+        <h3>Mass Mailing Details</h3>
+        <p>Connect with your entire lead database within a second. Execute large-scale, personalized email campaigns with our state-of-the-art infrastructure designed to maximize inbox deliverability.</p>
+        <p>Track opens, clicks, and conversions easily while ensuring compliance and an exceptional sender reputation.</p>
+    </div>
     </div>
 
     <!-- Three.js Library -->
@@ -163,5 +192,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <!-- Custom Script -->
     <script src="script.js"></script>
+    <script src="transitions.js"></script>
 </body>
 </html>
