@@ -367,4 +367,42 @@ function closeModals() {
     modals.forEach((modal) => {
         modal.classList.remove('active');
     });
+
+    // Reset contact form if it was used
+    const contactForm = document.getElementById('expert-contact-form');
+    const successMsg = document.getElementById('contact-success-msg');
+    setTimeout(() => {
+        if(contactForm) contactForm.style.display = 'flex';
+        if(successMsg) {
+            successMsg.style.display = 'none';
+            successMsg.style.opacity = '0';
+            successMsg.style.transform = 'scale(0.9)';
+        }
+    }, 400); // Reset after modal closes
 }
+
+// ---------- Expert Contact Form Submission ---------- //
+document.addEventListener('DOMContentLoaded', () => {
+    const expertForm = document.getElementById('expert-contact-form');
+    if(expertForm) {
+        expertForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent page reload
+            
+            const form = e.target;
+            const successMsg = document.getElementById('contact-success-msg');
+            
+            // Hide the form smoothly
+            form.style.display = 'none';
+            
+            // Display success message with animation
+            successMsg.style.display = 'block';
+            setTimeout(() => {
+                successMsg.style.opacity = '1';
+                successMsg.style.transform = 'scale(1)';
+            }, 50);
+            
+            // Optional: You could add an API call here to actually send the email/Slack message
+            form.reset(); // clear inputs
+        });
+    }
+});

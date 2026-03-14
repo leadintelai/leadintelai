@@ -32,7 +32,7 @@
             <div class="logo">Leadintel<span>AI</span></div>
             <nav class="nav-links">
                 <a href="index.html#services">Services</a>
-                <a href="index.html#about">About</a>
+                <a href="about.html">About</a>
                 <a href="price.html" style="color: var(--clr-electric);">Pricing</a>
                 <a href="login.html" class="btn btn-primary">Get Started</a>
             </nav>
@@ -173,7 +173,7 @@
             </div>
             <div class="footer-links">
                 <h4>Company</h4>
-                <a href="index.html#about">About</a>
+                <a href="about.html">About</a>
                 <a href="price.html">Pricing</a>
             </div>
             <div class="footer-links" id="contact">
@@ -302,9 +302,8 @@
             const dataTl = gsap.timeline({
                 scrollTrigger: {
                     trigger: dataSection,
-                    start: "top 80%", // Start splitting when scrolling down into this section
-                    end: "center center", // Finish splitting when centered
-                    scrub: 1.5
+                    start: "top 80%", // Trigger when the top of the section is 80% down the viewport
+                    toggleActions: "play none none reverse" // Play automatically without being tied to scroll progress
                 }
             });
 
