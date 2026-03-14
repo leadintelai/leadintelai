@@ -444,6 +444,9 @@
     <!-- Three.js for Overlay Background -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script>
+        // --- Backend URL ---
+        const backendUrl = "http://localhost:8080";
+
         // --- 3D Blurred Data Animation Background for Overlay ---
         const canvas = document.getElementById('overlay-canvas');
         const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
@@ -451,7 +454,6 @@
         const updateCanvasSize = () => {
             const overlayInfo = document.querySelector('.overlay').getBoundingClientRect();
             renderer.setSize(overlayInfo.width, overlayInfo.height);
-            // Ensure camera aspect ratio is updated correctly
             camera.aspect = overlayInfo.width / overlayInfo.height;
             camera.updateProjectionMatrix();
         };
@@ -476,20 +478,13 @@
         particlesGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
 
         const particleMat = new THREE.PointsMaterial({
-            color: 0xF5F6FA,
-            size: 0.2,
-            transparent: true,
-            opacity: 0.8,
-            blending: THREE.AdditiveBlending
+            color: 0xF5F6FA, size: 0.2, transparent: true, opacity: 0.8, blending: THREE.AdditiveBlending
         });
         const particleMesh = new THREE.Points(particlesGeo, particleMat);
         networkGroup.add(particleMesh);
 
         const lineMaterial = new THREE.LineBasicMaterial({
-            color: 0x0984E3,
-            transparent: true,
-            opacity: 0.25,
-            blending: THREE.AdditiveBlending
+            color: 0x0984E3, transparent: true, opacity: 0.25, blending: THREE.AdditiveBlending
         });
 
         const linePositions = [];
@@ -499,7 +494,6 @@
                 const dy = particlePositions[i * 3 + 1] - particlePositions[j * 3 + 1];
                 const dz = particlePositions[i * 3 + 2] - particlePositions[j * 3 + 2];
                 const distSq = dx * dx + dy * dy + dz * dz;
-
                 if (distSq < 60) {
                     linePositions.push(
                         particlePositions[i * 3], particlePositions[i * 3 + 1], particlePositions[i * 3 + 2],
@@ -515,7 +509,6 @@
         networkGroup.add(lineMesh);
 
         const clock = new THREE.Clock();
-
         function animate3D() {
             requestAnimationFrame(animate3D);
             const elapsedTime = clock.getElapsedTime();
@@ -524,7 +517,6 @@
             renderer.render(scene, camera);
         }
 
-        // Initialize and start animation
         const overlayElement = document.querySelector('.overlay');
         if (overlayElement) {
             updateCanvasSize();
@@ -539,136 +531,101 @@
         const mobileGoSignup = document.getElementById('go-to-signup-mobile');
         const mobileGoSignin = document.getElementById('go-to-signin-mobile');
 
-        // Sliding Animation UI Triggers
         signUpBtn.addEventListener('click', () => container.classList.add("right-panel-active"));
         signInOverlayBtn.addEventListener('click', () => container.classList.remove("right-panel-active"));
         mobileGoSignup.addEventListener('click', () => container.classList.add("right-panel-active"));
         mobileGoSignin.addEventListener('click', () => container.classList.remove("right-panel-active"));
 
-        // OTP Logic with Real Backend
+        // OTP & Backend Auth logic
         const btnSendOtp = document.getElementById('btn-send-otp');
         const otpGroup = document.getElementById('otp-group');
         const btnVerifyOtp = document.getElementById('btn-verify-otp');
         const emailVerifiedTick = document.getElementById('email-verified-tick');
         const signupEmail = document.getElementById('signup-email');
         const signupOtp = document.getElementById('signup-otp');
+        const signupPasswordInput = document.getElementById('signup-password');
+        const createAccBtn = document.getElementById('btn-create-acc');
+
+        let isEmailVerified = false;
+        let verifiedEmailAddress = "";
 
         btnSendOtp.addEventListener('click', async () => {
             const email = signupEmail.value.trim();
             if(email.includes('@')) {
                 btnSendOtp.textContent = "Sending...";
                 btnSendOtp.disabled = true;
-
                 try {
                     const response = await fetch(`${backendUrl}/auth/send-otp`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ email: email })
                     });
-
                     if (response.ok) {
                         btnSendOtp.textContent = "Sent!";
-                        otpGroup.classList.remove('hidden'); 
+                        otpGroup.classList.remove('hidden');
                     } else {
                         const err = await response.json();
-                        alert(`Error: ${err.detail || "Failed to send OTP"}`);
+                        alert(`Error: ${err.detail || "Failed to send"}`);
                         btnSendOtp.textContent = "Resend OTP";
                         btnSendOtp.disabled = false;
                     }
-                } catch (error) {
-                    alert("Backend server not reached. Ensure it is running on port 8080.");
-                    btnSendOtp.textContent = "Retry";
+                } catch (e) {
+                    alert("Backend server not reached. Ensure main.py is running on port 8080.");
                     btnSendOtp.disabled = false;
                 }
-            } else {
-                alert('Please enter a valid email address.');
-            }
+            } else { alert('Invalid Email'); }
         });
-
-        let isEmailVerified = false;
-        let verifiedEmailAddress = "";
 
         btnVerifyOtp.addEventListener('click', async () => {
             const email = signupEmail.value.trim();
             const otpCode = signupOtp.value.trim();
-
             if(otpCode.length === 6) {
                 btnVerifyOtp.textContent = "Verifying...";
                 btnVerifyOtp.disabled = true;
-
                 try {
                     const response = await fetch(`${backendUrl}/auth/verify-otp`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ email: email, otp_code: otpCode })
                     });
-
                     if (response.ok) {
-                        otpGroup.classList.add('hidden'); 
-                        btnSendOtp.classList.add('hidden'); 
-                        emailVerifiedTick.style.display = 'inline-block'; 
-                        signupEmail.disabled = true; 
+                        otpGroup.classList.add('hidden');
+                        btnSendOtp.classList.add('hidden');
+                        emailVerifiedTick.style.display = 'inline-block';
+                        signupEmail.disabled = true;
                         isEmailVerified = true;
                         verifiedEmailAddress = email;
-                        alert("Email verification successful!");
                     } else {
                         const err = await response.json();
-                        alert(`Verification Failed: ${err.detail || "Invalid code"}`);
-                        btnVerifyOtp.textContent = "Verify Now";
+                        alert(`Verification Failed: ${err.detail}`);
                         btnVerifyOtp.disabled = false;
                     }
-                } catch (error) {
-                    alert("Connection error.");
-                    btnVerifyOtp.textContent = "Verify Now";
-                    btnVerifyOtp.disabled = false;
+                } catch (e) { alert("Server error."); btnVerifyOtp.disabled = false; }
+            } else { alert('Enter 6 digit OTP'); }
+        });
+
+        createAccBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const email = signupEmail.value.trim().toLowerCase();
+            const pass = signupPasswordInput.value;
+            if (!isEmailVerified || email !== verifiedEmailAddress) {
+                alert("Please verify your email address first."); return;
+            }
+            try {
+                const res = await fetch(`${backendUrl}/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, password: pass })
+                });
+                if (res.ok) {
+                    alert("Account Created! Use the Log In tab now.");
+                    container.classList.remove("right-panel-active");
+                } else {
+                    const err = await res.json();
+                    alert(`Signup Error: ${err.detail}`);
                 }
-            } else {
-                alert('Please enter the 6-digit OTP.');
-            }
+            } catch (e) { alert("Server connection failed."); }
         });
-
-        // Password Liquid Strength Meter
-        const pwdInput = document.getElementById('signup-password');
-        const liquidFill = document.getElementById('pwd-liquid');
-
-        pwdInput.addEventListener('input', (e) => {
-            const val = e.target.value;
-            let strength = 0;
-            
-            if(val.length >= 6) strength += 25;
-            if(val.length >= 10) strength += 25;
-            if(/[A-Z]/.test(val)) strength += 20;
-            if(/[0-9]/.test(val)) strength += 15;
-            if(/[^A-Za-z0-9]/.test(val)) strength += 15;
-
-            // Cap at 100
-            strength = Math.min(strength, 100);
-
-            // Update Progress Bar
-            liquidFill.style.width = strength + '%';
-            
-            // Adjust Liquid Color Based on Strength
-            if(strength < 40) {
-                liquidFill.style.background = 'linear-gradient(90deg, #ff4757, #ff6b81)';
-                liquidFill.style.boxShadow = '0 0 10px #ff4757';
-            } else if (strength < 75) {
-                liquidFill.style.background = 'linear-gradient(90deg, #ffa502, #eccc68)';
-                liquidFill.style.boxShadow = '0 0 10px #ffa502';
-            } else {
-                // "Liquid flowing in tube Liquid Color website Color" (Electric Blue)
-                liquidFill.style.background = 'linear-gradient(90deg, #1E272E, var(--clr-electric), #00b894, var(--clr-electric))';
-                liquidFill.style.backgroundSize = '300% 100%';
-                liquidFill.style.boxShadow = '0 0 15px var(--clr-electric-glow)';
-            }
-            
-            if (val.length === 0) {
-                liquidFill.style.width = '0%';
-                liquidFill.style.boxShadow = 'none';
-            }
-        });
-
-        // --- REAL API AUTHENTICATION ---
-        const backendUrl = "http://localhost:8080";
 
         // Login Logic
         const loginBtn = document.getElementById('actual-login-btn');
@@ -677,109 +634,41 @@
 
         loginBtn.addEventListener('click', async (e) => {
             e.preventDefault();
-            
             const email = loginEmail.value.trim().toLowerCase();
             const pass = loginPassword.value;
-
-            if(!email || !pass) {
-                alert("Please enter both email and password.");
-                return;
-            }
-
+            if(!email || !pass) { alert("Enter credentials"); return; }
+            
             loginBtn.textContent = 'Authenticating...';
-            loginBtn.style.opacity = '0.7';
-            loginBtn.disabled = true;
-
             try {
-                // OAuth2PasswordRequestForm requires form-urlencoded data
                 const formData = new URLSearchParams();
-                formData.append('username', email); // FASTAPI OAuth2 uses 'username'
+                formData.append('username', email);
                 formData.append('password', pass);
 
-                const response = await fetch(`${backendUrl}/token`, {
+                const res = await fetch(`${backendUrl}/token`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: formData
                 });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    
-                    // Store the real JWT token
+                if (res.ok) {
+                    const data = await res.json();
                     localStorage.setItem('leadintel_token', data.access_token);
                     localStorage.setItem('leadintel_auth', 'true');
                     localStorage.setItem('leadintel_email', email);
-                    
-                    // Redirect after small delay
-                    setTimeout(() => {
-                        window.location.href = 'project.html';
-                    }, 500);
-                } else {
-                    const errData = await response.json();
-                    alert(`Login Failed: ${errData.detail || "Invalid Credentials"}`);
-                    loginPassword.value = ''; 
-                }
-            } catch (error) {
-                console.error("Login Error:", error);
-                alert("Could not connect to the Backend server on port 8080.");
-            } finally {
-                loginBtn.textContent = 'Log In';
-                loginBtn.style.opacity = '1';
-                loginBtn.disabled = false;
-            }
+                    window.location.href = 'project.html';
+                } else { alert("Login Failed: Invalid credentials"); }
+            } catch (e) { alert("Backend offline."); }
+            finally { loginBtn.textContent = 'Log In'; }
         });
 
-        // Registration Logic
-        const signupBtn = document.getElementById('btn-create-acc');
-        
-        signupBtn.addEventListener('click', async (e) => {
-            e.preventDefault();
-
-            const email = signupEmail.value.trim().toLowerCase();
-            const pass = pwdInput.value;
-
-            if(!email || !pass) {
-                alert("Please ensure your email is complete and you've entered a password.");
-                return;
-            }
-
-            if (!isEmailVerified || email !== verifiedEmailAddress) {
-                alert("Please verify your email address with the OTP first.");
-                return;
-            }
-
-            signupBtn.textContent = 'Creating Account...';
-            signupBtn.style.opacity = '0.7';
-            signupBtn.disabled = true;
-
-            try {
-                const response = await fetch(`${backendUrl}/register`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email: email, password: pass })
-                });
-
-                if (response.ok) {
-                    alert("Account created successfully! You will now be redirected to Login.");
-                    // Switch to login sliding panel
-                    container.classList.remove("right-panel-active");
-                    loginEmail.value = email; // pre-fill
-                } else {
-                    const errData = await response.json();
-                    alert(`Registration Failed: ${errData.detail || "Error"}`);
-                }
-            } catch (error) {
-                console.error("Signup Error:", error);
-                alert("Could not connect to the Backend server on port 8080.");
-            } finally {
-                signupBtn.textContent = 'Sign Up';
-                signupBtn.style.opacity = '1';
-                signupBtn.disabled = false;
-            }
+        // Strength Meter
+        signupPasswordInput.addEventListener('input', (e) => {
+            let strength = 0;
+            const val = e.target.value;
+            if(val.length >= 6) strength += 25;
+            if(val.length >= 10) strength += 25;
+            if(/[A-Z]/.test(val)) strength += 25;
+            if(/[0-9]/.test(val)) strength += 25;
+            document.getElementById('pwd-liquid').style.width = strength + '%';
         });
 
     </script>

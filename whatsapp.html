@@ -239,74 +239,6 @@
         }
         .metric-bar { height: 100%; background: #25D366; }
 
-        /* AI Generation Modal */
-        .ai-modal-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(5px);
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        .ai-modal-overlay.active { opacity: 1; pointer-events: all; }
-        
-        .ai-modal {
-            background: rgba(30, 39, 46, 0.95);
-            border: 1px solid rgba(37, 211, 102, 0.5);
-            border-radius: 12px;
-            padding: 2rem;
-            width: 500px;
-            max-width: 90%;
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            position: relative;
-        }
-        .ai-modal-overlay.active .ai-modal { transform: translateY(0); }
-        .ai-modal-close {
-            position: absolute; right: 15px; top: 15px;
-            background: none; border: none; color: white; cursor: pointer; font-size: 1.2rem;
-        }
-        .ai-modal h3 { text-align: center; margin-top: 0; font-family: var(--font-heading); color: #25D366;}
-        
-        .ai-input-group { margin-bottom: 1rem; }
-        .ai-input-group label { display: block; font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-bottom: 5px; }
-        .ai-input-group input, .ai-input-group select {
-            width: 100%;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: white;
-            padding: 10px 12px;
-            border-radius: 8px;
-            font-family: var(--font-body);
-            box-sizing: border-box;
-        }
-        .ai-input-group select option { background: #1e272e; }
-        .ai-generate-btn {
-            width: 100%; background: #25D366; color: #111; font-weight: 600; border: none;
-            padding: 12px; border-radius: 8px; cursor: pointer; transition: 0.2s; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px;
-        }
-        .ai-generate-btn:hover { background: #20b858; box-shadow: 0 4px 15px rgba(37,211,102,0.3); }
-        .ai-generate-btn:disabled { background: #555; cursor: not-allowed; color: #aaa; box-shadow: none; }
-
-        .spinner { width: 20px; height: 20px; border: 3px solid rgba(0,0,0,0.2); border-top-color: #111; border-radius: 50%; animation: spin 1s linear infinite; display: none; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-
-        .ai-results-area {
-            margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; display: none;
-        }
-        .template-copy {
-            background: rgba(255,255,255,0.03); border: 1px dashed rgba(255,255,255,0.2);
-            padding: 15px; border-radius: 8px; font-size: 0.9rem; color: rgba(255,255,255,0.8);
-            margin-bottom: 10px; cursor: pointer; transition: 0.2s;
-        }
-        .template-copy:hover { border-color: #25D366; background: rgba(37,211,102,0.05); }
-
         @media (max-width: 900px) {
             .app-container { flex-direction: column; height: auto; }
             .sidebar { width: 100%; flex-direction: row; overflow-x: auto; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 0;}
@@ -373,9 +305,9 @@
             
             <div class="content-header">
                 <h2>Overview Dashboard</h2>
-                <button class="btn-wa" onclick="openAiGenerator()">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                    AI Generate Content
+                <button class="btn-wa" onclick="alert('Opening Template Builder...')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    New Broadcast
                 </button>
             </div>
 
@@ -470,129 +402,6 @@
         </main>
     </div>
 
-    <!-- AI Generator Modal -->
-    <div class="ai-modal-overlay" id="aiGeneratorModal">
-        <div class="ai-modal">
-            <button class="ai-modal-close" onclick="closeAiGenerator()">×</button>
-            <h3>✨ AI Campaign Generator</h3>
-            <p style="text-align: center; font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 2rem;">Powered by Google Gemini</p>
-            
-            <form id="aiGenForm" onsubmit="generateTemplates(event)">
-                <div class="ai-input-group">
-                    <label>Product or Service Name</label>
-                    <input type="text" id="aiProduct" required placeholder="e.g. LeadintelAI Subscription">
-                </div>
-                <div class="ai-input-group">
-                    <label>Target Audience</label>
-                    <input type="text" id="aiAudience" required placeholder="e.g. B2B Sales Managers">
-                </div>
-                <div class="ai-input-group">
-                    <label>Key Benefits / Offer</label>
-                    <input type="text" id="aiBenefits" required placeholder="e.g. 50% off first month, boosts ROI">
-                </div>
-                <div class="ai-input-group">
-                    <label>Tone</label>
-                    <select id="aiTone">
-                        <option value="Professional and direct">Professional & Direct</option>
-                        <option value="Exciting and punchy">Exciting & Punchy</option>
-                        <option value="Friendly and conversational">Friendly & Conversational</option>
-                        <option value="Urgent and persuasive">Urgent & Persuasive</option>
-                    </select>
-                </div>
-                
-                <button type="submit" class="ai-generate-btn" id="aiGenerateBtn">
-                    <div class="spinner" id="genSpinner"></div>
-                    <span id="genBtnText">Generate Templates</span>
-                </button>
-            </form>
-
-            <div class="ai-results-area" id="aiResults">
-                <h4 style="margin: 0 0 10px 0; font-family: var(--font-heading);">Select a Template to copy:</h4>
-                <div id="templatesList"></div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function openAiGenerator() {
-            document.getElementById('aiGeneratorModal').classList.add('active');
-        }
-
-        function closeAiGenerator() {
-            document.getElementById('aiGeneratorModal').classList.remove('active');
-            document.getElementById('aiResults').style.display = 'none';
-            document.getElementById('aiGenForm').reset();
-        }
-
-        async function generateTemplates(e) {
-            e.preventDefault();
-            const btn = document.getElementById('aiGenerateBtn');
-            const spinner = document.getElementById('genSpinner');
-            const text = document.getElementById('genBtnText');
-            
-            // disable btn & show loader
-            btn.disabled = true;
-            spinner.style.display = 'block';
-            text.textContent = 'Generating...';
-            document.getElementById('aiResults').style.display = 'none';
-
-            const payload = {
-                product_name: document.getElementById('aiProduct').value,
-                target_audience: document.getElementById('aiAudience').value,
-                key_benefits: document.getElementById('aiBenefits').value,
-                tone: document.getElementById('aiTone').value
-            };
-
-            try {
-                const token = localStorage.getItem('leadintel_token');
-                if (!token) throw new Error('Not authenticated - Please log in again.');
-
-                const response = await fetch('http://localhost:8080/ai/generate-campaign', {
-                    method: 'POST',
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!response.ok) throw new Error('Generation Failed');
-
-                const data = await response.json();
-                
-                // render results
-                const list = document.getElementById('templatesList');
-                list.innerHTML = '';
-                
-                if(data.templates && data.templates.length > 0) {
-                    data.templates.forEach(tpl => {
-                        const div = document.createElement('div');
-                        div.className = 'template-copy';
-                        div.innerHTML = tpl.replace(/\n/g, '<br>');
-                        div.onclick = () => {
-                            navigator.clipboard.writeText(tpl);
-                            alert('Template copied to clipboard! You can now paste this into a New Broadcast.');
-                            closeAiGenerator();
-                        };
-                        list.appendChild(div);
-                    });
-                } else {
-                    list.innerHTML = "<p style='color: #d63031;'>No templates generated. Try adjusting your inputs.</p>";
-                }
-
-                document.getElementById('aiResults').style.display = 'block';
-
-            } catch(error) {
-                console.error(error);
-                alert("AI Generation failed. Ensure the Python backend is running on port 8080.");
-            } finally {
-                // re-enable btn
-                btn.disabled = false;
-                spinner.style.display = 'none';
-                text.textContent = 'Generate New Templates';
-            }
-        }
-    </script>
     <script src="transitions.js"></script>
 </body>
 </html>

@@ -42,7 +42,7 @@ tl.from('.hero-title', {
 
 // Typing Effect for Subtitle
 const typingTextElement = document.getElementById('typing-text');
-const textToType = "Unlock unparalleled growth with our premium B2B Data, seamless WhatsApp API, Mass Mailing solutions, and state-of-the-art AI Chatbots.";
+const textToType = "Unlock unparalleled growth with our premium B2B Data, seamless WhatsApp API, Mass Mailing solutions, state-of-the-art AI Chatbots, and Powerful CRM. This product will be free for users with a verified company mail ID.";
 let charIndex = 0;
 
 function typeText() {
@@ -54,7 +54,19 @@ function typeText() {
 }
 setTimeout(typeText, 800); // Start after title animation
 
-// Removed GSAP ScrollTrigger for service cards to ensure visibility immediately.
+// GSAP ScrollTrigger for service cards staggered entrance
+gsap.from('.service-card', {
+    scrollTrigger: {
+        trigger: '.services-grid',
+        start: 'top 80%',
+        toggleActions: 'play none none none'
+    },
+    y: 60,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.2,
+    ease: 'power3.out'
+});
 
 // Blur and fade 3D background on scroll down
 gsap.to('#canvas-container', {
@@ -191,22 +203,21 @@ window.addEventListener('resize', () => {
 // ---------- AI Chatbot Logic ---------- //
 const chatbotToggle = document.getElementById('chatbot-toggle');
 const chatbotWindow = document.getElementById('chatbot-window');
-const chatbotClose = document.getElementById('chatbot-close');
 const chatbotMessages = document.getElementById('chatbot-messages');
 const chatbotInput = document.getElementById('chatbot-input');
 const chatbotSend = document.getElementById('chatbot-send');
 
 // Open Chatbot
 chatbotToggle.addEventListener('click', () => {
-    chatbotWindow.classList.add('active');
-    if (chatbotMessages.children.length === 0) {
-        addBotMessage("Hi there! 👋 I'm the LeadintelAI Assistant. How can I help you grow your business today?");
+    // Toggle active state instead of just adding
+    if(chatbotWindow.classList.contains('active')){
+        chatbotWindow.classList.remove('active');
+    } else {
+        chatbotWindow.classList.add('active');
+        if (chatbotMessages.children.length === 0) {
+            addBotMessage("Hi there! 👋 I'm the LeadintelAI Assistant. How can I help you grow your business today?");
+        }
     }
-});
-
-// Close Chatbot
-chatbotClose.addEventListener('click', () => {
-    chatbotWindow.classList.remove('active');
 });
 
 // Close Chatbot when clicking outside
@@ -217,7 +228,10 @@ document.addEventListener('click', (event) => {
         const isClickInsideWindow = chatbotWindow.contains(event.target);
         const isClickOnToggle = chatbotToggle.contains(event.target);
         
-        if (!isClickInsideWindow && !isClickOnToggle) {
+        // Ensure we aren't clicking on service modals before closing chat
+        const isClickOnModal = event.target.closest('.service-modal') !== null;
+        
+        if (!isClickInsideWindow && !isClickOnToggle && !isClickOnModal) {
             chatbotWindow.classList.remove('active');
         }
     }
@@ -346,3 +360,61 @@ function removeTypingIndicator(id) {
     const el = document.getElementById(id);
     if (el) el.remove();
 }
+
+// ---------- Service Modals Logic ---------- //
+
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        document.getElementById('modal-overlay').classList.add('active');
+        modal.classList.add('active');
+    }
+}
+
+function closeModals() {
+    const overlay = document.getElementById('modal-overlay');
+    if (overlay) overlay.classList.remove('active');
+    
+    const modals = document.querySelectorAll('.service-modal');
+    modals.forEach((modal) => {
+        modal.classList.remove('active');
+    });
+
+    // Reset contact form if it was used
+    const contactForm = document.getElementById('expert-contact-form');
+    const successMsg = document.getElementById('contact-success-msg');
+    setTimeout(() => {
+        if(contactForm) contactForm.style.display = 'flex';
+        if(successMsg) {
+            successMsg.style.display = 'none';
+            successMsg.style.opacity = '0';
+            successMsg.style.transform = 'scale(0.9)';
+        }
+    }, 400); // Reset after modal closes
+}
+
+// ---------- Expert Contact Form Submission ---------- //
+document.addEventListener('DOMContentLoaded', () => {
+    const expertForm = document.getElementById('expert-contact-form');
+    if(expertForm) {
+        expertForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent page reload
+            
+            const form = e.target;
+            const successMsg = document.getElementById('contact-success-msg');
+            
+            // Hide the form smoothly
+            form.style.display = 'none';
+            
+            // Display success message with animation
+            successMsg.style.display = 'block';
+            setTimeout(() => {
+                successMsg.style.opacity = '1';
+                successMsg.style.transform = 'scale(1)';
+            }, 50);
+            
+            // Optional: You could add an API call here to actually send the email/Slack message
+            form.reset(); // clear inputs
+        });
+    }
+});
