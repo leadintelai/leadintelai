@@ -545,7 +545,7 @@
         mobileGoSignup.addEventListener('click', () => container.classList.add("right-panel-active"));
         mobileGoSignin.addEventListener('click', () => container.classList.remove("right-panel-active"));
 
-        // OTP Logic Simulation
+        // OTP Logic with Real Backend
         const btnSendOtp = document.getElementById('btn-send-otp');
         const otpGroup = document.getElementById('otp-group');
         const btnVerifyOtp = document.getElementById('btn-verify-otp');
@@ -553,24 +553,77 @@
         const signupEmail = document.getElementById('signup-email');
         const signupOtp = document.getElementById('signup-otp');
 
-        btnSendOtp.addEventListener('click', () => {
-            if(signupEmail.value.includes('@')) {
-                btnSendOtp.textContent = "Sent!";
+        btnSendOtp.addEventListener('click', async () => {
+            const email = signupEmail.value.trim();
+            if(email.includes('@')) {
+                btnSendOtp.textContent = "Sending...";
                 btnSendOtp.disabled = true;
-                otpGroup.classList.remove('hidden'); // Show OTP box
+
+                try {
+                    const response = await fetch(`${backendUrl}/auth/send-otp`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: email })
+                    });
+
+                    if (response.ok) {
+                        btnSendOtp.textContent = "Sent!";
+                        otpGroup.classList.remove('hidden'); 
+                    } else {
+                        const err = await response.json();
+                        alert(`Error: ${err.detail || "Failed to send OTP"}`);
+                        btnSendOtp.textContent = "Resend OTP";
+                        btnSendOtp.disabled = false;
+                    }
+                } catch (error) {
+                    alert("Backend server not reached. Ensure it is running on port 8080.");
+                    btnSendOtp.textContent = "Retry";
+                    btnSendOtp.disabled = false;
+                }
             } else {
-                alert('Please enter a valid email address to send OTP.');
+                alert('Please enter a valid email address.');
             }
         });
 
-        btnVerifyOtp.addEventListener('click', () => {
-            if(signupOtp.value.length >= 4) { // Mock verification logic
-                otpGroup.classList.add('hidden'); // Disappear OTP Box
-                btnSendOtp.classList.add('hidden'); // Disappear Send Button
-                emailVerifiedTick.style.display = 'inline-block'; // Show bright tick
-                signupEmail.disabled = true; // Lock email field
+        let isEmailVerified = false;
+        let verifiedEmailAddress = "";
+
+        btnVerifyOtp.addEventListener('click', async () => {
+            const email = signupEmail.value.trim();
+            const otpCode = signupOtp.value.trim();
+
+            if(otpCode.length === 6) {
+                btnVerifyOtp.textContent = "Verifying...";
+                btnVerifyOtp.disabled = true;
+
+                try {
+                    const response = await fetch(`${backendUrl}/auth/verify-otp`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: email, otp_code: otpCode })
+                    });
+
+                    if (response.ok) {
+                        otpGroup.classList.add('hidden'); 
+                        btnSendOtp.classList.add('hidden'); 
+                        emailVerifiedTick.style.display = 'inline-block'; 
+                        signupEmail.disabled = true; 
+                        isEmailVerified = true;
+                        verifiedEmailAddress = email;
+                        alert("Email verification successful!");
+                    } else {
+                        const err = await response.json();
+                        alert(`Verification Failed: ${err.detail || "Invalid code"}`);
+                        btnVerifyOtp.textContent = "Verify Now";
+                        btnVerifyOtp.disabled = false;
+                    }
+                } catch (error) {
+                    alert("Connection error.");
+                    btnVerifyOtp.textContent = "Verify Now";
+                    btnVerifyOtp.disabled = false;
+                }
             } else {
-                alert('Invalid OTP. Please try again.');
+                alert('Please enter the 6-digit OTP.');
             }
         });
 
@@ -614,34 +667,118 @@
             }
         });
 
-        // --- HARDCODED AUTEHNTICATION SIMULATION ---
+        // --- REAL API AUTHENTICATION ---
+        const backendUrl = "http://localhost:8080";
+
+        // Login Logic
         const loginBtn = document.getElementById('actual-login-btn');
         const loginEmail = document.getElementById('login-email');
         const loginPassword = document.getElementById('login-password');
 
-        loginBtn.addEventListener('click', (e) => {
-            e.preventDefault(); // Prevent form sub
+        loginBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
             
             const email = loginEmail.value.trim().toLowerCase();
             const pass = loginPassword.value;
 
-            // Hardcoded check
-            if (email === 'leadintelai@gmail.com' && pass === 'Gaurav@20302') {
-                // Success: Mock session token
-                localStorage.setItem('leadintel_auth', 'true');
-                localStorage.setItem('leadintel_email', 'Leadintelai@gmail.com');
-                
-                loginBtn.textContent = 'Authenticating...';
-                loginBtn.style.opacity = '0.7';
+            if(!email || !pass) {
+                alert("Please enter both email and password.");
+                return;
+            }
 
-                // Redirect after small delay
-                setTimeout(() => {
-                    window.location.href = 'project.html';
-                }, 800);
-            } else {
-                // Failure
-                alert('Invalid Credentials.\n\nFor demo purposes, please use:\nEmail: Leadintelai@gmail.com\nPassword: Gaurav@20302');
-                loginPassword.value = ''; // clear pass
+            loginBtn.textContent = 'Authenticating...';
+            loginBtn.style.opacity = '0.7';
+            loginBtn.disabled = true;
+
+            try {
+                // OAuth2PasswordRequestForm requires form-urlencoded data
+                const formData = new URLSearchParams();
+                formData.append('username', email); // FASTAPI OAuth2 uses 'username'
+                formData.append('password', pass);
+
+                const response = await fetch(`${backendUrl}/token`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    // Store the real JWT token
+                    localStorage.setItem('leadintel_token', data.access_token);
+                    localStorage.setItem('leadintel_auth', 'true');
+                    localStorage.setItem('leadintel_email', email);
+                    
+                    // Redirect after small delay
+                    setTimeout(() => {
+                        window.location.href = 'project.html';
+                    }, 500);
+                } else {
+                    const errData = await response.json();
+                    alert(`Login Failed: ${errData.detail || "Invalid Credentials"}`);
+                    loginPassword.value = ''; 
+                }
+            } catch (error) {
+                console.error("Login Error:", error);
+                alert("Could not connect to the Backend server on port 8080.");
+            } finally {
+                loginBtn.textContent = 'Log In';
+                loginBtn.style.opacity = '1';
+                loginBtn.disabled = false;
+            }
+        });
+
+        // Registration Logic
+        const signupBtn = document.getElementById('btn-create-acc');
+        
+        signupBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+
+            const email = signupEmail.value.trim().toLowerCase();
+            const pass = pwdInput.value;
+
+            if(!email || !pass) {
+                alert("Please ensure your email is complete and you've entered a password.");
+                return;
+            }
+
+            if (!isEmailVerified || email !== verifiedEmailAddress) {
+                alert("Please verify your email address with the OTP first.");
+                return;
+            }
+
+            signupBtn.textContent = 'Creating Account...';
+            signupBtn.style.opacity = '0.7';
+            signupBtn.disabled = true;
+
+            try {
+                const response = await fetch(`${backendUrl}/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: email, password: pass })
+                });
+
+                if (response.ok) {
+                    alert("Account created successfully! You will now be redirected to Login.");
+                    // Switch to login sliding panel
+                    container.classList.remove("right-panel-active");
+                    loginEmail.value = email; // pre-fill
+                } else {
+                    const errData = await response.json();
+                    alert(`Registration Failed: ${errData.detail || "Error"}`);
+                }
+            } catch (error) {
+                console.error("Signup Error:", error);
+                alert("Could not connect to the Backend server on port 8080.");
+            } finally {
+                signupBtn.textContent = 'Sign Up';
+                signupBtn.style.opacity = '1';
+                signupBtn.disabled = false;
             }
         });
 

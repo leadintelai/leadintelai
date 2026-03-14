@@ -257,6 +257,19 @@
             transition: 0.2s;
         }
         .btn-unlock:hover { background: var(--clr-electric); color: #fff;}
+        
+        .btn-ai-score {
+            background: rgba(162, 155, 254, 0.1);
+            border: 1px solid #a29bfe;
+            color: #a29bfe;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-left: 5px;
+        }
+        .btn-ai-score:hover { background: #a29bfe; color: #111;}
 
         /* Loader Overlay */
         .loading-overlay {
@@ -283,6 +296,52 @@
             animation: spin 1s linear infinite;
         }
         @keyframes spin { 100% { transform: rotate(360deg); } }
+        
+        /* AI Score Modal */
+        .ai-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .ai-modal-overlay.active { opacity: 1; pointer-events: all; }
+        
+        .ai-modal {
+            background: rgba(30, 39, 46, 0.95);
+            border: 1px solid rgba(162, 155, 254, 0.5);
+            border-radius: 12px;
+            padding: 2rem;
+            width: 400px;
+            max-width: 90%;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        .ai-modal-overlay.active .ai-modal { transform: translateY(0); }
+        .ai-modal-close {
+            position: absolute; right: 15px; top: 15px;
+            background: none; border: none; color: white; cursor: pointer; font-size: 1.2rem;
+        }
+        .ai-score-ring {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            border: 5px solid #a29bfe;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; font-family: var(--font-heading); font-weight: bold;
+            margin: 0 auto 1rem auto;
+            color: #a29bfe;
+        }
+        .ai-modal h3 { text-align: center; margin-top: 0; font-family: var(--font-heading); }
+        .ai-modal .summary { font-size: 0.95rem; color: rgba(255,255,255,0.8); line-height: 1.5; text-align: center; margin-bottom: 1rem;}
+        .ai-modal .recommendations { padding-left: 20px; font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.6;}
 
         @media (max-width: 1024px) {
             .app-container { flex-direction: column; height: auto; }
@@ -444,7 +503,10 @@
                             <td>Software & IT</td>
                             <td class="contact-blur">arjun.k@techsolve.in</td>
                             <td class="contact-blur">+91 98765 43210</td>
-                            <td><button class="btn-unlock" onclick="unlockRow(this, 15)">Unlock (₹15)</button></td>
+                            <td>
+                                <button class="btn-unlock" onclick="unlockRow(this, 15)">Unlock (₹15)</button>
+                                <button class="btn-ai-score" onclick="scoreLead('Software & IT', 'Chief Technology Officer', 'TechSolve India')">AI Score</button>
+                            </td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" style="accent-color: var(--clr-electric);"></td>
@@ -462,7 +524,10 @@
                             <td>Banking & Finance</td>
                             <td class="contact-blur">sneha.mehta@finserve.co.in</td>
                             <td class="contact-blur">+91 91234 56789</td>
-                            <td><button class="btn-unlock" onclick="unlockRow(this, 15)">Unlock (₹15)</button></td>
+                            <td>
+                                <button class="btn-unlock" onclick="unlockRow(this, 15)">Unlock (₹15)</button>
+                                <button class="btn-ai-score" onclick="scoreLead('Banking & Finance', 'Head of HR', 'FinServ Enterprises')">AI Score</button>
+                            </td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" style="accent-color: var(--clr-electric);"></td>
@@ -480,7 +545,10 @@
                             <td>E-commerce</td>
                             <td class="contact-blur">r.desai@retailprime.com</td>
                             <td class="contact-blur">+91 99887 76655</td>
-                            <td><button class="btn-unlock" onclick="unlockRow(this, 15)">Unlock (₹15)</button></td>
+                            <td>
+                                <button class="btn-unlock" onclick="unlockRow(this, 15)">Unlock (₹15)</button>
+                                <button class="btn-ai-score" onclick="scoreLead('E-commerce', 'Chief Marketing Officer', 'RetailPrime App')">AI Score</button>
+                            </td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" style="accent-color: var(--clr-electric);"></td>
@@ -498,7 +566,10 @@
                             <td>Software & IT</td>
                             <td class="contact-blur">priya.reddy@cloudnova.io</td>
                             <td class="contact-blur">+91 88776 65544</td>
-                            <td><button class="btn-unlock" onclick="unlockRow(this, 15)">Unlock (₹15)</button></td>
+                            <td>
+                                <button class="btn-unlock" onclick="unlockRow(this, 15)">Unlock (₹15)</button>
+                                <button class="btn-ai-score" onclick="scoreLead('Software & IT', 'VP of Sales', 'CloudNova Tech')">AI Score</button>
+                            </td>
                         </tr>
                          <tr>
                             <td><input type="checkbox" style="accent-color: var(--clr-electric);"></td>
@@ -516,13 +587,34 @@
                             <td>Manufacturing</td>
                             <td class="contact-blur">v.naik@steelauto.in</td>
                             <td class="contact-blur">+91 77665 54433</td>
-                            <td><button class="btn-unlock" onclick="unlockRow(this, 15)">Unlock (₹15)</button></td>
+                            <td>
+                                <button class="btn-unlock" onclick="unlockRow(this, 15)">Unlock (₹15)</button>
+                                <button class="btn-ai-score" onclick="scoreLead('Manufacturing', 'Procurement Director', 'SteelAuto Manufacturing')">AI Score</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
         </main>
+    </div>
+
+    <!-- AI Score Result Modal -->
+    <div class="ai-modal-overlay" id="aiScoreModal">
+        <div class="ai-modal">
+            <button class="ai-modal-close" onclick="closeAiModal()">×</button>
+            <h3 style="color: #a29bfe;">✨ AI Lead Analysis</h3>
+            <div id="aiScoreLoader" style="text-align: center; margin: 2rem 0; color: #a29bfe;">
+                <div class="spinner" style="border-top-color: #a29bfe; margin: 0 auto 1rem auto;"></div>
+                Analyzing profile with Gemini AI...
+            </div>
+            <div id="aiScoreContent" style="display: none;">
+                <div class="ai-score-ring" id="aiScoreValue">85</div>
+                <div class="summary" id="aiScoreSummary">Loading...</div>
+                <h4 style="margin-bottom: 5px;">Recommended Next Steps:</h4>
+                <ul class="recommendations" id="aiScoreRecs"></ul>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -561,6 +653,70 @@
 
         function exportData() {
             alert('Initiating bulk CSV export...\nNote: This will calculate the total cost for unlocking all selected rows prior to downloading.');
+        }
+
+        async function scoreLead(industry, title, company) {
+            // Show modal and loader
+            const modal = document.getElementById('aiScoreModal');
+            const loader = document.getElementById('aiScoreLoader');
+            const content = document.getElementById('aiScoreContent');
+            
+            modal.classList.add('active');
+            loader.style.display = 'block';
+            content.style.display = 'none';
+
+            try {
+                const token = localStorage.getItem('leadintel_token');
+                if (!token) throw new Error('Not authenticated - Please log in again.');
+
+                // Call the new backend endpoint running on port 8080
+                const response = await fetch('http://localhost:8080/ai/score-lead', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        industry: industry,
+                        job_title: title,
+                        company: company
+                    })
+                });
+
+                if (!response.ok) throw new Error('API Request Failed');
+
+                const data = await response.json();
+                
+                // Populate modal
+                document.getElementById('aiScoreValue').textContent = data.score;
+                document.getElementById('aiScoreSummary').textContent = data.summary;
+                
+                const recsUl = document.getElementById('aiScoreRecs');
+                recsUl.innerHTML = ''; // clear old
+                data.recommendations.forEach(rec => {
+                    const li = document.createElement('li');
+                    li.textContent = rec;
+                    recsUl.appendChild(li);
+                });
+
+                // Change ring color based on score
+                const ring = document.getElementById('aiScoreValue');
+                if (data.score >= 80) ring.style.borderColor = '#00b894'; // green
+                else if (data.score >= 50) ring.style.borderColor = '#fdcb6e'; // yellow
+                else ring.style.borderColor = '#d63031'; // red
+
+                // Hide loader, show content
+                loader.style.display = 'none';
+                content.style.display = 'block';
+
+            } catch (error) {
+                console.error(error);
+                loader.innerHTML = "❌ AI Analysis failed. Make sure the backend is running.";
+            }
+        }
+
+        function closeAiModal() {
+            document.getElementById('aiScoreModal').classList.remove('active');
         }
     </script>
     <script src="transitions.js"></script>

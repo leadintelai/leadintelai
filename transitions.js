@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const links = document.querySelectorAll('a');
 
     links.forEach(link => {
-        // Only apply to internal links, excluding anchors, target="_blank", external domains, and javascript
+        // Only apply to internal links, excluding anchors, target="_blank", and external domains
         const href = link.getAttribute('href');
-        const isInternal = href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto:') && !href.startsWith('tel:') && !href.startsWith('javascript:');
+        const isInternal = href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto:') && !href.startsWith('tel:');
         const isNewTab = link.getAttribute('target') === '_blank';
 
         if (isInternal && !isNewTab) {

@@ -18,7 +18,7 @@
             <nav class="nav-links">
                 <a href="#services">Services</a>
                 <a href="price.html">Pricing</a>
-                <a href="about.html">About</a>
+                <a href="#about">About</a>
                 <a href="login.html" class="btn btn-primary">Get Started</a>
             </nav>
         </div>
@@ -30,6 +30,9 @@
                 <h1 class="hero-title">Empower Your Enterprise with <span>Intelligent Tools</span></h1>
                 <p class="hero-subtitle" id="typing-text"></p>
                 <!-- Original text kept as fallback or for reference, but hidden by script initially if needed. We will inject it via script.js -->
+                <div class="hero-cta">
+                    <a href="login.html" class="btn btn-primary btn-large">Talk to an Expert</a>
+                </div>
             </div>
         </section>
 
@@ -51,7 +54,6 @@
                     </div>
                         <h3>B2B Data Selling</h3>
                         <p>Access high-quality B2B leads complete with phone numbers, email IDs, and key decision-maker titles (HR, CIO, CXO, CTO, etc.) for supercharged lead generation.</p>
-                        <span onclick="event.stopPropagation(); openModal('modal-data')" class="learn-more-link" style="color: var(--clr-electric); font-weight: 600; cursor: pointer; margin-top: 15px; display: inline-block; transition: all 0.3s ease;">Learn More →</span>
                     </div>
                     <!-- Service 2 -->
                     <div class="service-card">
@@ -63,20 +65,13 @@
                     </div>
                         <h3>WhatsApp API</h3>
                         <p>Connect with leads within a second on WhatsApp. Get a WhatsApp Chatbot for 24/7 automated assistance and seamless customer engagement.</p>
-                        <span onclick="event.stopPropagation(); openModal('modal-whatsapp')" class="learn-more-link" style="color: #25D366; font-weight: 600; cursor: pointer; margin-top: 15px; display: inline-block; transition: all 0.3s ease;">Learn More →</span>
+                        <a href="whatsapp.html" style="color: #25D366; font-weight: 600; text-decoration: none; margin-top: 15px; display: inline-block;">Learn More →</a>
                     </div>
                     <!-- Service 3 -->
                     <div class="service-card">
-                        <div class="icon pb-4" style="color: var(--clr-electric);">
-                        <!-- Mail Icon -->
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                    </div>
+                        <div class="service-icon">✉️</div>
                         <h3>Mass Mailing</h3>
                         <p>Connect with your entire lead database within a second. Deliver personalized, high-volume email campaigns with exceptional deliverability.</p>
-                        <span onclick="event.stopPropagation(); openModal('modal-mailing')" class="learn-more-link" style="color: var(--clr-electric); font-weight: 600; cursor: pointer; margin-top: 15px; display: inline-block; transition: all 0.3s ease;">Learn More →</span>
                     </div>
                 </div>
             </div>
@@ -101,8 +96,8 @@
                 <h2>Plan Your Business Growth in a Single Tap</h2>
                 <p>Get data here, connect with them within a second. All three solutions in one place at <strong>India's biggest B2B leadgen platform</strong>.</p>
                 <div class="cta-buttons" style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem;">
-                    <a href="signup.html" class="btn btn-primary btn-large" style="text-decoration:none;">Start Dominating Your Market</a>
-                    <button onclick="openModal('modal-contact')" class="btn btn-secondary btn-large" style="border: 1px solid rgba(255,255,255,0.2); background: transparent; color: var(--clr-cloud); font-family:var(--font-heading); font-size:1.1rem; cursor: pointer; padding: 12px 30px; border-radius: 30px; transition:0.3s;">Connect with the Expert</button>
+                    <a href="login.html" class="btn btn-primary btn-large">Start Dominating Your Market</a>
+                    <a href="login.html" class="btn btn-secondary btn-large">Explore LeadintelAI</a>
                 </div>
             </div>
         </section>
@@ -123,13 +118,13 @@
             </div>
             <div class="footer-links">
                 <h4>Company</h4>
-                <a href="about.html">About</a>
+                <a href="#about">About</a>
                 <a href="price.html">Pricing</a>
             </div>
             <div class="footer-links" id="contact">
                 <h4>Contact</h4>
-                <a href="mailto:leadintelai@gmail.com">leadintelai@gmail.com</a>
-                <a href="#">+91 7903820302</a>
+                <a href="mailto:hello@leadintelai.com">hello@leadintelai.com</a>
+                <a href="#">+1 (555) 123-4567</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -148,6 +143,7 @@
                 <span class="status-dot"></span>
                 LeadintelAI Assistant
             </div>
+            <button class="chatbot-close" id="chatbot-close">&times;</button>
         </div>
         <div class="chatbot-messages" id="chatbot-messages">
             <!-- Messages will be injected here via JS -->
@@ -157,71 +153,6 @@
             <button id="chatbot-send">
                 <svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
             </button>
-        </div>
-    </div>
-
-    <!-- Modals for Services -->
-    <div class="modal-overlay" id="modal-overlay" onclick="closeModals()"></div>
-
-    <div class="service-modal glass-panel" id="modal-data">
-        <button class="modal-close" onclick="closeModals()">&times;</button>
-        <h3>B2B Decision-Maker Data & Lead Subscription</h3>
-        <p>We provide high-quality B2B leads of key decision-makers including CXOs, CTOs, Marketing Heads, Sales Heads, and other senior professionals. Each lead includes essential details such as Name, Company Name, Phone Number, Email ID, Designation, and LinkedIn Profile URL.</p>
-        <p>Our leads are available through one-time data packages as well as subscription plans. With our subscription model, clients receive fresh leads on a daily basis according to their selected plan, ensuring a continuous flow of updated prospects for outreach and sales.</p>
-        <p>All leads are carefully sourced and verified by our team using LeadintelAI and advanced market intelligence tools. Data is extracted and validated based on employee LinkedIn activity and other professional social media updates, ensuring that the leads are relevant, fresh, and genuine.</p>
-    </div>
-
-    <div class="service-modal glass-panel" id="modal-whatsapp">
-        <button class="modal-close" onclick="closeModals()">&times;</button>
-        <h3>WhatsApp Business API Platform</h3>
-        <p>Our WhatsApp API platform helps businesses automate communication, engage customers, and run large-scale campaigns directly on WhatsApp. It enables companies to connect their WhatsApp Business account with a powerful dashboard to manage conversations, send bulk messages, and automate workflows.</p>
-        <p>Businesses can send broadcast campaigns, automate replies, and manage customer chats in one place, making it easier to handle marketing, sales, and customer support.</p>
-        <p style="margin-bottom: 0.5rem; font-weight: 600;">Key capabilities include:</p>
-        <ul style="text-align: left; padding-left: 1.5rem; margin-bottom: 1rem; color: rgba(245, 246, 250, 0.8); line-height: 1.6;">
-            <li><strong>Bulk WhatsApp Campaigns</strong> to send promotional or transactional messages to thousands of contacts.</li>
-            <li><strong>Automation & Chatbots</strong> to instantly respond to customer queries.</li>
-            <li><strong>Shared Team Inbox</strong> so multiple team members can manage WhatsApp conversations.</li>
-            <li><strong>Contact & Campaign Management</strong> through an easy-to-use dashboard.</li>
-            <li><strong>Analytics & Delivery Tracking</strong> to monitor campaign performance.</li>
-        </ul>
-        <p>The platform is built on the official WhatsApp Business API, ensuring secure, reliable, and scalable communication for businesses of all sizes.</p>
-    </div>
-
-    <div class="service-modal glass-panel" id="modal-mailing">
-        <button class="modal-close" onclick="closeModals()">&times;</button>
-        <h3>Mass Email Marketing Platform</h3>
-        <p>Our Mass Mailing platform helps businesses send personalized email campaigns to thousands of prospects and customers at scale. It is designed to support marketing, lead generation, product promotions, and customer engagement through high-volume email outreach.</p>
-        <p>The platform allows businesses to create, manage, and automate email campaigns from a single dashboard, making it easy to reach the right audience with the right message.</p>
-        <p style="margin-bottom: 0.5rem; font-weight: 600;">Key features include:</p>
-        <ul style="text-align: left; padding-left: 1.5rem; margin-bottom: 1rem; color: rgba(245, 246, 250, 0.8); line-height: 1.6;">
-            <li><strong>Bulk Email Campaigns</strong> to send emails to large contact lists quickly and efficiently.</li>
-            <li><strong>Personalized Email Outreach</strong> using dynamic fields such as name, company, or designation.</li>
-            <li><strong>Campaign Scheduling & Automation</strong> to send emails at the best time for engagement.</li>
-            <li><strong>Contact List Management</strong> to organize and manage large email databases.</li>
-            <li><strong>Delivery & Performance Analytics</strong> to track open rates, clicks, and campaign performance.</li>
-        </ul>
-        <p>Our platform is built to ensure high deliverability, efficient campaign management, and scalable email marketing for businesses looking to expand their outreach and generate more leads.</p>
-    </div>
-
-    <!-- Contact form modal -->
-    <div class="service-modal glass-panel" id="modal-contact">
-        <button class="modal-close" onclick="closeModals()">&times;</button>
-        <h3>Connect With Our Expert</h3>
-        
-        <form id="expert-contact-form" style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; text-align: left;">
-            <input type="text" placeholder="Name" required style="padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2); color: white; width: 100%;">
-            <input type="text" placeholder="Company Name" required style="padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2); color: white; width: 100%;">
-            <input type="email" placeholder="Company Mail ID" required style="padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2); color: white; width: 100%;">
-            <input type="tel" placeholder="Phone Number" required style="padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2); color: white; width: 100%;">
-            <input type="text" placeholder="Planning For (e.g., B2B Data, API)" required style="padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2); color: white; width: 100%;">
-            <button type="submit" class="btn btn-primary" style="margin-top: 1rem; width: 100%; justify-content: center; font-size: 1.1rem; border: none; cursor: pointer;">Submit Details</button>
-        </form>
-
-        <div id="contact-success-msg" style="display: none; padding: 2rem; color: #00b894; font-size: 1.2rem; font-weight: 600; opacity: 0; transform: scale(0.9); transition: all 0.5s ease;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 50px; height: 50px; margin: 0 auto 1rem; display: block; color: #00b894;">
-                <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
-            Our expert will connect you shortly!
         </div>
     </div>
 
