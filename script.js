@@ -1,4 +1,5 @@
 // ---------- UI & Navigation Logic ---------- //
+const backendUrl = "http://localhost:8080";
 
 // Navbar scroll effect
 const navbar = document.querySelector('.navbar');
@@ -42,7 +43,7 @@ tl.from('.hero-title', {
 
 // Typing Effect for Subtitle
 const typingTextElement = document.getElementById('typing-text');
-const textToType = "Unlock unparalleled growth with our premium B2B Data, seamless WhatsApp API, Mass Mailing solutions, state-of-the-art AI Chatbots, and Powerful CRM. This product will be free for users with a verified company mail ID.";
+const textToType = "The ultimate all-in-one suite to rule the B2B market. From premium data to seamless outreach and a powerful CRM, everything you need to dominate your industry is right here.";
 let charIndex = 0;
 
 function typeText() {
@@ -55,6 +56,8 @@ function typeText() {
 setTimeout(typeText, 800); // Start after title animation
 
 // GSAP ScrollTrigger for service cards staggered entrance
+// Commented out because it causes the cards to disappear after 2 seconds
+/*
 gsap.from('.service-card', {
     scrollTrigger: {
         trigger: '.services-grid',
@@ -67,6 +70,7 @@ gsap.from('.service-card', {
     stagger: 0.2,
     ease: 'power3.out'
 });
+*/
 
 // Blur and fade 3D background on scroll down
 gsap.to('#canvas-container', {
@@ -102,28 +106,97 @@ canvasContainer.appendChild(renderer.domElement);
 const networkGroup = new THREE.Group();
 scene.add(networkGroup);
 
+// Helper: Create a glowing circle texture for Nodes
+function createNodeTexture() {
+    const canvas = document.createElement('canvas');
+    canvas.width = 64;
+    canvas.height = 64;
+    const ctx = canvas.getContext('2d');
+    const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+    gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
+    gradient.addColorStop(0.2, 'rgba(255, 255, 255, 0.8)');
+    gradient.addColorStop(0.5, 'rgba(9, 132, 227, 0.3)');
+    gradient.addColorStop(1, 'rgba(9, 132, 227, 0)');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, 64, 64);
+    return new THREE.CanvasTexture(canvas);
+}
+
+// Helper: Create binary textures (0 and 1)
+function createBinaryTexture(text) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 64;
+    canvas.height = 64;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+    ctx.font = 'bold 40px monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(text, 32, 32);
+    return new THREE.CanvasTexture(canvas);
+}
+
+const nodeTexture = createNodeTexture();
+const zeroTexture = createBinaryTexture('0');
+const oneTexture = createBinaryTexture('1');
+
 const particleCount = 400;
 const particlePositions = new Float32Array(particleCount * 3);
+const particleColors = new Float32Array(particleCount * 3);
+const particleSizes = new Float32Array(particleCount);
 
 // Generate random points in space
 for (let i = 0; i < particleCount; i++) {
     particlePositions[i * 3] = (Math.random() - 0.5) * 60;     // x
     particlePositions[i * 3 + 1] = (Math.random() - 0.5) * 60; // y
     particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 30; // z
+    
+    // Mix white and brand blue 
+    const isBlue = Math.random() > 0.7;
+    const color = isBlue ? new THREE.Color(0x0984E3) : new THREE.Color(0xF5F6FA);
+    particleColors[i * 3] = color.r;
+    particleColors[i * 3 + 1] = color.g;
+    particleColors[i * 3 + 2] = color.b;
+    
+    particleSizes[i] = Math.random() * 0.8 + 0.2;
 }
 
 const particlesGeo = new THREE.BufferGeometry();
 particlesGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+particlesGeo.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
 
 const particleMat = new THREE.PointsMaterial({
-    color: 0xF5F6FA,
-    size: 0.2,
+    size: 0.6,
+    map: nodeTexture,
     transparent: true,
-    opacity: 0.9,
-    blending: THREE.AdditiveBlending
+    opacity: 0.8,
+    vertexColors: true,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
 });
 const particleMesh = new THREE.Points(particlesGeo, particleMat);
 networkGroup.add(particleMesh);
+
+// Binary Particle System
+const binaryCount = 150;
+const binaryPositions = new Float32Array(binaryCount * 3);
+for (let i = 0; i < binaryCount; i++) {
+    binaryPositions[i * 3] = (Math.random() - 0.5) * 80;
+    binaryPositions[i * 3 + 1] = (Math.random() - 0.5) * 80;
+    binaryPositions[i * 3 + 2] = (Math.random() - 0.5) * 40;
+}
+
+const binaryGeo0 = new THREE.BufferGeometry();
+binaryGeo0.setAttribute('position', new THREE.BufferAttribute(binaryPositions.slice(0, binaryCount * 1.5), 3));
+const binaryMat0 = new THREE.PointsMaterial({ size: 1.2, map: zeroTexture, transparent: true, opacity: 0.3, blending: THREE.AdditiveBlending, depthWrite: false });
+const binaryMesh0 = new THREE.Points(binaryGeo0, binaryMat0);
+networkGroup.add(binaryMesh0);
+
+const binaryGeo1 = new THREE.BufferGeometry();
+binaryGeo1.setAttribute('position', new THREE.BufferAttribute(binaryPositions.slice(binaryCount * 1.5), 3));
+const binaryMat1 = new THREE.PointsMaterial({ size: 1.2, map: oneTexture, transparent: true, opacity: 0.3, blending: THREE.AdditiveBlending, depthWrite: false });
+const binaryMesh1 = new THREE.Points(binaryGeo1, binaryMat1);
+networkGroup.add(binaryMesh1);
 
 // Create static connections between nearby data points to form a data network
 const lineMaterial = new THREE.LineBasicMaterial({
@@ -177,16 +250,24 @@ function animate() {
 
     const elapsedTime = clock.getElapsedTime();
 
-    // Rotate the entire data network
+    // RESTORED: Rotate the entire data network
     networkGroup.rotation.y = elapsedTime * 0.05;
     networkGroup.rotation.x = elapsedTime * 0.02;
 
-    // Mouse parallax effect
+    // RESTORED: Mouse parallax effect
     targetX = mouseX * 0.001;
     targetY = mouseY * 0.001;
-    
     networkGroup.rotation.y += 0.05 * (targetX - networkGroup.rotation.y);
     networkGroup.rotation.x += 0.05 * (targetY - networkGroup.rotation.x);
+
+    // Pulsing effect for nodes
+    particleMesh.material.size = 0.6 + Math.sin(elapsedTime * 2) * 0.1;
+    
+    // Drift binary particles
+    binaryMesh0.position.y += 0.01;
+    binaryMesh1.position.y += 0.01;
+    if (binaryMesh0.position.y > 20) binaryMesh0.position.y = -20;
+    if (binaryMesh1.position.y > 20) binaryMesh1.position.y = -20;
 
     renderer.render(scene, camera);
 }
@@ -208,25 +289,27 @@ const chatbotInput = document.getElementById('chatbot-input');
 const chatbotSend = document.getElementById('chatbot-send');
 
 // Open Chatbot
-chatbotToggle.addEventListener('click', () => {
-    // Toggle active state instead of just adding
-    if(chatbotWindow.classList.contains('active')){
-        chatbotWindow.classList.remove('active');
-    } else {
-        chatbotWindow.classList.add('active');
-        if (chatbotMessages.children.length === 0) {
-            addBotMessage("Hi there! 👋 I'm the LeadintelAI Assistant. How can I help you grow your business today?");
+if (chatbotToggle && chatbotWindow) {
+    chatbotToggle.addEventListener('click', () => {
+        // Toggle active state instead of just adding
+        if(chatbotWindow.classList.contains('active')){
+            chatbotWindow.classList.remove('active');
+        } else {
+            chatbotWindow.classList.add('active');
+            if (chatbotMessages && chatbotMessages.children.length === 0) {
+                addBotMessage("Hi there! 👋 I'm the LeadintelAI Assistant. How can I help you grow your business today?");
+            }
         }
-    }
-});
+    });
+}
 
 // Close Chatbot when clicking outside
 document.addEventListener('click', (event) => {
-    // Check if chatbot is open
-    if (chatbotWindow.classList.contains('active')) {
+    // Check if chatbot elements exist and are open
+    if (chatbotWindow && chatbotWindow.classList.contains('active')) {
         // Check if the click was outside the chatbot window and outside the toggle button
         const isClickInsideWindow = chatbotWindow.contains(event.target);
-        const isClickOnToggle = chatbotToggle.contains(event.target);
+        const isClickOnToggle = chatbotToggle ? chatbotToggle.contains(event.target) : false;
         
         // Ensure we aren't clicking on service modals before closing chat
         const isClickOnModal = event.target.closest('.service-modal') !== null;
@@ -252,10 +335,12 @@ function handleSend() {
     }, 600 + Math.random() * 500);
 }
 
-chatbotSend.addEventListener('click', handleSend);
-chatbotInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') handleSend();
-});
+if (chatbotSend) chatbotSend.addEventListener('click', handleSend);
+if (chatbotInput) {
+    chatbotInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleSend();
+    });
+}
 
 // Helpers to add messages to UI
 function addUserMessage(text) {
@@ -280,67 +365,26 @@ function scrollToBottom() {
 
 // Real AI Chatbot Logic
 async function generateBotResponse(input) {
-    // Show typing indicator
     const typingId = 'typing-' + Date.now();
     addTypingIndicator(typingId);
 
     try {
-        // NOTE: In a production environment, you should never expose your API key in frontend code.
-        // This should be routed through your own backend server.
-        // For demonstration purposes, we are simulating a dynamic AI response or setting up the fetch structure.
-        
-        // Example structure for calling an AI API (like Google Gemini or OpenAI):
-        /*
-        const response = await fetch('YOUR_BACKEND_ENDPOINT_OR_DIRECT_API', {
+        const response = await fetch(`${backendUrl}/ai/chat`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                // 'Authorization': 'Bearer YOUR_API_KEY'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                prompt: `You are the Leadintelai.in helpful assistant. 
-                         The company provides B2B Data Selling, WhatsApp API, Mass Mailing, and AI Chatbots.
-                         The founder is Gaurav Yadav. Only mention him if explicitly asked.
-                         User asked: ${input}`
+                message: input,
+                phone_number: "PUBLIC_CHAT" // Identifier for landing page chat
             })
         });
-        const data = await response.json();
-        const aiText = data.choices[0].text; // or data.candidates[0].content depending on API
-        */
 
-        // -----------------------------------------------------
-        // Simulated Dynamic Backend Call for Demo
-        // -----------------------------------------------------
-        const systemPromptContext = "Leadintelai.in offers B2B Data with numbers/emails, 24/7 WhatsApp API & Chatbots, and Mass Mailing. Founder is Gaurav Yadav (only mention if asked about founders/owners/creators). ";
-        
-        // Simulating the AI processing time...
-        await new Promise(r => setTimeout(r, 1500));
-        
-        let aiResponse = "";
-        
-        // Enhanced parsing to simulate "Real AI" understanding without a live key
-        if (input.includes('founder') || input.includes('gaurav') || input.includes('owner') || input.includes('who created')) {
-            aiResponse = "Leadintelai.in was proudly founded by **Gaurav Yadav**. Under his leadership, we strive to be India's biggest B2B lead generation platform.";
-        } else if (input.includes('price') || input.includes('cost') || input.includes('plan')) {
-            aiResponse = "We have transparent pricing in INR. Our Marketing Suite starts at ₹4,999/mo, and our B2B Data packages start at ₹9,999/mo. You can find full details on our <a href='price.html' style='color:#0984E3;text-decoration:underline;'>Pricing Page</a>.";
-        } else if (input.includes('data') || input.includes('lead')) {
-            aiResponse = "We provide premium B2B Data Selling. You get high-quality leads that include phone numbers, verified emails, and crucial decision-maker titles like HR, CIO, CXO, or CTO to fuel your growth.";
-        } else if (input.includes('whatsapp') || input.includes('api')) {
-            aiResponse = "Our WhatsApp Business API lets you connect with prospects in less than a second! We also provide custom WhatsApp Chatbots for absolute 24/7 automated assistance.";
-        } else if (input.includes('mail') || input.includes('email')) {
-            aiResponse = "With our Mass Mailing solutions, you can reach your entire lead database instantly with highly personalized email campaigns and excellent deliverability.";
-        } else if (input.includes('hello') || input.includes('hi') || input.includes('hey')) {
-            aiResponse = "Hello there! I'm the Leadintelai AI assistant. How can I help you dominate your market today?";
-        } else if (input.includes('what do you do') || input.includes('services')) {
-            aiResponse = "We specialize in B2B Data Selling (leads with contacts), WhatsApp API integrations with chatbots, and high-volume Mass Mailing. It's a single tap to grow your business!";
+        if (response.ok) {
+            const data = await response.json();
+            removeTypingIndicator(typingId);
+            addBotMessage(data.reply);
         } else {
-            // General fallback acting like an AI that needs clarification
-            aiResponse = `I'm an AI assistant for Leadintelai.in. You asked about "${input}". While I'm still learning, I can definitely tell you all about our B2B databases, WhatsApp API, Mass Mailing tools, or our pricing plans. Could you specify what you need?`;
+            throw new Error("API Failure");
         }
-
-        removeTypingIndicator(typingId);
-        addBotMessage(aiResponse);
-
     } catch (error) {
         removeTypingIndicator(typingId);
         addBotMessage("I'm sorry, I'm having trouble connecting to my AI brain right now. Please try again later!");
@@ -360,6 +404,69 @@ function removeTypingIndicator(id) {
     const el = document.getElementById(id);
     if (el) el.remove();
 }
+
+// ---------- Live Intelligence Dashboard Logic ---------- //
+const feedContainer = document.getElementById('intelligence-feed');
+const liveClock = document.getElementById('live-clock');
+
+const sampleAlerts = [
+    { person: "Anjali Sharma", action: "promoted to CTO", company: "Zomato India" },
+    { person: "David Miller", action: "joined as VP Sales", company: "Salesforce" },
+    { person: "Rajesh Kumar", action: "newly appointed HR head", company: "HCL Tech" },
+    { person: "Sarah Jenkins", action: "changed role to Director", company: "Google Cloud" },
+    { person: "Vivek Gupta", action: "promoted to Marketing Head", company: "Airtel" },
+    { person: "Linda Wu", action: "joined as Product Manager", company: "Netflix" },
+    { person: "Karan Singh", action: "appointed CEO", company: "Innovate AI" }
+];
+
+function updateClock() {
+    const now = new Date();
+    if (liveClock) {
+        liveClock.textContent = now.toLocaleTimeString();
+    }
+}
+
+function addIntelligenceAlert() {
+    if (!feedContainer) return;
+
+    const alert = sampleAlerts[Math.floor(Math.random() * sampleAlerts.length)];
+    const div = document.createElement('div');
+    div.classList.add('intelligence-item');
+    div.innerHTML = `
+        <strong>${alert.person}</strong> ${alert.action}
+        <span class="company">at ${alert.company}</span>
+    `;
+
+    // Keep only last 3 alerts
+    if (feedContainer.children.length >= 3) {
+        feedContainer.removeChild(feedContainer.firstChild);
+    }
+    
+    feedContainer.appendChild(div);
+}
+
+setInterval(updateClock, 1000);
+updateClock(); // initial call
+setInterval(addIntelligenceAlert, 4000);
+// Initial alerts
+setTimeout(addIntelligenceAlert, 500);
+setTimeout(addIntelligenceAlert, 1500);
+
+// ---------- Pricing Tab Switcher ---------- //
+document.querySelectorAll('.pricing-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        const target = tab.dataset.tab;
+
+        // Update active tab button
+        document.querySelectorAll('.pricing-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // Update active panel
+        document.querySelectorAll('.pricing-panel').forEach(panel => panel.classList.remove('active'));
+        const targetPanel = document.getElementById('tab-' + target);
+        if (targetPanel) targetPanel.classList.add('active');
+    });
+});
 
 // ---------- Service Modals Logic ---------- //
 

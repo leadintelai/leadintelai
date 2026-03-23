@@ -7,6 +7,7 @@
     <meta name="description" content="Premium B2B services: verified data selling, robust WhatsApp API integration, mass mailing capabilities, and intelligent AI chatbots.">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
     <!-- 3D Canvas Container -->
@@ -14,7 +15,10 @@
 
     <header class="navbar">
         <div class="container nav-content">
-            <div class="logo">Leadintel<span>AI</span></div>
+            <a href="index.html" class="logo">
+                <img src="logo.svg" alt="LeadintelAI Logo">
+                <span class="logo-text">Leadintel<span>AI</span></span>
+            </a>
             <nav class="nav-links">
                 <a href="#services">Services</a>
                 <a href="price.html">Pricing</a>
@@ -80,10 +84,10 @@
                     </div>
                     <!-- Service 4 -->
                     <div class="service-card" style="position: relative;">
-                        <span class="coming-soon-badge">Coming Soon</span>
-                        <div class="icon pb-4" style="color: #f39c12;">
-                        <!-- CRM / Connect SVG -->
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <span style="position: absolute; top: 15px; right: 15px; background: rgba(255,193,7,0.1); color: #ffc107; border: 1px solid rgba(255,193,7,0.3); padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Coming Soon</span>
+                        <div class="icon pb-4" style="color: #ffc107;">
+                        <!-- CRM Icon -->
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1.5rem;">
                             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                             <circle cx="9" cy="7" r="4"></circle>
                             <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
@@ -91,8 +95,8 @@
                         </svg>
                         </div>
                         <h3>Powerful CRM</h3>
-                        <p>Streamline your pipeline natively. Manage contacts, track engagements, and optimize your sales cycle directly alongside your lead data.</p>
-                        <span class="learn-more-link" style="color: rgba(245,246,250,0.4); font-weight: 600; cursor: not-allowed; margin-top: 15px; display: inline-block;">Learn More →</span>
+                        <p>An intuitive Customer Relationship Management tool designed specifically to manage B2B leads, track engagement, and close deals faster.</p>
+                        <span class="learn-more-link" style="color: rgba(245, 246, 250, 0.4); font-weight: 600; cursor: default; margin-top: 15px; display: inline-block;">Learn More →</span>
                     </div>
                 </div>
             </div>
@@ -105,11 +109,8 @@
                     <h2>About <span class="text-electric">LeadintelAI</span></h2>
                     <p>We are a forward-thinking technology company dedicated to providing enterprise-grade solutions. Our mission is to empower businesses with the data and communication tools they need to scale rapidly and efficiently in a competitive digital landscape.</p>
                 </div>
-                <!-- 3D geometric placeholder or illustration can go here if needed -->
             </div>
         </section>
-
-        <!-- Removed Pricing Section as per request -->
 
         <!-- Marketing / CTA Section -->
         <section class="cta-section">
@@ -127,7 +128,10 @@
     <footer>
         <div class="container footer-content">
             <div class="footer-brand">
-            <div class="logo">Leadintel<span>AI</span></div>
+            <a href="index.html" class="logo">
+                <img src="logo.svg" alt="LeadintelAI Logo">
+                <span class="logo-text">Leadintel<span>AI</span></span>
+            </a>
                 <p>Leading the way in digital B2B solutions.</p>
             </div>
             <div class="footer-links">
@@ -135,7 +139,7 @@
                 <a href="#services">B2B Data</a>
                 <a href="#services">WhatsApp API</a>
                 <a href="#services">Mass Mailing</a>
-                <a href="#services">AI Chatbot</a>
+                <a href="#services">Powerful CRM</a>
             </div>
             <div class="footer-links">
                 <h4>Company</h4>
@@ -146,6 +150,17 @@
                 <h4>Contact</h4>
                 <a href="mailto:leadintelai@gmail.com">leadintelai@gmail.com</a>
                 <a href="#">+91 7903820302</a>
+                <div class="footer-social">
+                    <a href="https://linkedin.com" target="_blank" class="social-icon" aria-label="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.238 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="social-icon" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="social-icon" aria-label="X">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
@@ -217,6 +232,20 @@
             <li><strong>Delivery & Performance Analytics</strong> to track open rates, clicks, and campaign performance.</li>
         </ul>
         <p>Our platform is built to ensure high deliverability, efficient campaign management, and scalable email marketing for businesses looking to expand their outreach and generate more leads.</p>
+    </div>
+
+    <div class="service-modal glass-panel" id="modal-chatbot">
+        <button class="modal-close" onclick="closeModals()">&times;</button>
+        <h3>AI Chatbot Platform</h3>
+        <p>Enhance your customer support and lead generation with our intelligent AI Chatbots. Designed to operate 24/7, our bots provide instant, accurate responses to customer inquiries, qualify leads, and smoothly route high-intent prospects to your sales team.</p>
+        <p style="margin-bottom: 0.5rem; font-weight: 600;">Key features include:</p>
+        <ul style="text-align: left; padding-left: 1.5rem; margin-bottom: 1rem; color: rgba(245, 246, 250, 0.8); line-height: 1.6;">
+            <li><strong>24/7 Availability</strong> to ensure no customer is left waiting.</li>
+            <li><strong>Smart NLP</strong> so the bot converses naturally like a human agent.</li>
+            <li><strong>Automated Lead Qualification</strong> based on custom criteria.</li>
+            <li><strong>Seamless Handoff</strong> to human agents for complex issues.</li>
+        </ul>
+        <p>Save hours of manual effort while maximizing your conversions through prompt and intelligent assistance.</p>
     </div>
 
     <!-- Contact form modal -->

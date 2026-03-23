@@ -7,6 +7,7 @@
     <meta name="description" content="Access premium B2B Data, WhatsApp API, and mass mailing tools.">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>
         body {
             display: flex;
@@ -225,7 +226,8 @@
             flex: 1;
         }
         .btn-small {
-            padding: 10px 15px;
+            width: 100px;
+            padding: 10px 0;
             border-radius: 8px;
             border: none;
             background: var(--clr-electric);
@@ -234,9 +236,20 @@
             cursor: pointer;
             white-space: nowrap;
             transition: var(--transition-fast);
+            text-align: center;
         }
         .btn-small:hover { background: #0870c2; }
         .btn-small:disabled { background: #555; cursor: not-allowed; }
+        
+        /* Perfecting Autofill */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px #1a202c inset !important;
+            -webkit-text-fill-color: #f5f6fa !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
         .hidden { display: none !important; }
         
         .verified-icon {
@@ -341,6 +354,51 @@
             .container-auth.right-panel-active .sign-up-container { transform: translateX(0) !important; opacity: 1; z-index: 5; pointer-events: all; }
             .mobile-switch { display: block; }
         }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center;
+            z-index: 2000; opacity: 1; transition: opacity 0.3s ease;
+        }
+        .modal.hidden { opacity: 0; pointer-events: none; display: flex !important;}
+        .modal-content {
+            background: rgba(30, 39, 46, 0.95); backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 15px;
+            width: 400px; max-width: 90%; padding: 30px; text-align: center; position: relative;
+            transform: translateY(0); transition: transform 0.3s ease;
+        }
+        .modal.hidden .modal-content { transform: translateY(-20px); }
+        .close-modal:hover { color: #fff; }
+
+        /* Refined OTP Boxes */
+        .otp-container {
+            display: flex; gap: 8px; justify-content: center; margin: 10px 0;
+        }
+        .otp-box {
+            width: 38px; height: 45px; border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.05); border-radius: 8px;
+            text-align: center; font-size: 1.2rem; color: #fff;
+            transition: all 0.3s ease;
+        }
+        .otp-box:focus {
+            border-color: #00ff80; outline: none; background: rgba(255,255,255,0.1);
+            box-shadow: 0 0 10px rgba(0, 255, 128, 0.3);
+        }
+        .verified-icon {
+            color: #00ff80; margin-left: 8px; display: none;
+        }
+        .verified-icon.show { display: inline; }
+        .input-with-icon { position: relative; }
+        .strength-marker {
+            position: absolute; right: 15px; top: 12px; font-size: 1.2rem; opacity: 0.5; transition: 0.3s;
+            pointer-events: none;
+        }
+        .strength-marker.strong { color: #00ff80; opacity: 1; }
+        
+        /* Adjustment for country code width */
+        #signup-country-code { width: 70px !important; flex: none !important; text-align: center; }
+        #signup-phone { flex: 1; }
     </style>
 </head>
 <body>
@@ -356,37 +414,69 @@
         
         <!-- Sign Up (Right) Container -->
         <div class="form-container sign-up-container">
-            <div class="logo-text">Leadintel<span>AI</span></div>
+            <div class="logo-text" style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+                <img src="logo.svg" alt="LeadintelAI Logo" style="height: 40px; width: auto;">
+                <span>Leadintel<span>AI</span></span>
+            </div>
             <h1>Create Account</h1>
             <p style="color: rgba(245,246,250,0.6); margin-top: 0;">Start dominating your market</p>
             
             <div class="input-row">
-                <input type="text" class="input-field" placeholder="First Name" />
-                <input type="text" class="input-field" placeholder="Last Name" />
+                <input type="text" class="input-field" id="signup-firstname" placeholder="First Name" />
+                <input type="text" class="input-field" id="signup-lastname" placeholder="Last Name" />
             </div>
             <div class="input-group">
-                <input type="text" class="input-field" placeholder="Company Name" />
+                <input type="text" class="input-field" id="signup-company" placeholder="Company Name" />
             </div>
             
             <div class="input-group input-with-button">
                 <input type="email" class="input-field" id="signup-email" placeholder="Mail ID" />
-                <button class="btn-small" id="btn-send-otp" type="button">Send OTP</button>
-                <span class="verified-icon" id="email-verified-tick" aria-label="Verified">✔</span>
+                <button class="btn-small" id="btn-send-email-otp" type="button">Send OTP</button>
+                <span class="verified-icon" id="email-verified-tick">✔</span>
             </div>
             
-            <div class="input-group input-with-button hidden" id="otp-group">
-                <input type="text" class="input-field" id="signup-otp" placeholder="Enter OTP" maxlength="6"/>
-                <button class="btn-small" id="btn-verify-otp" type="button">Verify Now</button>
+            <div id="email-otp-section" class="hidden">
+                <div class="otp-container" id="email-otp-boxes">
+                    <input type="text" class="otp-box email-otp-input" maxlength="1" />
+                    <input type="text" class="otp-box email-otp-input" maxlength="1" />
+                    <input type="text" class="otp-box email-otp-input" maxlength="1" />
+                    <input type="text" class="otp-box email-otp-input" maxlength="1" />
+                    <input type="text" class="otp-box email-otp-input" maxlength="1" />
+                    <input type="text" class="otp-box email-otp-input" maxlength="1" />
+                </div>
+                <button class="btn-small" id="btn-verify-email-otp" type="button" style="width:100%; margin-bottom:10px;">Verify Email</button>
             </div>
 
-            <div class="input-group">
+            <div class="input-group input-with-button">
+                <div style="display:flex; width: 100%; gap: 0;">
+                    <input type="text" class="input-field" id="signup-country-code" placeholder="+91" value="+91" style="border-right: none; border-top-right-radius: 0; border-bottom-right-radius: 0;" />
+                    <input type="text" class="input-field" id="signup-phone" placeholder="Phone Number" style="border-top-left-radius: 0; border-bottom-left-radius: 0;" />
+                </div>
+                <button class="btn-small" id="btn-send-phone-otp" type="button">Send OTP</button>
+                <span class="verified-icon" id="phone-verified-tick">✔</span>
+            </div>
+
+            <div id="phone-otp-section" class="hidden">
+                <div class="otp-container" id="phone-otp-boxes">
+                    <input type="text" class="otp-box phone-otp-input" maxlength="1" />
+                    <input type="text" class="otp-box phone-otp-input" maxlength="1" />
+                    <input type="text" class="otp-box phone-otp-input" maxlength="1" />
+                    <input type="text" class="otp-box phone-otp-input" maxlength="1" />
+                    <input type="text" class="otp-box phone-otp-input" maxlength="1" />
+                    <input type="text" class="otp-box phone-otp-input" maxlength="1" />
+                </div>
+                <button class="btn-small" id="btn-verify-phone-otp" type="button" style="width:100%; margin-bottom:10px;">Verify Phone</button>
+            </div>
+            
+            <div class="input-group input-with-icon">
                 <input type="password" class="input-field" id="signup-password" placeholder="Create Password" />
+                <span class="strength-marker" id="strength-icon"></span>
                 <div class="password-tube">
                     <div class="liquid-fill" id="pwd-liquid"></div>
                 </div>
             </div>
             <div class="input-group">
-                <input type="password" class="input-field" placeholder="Retype Password" />
+                <input type="password" class="input-field" id="signup-repassword" placeholder="Retype Password" />
             </div>
             
             <button class="btn-auth" id="btn-create-acc" style="margin-top: 1rem;">Sign Up</button>
@@ -395,23 +485,31 @@
         
         <!-- Sign In (Left) Container -->
         <div class="form-container sign-in-container">
-            <div class="logo-text">Leadintel<span>AI</span></div>
+            <div class="logo-text" style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+                <img src="logo.svg" alt="LeadintelAI Logo" style="height: 40px; width: auto;">
+                <span>Leadintel<span>AI</span></span>
+            </div>
             <h1>Log In</h1>
             <p style="color: rgba(245,246,250,0.6); margin-top: 0;">Welcome back to your dashboard</p>
             
             <div class="input-group">
                 <input type="email" class="input-field" id="login-email" placeholder="Email Address" />
             </div>
-            <div class="input-group" style="margin-bottom: 10px;">
+            <div class="input-group" id="login-password-group" style="margin-bottom: 10px;">
                 <input type="password" class="input-field" id="login-password" placeholder="Password" />
+            </div>
+            
+            <div class="input-group input-with-button hidden" id="login-otp-group" style="margin-bottom: 10px;">
+                <input type="text" class="input-field" id="login-otp" placeholder="Enter OTP" maxlength="6"/>
+                <button class="btn-small" id="btn-send-login-otp" type="button">Send OTP</button>
             </div>
             
             <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 1rem;">
                 <label class="checkbox-group">
-                    <input type="checkbox" id="remember-me">
-                    Remember Me
+                    <input type="checkbox" id="use-otp-login">
+                    Login with OTP
                 </label>
-                <a href="#" class="forgot-pass">Forgot password?</a>
+                <a href="#" class="forgot-pass" id="forgot-password-link">Forgot password?</a>
             </div>
             
             <button class="btn-auth" id="actual-login-btn" style="margin-top: 1rem;">Log In</button>
@@ -438,7 +536,30 @@
                 </div>
             </div>
         </div>
-        
+
+        <!-- Forgot Password Modal -->
+        <div class="modal hidden" id="forgot-password-modal">
+            <div class="modal-content">
+                <span class="close-modal" id="close-forgot-modal">&times;</span>
+                <h2 style="color: white; margin-bottom: 10px; font-family: var(--font-heading);">Reset Password</h2>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 20px;" id="forgot-modal-text">Enter your email to receive an OTP.</p>
+                
+                <div class="input-group" id="forgot-email-group">
+                    <input type="email" class="input-field" id="forgot-email" placeholder="Email Address" />
+                </div>
+                
+                <div class="input-group input-with-button hidden" id="forgot-otp-group" style="margin-top: 10px;">
+                    <input type="text" class="input-field" id="forgot-otp" placeholder="Enter 6-digit OTP" maxlength="6"/>
+                </div>
+                
+                <div class="input-group hidden" id="forgot-new-password-group" style="margin-top: 10px;">
+                    <input type="password" class="input-field" id="forgot-new-password" placeholder="New Password" />
+                </div>
+
+                <button class="btn-auth" id="btn-forgot-action" style="margin-top: 15px;">Send OTP</button>
+            </div>
+        </div>
+
     </div>
 
     <!-- Three.js for Overlay Background -->
@@ -536,93 +657,157 @@
         mobileGoSignup.addEventListener('click', () => container.classList.add("right-panel-active"));
         mobileGoSignin.addEventListener('click', () => container.classList.remove("right-panel-active"));
 
+        // Global Signup Element References
+        const signupEmail = document.getElementById('signup-email');
+        const signupPasswordInput = document.getElementById('signup-password');
+        const signupFirst = document.getElementById('signup-firstname');
+        const signupLast = document.getElementById('signup-lastname');
+        const signupCompany = document.getElementById('signup-company');
+        const signupRepassword = document.getElementById('signup-repassword');
+        const signupPhone = document.getElementById('signup-phone');
+        const signupCountry = document.getElementById('signup-country-code');
+        const pwdLiquid = document.getElementById('pwd-liquid');
+
         // OTP & Backend Auth logic
         const btnSendOtp = document.getElementById('btn-send-otp');
         const otpGroup = document.getElementById('otp-group');
-        const btnVerifyOtp = document.getElementById('btn-verify-otp');
+        // OTP Box Focus Logic
+        function setupOtpFocus(className) {
+            const inputs = document.querySelectorAll('.' + className);
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', (e) => {
+                    if (e.target.value.length === 1 && index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+                });
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                        inputs[index - 1].focus();
+                    }
+                });
+            });
+        }
+        setupOtpFocus('email-otp-input');
+        setupOtpFocus('phone-otp-input');
+
+        function getOtpValue(className) {
+            return Array.from(document.querySelectorAll('.' + className)).map(i => i.value).join('');
+        }
+
+        // Email OTP
+        const btnSendEmailOtp = document.getElementById('btn-send-email-otp');
+        const btnVerifyEmailOtp = document.getElementById('btn-verify-email-otp');
+        const emailOtpSection = document.getElementById('email-otp-section');
         const emailVerifiedTick = document.getElementById('email-verified-tick');
-        const signupEmail = document.getElementById('signup-email');
-        const signupOtp = document.getElementById('signup-otp');
-        const signupPasswordInput = document.getElementById('signup-password');
-        const createAccBtn = document.getElementById('btn-create-acc');
-
         let isEmailVerified = false;
-        let verifiedEmailAddress = "";
 
-        btnSendOtp.addEventListener('click', async () => {
-            const email = signupEmail.value.trim();
-            if(email.includes('@')) {
-                btnSendOtp.textContent = "Sending...";
-                btnSendOtp.disabled = true;
-                try {
-                    const response = await fetch(`${backendUrl}/auth/send-otp`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email: email })
-                    });
-                    if (response.ok) {
-                        btnSendOtp.textContent = "Sent!";
-                        otpGroup.classList.remove('hidden');
-                    } else {
-                        const err = await response.json();
-                        alert(`Error: ${err.detail || "Failed to send"}`);
-                        btnSendOtp.textContent = "Resend OTP";
-                        btnSendOtp.disabled = false;
-                    }
-                } catch (e) {
-                    alert("Backend server not reached. Ensure main.py is running on port 8080.");
-                    btnSendOtp.disabled = false;
-                }
-            } else { alert('Invalid Email'); }
-        });
-
-        btnVerifyOtp.addEventListener('click', async () => {
-            const email = signupEmail.value.trim();
-            const otpCode = signupOtp.value.trim();
-            if(otpCode.length === 6) {
-                btnVerifyOtp.textContent = "Verifying...";
-                btnVerifyOtp.disabled = true;
-                try {
-                    const response = await fetch(`${backendUrl}/auth/verify-otp`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email: email, otp_code: otpCode })
-                    });
-                    if (response.ok) {
-                        otpGroup.classList.add('hidden');
-                        btnSendOtp.classList.add('hidden');
-                        emailVerifiedTick.style.display = 'inline-block';
-                        signupEmail.disabled = true;
-                        isEmailVerified = true;
-                        verifiedEmailAddress = email;
-                    } else {
-                        const err = await response.json();
-                        alert(`Verification Failed: ${err.detail}`);
-                        btnVerifyOtp.disabled = false;
-                    }
-                } catch (e) { alert("Server error."); btnVerifyOtp.disabled = false; }
-            } else { alert('Enter 6 digit OTP'); }
-        });
-
-        createAccBtn.addEventListener('click', async (e) => {
-            e.preventDefault();
+        btnSendEmailOtp.addEventListener('click', async () => {
             const email = signupEmail.value.trim().toLowerCase();
-            const pass = signupPasswordInput.value;
-            if (!isEmailVerified || email !== verifiedEmailAddress) {
-                alert("Please verify your email address first."); return;
+            if(!email.includes('@')) { alert("Enter valid email"); return; }
+            btnSendEmailOtp.textContent = "Sending...";
+            try {
+                const res = await fetch(`${backendUrl}/auth/send-otp`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ identifier: email })
+                });
+                if(res.ok) {
+                    btnSendEmailOtp.textContent = "Sent!";
+                    emailOtpSection.classList.remove('hidden');
+                } else { alert("Failed to send OTP."); btnSendEmailOtp.textContent = "Send OTP"; }
+            } catch(e) { alert("Server error."); btnSendEmailOtp.textContent = "Send OTP"; }
+        });
+
+        btnVerifyEmailOtp.addEventListener('click', async () => {
+            const email = signupEmail.value.trim().toLowerCase();
+            const otpCode = getOtpValue('email-otp-input');
+            if(otpCode.length !== 6) { alert("Enter 6-digit OTP"); return; }
+            try {
+                const res = await fetch(`${backendUrl}/auth/verify-otp`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ identifier: email, otp_code: otpCode })
+                });
+                if (res.ok) {
+                    isEmailVerified = true;
+                    emailVerifiedTick.classList.add('show');
+                    emailOtpSection.classList.add('hidden');
+                    btnSendEmailOtp.disabled = true;
+                } else { alert("Invalid OTP."); }
+            } catch(e) { alert("Verification failed."); }
+        });
+
+        // Phone OTP
+        const btnSendPhoneOtp = document.getElementById('btn-send-phone-otp');
+        const btnVerifyPhoneOtp = document.getElementById('btn-verify-phone-otp');
+        const phoneOtpSection = document.getElementById('phone-otp-section');
+        const phoneVerifiedTick = document.getElementById('phone-verified-tick');
+        let isPhoneVerified = false;
+
+        btnSendPhoneOtp.addEventListener('click', async () => {
+            const phone = signupCountry.value + signupPhone.value.trim();
+            if(signupPhone.value.length < 5) { alert("Enter valid phone number"); return; }
+            btnSendPhoneOtp.textContent = "Sending...";
+            try {
+                const res = await fetch(`${backendUrl}/auth/send-otp`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ identifier: phone })
+                });
+                if(res.ok) {
+                    btnSendPhoneOtp.textContent = "Sent!";
+                    phoneOtpSection.classList.remove('hidden');
+                } else { alert("Failed to send OTP."); btnSendPhoneOtp.textContent = "Send OTP"; }
+            } catch(e) { alert("Server error."); btnSendPhoneOtp.textContent = "Send OTP"; }
+        });
+
+        btnVerifyPhoneOtp.addEventListener('click', async () => {
+            const phone = signupCountry.value + signupPhone.value.trim();
+            const otpCode = getOtpValue('phone-otp-input');
+            if(otpCode.length !== 6) { alert("Enter 6-digit OTP"); return; }
+            try {
+                const res = await fetch(`${backendUrl}/auth/verify-otp`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ identifier: phone, otp_code: otpCode })
+                });
+                if (res.ok) {
+                    isPhoneVerified = true;
+                    phoneVerifiedTick.classList.add('show');
+                    phoneOtpSection.classList.add('hidden');
+                    btnSendPhoneOtp.disabled = true;
+                } else { alert("Invalid OTP."); }
+            } catch(e) { alert("Verification failed."); }
+        });
+
+        // Final Signup
+        const btnCreateAcc = document.getElementById('btn-create-acc');
+
+        btnCreateAcc.addEventListener('click', async (e) => {
+            e.preventDefault();
+            if(!isEmailVerified || !isPhoneVerified) {
+                alert("Please verify both Email and Phone Number first."); return;
             }
+            const pass = signupPasswordInput.value;
+            if(pass !== signupRepassword.value) { alert("Passwords do not match!"); return; }
+
+            const payload = {
+                email: signupEmail.value.trim().toLowerCase(),
+                first_name: signupFirst.value.trim(),
+                last_name: signupLast.value.trim(),
+                company_name: signupCompany.value.trim(),
+                phone_number: signupCountry.value + signupPhone.value.trim(),
+                password: pass
+            };
+
             try {
                 const res = await fetch(`${backendUrl}/register`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email: email, password: pass })
+                    body: JSON.stringify(payload)
                 });
                 if (res.ok) {
-                    alert("Account Created! Use the Log In tab now.");
+                    alert("Account Created Successfully!");
                     container.classList.remove("right-panel-active");
                 } else {
                     const err = await res.json();
-                    alert(`Signup Error: ${err.detail}`);
+                    alert(`Error: ${err.detail}`);
                 }
             } catch (e) { alert("Server connection failed."); }
         });
@@ -631,47 +816,199 @@
         const loginBtn = document.getElementById('actual-login-btn');
         const loginEmail = document.getElementById('login-email');
         const loginPassword = document.getElementById('login-password');
+        const loginPasswordGroup = document.getElementById('login-password-group');
+        const loginOtpGroup = document.getElementById('login-otp-group');
+        const loginOtpInput = document.getElementById('login-otp');
+        const btnSendLoginOtp = document.getElementById('btn-send-login-otp');
+        const useOtpLoginCheckbox = document.getElementById('use-otp-login');
+        let loginMode = 'password';
+
+        useOtpLoginCheckbox.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                loginMode = 'otp';
+                loginPasswordGroup.classList.add('hidden');
+                loginOtpGroup.classList.remove('hidden');
+            } else {
+                loginMode = 'password';
+                loginPasswordGroup.classList.remove('hidden');
+                loginOtpGroup.classList.add('hidden');
+            }
+        });
+
+        btnSendLoginOtp.addEventListener('click', async () => {
+            const email = loginEmail.value.trim().toLowerCase();
+            if(!email.includes('@')) { alert('Enter valid Email to send OTP'); return; }
+            btnSendLoginOtp.textContent = "Sending..."; btnSendLoginOtp.disabled = true;
+            try {
+                const response = await fetch(`${backendUrl}/auth/send-otp`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ identifier: email })
+                });
+                if (response.ok) { btnSendLoginOtp.textContent = "Sent!"; } 
+                else { 
+                    const err = await response.json(); alert(`Error: ${err.detail}`);
+                    btnSendLoginOtp.textContent = "Send OTP"; btnSendLoginOtp.disabled = false;
+                }
+            } catch (e) { alert("Backend offline."); btnSendLoginOtp.disabled = false;}
+        });
 
         loginBtn.addEventListener('click', async (e) => {
             e.preventDefault();
             const email = loginEmail.value.trim().toLowerCase();
-            const pass = loginPassword.value;
-            if(!email || !pass) { alert("Enter credentials"); return; }
+            if(!email) { alert("Enter email address"); return; }
             
             loginBtn.textContent = 'Authenticating...';
             try {
-                const formData = new URLSearchParams();
-                formData.append('username', email);
-                formData.append('password', pass);
-
-                const res = await fetch(`${backendUrl}/token`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: formData
-                });
-                if (res.ok) {
-                    const data = await res.json();
-                    localStorage.setItem('leadintel_token', data.access_token);
-                    localStorage.setItem('leadintel_auth', 'true');
-                    localStorage.setItem('leadintel_email', email);
-                    window.location.href = 'project.html';
-                } else { alert("Login Failed: Invalid credentials"); }
+                if (loginMode === 'password') {
+                    const pass = loginPassword.value;
+                    if(!pass) { alert("Enter password"); loginBtn.textContent = 'Log In'; return; }
+                    
+                    const formData = new URLSearchParams();
+                    formData.append('username', email); formData.append('password', pass);
+                    const res = await fetch(`${backendUrl}/token`, {
+                        method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: formData
+                    });
+                    if (res.ok) {
+                        const data = await res.json();
+                        localStorage.setItem('leadintel_token', data.access_token);
+                        localStorage.setItem('leadintel_auth', 'true'); localStorage.setItem('leadintel_email', email);
+                        window.location.href = 'project.html';
+                    } else { alert("Login Failed: Invalid credentials"); }
+                } else if (loginMode === 'otp') {
+                    const otpCode = loginOtpInput.value.trim();
+                    if(otpCode.length !== 6) { alert("Enter 6-digit OTP"); loginBtn.textContent = 'Log In'; return; }
+                    
+                    const res = await fetch(`${backendUrl}/auth/login-otp`, {
+                        method: 'POST', headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: email, otp_code: otpCode })
+                    });
+                    if (res.ok) {
+                        const data = await res.json();
+                        localStorage.setItem('leadintel_token', data.access_token);
+                        localStorage.setItem('leadintel_auth', 'true'); localStorage.setItem('leadintel_email', email);
+                        window.location.href = 'project.html';
+                    } else {
+                        const err = await res.json(); alert(`Login Failed: ${err.detail}`);
+                    }
+                }
             } catch (e) { alert("Backend offline."); }
             finally { loginBtn.textContent = 'Log In'; }
+        });
+
+        // Forgot Password Logic
+        const fpLink = document.getElementById('forgot-password-link');
+        const fpModal = document.getElementById('forgot-password-modal');
+        const fpClose = document.getElementById('close-forgot-modal');
+        const fpEmailGroup = document.getElementById('forgot-email-group');
+        const fpOtpGroup = document.getElementById('forgot-otp-group');
+        const fpNewPassGroup = document.getElementById('forgot-new-password-group');
+        const fpActionBtn = document.getElementById('btn-forgot-action');
+        const fpText = document.getElementById('forgot-modal-text');
+        
+        let fpState = 'email'; // email -> otp -> new_password
+
+        fpLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            fpModal.classList.remove('hidden');
+        });
+        fpClose.addEventListener('click', () => { fpModal.classList.add('hidden'); });
+
+        fpActionBtn.addEventListener('click', async () => {
+            const email = document.getElementById('forgot-email').value.trim().toLowerCase();
+            if (fpState === 'email') {
+                if(!email.includes('@')) { alert("Enter valid email"); return; }
+                fpActionBtn.textContent = "Sending..."; fpActionBtn.disabled = true;
+                try {
+                    const response = await fetch(`${backendUrl}/auth/send-otp`, {
+                        method: 'POST', headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: email })
+                    });
+                    if (response.ok) {
+                        fpState = 'otp';
+                        fpEmailGroup.classList.add('hidden');
+                        fpOtpGroup.classList.remove('hidden');
+                        fpText.textContent = "Enter the 6-digit OTP sent to your email.";
+                        fpActionBtn.textContent = "Verify OTP";
+                    } else { alert("Failed to send OTP. Email may not exist."); }
+                } catch(e) { alert("Server error."); }
+                finally { fpActionBtn.disabled = false; }
+            } 
+            else if (fpState === 'otp') {
+                const otpCode = document.getElementById('forgot-otp').value.trim();
+                if(otpCode.length !== 6) { alert("Enter 6-digit OTP"); return; }
+                fpActionBtn.textContent = "Verifying..."; fpActionBtn.disabled = true;
+                try {
+                    const response = await fetch(`${backendUrl}/auth/verify-otp`, {
+                        method: 'POST', headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: email, otp_code: otpCode })
+                    });
+                    if (response.ok) {
+                        fpState = 'new_password';
+                        fpOtpGroup.classList.add('hidden');
+                        fpNewPassGroup.classList.remove('hidden');
+                        fpText.textContent = "OTP Verified. Enter your new password.";
+                        fpActionBtn.textContent = "Reset Password";
+                    } else { alert("Invalid OTP."); }
+                } catch(e) { alert("Server error."); }
+                finally { fpActionBtn.disabled = false; }
+            }
+            else if (fpState === 'new_password') {
+                const newPass = document.getElementById('forgot-new-password').value;
+                if(!newPass) { alert("Enter new password"); return; }
+                fpActionBtn.textContent = "Resetting..."; fpActionBtn.disabled = true;
+                try {
+                    const response = await fetch(`${backendUrl}/auth/reset-password`, {
+                        method: 'POST', headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: email, new_password: newPass })
+                    });
+                    if (response.ok) {
+                        alert("Password reset successful! You can now log in.");
+                        fpModal.classList.add('hidden');
+                        // Reset state
+                        fpState = 'email';
+                        fpEmailGroup.classList.remove('hidden');
+                        fpNewPassGroup.classList.add('hidden');
+                        fpText.textContent = "Enter your email to receive an OTP.";
+                        fpActionBtn.textContent = "Send OTP";
+                        document.getElementById('forgot-email').value = "";
+                        document.getElementById('forgot-otp').value = "";
+                        document.getElementById('forgot-new-password').value = "";
+                    } else { alert("Failed to reset password."); }
+                } catch(e) { alert("Server error."); }
+                finally { fpActionBtn.disabled = false; }
+            }
         });
 
         // Strength Meter
         signupPasswordInput.addEventListener('input', (e) => {
             let strength = 0;
             const val = e.target.value;
+            const strengthIcon = document.getElementById('strength-icon');
             if(val.length >= 6) strength += 25;
             if(val.length >= 10) strength += 25;
             if(/[A-Z]/.test(val)) strength += 25;
-            if(/[0-9]/.test(val)) strength += 25;
-            document.getElementById('pwd-liquid').style.width = strength + '%';
+            if(/[0-9!@#$%^&*]/.test(val)) strength += 25;
+            
+            pwdLiquid.style.width = strength + '%';
+            if(strength <= 25) pwdLiquid.style.backgroundColor = '#ff4757';
+            else if(strength <= 50) pwdLiquid.style.backgroundColor = '#ffa502';
+            else if(strength <= 75) pwdLiquid.style.backgroundColor = '#2ed573';
+            else pwdLiquid.style.backgroundColor = '#00ff80';
+
+            if(strength >= 100) {
+                strengthIcon.textContent = "✅";
+                strengthIcon.classList.add('strong');
+            } else {
+                strengthIcon.textContent = "";
+                strengthIcon.classList.remove('strong');
+            }
         });
 
     </script>
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
     <script src="transitions.js"></script>
 </body>
 </html>

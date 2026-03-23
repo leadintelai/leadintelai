@@ -7,6 +7,7 @@
     <meta name="description" content="Transparent pricing for Leadintelai.in services: Marketing (WhatsApp API, Mail, Chatbot) and B2B Data Selling.">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>
         /* Specific overrides for pricing page to ensure content is visible without hero */
         body {
@@ -29,7 +30,10 @@
 <body>
     <header class="navbar scrolled">
         <div class="container nav-content">
-            <div class="logo">Leadintel<span>AI</span></div>
+            <a href="index.html" class="logo">
+                <img src="logo.svg" alt="LeadintelAI Logo">
+                <span class="logo-text">Leadintel<span>AI</span></span>
+            </a>
             <nav class="nav-links">
                 <a href="index.html#services">Services</a>
                 <a href="about.html">About</a>
@@ -40,128 +44,193 @@
     </header>
 
     <main>
-        <div class="container">
-            <div class="section-header" style="margin-top: 2rem;">
-                <h1 style="font-size: 3rem; margin-bottom: 1rem;">Transparent Pricing</h1>
-                <p>Choose the right plan to fuel your growth. No hidden fees.</p>
-                
-                <!-- Billing Cycle Toggle Tags -->
-                <div class="pricing-toggle-wrapper" style="margin-top: 2.5rem; display: flex; justify-content: center;">
-                    <div style="display: inline-flex; align-items: center; background: rgba(255,255,255,0.05); padding: 5px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1);">
-                        <button class="btn-toggle active" style="background: var(--clr-electric); color: white; border: none; padding: 10px 25px; border-radius: 30px; font-weight: 600; cursor: pointer; transition: 0.3s;">Monthly</button>
-                        <button class="btn-toggle" style="background: transparent; color: rgba(245,246,250,0.8); border: none; padding: 10px 25px; border-radius: 30px; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 6px;">
-                            Quarterly 
-                            <span style="background: rgba(0, 184, 148, 0.2); color: #00b894; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px;">Save 15%</span>
-                        </button>
-                        <button class="btn-toggle" style="background: transparent; color: rgba(245,246,250,0.8); border: none; padding: 10px 25px; border-radius: 30px; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 6px;">
-                            Yearly
-                            <span style="background: rgba(0, 184, 148, 0.2); color: #00b894; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px;">Save 30%</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Marketing Section (WhatsApp API, Mass Mailing, AI Chatbot) -->
-        <section class="pricing-section">
+        <!-- Pricing Section -->
+        <section class="pricing-section" id="pricing">
             <div class="container">
-                <h2 class="pricing-header-tab">Marketing Suite (WhatsApp, Email & AI)</h2>
-                <div class="pricing-grid">
-                    <!-- Basic Marketing -->
-                    <div class="pricing-card glass-panel">
-                        <h3>Starter</h3>
-                        <div class="price"><span>₹</span><span class="price-val" data-monthly="4,999" data-quarterly="4,249" data-yearly="3,499">4,999</span><span>/mo</span></div>
-                        <ul class="pricing-features">
-                            <li>Basic WhatsApp API Access</li>
-                            <li>Up to 10,000 Messages/mo</li>
-                            <li>Standard Email Campaigns</li>
-                            <li>Basic FAQ AI Chatbot</li>
-                            <li>Email Support</li>
-                        </ul>
-                        <a href="login.html" class="btn btn-secondary">Choose Plan</a>
-                    </div>
-                    <!-- Pro Marketing -->
-                    <div class="pricing-card glass-panel featured">
-                        <div class="popular-badge">Most Popular</div>
-                        <h3>Professional</h3>
-                        <div class="price"><span>₹</span><span class="price-val" data-monthly="14,999" data-quarterly="12,749" data-yearly="10,499">14,999</span><span>/mo</span></div>
-                        <ul class="pricing-features">
-                            <li>Advanced WhatsApp Business API</li>
-                            <li>Up to 100,000 Messages/mo</li>
-                            <li>High-Volume Mass Mailing</li>
-                            <li>Custom-Trained AI Chatbot</li>
-                            <li>Priority 24/7 Support</li>
-                        </ul>
-                        <a href="login.html" class="btn btn-primary">Choose Plan</a>
-                    </div>
-                    <!-- Enterprise Marketing -->
-                    <div class="pricing-card glass-panel">
-                        <h3>Enterprise</h3>
-                        <div class="price">Custom</div>
-                        <ul class="pricing-features">
-                            <li>Dedicated WhatsApp Nodes</li>
-                            <li>Unlimited Messaging</li>
-                            <li>Dedicated IP for Emails</li>
-                            <li>White-Labeled AI Solution</li>
-                            <li>Dedicated Account Manager</li>
-                        </ul>
-                        <a href="index.html#contact" class="btn btn-secondary">Contact Us</a>
+                <div class="section-header">
+                    <h1 style="font-size: 3rem; margin-bottom: 2rem; padding-top: 2rem;">Simple, Transparent <span class="text-electric">Pricing</span></h1>
+                    <p>Choose the product that fits your growth strategy.</p>
+                </div>
+
+                <!-- Product Tabs -->
+                <div class="pricing-tabs">
+                    <button class="pricing-tab active" data-tab="data" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg> B2B Data
+                    </button>
+                    <button class="pricing-tab" data-tab="whatsapp" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg> WhatsApp API
+                    </button>
+                    <button class="pricing-tab" data-tab="mailing" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg> Mass Mailing
+                    </button>
+                    <button class="pricing-tab" data-tab="crm" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg> CRM
+                    </button>
+                </div>
+
+                <!-- Tab Content: B2B Data -->
+                <div class="pricing-panel active" id="tab-data">
+                    <div class="pricing-cards-grid">
+                        <div class="pricing-card">
+                            <div class="plan-label">Starter</div>
+                            <div class="plan-price">₹4,999<span>/mo</span></div>
+                            <div class="plan-desc">Perfect for small teams starting out</div>
+                            <ul class="plan-features">
+                                <li>✓ 5,000 B2B Leads/month</li>
+                                <li>✓ Phone + Email Included</li>
+                                <li>✓ Decision Maker Titles</li>
+                                <li>✓ Email Support</li>
+                            </ul>
+                            <a href="login.html" class="btn btn-secondary plan-btn">Get Started</a>
+                        </div>
+                        <div class="pricing-card pricing-card--featured">
+                            <div class="popular-badge">Most Popular</div>
+                            <div class="plan-label">Growth</div>
+                            <div class="plan-price">₹9,999<span>/mo</span></div>
+                            <div class="plan-desc">For scaling sales teams</div>
+                            <ul class="plan-features">
+                                <li>✓ 20,000 B2B Leads/month</li>
+                                <li>✓ Phone + Email Included</li>
+                                <li>✓ CXO/CTO/HR Filters</li>
+                                <li>✓ Priority Support</li>
+                            </ul>
+                            <a href="login.html" class="btn btn-primary plan-btn">Get Started</a>
+                        </div>
+                        <div class="pricing-card">
+                            <div class="plan-label">Enterprise</div>
+                            <div class="plan-price">Custom</div>
+                            <div class="plan-desc">Tailored for large-scale needs</div>
+                            <ul class="plan-features">
+                                <li>✓ Unlimited Leads</li>
+                                <li>✓ All Data Fields</li>
+                                <li>✓ Custom Filters</li>
+                                <li>✓ Dedicated Account Manager</li>
+                            </ul>
+                            <a href="login.html" class="btn btn-secondary plan-btn">Contact Sales</a>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Tab Content: WhatsApp API -->
+                <div class="pricing-panel" id="tab-whatsapp">
+                    <div class="pricing-cards-grid">
+                        <div class="pricing-card">
+                            <div class="plan-label">Basic</div>
+                            <div class="plan-price" style="color:#25D366;">₹2,999<span>/mo</span></div>
+                            <div class="plan-desc">Get started with WhatsApp Business</div>
+                            <ul class="plan-features">
+                                <li>✓ 1,000 Messages/month</li>
+                                <li>✓ Verified Business Number</li>
+                                <li>✓ Template Messages</li>
+                                <li>✓ Email Support</li>
+                            </ul>
+                            <a href="login.html" class="btn btn-secondary plan-btn">Get Started</a>
+                        </div>
+                        <div class="pricing-card pricing-card--featured" style="--accent: #25D366;">
+                            <div class="popular-badge" style="background: rgba(37,211,102,0.1); color:#25D366; border-color: rgba(37,211,102,0.3);">Most Popular</div>
+                            <div class="plan-label">Pro</div>
+                            <div class="plan-price" style="color:#25D366;">₹5,999<span>/mo</span></div>
+                            <div class="plan-desc">With AI Chatbot & automation</div>
+                            <ul class="plan-features">
+                                <li>✓ 10,000 Messages/month</li>
+                                <li>✓ 24/7 AI Chatbot</li>
+                                <li>✓ Broadcast Campaigns</li>
+                                <li>✓ Priority Support</li>
+                            </ul>
+                            <a href="login.html" class="btn plan-btn" style="background:#25D366; color:#000;">Get Started</a>
+                        </div>
+                        <div class="pricing-card">
+                            <div class="plan-label">Enterprise</div>
+                            <div class="plan-price" style="color:#25D366;">Custom</div>
+                            <div class="plan-desc">Unlimited scale & integrations</div>
+                            <ul class="plan-features">
+                                <li>✓ Unlimited Messages</li>
+                                <li>✓ Multi-Agent Live Chat</li>
+                                <li>✓ CRM Integration</li>
+                                <li>✓ Dedicated Manager</li>
+                            </ul>
+                            <a href="login.html" class="btn btn-secondary plan-btn">Contact Sales</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Mass Mailing -->
+                <div class="pricing-panel" id="tab-mailing">
+                    <div class="pricing-cards-grid">
+                        <div class="pricing-card">
+                            <div class="plan-label">Starter</div>
+                            <div class="plan-price">₹1,999<span>/mo</span></div>
+                            <div class="plan-desc">For small-scale outreach</div>
+                            <ul class="plan-features">
+                                <li>✓ 10,000 Emails/month</li>
+                                <li>✓ Drag & Drop Editor</li>
+                                <li>✓ Basic Analytics</li>
+                                <li>✓ Email Support</li>
+                            </ul>
+                            <a href="login.html" class="btn btn-secondary plan-btn">Get Started</a>
+                        </div>
+                        <div class="pricing-card pricing-card--featured">
+                            <div class="popular-badge">Most Popular</div>
+                            <div class="plan-label">Growth</div>
+                            <div class="plan-price">₹4,999<span>/mo</span></div>
+                            <div class="plan-desc">For active B2B campaigns</div>
+                            <ul class="plan-features">
+                                <li>✓ 1,00,000 Emails/month</li>
+                                <li>✓ Advanced Personalization</li>
+                                <li>✓ Open & Click Tracking</li>
+                                <li>✓ Priority Support</li>
+                            </ul>
+                            <a href="login.html" class="btn btn-primary plan-btn">Get Started</a>
+                        </div>
+                        <div class="pricing-card">
+                            <div class="plan-label">Enterprise</div>
+                            <div class="plan-price">Custom</div>
+                            <div class="plan-desc">High volume, dedicated infra</div>
+                            <ul class="plan-features">
+                                <li>✓ Unlimited Emails</li>
+                                <li>✓ Dedicated IP Warm-up</li>
+                                <li>✓ White-label Option</li>
+                                <li>✓ Dedicated Manager</li>
+                            </ul>
+                            <a href="login.html" class="btn btn-secondary plan-btn">Contact Sales</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: CRM -->
+                <div class="pricing-panel" id="tab-crm">
+                    <div class="coming-soon-box">
+                        <div class="cs-icon">🗂️</div>
+                        <h3>Powerful CRM — <span class="text-electric">Coming Soon</span></h3>
+                        <p>Our intelligent B2B CRM is currently in development. Be the first to know when it launches.</p>
+                        <a href="login.html" class="btn btn-primary">Join the Waitlist</a>
+                    </div>
+                </div>
+
             </div>
         </section>
 
-        <!-- B2B Data Section -->
-        <section class="pricing-section" style="padding-bottom: 8rem;">
-            <div class="container">
-                <h2 class="pricing-header-tab">B2B Data & Leads</h2>
-                <div class="pricing-grid">
-                    <!-- Basic Data -->
-                    <div class="pricing-card glass-panel">
-                        <h3>Startup Database</h3>
-                        <div class="price"><span>₹</span><span class="price-val" data-monthly="9,999" data-quarterly="8,499" data-yearly="6,999">9,999</span><span>/mo</span></div>
-                        <ul class="pricing-features">
-                            <li>5,000 Verified B2B Leads</li>
-                            <li>Emails & Phone Numbers</li>
-                            <li>Standard Decision Makers Filter</li>
-                            <li>Monthly Data Standard Refreshes</li>
-                        </ul>
-                        <a href="login.html" class="btn btn-secondary">Get Data</a>
-                    </div>
-                    <!-- Pro Data -->
-                    <div class="pricing-card glass-panel featured">
-                        <div class="popular-badge">High Value</div>
-                        <h3>Growth Database</h3>
-                        <div class="price"><span>₹</span><span class="price-val" data-monthly="24,999" data-quarterly="21,249" data-yearly="17,499">24,999</span><span>/mo</span></div>
-                        <ul class="pricing-features">
-                            <li>25,000 Verified B2B Leads</li>
-                            <li>Direct Dials & Verified Emails</li>
-                            <li>C-Level & HR Specific Targeting</li>
-                            <li>Weekly Data Updates</li>
-                        </ul>
-                        <a href="login.html" class="btn btn-primary">Get Data</a>
-                    </div>
-                    <!-- Enterprise Data -->
-                    <div class="pricing-card glass-panel">
-                        <h3>Enterprise Volume</h3>
-                        <div class="price">Custom</div>
-                        <ul class="pricing-features">
-                            <li>Unlimited Data Access</li>
-                            <li>API Integration for CRM</li>
-                            <li>Hyper-Targeted Global Data</li>
-                            <li>Real-time Data Enrichment</li>
-                        </ul>
-                        <a href="index.html#contact" class="btn btn-secondary">Contact Us</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+</main>
 
     <footer>
         <div class="container footer-content">
             <div class="footer-brand">
-            <div class="logo">Leadintel<span>AI</span></div>
+            <a href="index.html" class="logo">
+                <img src="logo.svg" alt="LeadintelAI Logo">
+                <span class="logo-text">Leadintel<span>AI</span></span>
+            </a>
                 <p>Leading the way in digital B2B solutions.</p>
             </div>
             <div class="footer-links">
@@ -191,125 +260,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="transitions.js"></script>
     <script>
-        // --- Billing Toggle Logic ---
-        const toggleBtns = document.querySelectorAll('.btn-toggle');
-        const priceVals = document.querySelectorAll('.price-val');
-
-        toggleBtns.forEach((btn, index) => {
-            btn.addEventListener('click', () => {
-                toggleBtns.forEach(b => {
-                    b.classList.remove('active');
-                    b.style.background = 'transparent';
-                    b.style.color = 'rgba(245,246,250,0.8)';
-                });
-                
-                btn.classList.add('active');
-                btn.style.background = 'var(--clr-electric)';
-                btn.style.color = 'white';
-
-                let cycle = 'monthly';
-                if (index === 1) cycle = 'quarterly';
-                if (index === 2) cycle = 'yearly';
-
-                priceVals.forEach(priceEl => {
-                    priceEl.style.opacity = '0';
-                    setTimeout(() => {
-                        priceEl.textContent = priceEl.getAttribute(`data-${cycle}`);
-                        priceEl.style.transition = 'opacity 0.3s ease';
-                        priceEl.style.opacity = '1';
-                    }, 200);
-                });
+        // --- Pricing Tab Switcher ---
+        document.querySelectorAll('.pricing-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.dataset.tab;
+                document.querySelectorAll('.pricing-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                document.querySelectorAll('.pricing-panel').forEach(panel => panel.classList.remove('active'));
+                const targetPanel = document.getElementById('tab-' + target);
+                if (targetPanel) targetPanel.classList.add('active');
             });
-        });
-
-        // --- Click to Focus Card Logic ---
-        const allPricingCards = document.querySelectorAll('.pricing-card');
-        
-        allPricingCards.forEach(card => {
-            card.addEventListener('click', (e) => {
-                // Ignore clicks on buttons inside the card to allow normal link clicks
-                if (e.target.tagName.toLowerCase() === 'a' || e.target.closest('a')) return;
-
-                const isActive = card.classList.contains('clicked-focus');
-                
-                // Clear state from all cards first
-                allPricingCards.forEach(c => {
-                    c.classList.remove('clicked-focus', 'clicked-blur');
-                });
-                
-                // If it wasn't already active, make it active and blur siblings
-                if (!isActive) {
-                    card.classList.add('clicked-focus');
-                    
-                    // Find sibling cards in the same grid/section specifically
-                    const siblings = card.parentElement.querySelectorAll('.pricing-card');
-                    siblings.forEach(s => {
-                        if (s !== card) s.classList.add('clicked-blur');
-                    });
-                }
-            });
-        });
-        
-        // Click outside to clear focus
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.pricing-card')) {
-                allPricingCards.forEach(c => {
-                    c.classList.remove('clicked-focus', 'clicked-blur');
-                });
-            }
-        });
-
-        // --- GSAP Scroll Animations for Cards ---
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Only run these complex animations on desktop screens
-        let mm = gsap.matchMedia();
-        mm.add("(min-width: 900px)", () => {
-            
-            // 1. Marketing Suite Animation
-            const mktSection = document.querySelectorAll('.pricing-section')[0];
-            const mktCards = mktSection.querySelectorAll('.pricing-card');
-            
-            // Set initial state (stacked in middle)
-            gsap.set(mktCards[1], { zIndex: 10 }); // Center card on top
-            gsap.set([mktCards[0], mktCards[2]], { zIndex: 1 }); // Side cards behind
-            
-            const mktTl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: mktSection,
-                    start: "top 70%", // Start animating earlier as they scroll
-                    end: "bottom 30%", // Finish collapsing later
-                    scrub: 1.5 // Smoother scrubbing
-                }
-            });
-
-            // Slide out side cards from behind the middle one
-            mktTl.from(mktCards[0], { xPercent: 120, opacity: 0, scale: 0.9, duration: 1 }, 0)
-                 .from(mktCards[2], { xPercent: -120, opacity: 0, scale: 0.9, duration: 1 }, 0)
-                 // Keep them visible longer
-                 .to(mktCards[0], { xPercent: 120, opacity: 0, scale: 0.9, duration: 1 }, "+=1")
-                 .to(mktCards[2], { xPercent: -120, opacity: 0, scale: 0.9, duration: 1 }, "<");
-
-
-            // 2. B2B Data & Leads Animation
-            const dataSection = document.querySelectorAll('.pricing-section')[1];
-            const dataCards = dataSection.querySelectorAll('.pricing-card');
-            
-            // Set initial state (stacked in middle)
-            gsap.set(dataCards[1], { zIndex: 10 });
-            gsap.set([dataCards[0], dataCards[2]], { zIndex: 1 });
-
-            const dataTl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: dataSection,
-                    start: "top 80%", // Trigger when the top of the section is 80% down the viewport
-                    toggleActions: "play none none reverse" // Play automatically without being tied to scroll progress
-                }
-            });
-
-            // Simply divide into three as user scrolls in (don't stack them back)
-            dataTl.from(dataCards[0], { xPercent: 120, opacity: 0, scale: 0.9, duration: 1 }, 0)
-                  .from(dataCards[2], { xPercent: -120, opacity: 0, scale: 0.9, duration: 1 }, 0);
         });
     </script>
 </body>
