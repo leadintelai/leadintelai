@@ -1,5 +1,5 @@
 // ---------- UI & Navigation Logic ---------- //
-const backendUrl = "http://localhost:8080";
+const backendUrl = "https://leadintelai.onrender.com";
 
 // Navbar scroll effect
 const navbar = document.querySelector('.navbar');

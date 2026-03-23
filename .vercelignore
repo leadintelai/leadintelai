@@ -1,0 +1,17 @@
+# Ignore backend files in the frontend deployment
+*.py
+__pycache__/
+.env
+requirements.txt
+runtime.txt
+render.yaml
+leadintel.db
+auth.py
+ai_service.py
+database.py
+main.py
+models.py
+schemas.py
+test_ai.py
+check_models.py
+check_sdk_models.py
