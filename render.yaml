@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: leadintel-backend
+    env: python
+    region: singapore
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.12
+      - key: NVIDIA_API_KEY
+        sync: false
+      - key: MAIL_USERNAME
+        sync: false
+      - key: MAIL_PASSWORD
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+      - key: MAIL_PORT
+        value: "587"
+      - key: MAIL_SERVER
+        value: "smtp.gmail.com"
