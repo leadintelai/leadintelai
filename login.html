@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <style>
         body {
             display: flex;
@@ -399,6 +400,49 @@
         /* Adjustment for country code width */
         #signup-country-code { width: 70px !important; flex: none !important; text-align: center; }
         #signup-phone { flex: 1; }
+        .google-btn-container {
+            width: 100%;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+        
+        #google-login-btn, #google-signup-btn {
+            background: white;
+            color: #444;
+            border-radius: 12px;
+            padding: 12px 24px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            width: 100%;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        #google-login-btn:hover, #google-signup-btn:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .divider-text {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 1.5rem 0;
+            color: rgba(245, 246, 250, 0.4);
+        }
+        .divider-text::before, .divider-text::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid rgba(245, 246, 250, 0.1);
+        }
+        .divider-text::before { margin-right: .5em; }
+        .divider-text::after { margin-left: .5em; }
     </style>
 </head>
 <body>
@@ -461,6 +505,27 @@
             </div>
             
             <button class="btn-auth" id="btn-create-acc" style="margin-top: 1rem;">Sign Up</button>
+            
+            <div class="divider-text">OR</div>
+            
+            <div class="google-btn-container">
+                <div id="g_id_onload_signup"
+                     data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
+                     data-context="signup"
+                     data-ux_mode="popup"
+                     data-callback="handleCredentialResponse"
+                     data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin"
+                     data-type="standard"
+                     data-shape="rectangular"
+                     data-theme="outline"
+                     data-text="continue_with"
+                     data-size="large"
+                     data-logo_alignment="left">
+                </div>
+            </div>
+
             <div class="mobile-switch" id="go-to-signin-mobile">Already have an account? Log In</div>
         </div>
         
@@ -494,6 +559,27 @@
             </div>
             
             <button class="btn-auth" id="actual-login-btn" style="margin-top: 1rem;">Log In</button>
+            
+            <div class="divider-text">OR</div>
+
+            <div class="google-btn-container">
+                <div id="g_id_onload_login"
+                     data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
+                     data-context="signin"
+                     data-ux_mode="popup"
+                     data-callback="handleCredentialResponse"
+                     data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin"
+                     data-type="standard"
+                     data-shape="rectangular"
+                     data-theme="outline"
+                     data-text="signin_with"
+                     data-size="large"
+                     data-logo_alignment="left">
+                </div>
+            </div>
+
             <div class="mobile-switch" id="go-to-signup-mobile">Don't have an account? Sign Up</div>
         </div>
         
@@ -950,6 +1036,33 @@
             }
         });
 
+        // Google Sign-In Callback
+        async function handleCredentialResponse(response) {
+            console.log("Encoded JWT ID token: " + response.credential);
+            
+            try {
+                const res = await fetch(`${backendUrl}/auth/google`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id_token: response.credential })
+                });
+                
+                const data = await res.json();
+                
+                if (res.ok) {
+                    localStorage.setItem('leadintel_token', data.access_token);
+                    localStorage.setItem('leadintel_auth', 'true');
+                    localStorage.setItem('leadintel_email', data.email);
+                    alert("Google Login Successful!");
+                    window.location.href = "project";
+                } else {
+                    alert("Google Login Failed: " + (data.detail || "Unknown error"));
+                }
+            } catch (error) {
+                console.error("Error during Google Login:", error);
+                alert("Server error during Google Login.");
+            }
+        }
     </script>
     <!-- GSAP for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>

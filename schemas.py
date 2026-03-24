@@ -21,6 +21,9 @@ class PasswordReset(BaseModel):
     email: EmailStr
     new_password: str
 
+class GoogleToken(BaseModel):
+    id_token: str
+
 class UserBase(BaseModel):
     email: EmailStr
     first_name: str

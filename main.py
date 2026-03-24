@@ -13,6 +13,9 @@ from fastapi_mail import FastMail, MessageSchema, ConnectionConfig, MessageType
 from dotenv import load_dotenv
 load_dotenv() 
 
+from google.oauth2 import id_token
+from google.auth.transport import requests as google_requests
+
 import models, schemas, auth, ai_service
 from database import engine, get_db
 
@@ -113,6 +116,69 @@ async def verify_otp(request: schemas.OTPVerify, db: Session = Depends(get_db)):
     db.commit()
     
     return {"message": "OTP verified successfully"}
+
+@app.post("/auth/google")
+async def google_auth(request: schemas.GoogleToken, db: Session = Depends(get_db)):
+    try:
+        # Verify the ID token using the Google verify_oauth2_info
+        # Note: In a real app, you MUST use the GOOGLE_CLIENT_ID from your env
+        CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
+        
+        idinfo = id_token.verify_oauth2_token(
+            request.id_token, 
+            google_requests.Request(), 
+            CLIENT_ID
+        )
+
+        # ID token is valid. Extract user info
+        email = idinfo['email']
+        first_name = idinfo.get('given_name', 'Google')
+        last_name = idinfo.get('family_name', 'User')
+        
+        # Check if user exists
+        user = db.query(models.User).filter(models.User.email == email).first()
+        
+        if not user:
+            # Create a new user if they don't exist
+            # Generate a random password since it's required by the model
+            random_pw = ''.join(random.choices(string.ascii_letters + string.digits, k=16))
+            hashed_pw = auth.get_password_hash(random_pw)
+            
+            user = models.User(
+                email=email,
+                hashed_password=hashed_pw,
+                first_name=first_name,
+                last_name=last_name,
+                company_name="Google User",
+                phone_number=None,
+                is_active=True,
+                wallet_balance=0.0
+            )
+            db.add(user)
+            db.commit()
+            db.refresh(user)
+
+        # Create access token
+        access_token_expires = timedelta(minutes=auth.ACCESS_TOKEN_EXPIRE_MINUTES)
+        access_token = auth.create_access_token(
+            data={"sub": user.email}, expires_delta=access_token_expires
+        )
+        
+        return {
+            "access_token": access_token, 
+            "token_type": "bearer",
+            "email": user.email,
+            "user": {
+                "first_name": user.first_name,
+                "last_name": user.last_name,
+                "email": user.email
+            }
+        }
+    except ValueError as e:
+        # Invalid token
+        raise HTTPException(status_code=401, detail=f"Invalid Google Token: {str(e)}")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/token", response_model=schemas.Token)
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
