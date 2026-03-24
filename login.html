@@ -693,8 +693,12 @@
                 if(res.ok) {
                     btnSendEmailOtp.textContent = "Sent!";
                     emailOtpSection.classList.remove('hidden');
-                } else { alert("Failed to send OTP."); btnSendEmailOtp.textContent = "Send OTP"; }
-            } catch(e) { alert("Server error."); btnSendEmailOtp.textContent = "Send OTP"; }
+                } else {
+                    const errData = await res.json().catch(() => ({}));
+                    alert("Failed to send OTP. Backend says: " + (errData.detail || "Unknown error"));
+                    btnSendEmailOtp.textContent = "Send OTP";
+                }
+            } catch(e) { alert("Server error: " + e.message); btnSendEmailOtp.textContent = "Send OTP"; }
         });
 
         btnVerifyEmailOtp.addEventListener('click', async () => {
