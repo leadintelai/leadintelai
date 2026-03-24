@@ -3,7 +3,9 @@
  * Drop <script src="chatbot.js"></script> on any page to enable.
  */
 (function () {
-    const BACKEND_URL = "https://leadintel-production.up.railway.app";
+    // Auto-detect backend environment
+    const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+    const BACKEND_URL = isLocal ? "http://localhost:8080" : "https://leadintel-production.up.railway.app";
     let chatHistory = [];
     let isOpen = false;
     let isTyping = false;
