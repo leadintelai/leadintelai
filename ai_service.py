@@ -5,12 +5,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Configure OpenAI (Custom Endpoint)
-client = AsyncOpenAI(
-    base_url="https://integrate.api.nvidia.com/v1",
-    api_key=os.getenv("NVIDIA_API_KEY")
-)
-
 # --- LEADINTELAI KNOWLEDGE BASE ---
 KNOWLEDGE_BASE = """
 LeadintelAI Overview:
@@ -41,7 +35,11 @@ Comparisons:
 
 async def generate_chat_response(message: str, system_prompt: str, agent_name: str, tone: str) -> str:
     """Generates a contextual chat response using the official OpenAI SDK."""
-    
+    client = AsyncOpenAI(
+        base_url="https://integrate.api.nvidia.com/v1",
+        api_key=os.getenv("NVIDIA_API_KEY")
+    )
+
     full_system_instruction = f"""
     {system_prompt}
     You are an AI assistant named {agent_name} for LeadintelAI. Your tone is {tone}.
@@ -107,6 +105,11 @@ async def generate_chat_response(message: str, system_prompt: str, agent_name: s
 
 async def generate_campaign_content(product_name: str, target_audience: str, key_benefits: str, tone: str) -> list[str]:
     """Generates compelling WhatsApp message templates for a campaign."""
+    client = AsyncOpenAI(
+        base_url="https://integrate.api.nvidia.com/v1",
+        api_key=os.getenv("NVIDIA_API_KEY")
+    )
+
     prompt = f"""
     Generate 3 high-converting WhatsApp marketing message templates for the following product.
     
@@ -135,6 +138,11 @@ async def generate_campaign_content(product_name: str, target_audience: str, key
 
 async def score_lead(industry: str, job_title: str, company: str) -> dict:
     """Evaluates a lead and returns a score, summary, and recommendations."""
+    client = AsyncOpenAI(
+        base_url="https://integrate.api.nvidia.com/v1",
+        api_key=os.getenv("NVIDIA_API_KEY")
+    )
+
     prompt = f"""
     Evaluate the following B2B lead for potential B2B SaaS/Services sales.
     
