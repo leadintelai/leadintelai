@@ -35,12 +35,18 @@
         }
 
         .dash-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             font-family: var(--font-heading);
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 800;
             color: var(--clr-cloud);
             text-decoration: none;
+            transition: var(--transition-fast);
         }
+        .dash-logo:hover { opacity: 0.9; transform: scale(1.02); }
+        .dash-logo img { height: 40px; width: auto; }
         .dash-logo span { color: var(--clr-electric); }
 
         .user-profile {
@@ -264,6 +270,172 @@
             gap: 10px;
         }
 
+        /* Profile Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 14, 23, 0.85);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-content {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            transform: translateY(30px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+        .modal-content h2 { font-family: var(--font-heading); margin-bottom: 1rem; }
+        .modal-content p { color: rgba(245,246,250,0.6); margin-bottom: 2rem; }
+
+        /* Wallet Modal Specifics */
+        .wallet-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .wallet-option-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 15px;
+            color: var(--clr-cloud);
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .wallet-option-btn:hover, .wallet-option-btn.selected {
+            border-color: var(--clr-electric);
+            background: rgba(9, 132, 227, 0.1);
+        }
+        .wallet-option-btn svg { width: 30px; height: 30px; color: var(--clr-electric); }
+        .amount-input-group { position: relative; margin-bottom: 20px; }
+        .amount-input-group span { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--clr-cloud); font-size: 1.2rem; }
+        .amount-input-group input { padding-left: 35px; font-size: 1.2rem; font-family: var(--font-heading); font-weight: bold; }
+        
+        .form-group { text-align: left; margin-bottom: 1.2rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: rgba(245,246,250,0.8); }
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: white;
+            outline: none;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+        .form-input:focus { border-color: var(--clr-electric); }
+
+        .settings-trigger {
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition-fast);
+        }
+        .settings-trigger:hover { background: rgba(255,255,255,0.1); }
+
+        /* Custom Tour Tooltip */
+        .tour-tooltip {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(9, 132, 227, 0.95), rgba(30, 39, 46, 0.95));
+            border: 1px solid var(--clr-electric);
+            border-radius: 12px;
+            padding: 20px;
+            width: 300px;
+            z-index: 3000;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            color: white;
+            opacity: 0;
+            pointer-events: none;
+            transition: top 0.4s ease, left 0.4s ease;
+        }
+        .tour-tooltip::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent var(--clr-electric) transparent;
+        }
+        .tour-tooltip h4 { font-family: var(--font-heading); margin-bottom: 10px; font-size: 1.2rem; }
+        .tour-tooltip p { font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-bottom: 15px; }
+        .tour-btn-group { display: flex; justify-content: space-between; }
+        
+        .tour-overlay-mask {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2999;
+            display: none;
+            opacity: 0;
+        }
+        .tour-highlight {
+            position: relative;
+            z-index: 3001 !important;
+            box-shadow: 0 0 0 4px rgba(9, 132, 227, 0.5);
+            background: rgba(255,255,255,0.05); /* slightly brighten target */
+            border-radius: 20px;
+        }
+
+        /* Analytics Chart Container */
+        .analytics-container {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+            display: none; /* Hidden until loaded/animated */
+        }
+        .analytics-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(ellipse at center, rgba(9, 132, 227, 0.05), transparent 70%);
+            pointer-events: none;
+        }
+        .analytics-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .analytics-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        .chart-wrapper {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+
         @media (max-width: 1024px) {
             .dash-grid { grid-template-columns: 1fr; }
             .bottom-grid { grid-template-columns: 1fr; }
@@ -282,16 +454,76 @@
 
     <nav class="dash-nav">
         <a href="/" class="dash-logo">
-            <img src="logo.svg" alt="LeadintelAI Logo" style="height: 35px; width: auto; margin-right: 15px;">
-            <span class="logo-text">Leadintel<span>AI</span></span>
+            <img src="logo.svg" alt="LeadintelAI Logo">
+            <div class="logo-text">Leadintel<span>AI</span></div>
         </a>
         
         <div class="user-profile">
             <span style="color: rgba(245,246,250,0.8); font-size: 0.9rem;" id="user-display-email">Loading...</span>
-            <div class="user-avatar">G</div>
+            <div class="settings-trigger" onclick="openSettings()" title="Account Settings">
+                <div class="user-avatar" id="avatar-letter">G</div>
+            </div>
             <button class="logout-btn" onclick="logout()">Logout</button>
         </div>
     </nav>
+
+    <!-- Profile Completion / Settings Modal -->
+    <div class="modal-overlay" id="profile-modal">
+        <div class="modal-content">
+            <h2 id="modal-title">Complete Your Profile</h2>
+            <p id="modal-desc">Please provide a few more details to secure your account.</p>
+            
+            <form id="profile-form">
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" id="set-first-name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" id="set-last-name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Company Name</label>
+                    <input type="text" id="set-company" class="form-input" required>
+                </div>
+                <div class="form-group" id="pass-group">
+                    <label>Create Platform Password</label>
+                    <input type="password" id="set-password" class="form-input" placeholder="Min 6 characters">
+                    <label style="margin-top: 10px;">Retype Password</label>
+                    <input type="password" id="set-repassword" class="form-input" placeholder="Confirm password">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Save & Continue</button>
+            </form>
+            <button class="btn-secondary" id="close-modal-btn" style="width: 100%; margin-top: 10px; padding: 10px; border: none; background: transparent; color: #555; cursor: pointer; display: none;" onclick="closeModal()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Wallet / Payment Modal -->
+    <div class="modal-overlay" id="wallet-modal">
+        <div class="modal-content">
+            <h2 id="wallet-modal-title">Add Funds to Wallet</h2>
+            <p>Select a payment method and enter the amount to recharge your balance securely.</p>
+            
+            <div class="wallet-options">
+                <div class="wallet-option-btn selected" onclick="selectPaymentMethod(this, 'card')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                    Credit / Debit Card
+                </div>
+                <div class="wallet-option-btn" onclick="selectPaymentMethod(this, 'upi')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                    UPI Transfer
+                </div>
+            </div>
+
+            <div class="form-group amount-input-group">
+                <span>₹</span>
+                <input type="number" id="recharge-amount" class="form-input" placeholder="e.g. 5000" min="500">
+            </div>
+
+            <button class="btn btn-primary" id="process-payment-btn" style="width: 100%; margin-top: 1rem;" onclick="processMockPayment()">Proceed to Pay</button>
+            <button class="btn-secondary" style="width: 100%; margin-top: 10px; padding: 10px; border: none; background: transparent; color: #555; cursor: pointer;" onclick="closeWalletModal()">Cancel</button>
+        </div>
+    </div>
 
     <div class="container">
         <main class="main-content">
@@ -301,10 +533,20 @@
                 <p>Select a product dashboard to manage your operations.</p>
             </div>
 
-            <div class="dash-grid">
+            <!-- Analytics Chart -->
+            <div class="analytics-container" id="analytics-section">
+                <div class="analytics-header">
+                    <h2 class="analytics-title">Platform Activity (Last 7 Days)</h2>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="activityChart"></canvas>
+                </div>
+            </div>
+
+            <div class="dash-grid" id="product-grid">
                 
                 <!-- B2B Data App -->
-                <div class="dash-card">
+                <div class="dash-card" id="b2b-card" data-tour-title="B2B Data Portal" data-tour-desc="Search millions of verified decision-makers and build your ultimate prospect lists instantly.">
                     <div class="card-icon" style="color: var(--clr-electric); background: none; -webkit-text-fill-color: initial;">
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
@@ -316,7 +558,7 @@
                 </div>
 
                 <!-- WhatsApp API App -->
-                <div class="dash-card">
+                <div class="dash-card" id="wa-card" data-tour-title="WhatsApp Automation" data-tour-desc="Launch official bulk campaigns and let our AI Chatbot handle incoming queries 24/7.">
                     <div class="card-icon" style="color: #25D366; background: none; -webkit-text-fill-color: initial;">
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
@@ -328,7 +570,7 @@
                 </div>
 
                 <!-- Mass Mailing App -->
-                <div class="dash-card">
+                <div class="dash-card" id="mail-card" data-tour-title="Mass Email Engine" data-tour-desc="Upload the leads you generated and launch highly personalized email sequences here.">
                     <div class="card-icon" style="color: var(--clr-cloud); background: none; -webkit-text-fill-color: initial;">
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -340,7 +582,24 @@
                     <button class="btn btn-primary" onclick="alert('Entering Email Tool...')">Open Email Engine</button>
                 </div>
 
+                <!-- Powerful CRM App -->
+                <div class="dash-card" style="position: relative;">
+                    <span style="position: absolute; top: 15px; right: 15px; background: rgba(255,193,7,0.1); color: #ffc107; border: 1px solid rgba(255,193,7,0.3); padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Coming Soon</span>
+                    <div class="card-icon" style="color: #ffc107; background: none; -webkit-text-fill-color: initial;">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3>Powerful CRM</h3>
+                    <p>An intuitive Customer Relationship Management tool designed specifically to manage B2B leads, track engagement, and close deals faster.</p>
+                    <button class="btn" style="background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.1); cursor: default; width: 100%;" disabled>Coming Soon</button>
+                </div>
+
             </div>
+
 
             <div class="page-divider">
                 <span>Account Services</span>
@@ -408,21 +667,361 @@
         </main>
     </div>
 
+    <div class="tour-overlay-mask" id="tour-mask"></div>
+    <div class="tour-tooltip" id="tour-tooltip">
+        <h4 id="tour-title">Title</h4>
+        <p id="tour-desc">Description</p>
+        <div class="tour-btn-group">
+            <button class="btn-secondary" style="padding: 5px 10px; font-size: 0.8rem;" onclick="endTour()">Skip</button>
+            <button class="btn btn-primary" style="padding: 5px 15px; font-size: 0.8rem;" id="tour-next-btn" onclick="nextTourStep()">Next ➔</button>
+        </div>
+    </div>
+
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script>
-        // Populate user data
-        const storedEmail = localStorage.getItem('leadintel_email') || 'Leadintelai@gmail.com';
-        document.getElementById('user-display-email').textContent = storedEmail;
+        const backendUrl = "https://leadintel-production.up.railway.app"; // Update if needed
+        const token = localStorage.getItem('leadintel_token');
+        
+        // Element references
+        const profileModal = document.getElementById('profile-modal');
+        const profileForm = document.getElementById('profile-form');
+        const welcomeName = document.getElementById('welcome-name');
+        const userDisplayEmail = document.getElementById('user-display-email');
+        const avatarLetter = document.getElementById('avatar-letter');
+
+        // Populate user data and check completeness
+        async function fetchUserInfo() {
+            if (!token) return logout();
+
+            try {
+                const res = await fetch(`${backendUrl}/users/me`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const user = await res.json();
+
+                if (res.ok) {
+                    userDisplayEmail.textContent = user.email;
+                    welcomeName.textContent = `Welcome Back, ${user.first_name}!`;
+                    avatarLetter.textContent = user.first_name.charAt(0).toUpperCase();
+
+                    // Check if profile needs completion
+                    if (user.company_name === "Google User") {
+                        openProfileCompletion(user);
+                    }
+                } else {
+                    logout();
+                }
+            } catch (error) {
+                console.error("Error fetching user info:", error);
+            }
+        }
+
+        function openProfileCompletion(user = {}) {
+            document.getElementById('modal-title').textContent = "Complete Your Profile";
+            document.getElementById('modal-desc').textContent = "Please provide a few more details to secure your account.";
+            document.getElementById('set-first-name').value = user.first_name || "";
+            document.getElementById('set-last-name').value = user.last_name || "";
+            document.getElementById('set-company').value = (user.company_name === "Google User" ? "" : user.company_name) || "";
+            document.getElementById('pass-group').style.display = "block";
+            document.getElementById('close-modal-btn').style.display = "none";
+            
+            showModal();
+        }
+
+        function openSettings() {
+            // Re-fetch to get latest
+            fetch(`${backendUrl}/users/me`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            }).then(res => res.json()).then(user => {
+                document.getElementById('modal-title').textContent = "Account Settings";
+                document.getElementById('modal-desc').textContent = "Update your profile information below.";
+                document.getElementById('set-first-name').value = user.first_name;
+                document.getElementById('set-last-name').value = user.last_name;
+                document.getElementById('set-company').value = user.company_name;
+                document.getElementById('pass-group').style.display = "none"; // Hide password update in quick settings for now
+                document.getElementById('close-modal-btn').style.display = "block";
+                
+                showModal();
+            });
+        }
+
+        function showModal() {
+            profileModal.classList.add('active');
+            gsap.fromTo(".modal-content", 
+                { opacity: 0, y: 30, scale: 0.95 },
+                { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power4.out" }
+            );
+        }
+
+        function closeModal() {
+            gsap.to(".modal-content", {
+                opacity: 0, y: 20, scale: 0.95, duration: 0.4, ease: "power4.in",
+                onComplete: () => profileModal.classList.remove('active')
+            });
+        }
+
+        profileForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const updateData = {
+                first_name: document.getElementById('set-first-name').value,
+                last_name: document.getElementById('set-last-name').value,
+                company_name: document.getElementById('set-company').value
+            };
+
+            const newPass = document.getElementById('set-password').value;
+            const rePass = document.getElementById('set-repassword').value;
+
+            if (newPass) {
+                if (newPass.length < 6) return alert("Password must be at least 6 characters.");
+                if (newPass !== rePass) return alert("Passwords do not match.");
+                updateData.password = newPass;
+            }
+
+            try {
+                const res = await fetch(`${backendUrl}/users/me`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(updateData)
+                });
+
+                if (res.ok) {
+                    const updatedUser = await res.json();
+                    welcomeName.textContent = `Welcome Back, ${updatedUser.first_name}!`;
+                    avatarLetter.textContent = updatedUser.first_name.charAt(0).toUpperCase();
+                    closeModal();
+                    
+                    // Show success toast then start tour if it was a completion
+                    setTimeout(() => {
+                        alert("Profile Updated Successfully!");
+                        if (!localStorage.getItem('leadintel_tour_done')) {
+                            startTour();
+                        }
+                    }, 500);
+                } else {
+                    const err = await res.json();
+                    alert("Update failed: " + (err.detail || "Error"));
+                }
+            } catch (error) {
+                console.error("Error updating profile:", error);
+                alert("Server error during update.");
+            }
+        });
 
         function logout() {
             localStorage.removeItem('leadintel_auth');
             localStorage.removeItem('leadintel_email');
+            localStorage.removeItem('leadintel_token');
             window.location.href = 'login';
         }
 
         function openPaymentGateway() {
-            // Mocking Razorpay/Stripe checkout opening
-            alert("Initializing Default Payment Gateway (e.g. Razorpay/Stripe)...\n\nLoading secure checkout overlay for Leadintelai.in.");
+            document.getElementById('wallet-modal').classList.add('active');
+            gsap.fromTo("#wallet-modal .modal-content", 
+                { opacity: 0, y: 30, scale: 0.95 },
+                { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power4.out" }
+            );
         }
+
+        function closeWalletModal() {
+            gsap.to("#wallet-modal .modal-content", {
+                opacity: 0, y: 20, scale: 0.95, duration: 0.4, ease: "power4.in",
+                onComplete: () => {
+                    document.getElementById('wallet-modal').classList.remove('active');
+                    document.getElementById('process-payment-btn').innerHTML = "Proceed to Pay";
+                    document.getElementById('process-payment-btn').disabled = false;
+                }
+            });
+        }
+
+        function selectPaymentMethod(element, method) {
+            document.querySelectorAll('.wallet-option-btn').forEach(btn => btn.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        function processMockPayment() {
+            const amount = document.getElementById('recharge-amount').value;
+            if(!amount || amount < 500) {
+                alert("Please enter a minimum amount of ₹500");
+                return;
+            }
+
+            const btn = document.getElementById('process-payment-btn');
+            btn.innerHTML = `<svg class="spinner" viewBox="0 0 50 50" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;animation:rotate 2s linear infinite;"><circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-dasharray="1, 200" stroke-dashoffset="0" style="animation:dash 1.5s ease-in-out infinite;"/></svg> Processing...`;
+            btn.disabled = true;
+
+            // Mock network delay & success
+            setTimeout(() => {
+                btn.style.background = "#00b894";
+                btn.style.borderColor = "#00b894";
+                btn.innerHTML = `✅ Payment Successful!`;
+                
+                // Animate balance update
+                const balanceEl = document.querySelector('.wallet-balance');
+                const currBalance = parseInt(balanceEl.textContent.replace(/\D/g, ''));
+                const newBalance = currBalance + parseInt(amount);
+                
+                let counter = { val: currBalance };
+                gsap.to(counter, {
+                    val: newBalance,
+                    duration: 1.5,
+                    ease: "power2.out",
+                    onUpdate: () => {
+                        balanceEl.textContent = "₹" + Math.floor(counter.val).toLocaleString('en-IN');
+                    }
+                });
+
+                setTimeout(closeWalletModal, 2000);
+            }, 2500);
+        }
+
+        // Add spinner CSS dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes rotate { 100% { transform: rotate(360deg); } }
+            @keyframes dash { 0% { stroke-dasharray: 1, 200; stroke-dashoffset: 0; } 50% { stroke-dasharray: 90, 200; stroke-dashoffset: -35px; } 100% { stroke-dasharray: 90, 200; stroke-dashoffset: -124px; } }
+        `;
+        document.head.appendChild(style);
+
+        // --- Chart.js Initialization ---
+        function initAnalyticsChart() {
+            const ctx = document.getElementById('activityChart').getContext('2d');
+            
+            // Gradient for the line
+            const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+            gradient.addColorStop(0, 'rgba(9, 132, 227, 0.5)'); // electric blue
+            gradient.addColorStop(1, 'rgba(9, 132, 227, 0.0)');
+
+            // Setup Chart Defaults for Dark Mode
+            Chart.defaults.color = 'rgba(245, 246, 250, 0.6)';
+            Chart.defaults.font.family = "'Inter', sans-serif";
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'API Requests / Leads Unlocked',
+                        data: [120, 190, 150, 250, 220, 310, 280],
+                        borderColor: '#0984e3',
+                        backgroundColor: gradient,
+                        borderWidth: 3,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#0984e3',
+                        pointBorderWidth: 2,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        fill: true,
+                        tension: 0.4 // Smooth curves
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(30,39,46,0.9)',
+                            titleFont: { size: 14, family: "'Outfit', sans-serif" },
+                            bodyFont: { size: 14 },
+                            padding: 12,
+                            borderColor: 'rgba(255,255,255,0.1)',
+                            borderWidth: 1,
+                            displayColors: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(255,255,255,0.05)', drawBorder: false }
+                        },
+                        y: {
+                            grid: { color: 'rgba(255,255,255,0.05)', drawBorder: false },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // GSAP Animation for Chart Container
+            const analyticsSec = document.getElementById('analytics-section');
+            analyticsSec.style.display = 'block';
+            gsap.fromTo(analyticsSec, 
+                { opacity: 0, y: 30 },
+                { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: 0.3 }
+            );
+        }
+
+        // --- Interactive Onboarding Tour ---
+        const tourSteps = ['b2b-card', 'wa-card', 'mail-card'];
+        let currentTourStep = 0;
+
+        function startTour() {
+            document.getElementById('tour-mask').style.display = 'block';
+            gsap.to('#tour-mask', { opacity: 1, duration: 0.5 });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            currentTourStep = 0;
+            showTourStep();
+        }
+
+        function showTourStep() {
+            // Remove previous highlights
+            document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
+            
+            if (currentTourStep >= tourSteps.length) {
+                return endTour();
+            }
+
+            const targetId = tourSteps[currentTourStep];
+            const targetEl = document.getElementById(targetId);
+            targetEl.classList.add('tour-highlight');
+
+            const tooltip = document.getElementById('tour-tooltip');
+            document.getElementById('tour-title').textContent = targetEl.getAttribute('data-tour-title');
+            document.getElementById('tour-desc').textContent = targetEl.getAttribute('data-tour-desc');
+            
+            if (currentTourStep === tourSteps.length - 1) {
+                document.getElementById('tour-next-btn').innerHTML = "Finish ✓";
+            } else {
+                document.getElementById('tour-next-btn').innerHTML = "Next ➔";
+            }
+
+            // Position Tooltip
+            const rect = targetEl.getBoundingClientRect();
+            const topPos = rect.bottom + window.scrollY + 15;
+            const leftPos = rect.left + window.scrollX + (rect.width / 2) - 150; // center it
+
+            tooltip.style.top = topPos + 'px';
+            tooltip.style.left = leftPos + 'px';
+            
+            gsap.to(tooltip, { opacity: 1, pointerEvents: 'auto', duration: 0.3, y: 0 });
+        }
+
+        function nextTourStep() {
+            gsap.to('#tour-tooltip', { opacity: 0, pointerEvents: 'none', duration: 0.2, y: -10, onComplete: () => {
+                currentTourStep++;
+                showTourStep();
+            }});
+        }
+
+        function endTour() {
+            localStorage.setItem('leadintel_tour_done', 'true');
+            gsap.to('#tour-tooltip', { opacity: 0, pointerEvents: 'none', duration: 0.3 });
+            gsap.to('#tour-mask', { opacity: 0, duration: 0.5, onComplete: () => {
+                document.getElementById('tour-mask').style.display = 'none';
+                document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
+            }});
+        }
+
+        // Initialize
+        fetchUserInfo().then(() => {
+            initAnalyticsChart();
+        });
     </script>
     <script src="transitions.js"></script>
 </body>

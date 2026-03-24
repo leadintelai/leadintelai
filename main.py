@@ -171,7 +171,9 @@ async def google_auth(request: schemas.GoogleToken, db: Session = Depends(get_db
             "user": {
                 "first_name": user.first_name,
                 "last_name": user.last_name,
-                "email": user.email
+                "email": user.email,
+                "company_name": user.company_name,
+                "needs_completion": user.company_name == "Google User"
             }
         }
     except ValueError as e:
@@ -282,6 +284,25 @@ async def register_user(user: schemas.UserCreate, db: Session = Depends(get_db))
 
 @app.get("/users/me", response_model=schemas.User)
 async def read_users_me(current_user: models.User = Depends(auth.get_current_user)):
+    return current_user
+
+@app.patch("/users/me", response_model=schemas.User)
+async def update_user_me(
+    user_update: schemas.UserUpdate, 
+    db: Session = Depends(get_db),
+    current_user: models.User = Depends(auth.get_current_user)
+):
+    if user_update.first_name:
+        current_user.first_name = user_update.first_name
+    if user_update.last_name:
+        current_user.last_name = user_update.last_name
+    if user_update.company_name:
+        current_user.company_name = user_update.company_name
+    if user_update.password:
+        current_user.hashed_password = auth.get_password_hash(user_update.password)
+    
+    db.commit()
+    db.refresh(current_user)
     return current_user
 
 # --- LEAD ENDPOINTS ---

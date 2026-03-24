@@ -34,6 +34,12 @@ class UserBase(BaseModel):
 class UserCreate(UserBase):
     password: str
 
+class UserUpdate(BaseModel):
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    company_name: Optional[str] = None
+    password: Optional[str] = None
+
 class User(UserBase):
     id: Optional[int] = None # Added Optional and default for safety during migration
     wallet_balance: float
