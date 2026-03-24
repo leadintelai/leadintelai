@@ -405,7 +405,7 @@
 
     <div class="auth-bg"></div>
 
-    <a href="index.html" class="back-link">
+    <a href="/" class="back-link">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
         Back to Home
     </a>
@@ -447,26 +447,7 @@
                 <button class="btn-small" id="btn-verify-email-otp" type="button" style="width:100%; margin-bottom:10px;">Verify Email</button>
             </div>
 
-            <div class="input-group input-with-button">
-                <div style="display:flex; width: 100%; gap: 0;">
-                    <input type="text" class="input-field" id="signup-country-code" placeholder="+91" value="+91" style="border-right: none; border-top-right-radius: 0; border-bottom-right-radius: 0;" />
-                    <input type="text" class="input-field" id="signup-phone" placeholder="Phone Number" style="border-top-left-radius: 0; border-bottom-left-radius: 0;" />
-                </div>
-                <button class="btn-small" id="btn-send-phone-otp" type="button">Send OTP</button>
-                <span class="verified-icon" id="phone-verified-tick">✔</span>
-            </div>
-
-            <div id="phone-otp-section" class="hidden">
-                <div class="otp-container" id="phone-otp-boxes">
-                    <input type="text" class="otp-box phone-otp-input" maxlength="1" />
-                    <input type="text" class="otp-box phone-otp-input" maxlength="1" />
-                    <input type="text" class="otp-box phone-otp-input" maxlength="1" />
-                    <input type="text" class="otp-box phone-otp-input" maxlength="1" />
-                    <input type="text" class="otp-box phone-otp-input" maxlength="1" />
-                    <input type="text" class="otp-box phone-otp-input" maxlength="1" />
-                </div>
-                <button class="btn-small" id="btn-verify-phone-otp" type="button" style="width:100%; margin-bottom:10px;">Verify Phone</button>
-            </div>
+            <!-- Phone fields removed -->
             
             <div class="input-group input-with-icon">
                 <input type="password" class="input-field" id="signup-password" placeholder="Create Password" />
@@ -664,8 +645,7 @@
         const signupLast = document.getElementById('signup-lastname');
         const signupCompany = document.getElementById('signup-company');
         const signupRepassword = document.getElementById('signup-repassword');
-        const signupPhone = document.getElementById('signup-phone');
-        const signupCountry = document.getElementById('signup-country-code');
+
         const pwdLiquid = document.getElementById('pwd-liquid');
 
         // OTP & Backend Auth logic
@@ -688,7 +668,7 @@
             });
         }
         setupOtpFocus('email-otp-input');
-        setupOtpFocus('phone-otp-input');
+
 
         function getOtpValue(className) {
             return Array.from(document.querySelectorAll('.' + className)).map(i => i.value).join('');
@@ -735,54 +715,15 @@
             } catch(e) { alert("Verification failed."); }
         });
 
-        // Phone OTP
-        const btnSendPhoneOtp = document.getElementById('btn-send-phone-otp');
-        const btnVerifyPhoneOtp = document.getElementById('btn-verify-phone-otp');
-        const phoneOtpSection = document.getElementById('phone-otp-section');
-        const phoneVerifiedTick = document.getElementById('phone-verified-tick');
-        let isPhoneVerified = false;
-
-        btnSendPhoneOtp.addEventListener('click', async () => {
-            const phone = signupCountry.value + signupPhone.value.trim();
-            if(signupPhone.value.length < 5) { alert("Enter valid phone number"); return; }
-            btnSendPhoneOtp.textContent = "Sending...";
-            try {
-                const res = await fetch(`${backendUrl}/auth/send-otp`, {
-                    method: 'POST', headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ identifier: phone })
-                });
-                if(res.ok) {
-                    btnSendPhoneOtp.textContent = "Sent!";
-                    phoneOtpSection.classList.remove('hidden');
-                } else { alert("Failed to send OTP."); btnSendPhoneOtp.textContent = "Send OTP"; }
-            } catch(e) { alert("Server error."); btnSendPhoneOtp.textContent = "Send OTP"; }
-        });
-
-        btnVerifyPhoneOtp.addEventListener('click', async () => {
-            const phone = signupCountry.value + signupPhone.value.trim();
-            const otpCode = getOtpValue('phone-otp-input');
-            if(otpCode.length !== 6) { alert("Enter 6-digit OTP"); return; }
-            try {
-                const res = await fetch(`${backendUrl}/auth/verify-otp`, {
-                    method: 'POST', headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ identifier: phone, otp_code: otpCode })
-                });
-                if (res.ok) {
-                    isPhoneVerified = true;
-                    phoneVerifiedTick.classList.add('show');
-                    phoneOtpSection.classList.add('hidden');
-                    btnSendPhoneOtp.disabled = true;
-                } else { alert("Invalid OTP."); }
-            } catch(e) { alert("Verification failed."); }
-        });
+        // Phone OTP logic removed
 
         // Final Signup
         const btnCreateAcc = document.getElementById('btn-create-acc');
 
         btnCreateAcc.addEventListener('click', async (e) => {
             e.preventDefault();
-            if(!isEmailVerified || !isPhoneVerified) {
-                alert("Please verify both Email and Phone Number first."); return;
+            if(!isEmailVerified) {
+                alert("Please verify your Email first."); return;
             }
             const pass = signupPasswordInput.value;
             if(pass !== signupRepassword.value) { alert("Passwords do not match!"); return; }
@@ -792,7 +733,7 @@
                 first_name: signupFirst.value.trim(),
                 last_name: signupLast.value.trim(),
                 company_name: signupCompany.value.trim(),
-                phone_number: signupCountry.value + signupPhone.value.trim(),
+                phone_number: null,
                 password: pass
             };
 
@@ -873,7 +814,7 @@
                         const data = await res.json();
                         localStorage.setItem('leadintel_token', data.access_token);
                         localStorage.setItem('leadintel_auth', 'true'); localStorage.setItem('leadintel_email', email);
-                        window.location.href = 'project.html';
+                        window.location.href = 'project';
                     } else { alert("Login Failed: Invalid credentials"); }
                 } else if (loginMode === 'otp') {
                     const otpCode = loginOtpInput.value.trim();
@@ -887,7 +828,7 @@
                         const data = await res.json();
                         localStorage.setItem('leadintel_token', data.access_token);
                         localStorage.setItem('leadintel_auth', 'true'); localStorage.setItem('leadintel_email', email);
-                        window.location.href = 'project.html';
+                        window.location.href = 'project';
                     } else {
                         const err = await res.json(); alert(`Login Failed: ${err.detail}`);
                     }

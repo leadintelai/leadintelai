@@ -65,25 +65,23 @@ async def send_otp(request: schemas.OTPSend, db: Session = Depends(get_db)):
     db.commit()
     
     # Logic to distinguish between email and phone
-    if "@" in identifier:
-        # Send Email OTP
-        print(f"DEBUG: Sending Email OTP {otp_code} to {identifier}")
-        try:
-            message = MessageSchema(
-                subject="Your LeadintelAI Verification Code",
-                recipients=[identifier],
-                body=f"Your OTP code is: {otp_code}. Valid for 10 minutes.",
-                subtype="html"
-            )
-            fm = FastMail(conf)
-            await fm.send_message(message)
-        except Exception as e:
-            print(f"Error sending email: {e}")
-            raise HTTPException(status_code=500, detail=f"Failed to send OTP email: {str(e)}")
-    else:
-        # Send Phone OTP (Simulated for now)
-        print(f"DEBUG: Sending Phone OTP {otp_code} to {identifier}")
-        # In a real scenario, integrate with Twilio/MessageBird here
+    if "@" not in identifier:
+        raise HTTPException(status_code=400, detail="Only email verification is supported.")
+
+    # Send Email OTP
+    print(f"DEBUG: Sending Email OTP {otp_code} to {identifier}")
+    try:
+        message = MessageSchema(
+            subject="Your LeadintelAI Verification Code",
+            recipients=[identifier],
+            body=f"Your OTP code is: {otp_code}. Valid for 10 minutes.",
+            subtype="html"
+        )
+        fm = FastMail(conf)
+        await fm.send_message(message)
+    except Exception as e:
+        print(f"Error sending email: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to send OTP email: {str(e)}")
     
     return {"message": f"OTP sent successfully to {identifier}"}
 
@@ -185,29 +183,21 @@ async def reset_password(request: schemas.PasswordReset, db: Session = Depends(g
 
 @app.post("/register", response_model=schemas.User)
 async def register_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
-    # 1. Check if BOTH email and phone are verified
+    # 1. Check if email is verified
     email_otp = db.query(models.EmailOTP).filter(
         models.EmailOTP.identifier == user.email.lower(),
         models.EmailOTP.is_verified == True
     ).order_by(models.EmailOTP.created_at.desc()).first()
 
-    phone_otp = db.query(models.EmailOTP).filter(
-        models.EmailOTP.identifier == user.phone_number,
-        models.EmailOTP.is_verified == True
-    ).order_by(models.EmailOTP.created_at.desc()).first()
-
-    if not email_otp or not phone_otp:
-        raise HTTPException(status_code=400, detail="Both Email and Phone must be verified with OTP first.")
+    if not email_otp:
+        raise HTTPException(status_code=400, detail="Email must be verified with OTP first.")
     
     # 2. Cleanup verification records
     db.delete(email_otp)
-    db.delete(phone_otp)
     
-    db_user = db.query(models.User).filter(
-        (models.User.email == user.email.lower()) | (models.User.phone_number == user.phone_number)
-    ).first()
+    db_user = db.query(models.User).filter(models.User.email == user.email.lower()).first()
     if db_user:
-        raise HTTPException(status_code=400, detail="Email or Phone already registered")
+        raise HTTPException(status_code=400, detail="Email already registered")
     
     hashed_password = auth.get_password_hash(user.password)
     new_user = models.User(
