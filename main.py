@@ -16,10 +16,8 @@ load_dotenv()
 import models, schemas, auth, ai_service
 from database import engine, get_db
 
-# Create database tables (drop first to ensure clean schema on deploy)
-models.Base.metadata.drop_all(bind=engine)
+# Create database tables
 models.Base.metadata.create_all(bind=engine)
-
 
 app = FastAPI(
     title="LeadintelAI API",
@@ -81,8 +79,7 @@ async def send_otp(request: schemas.OTPSend, db: Session = Depends(get_db)):
             await fm.send_message(message)
         except Exception as e:
             print(f"Error sending email: {e}")
-            # For development, we'll allow it if console logging worked
-            # raise HTTPException(status_code=500, detail="Failed to send OTP email.")
+            raise HTTPException(status_code=500, detail=f"Failed to send OTP email: {str(e)}")
     else:
         # Send Phone OTP (Simulated for now)
         print(f"DEBUG: Sending Phone OTP {otp_code} to {identifier}")
@@ -134,36 +131,31 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
 
 @app.post("/auth/login-otp", response_model=schemas.Token)
 async def login_with_otp(request: schemas.OTPVerify, db: Session = Depends(get_db)):
-    # Using identifier field in EmailOTP for email or phone
-    if not request.identifier or not request.otp_code:
-        raise HTTPException(status_code=400, detail="identifier and otp_code are required")
-
-    identifier = request.identifier.lower()
-    user = db.query(models.User).filter(models.User.email == identifier).first()
+    email_lower = request.email.lower()
+    user = db.query(models.User).filter(models.User.email == email_lower).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found with this email.")
-
+        
     db_otp = db.query(models.EmailOTP).filter(
-        models.EmailOTP.identifier == identifier,
-        models.EmailOTP.otp_code == request.otp_code,
-        models.EmailOTP.is_verified == True
+        models.EmailOTP.email == email_lower,
+        models.EmailOTP.otp_code == request.otp_code
     ).order_by(models.EmailOTP.created_at.desc()).first()
-
+    
     if not db_otp:
         raise HTTPException(status_code=400, detail="Invalid OTP code")
-
+        
     now = datetime.now(timezone.utc)
     otp_expiry = db_otp.expires_at
     if otp_expiry.tzinfo is None:
         otp_expiry = otp_expiry.replace(tzinfo=timezone.utc)
-
+        
     if otp_expiry < now:
         raise HTTPException(status_code=400, detail="OTP code has expired")
-
+        
     # Mark as used/delete
     db.delete(db_otp)
     db.commit()
-
+    
     access_token = auth.create_access_token(data={"sub": user.email})
     return {"access_token": access_token, "token_type": "bearer"}
 
@@ -173,9 +165,9 @@ async def reset_password(request: schemas.PasswordReset, db: Session = Depends(g
     user = db.query(models.User).filter(models.User.email == email_lower).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found.")
-
+        
     recent_otp = db.query(models.EmailOTP).filter(
-        models.EmailOTP.identifier == email_lower,
+        models.EmailOTP.email == email_lower,
         models.EmailOTP.is_verified == True
     ).order_by(models.EmailOTP.created_at.desc()).first()
     

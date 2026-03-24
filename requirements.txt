@@ -7,5 +7,6 @@ python-jose[cryptography]
 passlib[bcrypt]
 python-multipart
 sqlalchemy
-openai
-fastapi-mail
+openai>=1.0.0
+fastapi-mail==0.9.8
+aiosmtplib>=2.0.0
