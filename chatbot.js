@@ -54,11 +54,11 @@
             right: 28px;
             width: 360px;
             height: 520px;
-            background: rgba(15, 25, 35, 0.98);
+            background: rgba(15, 25, 35, 0.95);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 20px;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(9,132,227,0.2);
             z-index: 9998;
             display: flex;
@@ -68,7 +68,20 @@
             transform: translateY(20px) scale(0.95);
             opacity: 0;
             pointer-events: none;
-            transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+        }
+        #aria-window::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(9,132,227,0.05) 0%, transparent 70%);
+            animation: aria-glow 10s linear infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+        @keyframes aria-glow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         #aria-window.aria-open {
             transform: translateY(0) scale(1);
@@ -132,11 +145,11 @@
             line-height: 1.55;
             word-wrap: break-word;
             white-space: pre-wrap;
-            animation: aria-msg-in 0.25s ease;
+            animation: aria-msg-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
         }
         @keyframes aria-msg-in {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(15px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
         .aria-msg.aria-bot {
             background: rgba(255,255,255,0.06);
@@ -219,15 +232,18 @@
             border: 1px solid rgba(9,132,227,0.3);
             color: #74b9ff;
             font-size: 0.75rem;
-            padding: 5px 10px;
+            padding: 6px 12px;
             border-radius: 20px;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.3s ease;
             font-family: 'Inter', sans-serif;
             white-space: nowrap;
         }
         .aria-quick-btn:hover {
             background: rgba(9,132,227,0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(9,132,227,0.2);
+            border-color: rgba(9,132,227,0.6);
         }
 
         @media (max-width: 420px) {
@@ -323,14 +339,18 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: text, history: chatHistory.slice(0, -1) })
             });
+            
+            if (!res.ok) throw new Error("Server response not OK");
+            
             const data = await res.json();
             removeTyping();
-            const reply = data.reply || "Sorry, something went wrong on my end!";
+            const reply = data.reply || "Sorry, I am having a bit of trouble connecting right now.";
             addMessage('bot', reply);
             chatHistory.push({ role: 'assistant', content: reply });
         } catch (e) {
             removeTyping();
-            addMessage('bot', "Hey, network hiccup — mind trying that again?");
+            console.error("Aria Connection Error:", e);
+            addMessage('bot', "Server is temporarily unreachable. Please ensure the backend is active at LeadintelAI.");
         }
 
         isTyping = false;
