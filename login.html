@@ -443,6 +443,68 @@
         }
         .divider-text::before { margin-right: .5em; }
         .divider-text::after { margin-left: .5em; }
+
+        /* Custom Google Button */
+        .btn-google {
+            background-color: white;
+            color: #3c4043;
+            border: 1px solid #747775;
+            border-radius: 4px;
+            padding: 0 16px;
+            height: 40px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            text-decoration: none;
+        }
+        .btn-google:hover {
+            background-color: #f8f9fa;
+            box-shadow: 0 1px 3px 1px rgba(60,64,67,0.15), 0 1px 2px 0 rgba(60,64,67,0.3);
+        }
+
+        /* Premium Success Modal */
+        .success-modal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(10, 14, 23, 0.8);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .success-content {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem 4rem;
+            text-align: center;
+            transform: translateY(30px) scale(0.95);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .success-icon {
+            width: 80px; height: 80px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .success-check {
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+        }
     </style>
 </head>
 <body>
@@ -509,21 +571,16 @@
             <div class="divider-text">OR</div>
             
             <div class="google-btn-container">
-                <div id="g_id_onload_signup"
-                     data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
-                     data-context="signup"
-                     data-ux_mode="popup"
-                     data-callback="handleCredentialResponse"
-                     data-auto_prompt="false">
-                </div>
-                <div class="g_id_signin"
-                     data-type="standard"
-                     data-shape="rectangular"
-                     data-theme="outline"
-                     data-text="continue_with"
-                     data-size="large"
-                     data-logo_alignment="left">
-                </div>
+                <button type="button" class="btn-google" onclick="alert('Please configure a valid Google Client ID to enable Google Sign-In')">
+                    <svg width="20" height="20" viewBox="0 0 48 48">
+                        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+                        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+                        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+                        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+                        <path fill="none" d="M0 0h48v48H0z"></path>
+                    </svg>
+                    Continue with Google
+                </button>
             </div>
 
             <div class="mobile-switch" id="go-to-signin-mobile">Already have an account? Log In</div>
@@ -563,21 +620,16 @@
             <div class="divider-text">OR</div>
 
             <div class="google-btn-container">
-                <div id="g_id_onload_login"
-                     data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
-                     data-context="signin"
-                     data-ux_mode="popup"
-                     data-callback="handleCredentialResponse"
-                     data-auto_prompt="false">
-                </div>
-                <div class="g_id_signin"
-                     data-type="standard"
-                     data-shape="rectangular"
-                     data-theme="outline"
-                     data-text="signin_with"
-                     data-size="large"
-                     data-logo_alignment="left">
-                </div>
+                <button type="button" class="btn-google" onclick="alert('Please configure a valid Google Client ID to enable Google Sign-In')">
+                    <svg width="20" height="20" viewBox="0 0 48 48">
+                        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+                        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+                        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+                        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+                        <path fill="none" d="M0 0h48v48H0z"></path>
+                    </svg>
+                    Continue with Google
+                </button>
             </div>
 
             <div class="mobile-switch" id="go-to-signup-mobile">Don't have an account? Sign Up</div>
@@ -624,6 +676,19 @@
                 </div>
 
                 <button class="btn-auth" id="btn-forgot-action" style="margin-top: 15px;">Send OTP</button>
+            </div>
+        </div>
+
+        <!-- Registration Success Modal -->
+        <div class="success-modal" id="registration-success-modal">
+            <div class="success-content" id="success-content">
+                <svg class="success-icon" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="26" cy="26" r="25" fill="#00b894" fill-opacity="0.2"/>
+                    <circle cx="26" cy="26" r="25" stroke="#00b894" stroke-width="2"/>
+                    <path class="success-check" d="M14 27L22 35L38 17" stroke="#00b894" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <h2 style="color: white; font-family: var(--font-heading); font-size: 2rem; margin-bottom: 0.5rem;" id="success-title">Welcome Aboard!</h2>
+                <p style="color: rgba(245, 246, 250, 0.7); font-size: 1rem;" id="success-message">Your account has been created successfully.</p>
             </div>
         </div>
 
@@ -834,8 +899,28 @@
                     body: JSON.stringify(payload)
                 });
                 if (res.ok) {
-                    alert("Account Created Successfully!");
-                    container.classList.remove("right-panel-active");
+                    // Trigger the premium success animation instead of alert
+                    const successModal = document.getElementById('registration-success-modal');
+                    const successContent = document.getElementById('success-content');
+                    const successCheck = document.querySelector('.success-check');
+                    
+                    // Show modal
+                    gsap.to(successModal, { autoAlpha: 1, duration: 0.3 });
+                    gsap.to(successContent, { y: 0, scale: 1, duration: 0.6, ease: "back.out(1.7)" });
+                    
+                    // Animate checkmark
+                    gsap.to(successCheck, { strokeDashoffset: 0, duration: 0.8, delay: 0.3, ease: "power2.out" });
+
+                    // Switch panels after a short delay
+                    setTimeout(() => {
+                        gsap.to(successModal, { autoAlpha: 0, duration: 0.4, onComplete: () => {
+                            container.classList.remove("right-panel-active");
+                            // Reset animation states for future uses
+                            gsap.set(successContent, { y: 30, scale: 0.95 });
+                            gsap.set(successCheck, { strokeDashoffset: 200 });
+                        }});
+                    }, 2500);
+                    
                 } else {
                     const err = await res.json();
                     alert(`Error: ${err.detail}`);
