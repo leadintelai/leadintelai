@@ -1,5 +1,5 @@
 // ---------- UI & Navigation Logic ---------- //
-const backendUrl = "https://leadintelai.onrender.com";
+const backendUrl = "https://leadintel-backend-production.up.railway.app";
 
 // Navbar scroll effect
 const navbar = document.querySelector('.navbar');

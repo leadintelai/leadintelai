@@ -633,6 +633,7 @@
             const pass = loginPassword.value;
 
             // Hardcoded check
+            const backendUrl = "https://leadintel-backend-production.up.railway.app";
             if (email === 'leadintelai@gmail.com' && pass === 'Gaurav@20302') {
                 // Success: Mock session token
                 localStorage.setItem('leadintel_auth', 'true');
