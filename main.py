@@ -35,14 +35,14 @@ app.add_middleware(
 
 # --- EMAIL CONFIGURATION ---
 conf = ConnectionConfig(
-    MAIL_USERNAME = os.getenv("MAIL_USERNAME", "placeholder@gmail.com"),
+    MAIL_USERNAME = os.getenv("MAIL_USERNAME", "leadintelai@gmail.com"),
     MAIL_PASSWORD = os.getenv("MAIL_PASSWORD", "password_placeholder"),
     MAIL_FROM = os.getenv("MAIL_FROM", "leadintelai@gmail.com"),
-    MAIL_PORT = int(os.getenv("MAIL_PORT", 587)),
+    MAIL_PORT = int(os.getenv("MAIL_PORT", 465)),
     MAIL_SERVER = os.getenv("MAIL_SERVER", "smtp.gmail.com"),
     MAIL_FROM_NAME = "LeadintelAI",
-    MAIL_STARTTLS = True,
-    MAIL_SSL_TLS = False,
+    MAIL_STARTTLS = False,
+    MAIL_SSL_TLS = True,
     USE_CREDENTIALS = True,
     VALIDATE_CERTS = True
 )
