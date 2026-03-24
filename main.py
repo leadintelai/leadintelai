@@ -497,5 +497,16 @@ async def create_chatbot_config(
 async def root():
     return {"status": "online", "message": "LeadintelAI Enterprise API", "version": "2.0.0"}
 
+# --- PUBLIC CHATBOT ENDPOINT (no auth required) ---
+
+@app.post("/public/chat")
+async def public_chat(request: schemas.PublicChatRequest):
+    """Public endpoint for Aria sales chatbot — accessible without login."""
+    reply = await ai_service.generate_sales_chat_response(
+        message=request.message,
+        history=request.history
+    )
+    return {"reply": reply}
+
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8080, reload=False)

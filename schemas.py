@@ -155,3 +155,7 @@ class ChatLeadDisplay(ChatLeadBase):
 
     class Config:
         from_attributes = True
+
+class PublicChatRequest(BaseModel):
+    message: str
+    history: list = []
