@@ -27,7 +27,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 9999;
+            z-index: 100000;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 2px solid rgba(255,255,255,0.2);
         }

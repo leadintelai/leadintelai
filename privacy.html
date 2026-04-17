@@ -1,98 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy | Leadintelai.in</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <style>
-        body { padding-top: 80px; }
-        .legal-content h2 { color: var(--clr-cloud); margin-top: 2rem; margin-bottom: 1rem; }
-        .legal-content p, .legal-content li { color: rgba(245, 246, 250, 0.8); line-height: 1.8; margin-bottom: 1rem; }
-    </style>
+    <title>LeadintelAI | The B2B Intelligence Platform for India</title>
+    <meta name="description"
+        content="Premium B2B services: verified data selling, robust WhatsApp API integration, mass mailing capabilities, and intelligent AI chatbots.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="linear-theme.css">
 </head>
+
 <body>
-    <header class="navbar scrolled">
-        <div class="container nav-content">
-            <a href="/" class="logo">
-                <img src="logo.svg" alt="LeadintelAI Logo">
-                <span class="logo-text">Leadintel<span>AI</span></span>
+
+    <!-- ─── NAVBAR ─── -->
+    <header class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="logo" aria-label="LeadintelAI home">
+                <!-- SVG Logo Icon -->
+                <svg class="logo-icon" width="26" height="26" viewBox="0 0 100 100" fill="none" style="vertical-align: middle;">
+                    <path class="ghost-body" d="M20,50 Q20,20 50,20 Q80,20 80,50 L80,80 Q70,75 60,80 Q50,85 40,80 Q30,75 20,80 Z" fill="white" />
+                    <ellipse class="ghost-eye" cx="40" cy="45" rx="4" ry="6" fill="black" />
+                    <ellipse class="ghost-eye" cx="60" cy="45" rx="4" ry="6" fill="black" />
+                </svg>
+                <span class="logo-wordmark">Leadintel<span class="logo-ai">AI</span></span>
             </a>
+
             <nav class="nav-links">
-                <a href="/#services">Services</a>
-                <a href="price">Pricing</a>
-                <a href="about">About</a>
-                <a href="login" class="btn btn-primary">Get Started</a>
+                <a href="index.html#services">Services</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
             </nav>
+
+            <div class="nav-actions">
+                <a href="login.html" class="nav-login">Log in</a>
+                <a href="login.html" class="btn-nav-cta">Get Started</a>
+            </div>
+
+            <!-- Mobile hamburger -->
+            <button class="nav-hamburger" aria-label="Open menu" id="nav-hamburger">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+
+        <!-- Mobile drawer -->
+        <div class="nav-mobile-drawer" id="nav-mobile-drawer">
+            <a href="#services">Services</a>
+            <a href="price.html">Pricing</a>
+            <a href="about.html">About</a>
+            <a href="#contact">Contact</a>
+            <a href="login.html" class="mobile-cta">Get Started</a>
         </div>
     </header>
 
-    <main class="container" style="padding: 4rem 1rem; min-height: 70vh;">
-        <div class="glass-panel" style="padding: 4rem; border-radius: 24px;">
-            <h1 style="font-size: 3rem; margin-bottom: 1rem; color: var(--clr-cloud); font-family: var(--font-heading);">Privacy Policy</h1>
-            <p style="color: var(--clr-growth); margin-bottom: 3rem;">Last updated: March 2026</p>
+    <main>
+
+        <section style='padding-top:160px; padding-bottom:80px; max-width:800px; margin:0 auto; padding-left:24px; padding-right:24px; color:var(--text-muted); line-height:1.7;'>
+            <h1 style='color:var(--white); font-size:2.5rem; margin-bottom:0.5rem; letter-spacing:-0.03em;'>Privacy Policy</h1>
+            <p style='margin-bottom:2rem;'><strong>Effective Date: March 2026</strong></p>
             
-            <div class="legal-content">
-                <h2>1. Information We Collect</h2>
-                <p>We collect information you provide directly to us when you create an account, subscribe to our services, or interact with our platform. This includes your name, email address, company details, and billing information. </p>
+            <h3 style='color:var(--white); margin-top:2rem;'>1. Data Collection</h3>
+            <p style='margin-bottom:1rem;'>We collect essential operational information including Name, Email, Company details, and required Billing info.</p>
+            
+            <h3 style='color:var(--white); margin-top:2rem;'>2. Usage & B2B Data</h3>
+            <p style='margin-bottom:1rem;'>Collected data is used strictly for platform functionality, secure payments, and personalized support. B2B databases are sourced actively from public & third-party platforms in compliance with international industry standards.</p>
+            
+            <h3 style='color:var(--white); margin-top:2rem;'>3. Data Sharing & Security</h3>
+            <p style='margin-bottom:1rem;'>We absolutely do not sell user operational data. Data is securely shared only with verified service infrastructure providers. Systems are guarded natively through high encryption and rigorous access control networks.</p>
+        </section>
 
-                <h2>2. How We Use Your Information</h2>
-                <p>We use the information we collect to operate, maintain, and provide the features and functionality of LeadintelAI. This includes processing payments, sending you service updates, providing customer support, and personalizing your experience.</p>
+</main>
 
-                <h2>3. B2B Database Practices</h2>
-                <p>The business contact information provided through our platform is sourced from publicly available datasets, professional networks, and third-party data providers. We ensure our data aggregation processes comply with industry standards.</p>
+    <!-- ─── FOOTER ─── -->
+    <footer class="footer" id="contact">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand-col">
+                    <a href="index.html" class="logo" aria-label="LeadintelAI home">
+                        <svg class="logo-icon" width="24" height="24" viewBox="0 0 28 28" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M14 2C7.373 2 2 7.373 2 14s5.373 12 12 12 12-5.373 12-12S20.627 2 14 2z"
+                                fill="white" opacity="0.12" />
+                            <path d="M14 6 L20 10 L20 18 L14 22 L8 18 L8 10 Z"
+                                stroke="white" stroke-width="1.5" stroke-linejoin="round" fill="none" />
+                            <path d="M10 12 L14 10 L18 12 L18 16 L14 18 L10 16 Z" fill="white" opacity="0.9" />
+                            <circle cx="14" cy="14" r="2.5" fill="white" />
+                        </svg>
+                        <span class="logo-wordmark">Leadintel<span class="logo-ai">AI</span></span>
+                    </a>
+                    <p class="footer-tagline">Leading the way in digital B2B solutions.</p>
+                    <div class="footer-social">
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                            class="social-link" aria-label="LinkedIn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.238 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                            class="social-link" aria-label="Instagram">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+                            class="social-link" aria-label="X / Twitter">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
 
-                <h2>4. Data Sharing and Disclosure</h2>
-                <p>We do not sell, trade, or rent your personal user account information to third parties. We may share information with trusted third-party service providers who assist us in operating our website and conducting our business.</p>
-
-                <h2>5. Data Security</h2>
-                <p>We implement robust security measures, including encryption and strict access controls, to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
-
-                <h2>6. Your Rights</h2>
-                <p>You have the right to access, update, or delete your personal account information. If you wish to execute any of these rights, please contact us at leadintelai@gmail.com.</p>
+                <div class="footer-links-grid">
+                    <div class="footer-col">
+                        <h4>Solutions</h4>
+                        <a href="#services">B2B Data</a>
+                        <a href="whatsapp.html">WhatsApp API</a>
+                        <a href="#services">Mass Mailing</a>
+                        <a href="#services">Powerful CRM</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Company</h4>
+                        <a href="about.html">About</a>
+                        <a href="price.html">Pricing</a>
+                        <a href="login.html">Dashboard</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Contact</h4>
+                        <a href="mailto:hello@leadintelai.com">hello@leadintelai.com</a>
+                        <a href="tel:+915551234567">+91 555 123 4567</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </main>
 
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-brand">
-            <a href="/" class="logo">
-                <img src="logo.svg" alt="LeadintelAI Logo">
-                <span class="logo-text">Leadintel<span>AI</span></span>
-            </a>
-                <p>Leading the way in digital B2B solutions.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Solutions</h4>
-                <a href="/#services">B2B Data</a>
-                <a href="/#services">WhatsApp API</a>
-                <a href="/#services">Mass Mailing</a>
-            </div>
-            <div class="footer-links">
-                <h4>Company</h4>
-                <a href="about">About</a>
-                <a href="price">Pricing</a>
-                <a href="terms">Terms of Service</a>
-                <a href="privacy" style="color: var(--clr-growth);">Privacy Policy</a>
-            </div>
-            <div class="footer-links" id="contact">
-                <h4>Contact</h4>
-                <a href="mailto:leadintelai@gmail.com">leadintelai@gmail.com</a>
-                <a href="#">+91 7903820302</a>
-                <div class="footer-social" style="display:flex; gap: 1rem; margin-top:1rem;">
-                    <a href="https://www.linkedin.com/company/leadintel-ai" target="_blank" class="social-icon" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.238 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
-                    <a href="https://www.instagram.com/leadintel.ai/" target="_blank" class="social-icon" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-                    <a href="https://twitter.com" target="_blank" class="social-icon" aria-label="X"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Leadintelai.in. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy.html" style="font-size:inherit; font-weight:inherit; color:var(--text-dim); text-decoration:none;">Privacy Policy</a>
+                    <a href="terms.html" style="font-size:inherit; font-weight:inherit; color:var(--text-dim); text-decoration:none;">Terms of Service</a>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Leadintelai.in. All rights reserved.</p>
-        </div>
     </footer>
-    <script src="transitions.js"></script>
+
+
+    <!-- ─── MODALS ─── -->
+    <div class="modal-overlay" id="modal-overlay" onclick="closeModals()"></div>
+
+
+    <!-- Contact Modal -->
+    <div class="service-modal lm-modal-panel" id="modal-contact">
+        <button class="modal-close" onclick="closeModals()">✕</button>
+        <h3>Connect With Our Expert</h3>
+        
+        <form id="expert-contact-form" class="lm-form">
+            <input type="text" placeholder="Name" required>
+            <input type="text" placeholder="Company Name" required>
+            <input type="email" placeholder="Company Mail ID" required>
+            <input type="tel" placeholder="Phone Number" required>
+            <input type="text" placeholder="Planning For (e.g., B2B Data, API)" required>
+            <button type="submit" class="btn-primary-hero" style="width: 100%; margin-top: 10px; justify-content: center;">Submit Details</button>
+        </form>
+
+        <div id="contact-success-msg" class="lm-success-msg" style="display: none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Our expert will connect you shortly!
+        </div>
+    </div>
+
+    <!-- ─── SCRIPTS ─── -->
+    <script>
+        function openModal(id) {
+            document.getElementById('modal-overlay').classList.add('visible');
+            document.getElementById(id).classList.add('visible');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModals() {
+            document.getElementById('modal-overlay').classList.remove('visible');
+            document.querySelectorAll('.service-modal').forEach(m => m.classList.remove('visible'));
+            document.body.style.overflow = '';
+        }
+    </script>
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 20);
+        }, { passive: true });
+
+        // ── Mobile nav toggle ─────────────────────────────────────────
+        const hamburger = document.getElementById('nav-hamburger');
+        const drawer = document.getElementById('nav-mobile-drawer');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            drawer.classList.toggle('open');
+        });
+        // Close drawer when a link is clicked
+        drawer.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                drawer.classList.remove('open');
+            });
+        });
+
+        // ── Scroll-reveal ─────────────────────────────────────────────
+        const revealEls = document.querySelectorAll('.reveal-on-scroll');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        revealEls.forEach(el => revealObserver.observe(el));
+
+        // ── Mouse-track glow on bento cards ──────────────────────────
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+                card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+            });
+        });
+
+        // ── Mockup entrance animation ─────────────────────────────────
+        window.addEventListener('load', () => {
+            const mockup = document.querySelector('.hero-mockup-wrap');
+            if (mockup) {
+                setTimeout(() => mockup.classList.add('visible'), 400);
+            }
+        });
+    </script>
+    <script src="chatbot.js"></script>
 </body>
+
 </html>

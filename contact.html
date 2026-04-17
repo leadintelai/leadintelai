@@ -718,89 +718,73 @@
 
 <main>
 
-        <!-- ─── ELEGANT DOCUMENT VIEW ─── -->
-        <section class="terms-hero" style="padding-top: 140px; padding-bottom: 120px; min-height: 100vh; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; background: #0c0d11;">
-            
-            <!-- Global Schematic Grid (Fills Side Screen) -->
-            <div style="position: absolute; inset: 0; opacity: 0.12; pointer-events: none; mask-image: radial-gradient(circle at center, black, transparent 90%); -webkit-mask-image: radial-gradient(circle at center, black, transparent 90%);">
-                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <pattern id="schematic-grid" width="100" height="100" patternUnits="userSpaceOnUse">
-                            <path d="M 100 0 L 0 0 0 100" fill="none" stroke="var(--text-secondary)" stroke-width="0.5"/>
-                            <circle cx="0" cy="0" r="1.5" fill="var(--accent-blue)"/>
-                        </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#schematic-grid)" />
-                </svg>
-            </div>
-
-            <div class="container-wide" style="position: relative; z-index: 2; display: grid; grid-template-columns: 280px 1fr; gap: 60px; max-width: 1300px; width: 100%; padding: 0 40px;">
-                
-                <!-- Minimalist Floating TOC -->
-                <aside style="position: sticky; top: 120px; height: max-content;">
-                    <div style="padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 24px;">
-                        <h1 style="font-size: 1.8rem; font-weight: 800; color: var(--text-primary); margin-bottom: 8px;">Legal</h1>
-                        <p style="font-size: 0.85rem; color: var(--text-tertiary);">Terms of Service (v2.4)</p>
-                    </div>
-                    <nav style="display: flex; flex-direction: column; gap: 12px;">
-                        <a href="#term-1" style="color: var(--accent-blue); font-size: 0.9rem; font-weight: 600; text-decoration: none;">1. Acceptance</a>
-                        <a href="#term-2" style="color: var(--text-secondary); font-size: 0.9rem; text-decoration: none; transition: 0.2s;" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-secondary)'">2. Services</a>
-                        <a href="#term-3" style="color: var(--text-secondary); font-size: 0.9rem; text-decoration: none; transition: 0.2s;" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-secondary)'">3. Responsibilities</a>
-                        <a href="#term-4" style="color: var(--text-secondary); font-size: 0.9rem; text-decoration: none; transition: 0.2s;" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-secondary)'">4. Data Usage</a>
-                        <a href="#term-5" style="color: var(--text-secondary); font-size: 0.9rem; text-decoration: none; transition: 0.2s;" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-secondary)'">5. Payments</a>
-                    </nav>
-                </aside>
-
-                <!-- Centered Professional Document Column -->
-                <article style="max-width: 920px; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); border-radius: 2px; padding: 60px 80px; box-shadow: 0 40px 100px rgba(0,0,0,0.4); backdrop-filter: blur(40px);">
+        <!-- ─── CONTACT HERO ─── -->
+        <section class="hero" style="padding-top: 180px; padding-bottom: 60px; min-height:100vh; display:flex; align-items:center;">
+            <div class="container container-wide">
+                <div style="display:grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start;">
                     
-                    <div id="term-1" style="margin-bottom: 60px;">
-                        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
-                            <span style="font-family: monospace; font-size: 0.75rem; color: var(--accent-blue); letter-spacing: 0.2em; text-transform: uppercase;">Section 01</span>
-                            <div style="flex: 1; height: 1px; background: linear-gradient(to right, rgba(37,99,235,0.3), transparent);"></div>
+                    <!-- Left: Brand Pitch -->
+                    <div>
+                        <span class="eyebrow" style="margin-bottom: 16px;">Partnership</span>
+                        <h1 class="hero-title" style="font-size: clamp(2.5rem, 4vw, 3.5rem); text-align: left; margin: 0 0 24px 0;">Let's scale your pipeline.</h1>
+                        <p class="hero-subtitle" style="text-align: left; margin: 0 0 48px 0; font-size: 1.1rem; line-height: 1.7;">Have questions about LeadintelAI DataCloud or our autonomous workflow agents? Our revenue architecture team is ready to help you deploy.</p>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 32px;">
+                            <div>
+                                <h4 style="font-size: 0.8rem; font-weight: 600; color: var(--text-primary); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 12px;">Support & Sales</h4>
+                                <a href="mailto:leadintelai@gmail.com" style="color: var(--text-secondary); font-size: 1.05rem; display: flex; align-items: center; gap: 10px; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-secondary)'">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>
+                                    leadintelai@gmail.com
+                                </a>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 0.8rem; font-weight: 600; color: var(--text-primary); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 12px;">Global Operations</h4>
+                                <div style="color: var(--text-secondary); font-size: 1.05rem; display: flex; align-items: center; gap: 10px;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                    India HQ
+                                </div>
+                            </div>
                         </div>
-                        <h2 style="font-size: 2rem; color: var(--text-primary); margin-bottom: 24px; font-weight: 700;">Acceptance of Terms</h2>
-                        <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.85;">By accessing or using the LeadintelAI platform, DataCloud API, MailEngine, or any associated SaaS products, you explicitly agree to enter into a legally binding contract governed by these Terms of Service. If you do not agree with any parameter of these terms, you are prohibited from utilizing our architecture.</p>
                     </div>
 
-                    <div id="term-2" style="margin-bottom: 60px;">
-                        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
-                            <span style="font-family: monospace; font-size: 0.75rem; color: var(--accent-blue); letter-spacing: 0.2em; text-transform: uppercase;">Section 02</span>
-                            <div style="flex: 1; height: 1px; background: linear-gradient(to right, rgba(37,99,235,0.3), transparent);"></div>
+                    <!-- Right: Form Engine -->
+                    <div style="position: relative; background: var(--bg-surface-glass); border: 1px solid var(--border-glass); border-radius: 16px; padding: 36px; backdrop-filter: blur(16px); overflow: hidden;">
+                        
+                        <!-- Premium DataCloud Schematic Grid Watermark -->
+                        <div style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.15; mask-image: radial-gradient(ellipse at bottom right, black 10%, transparent 80%); -webkit-mask-image: radial-gradient(ellipse at bottom right, black 10%, transparent 80%); transform: scale(1.5);">
+                            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <pattern id="contact-cross-grid" width="30" height="30" patternUnits="userSpaceOnUse">
+                                        <path d="M 15 10 V 20 M 10 15 H 20" fill="none" stroke="var(--text-secondary)" stroke-width="1"/>
+                                        <circle cx="15" cy="15" r="1" fill="var(--text-tertiary)" opacity="0.4"/>
+                                    </pattern>
+                                </defs>
+                                <rect width="100%" height="100%" fill="url(#contact-cross-grid)" />
+                            </svg>
                         </div>
-                        <h2 style="font-size: 2rem; color: var(--text-primary); margin-bottom: 24px; font-weight: 700;">Available Services</h2>
-                        <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.85;">We provision B2B intelligence data, robust WhatsApp API connectivity, automated mass mailing schemas, and AI-driven CRM engines. We make significant efforts to ensure high uptime and accurate data hygiene; however, we do not explicitly guarantee absolute delivery rates bypassing all firewall systems, nor do we guarantee specific revenue or sales conversions resulting directly from outreach tools.</p>
+
+                        <form style="position: relative; z-index: 2; display: flex; flex-direction: column; gap: 20px;">
+                            <div style="display: flex; flex-direction: column; gap: 8px;">
+                                <label style="font-size: 0.75rem; font-weight: 600; color: var(--text-tertiary); text-transform: uppercase;">Name</label>
+                                <input type="text" placeholder="Your full name" required style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-glass); border-radius: 6px; padding: 11px 14px; color: var(--text-primary); font-size: 0.95rem; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--accent-blue)'" onblur="this.style.borderColor='var(--border-glass)'">
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 8px;">
+                                <label style="font-size: 0.75rem; font-weight: 600; color: var(--text-tertiary); text-transform: uppercase;">Email Address</label>
+                                <input type="email" placeholder="name@company.com" required style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-glass); border-radius: 6px; padding: 11px 14px; color: var(--text-primary); font-size: 0.95rem; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--accent-blue)'" onblur="this.style.borderColor='var(--border-glass)'">
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 8px;">
+                                <label style="font-size: 0.75rem; font-weight: 600; color: var(--text-tertiary); text-transform: uppercase;">Company</label>
+                                <input type="text" placeholder="Your company name" required style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-glass); border-radius: 6px; padding: 11px 14px; color: var(--text-primary); font-size: 0.95rem; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--accent-blue)'" onblur="this.style.borderColor='var(--border-glass)'">
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 8px;">
+                                <label style="font-size: 0.75rem; font-weight: 600; color: var(--text-tertiary); text-transform: uppercase;">Message</label>
+                                <textarea placeholder="How can we help you grow?" required style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-glass); border-radius: 6px; padding: 11px 14px; color: var(--text-primary); font-size: 0.95rem; outline: none; transition: border-color 0.2s; min-height: 100px; resize: none;" onfocus="this.style.borderColor='var(--accent-blue)'" onblur="this.style.borderColor='var(--border-glass)'"></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary" style="padding: 12px; font-size: 0.95rem; margin-top: 4px; width: 100%;">Send Request</button>
+                        </form>
                     </div>
 
-                    <div id="term-3" style="margin-bottom: 60px;">
-                        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
-                            <span style="font-family: monospace; font-size: 0.75rem; color: var(--accent-blue); letter-spacing: 0.2em; text-transform: uppercase;">Section 03</span>
-                            <div style="flex: 1; height: 1px; background: linear-gradient(to right, rgba(37,99,235,0.3), transparent);"></div>
-                        </div>
-                        <h2 style="font-size: 2rem; color: var(--text-primary); margin-bottom: 24px; font-weight: 700;">User Responsibilities</h2>
-                        <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.85;">As a client, you maintain the responsibility to align your outreach operations with local governing laws, including strict adherence to anti-spam regulations (such as CAN-SPAM, DPDP, and GDPR where applicable). You are required to maintain strict account security. Launching unauthorized or aggressively hostile messaging protocols via our WhatsApp API infrastructure will result in immediate termination of routing permissions.</p>
-                    </div>
-
-                    <div id="term-4" style="margin-bottom: 60px;">
-                        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
-                            <span style="font-family: monospace; font-size: 0.75rem; color: var(--accent-blue); letter-spacing: 0.2em; text-transform: uppercase;">Section 04</span>
-                            <div style="flex: 1; height: 1px; background: linear-gradient(to right, rgba(37,99,235,0.3), transparent);"></div>
-                        </div>
-                        <h2 style="font-size: 2rem; color: var(--text-primary); margin-bottom: 24px; font-weight: 700;">Data Usage Parameters</h2>
-                        <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.85;">All curated Leadintel DataCloud segments requested via our platform are provided strictly for your internal sales outreach and B2B pipeline growth. Under no circumstances is commercial resale, extraction, repackaging, or secondary distribution of our B2B datasets authorized. Violations will result in permanent banishment from the platform database.</p>
-                    </div>
-
-                    <div id="term-5" style="margin-bottom: 60px;">
-                        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
-                            <span style="font-family: monospace; font-size: 0.75rem; color: var(--accent-blue); letter-spacing: 0.2em; text-transform: uppercase;">Section 05</span>
-                            <div style="flex: 1; height: 1px; background: linear-gradient(to right, rgba(37,99,235,0.3), transparent);"></div>
-                        </div>
-                        <h2 style="font-size: 2rem; color: var(--text-primary); margin-bottom: 24px; font-weight: 700;">Payments & Liability</h2>
-                        <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.85;">Platform subscriptions and specialized one-time blueprint plans are billed securely via authorized payment gateways. Cloud access may be indefinitely suspended for non-payment occurrences mapping beyond grace periods. LeadintelAI and its affiliates shall not be held liable for indirect, incidental, or consequential damages emerging from the strategic implementation of your outreach architectures or pipeline disruptions.</p>
-                    </div>
-
-                </article>
-
+                </div>
             </div>
         </section>
 
