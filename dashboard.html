@@ -290,6 +290,24 @@
             .filter-sidebar { width: 100%; height: auto; }
             .data-panel { height: 800px; } /* Fixed height on mobile so internal table scrolls */
         }
+        @media (max-width: 768px) {
+            .dash-nav { padding: 0 12px; height: 52px; }
+            .dash-logo { gap: 6px; }
+            .dash-logo img { height: 26px; margin-right: 8px; }
+            .logo-text { font-size: 0.88rem; }
+            .module-name { font-size: 0.72rem; }
+            .nav-actions .wallet-pill { font-size: 0.72rem; padding: 4px 8px; }
+            .back-btn { font-size: 0.72rem; padding: 4px 10px; }
+            .data-panel { height: 60vh; min-height: 300px; }
+            .filter-sidebar { padding: 10px 12px; }
+        }
+        @media (max-width: 480px) {
+            .dash-nav { padding: 0 8px; height: 48px; }
+            .module-name { display: none; }
+            .logo-text { font-size: 0.82rem; }
+            .data-panel { height: 55vh; }
+            body { overflow-x: hidden; }
+        }
     </style>
 </head>
 <body>

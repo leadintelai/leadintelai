@@ -23,6 +23,7 @@
         .pricing-card {
             background: #000;
             padding: 48px 32px;
+            box-sizing: border-box;
             display: flex;
             flex-direction: column;
             transition: background 0.3s;
@@ -63,6 +64,25 @@
         }
         .btn-price:hover { background: #fff; color: #000; }
         .pricing-card.featured .btn-price { background: var(--accent); border-color: var(--accent); }
+
+        /* ── Mobile ── */
+        @media (max-width: 768px) {
+            .pricing-section { padding: 90px 0 48px; }
+            .pricing-grid { margin-top: 36px; border-radius: 10px; }
+            .pricing-card { padding: 28px 20px; }
+            .pricing-header h1 { font-size: clamp(1.6rem, 7vw, 2.4rem) !important; }
+            .price-val { font-size: 2rem; margin-bottom: 16px; }
+            .price-features { margin-bottom: 24px; }
+            .nav-inner { padding: 0 16px; }
+            .nav-links { display: none !important; }
+        }
+        @media (max-width: 480px) {
+            .pricing-section { padding: 70px 0 36px; }
+            .pricing-card { padding: 22px 14px; }
+            .pricing-header h1 { font-size: 1.6rem !important; }
+            .price-val { font-size: 1.75rem; }
+            .nav-inner { padding: 0 12px; }
+        }
     </style>
 </head>
 <body class="strict-matte">
@@ -98,7 +118,7 @@
                         <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Basic CRM</li>
                         <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Limited campaigns</li>
                     </ul>
-                    <a href="signup.html" class="btn-price">Get Started</a>
+                    <a href="login.html?mode=signup" class="btn-price">Get Started</a>
                 </div>
 
                 <!-- Growth -->
@@ -110,7 +130,7 @@
                         <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Full CRM</li>
                         <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> WhatsApp + Email campaigns</li>
                     </ul>
-                    <a href="signup.html" class="btn-price">Upgrade Now</a>
+                    <a href="login.html?mode=signup" class="btn-price">Upgrade Now</a>
                 </div>
 
                 <!-- Pro -->
@@ -123,7 +143,7 @@
                         <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> AI Chatbot</li>
                         <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Priority support</li>
                     </ul>
-                    <a href="signup.html" class="btn-price" style="background: #fff; color: #000;">Contact Sales</a>
+                    <a href="login.html?mode=signup" class="btn-price" style="background: #fff; color: #000;">Contact Sales</a>
                 </div>
 
                 <!-- Enterprise -->

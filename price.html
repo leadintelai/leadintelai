@@ -74,6 +74,31 @@
             border-color: rgba(255,255,255,0.2);
             background: rgba(255,255,255,0.05);
         }
+
+        /* ── Phone-first responsive ── */
+        @media (max-width: 768px) {
+            body { padding-top: 70px; }
+            .pricing-section { padding: 2.5rem 0; }
+            .pricing-tabs { flex-wrap: wrap; gap: 6px; padding: 0 12px; }
+            .pricing-tab { font-size: 0.75rem; padding: 6px 10px; gap: 4px; min-width: 0; flex: 1 1 auto; }
+            .pricing-tab svg { width: 14px; height: 14px; }
+            .pricing-cards-grid { gap: 12px; padding: 0 12px; }
+            .pricing-card { padding: 20px 16px; border-radius: 12px; }
+            .plan-price { font-size: 2rem; }
+            .plan-desc { font-size: 0.8rem; }
+            .plan-features { font-size: 0.8rem; }
+            .pricing-header-tab { font-size: 1.5rem; }
+            .faq-section { padding: 2rem 12px 4rem; }
+            .faq-question { font-size: 0.95rem; padding: 1rem; }
+            .faq-answer { font-size: 0.82rem; }
+        }
+        @media (max-width: 480px) {
+            body { padding-top: 60px; }
+            .pricing-tabs { gap: 4px; }
+            .pricing-tab { font-size: 0.7rem; padding: 5px 7px; }
+            .pricing-card { padding: 16px 12px; }
+            .plan-price { font-size: 1.75rem; }
+        }
     </style>
 </head>
 <body>

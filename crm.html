@@ -8,6 +8,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+        @media (max-width:480px) {
+            .page-hero-inner { padding-top: 70px !important; padding-inline: 14px !important; gap: 16px; }
+            .page-h1 { font-size: clamp(1.5rem, 6.5vw, 2.2rem) !important; }
+            .nav-inner { padding: 0 14px; }
+            .nav-actions .btn-nav-cta { font-size: 0.74rem; padding: 5px 10px; }
+            .nav-login { display: none !important; }
+        }
+</style>
 </head>
 <body class="strict-matte">
     <header class="navbar" id="navbar">
@@ -39,7 +48,7 @@
                     </a>
                     <div class="page-tag">CRM AI</div>
                     <h1 class="page-h1">Leadintel CRM AI</h1>
-                    <a href="signup.html" class="page-cta">Start Managing Leads &rarr;</a>
+                    <a href="login.html?mode=signup" class="page-cta">Start Managing Leads &rarr;</a>
                 </div>
                 <div>
                     <p class="page-desc">Manage your entire sales pipeline with intelligence. Lead tracking, automated follow-ups, and AI-driven insights designed to help your sales team move at lightspeed.</p>

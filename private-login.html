@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Login — LeadintelAI | Smart Site System</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="glass-theme.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- LeadintelAI Silent Connection Detector -->
+    <script>
+        window.addEventListener('offline', () => {
+            localStorage.setItem('leadintel_last_url', window.location.href);
+            window.location.href = 'offline.html';
+        });
+    </script>
+
+    <style>
+        /* ─── RESET & BASE ─── */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #07080c;
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ─── NAVBAR ─── */
+        .navbar {
+            height: 54px;
+            min-height: 54px;
+            flex-shrink: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(7, 8, 12, 0.94);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 50;
+            position: relative;
+        }
+
+        .nav-inner {
+            max-width: 100%;
+            height: 100%;
+            padding: 0 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 0.98rem;
+            letter-spacing: -0.02em;
+        }
+
+        .logo-icon img {
+            width: 25px;
+            height: 25px;
+            display: block;
+        }
+
+        /* Maya Deep Blood Red — No Glow */
+        .maya-badge {
+            color: #8b0000;
+            font-size: 0.74rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            margin-left: 2px;
+            text-shadow: none !important;
+        }
+
+        .nav-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(220, 38, 38, 0.08);
+            border: 1px solid rgba(220, 38, 38, 0.22);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: #fca5a5;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .status-dot-pulse {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #ef4444;
+            box-shadow: 0 0 8px #ef4444;
+            animation: pulseRed 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseRed {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+
+        .nav-back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            font-weight: 500;
+            text-decoration: none;
+            letter-spacing: -0.01em;
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-back-btn .back-icon {
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .nav-back-btn:hover {
+            background: rgba(220, 38, 38, 0.1);
+            border-color: rgba(220, 38, 38, 0.35);
+            color: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), 0 0 12px rgba(220, 38, 38, 0.15);
+        }
+
+        .nav-back-btn:hover .back-icon {
+            transform: translateX(-3px);
+            color: #ef4444;
+        }
+
+        /* ─── SPLIT LAYOUT ─── */
+        .smart-site-split {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+            min-height: 0;
+            position: relative;
+        }
+
+        /* ══════════════════════════════════════
+           LEFT PANEL — Smart Site System Visualizer
+        ══════════════════════════════════════ */
+        .left-viewport {
+            flex: 0 0 58%;
+            position: relative;
+            overflow: hidden;
+            background: #07080c;
+        }
+
+        /* Deep Crimson / Blood Red Aurora Ambient */
+        .left-aurora {
+            position: absolute;
+            inset: -20%;
+            pointer-events: none;
+            filter: blur(100px);
+            opacity: 0.55;
+        }
+
+        .l-red-blob {
+            position: absolute;
+            border-radius: 50%;
+            mix-blend-mode: screen;
+        }
+
+        .l-red-blob-1 {
+            width: 540px; height: 500px;
+            top: 5%; left: 8%;
+            background: radial-gradient(circle, rgba(220, 38, 38, 0.35) 0%, rgba(139, 0, 0, 0.12) 50%, transparent 75%);
+            animation: driftRed1 22s ease-in-out infinite alternate;
+        }
+
+        .l-red-blob-2 {
+            width: 460px; height: 420px;
+            bottom: 5%; right: 12%;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.25) 0%, rgba(185, 28, 28, 0.1) 50%, transparent 75%);
+            animation: driftRed2 26s ease-in-out infinite alternate;
+        }
+
+        @keyframes driftRed1 {
+            0%   { transform: translate(0, 0) scale(1); }
+            50%  { transform: translate(50px, 40px) scale(1.1); }
+            100% { transform: translate(-40px, 60px) scale(0.93); }
+        }
+
+        @keyframes driftRed2 {
+            0%   { transform: translate(0, 0) scale(1); }
+            50%  { transform: translate(-60px, -50px) scale(1.12); }
+            100% { transform: translate(45px, -35px) scale(0.9); }
+        }
+
+        /* Isometric Blueprint Grid Mask */
+        .left-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(220, 38, 38, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(220, 38, 38, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        /* 3D Smart Site Interactive Canvas */
+        #siteCanvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Radar scan beam */
+        .left-scanner {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 110px;
+            background: linear-gradient(180deg,
+                transparent 0%,
+                rgba(220, 38, 38, 0.02) 50%,
+                rgba(239, 68, 68, 0.07) 98%,
+                rgba(252, 165, 165, 0.2) 100%);
+            pointer-events: none;
+            animation: scanRadar 15s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes scanRadar {
+            0%   { transform: translateY(-120px); opacity: 0; }
+            4%   { opacity: 0.7; }
+            96%  { opacity: 0.7; }
+            100% { transform: translateY(105vh); opacity: 0; }
+        }
+
+        .left-vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 35% 50%, transparent 35%, rgba(7, 8, 12, 0.55) 75%, #07080c 95%);
+            pointer-events: none;
+        }
+
+        .left-edge-fade {
+            position: absolute;
+            top: 0; right: 0; bottom: 0;
+            width: 130px;
+            background: linear-gradient(90deg, transparent, rgba(10, 11, 16, 0.88) 85%, #0a0b10 100%);
+            pointer-events: none;
+        }
+
+        /* ─── LEFT HERO COPY ─── */
+        .left-hero {
+            position: absolute;
+            top: 40px;
+            left: 44px;
+            right: 120px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .left-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 4px 11px;
+            border-radius: 999px;
+            border: 1px solid rgba(220, 38, 38, 0.28);
+            background: rgba(220, 38, 38, 0.08);
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #fca5a5;
+            margin-bottom: 14px;
+        }
+
+        .left-title {
+            font-size: clamp(1.7rem, 2.5vw, 2.3rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.04em;
+            background: linear-gradient(160deg, #ffffff 0%, #fca5a5 60%, #ef4444 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            max-width: 440px;
+        }
+
+        .left-sub {
+            margin-top: 10px;
+            font-size: 0.82rem;
+            color: rgba(148, 163, 184, 0.75);
+            line-height: 1.6;
+            max-width: 380px;
+        }
+
+        /* ─── HUD TELEMETRY CHIPS ─── */
+        .hud-chips-container {
+            position: absolute;
+            bottom: 40px;
+            left: 44px;
+            z-index: 10;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .hud-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            border-radius: 10px;
+            background: rgba(12, 14, 20, 0.78);
+            border: 1px solid rgba(220, 38, 38, 0.22);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            color: rgba(248, 250, 252, 0.88);
+            letter-spacing: 0.02em;
+        }
+
+        .hud-chip-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #ef4444;
+            box-shadow: 0 0 6px #ef4444;
+        }
+
+        .hud-chip-tag {
+            color: rgba(148, 163, 184, 0.6);
+            font-size: 0.68rem;
+        }
+
+        /* ══════════════════════════════════════
+           RIGHT PANEL — Glassmorphic Login Form
+        ══════════════════════════════════════ */
+        .right-viewport {
+            flex: 1;
+            min-width: 0;
+            background: rgba(10, 11, 16, 0.9);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border-left: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 28px 36px;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .right-viewport::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 320px; height: 240px;
+            background: radial-gradient(ellipse at top right, rgba(220, 38, 38, 0.09) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* ─── GLASSMORPHIC CARD ─── */
+        .auth-card {
+            width: 100%;
+            max-width: 370px;
+            background: rgba(13, 15, 22, 0.72);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(220, 38, 38, 0.22);
+            border-radius: 22px;
+            padding: 32px 28px 28px;
+            box-shadow:
+                0 24px 60px -12px rgba(0, 0, 0, 0.85),
+                0 0 35px rgba(220, 38, 38, 0.07),
+                inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            position: relative;
+            overflow: hidden;
+            animation: cardAppear 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .auth-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 15%; right: 15%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.55), transparent);
+            pointer-events: none;
+        }
+
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(14px) scale(0.98); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* ─── CARD BRAND LOCKUP ─── */
+        .card-brand-header {
+            text-align: center;
+            margin-bottom: 22px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card-logo-lockup {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(139, 0, 0, 0.08);
+            border: 1px solid rgba(139, 0, 0, 0.28);
+            margin-bottom: 12px;
+        }
+
+        .card-logo-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .card-logo-title {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .auth-title {
+            font-size: 1.5rem;
+            line-height: 1.2;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 6px;
+            background: linear-gradient(170deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .auth-subtitle {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            max-width: 320px;
+        }
+
+        /* ─── ALERT BOX ─── */
+        .auth-alert {
+            padding: 8px 12px;
+            border-radius: 9px;
+            font-size: 0.78rem;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(220, 38, 38, 0.12);
+            border: 1px solid rgba(220, 38, 38, 0.35);
+            color: #fca5a5;
+            animation: alertFadeIn 0.3s ease;
+        }
+
+        .auth-alert.success {
+            background: rgba(22, 163, 74, 0.12);
+            border-color: rgba(22, 163, 74, 0.35);
+            color: #86efac;
+        }
+
+        @keyframes alertFadeIn {
+            from { opacity: 0; transform: translateY(-3px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── FORM CONTROLS ─── */
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            text-align: left;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-label {
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            letter-spacing: -0.01em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .label-meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            color: rgba(148, 163, 184, 0.55);
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 12px;
+            color: rgba(148, 163, 184, 0.5);
+            pointer-events: none;
+            transition: color 0.2s ease;
+        }
+
+        .form-input {
+            width: 100%;
+            background: rgba(8, 10, 16, 0.72);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 10px 12px 10px 36px;
+            color: var(--text-primary);
+            font-size: 0.84rem;
+            font-family: 'JetBrains Mono', monospace;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .form-input::placeholder {
+            color: rgba(148, 163, 184, 0.38);
+            font-family: var(--font-main);
+        }
+
+        .form-input:focus {
+            border-color: #ef4444;
+            background: rgba(12, 14, 22, 0.9);
+            box-shadow: 0 0 0 2.5px rgba(220, 38, 38, 0.22);
+        }
+
+        .input-wrapper:focus-within .input-icon {
+            color: #ef4444;
+        }
+
+        .pw-toggle-btn {
+            position: absolute;
+            right: 10px;
+            background: transparent;
+            border: none;
+            color: rgba(148, 163, 184, 0.5);
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            transition: color 0.2s ease;
+        }
+
+        .pw-toggle-btn:hover {
+            color: var(--text-primary);
+        }
+
+        /* ─── REMEMBER CHECKBOX ─── */
+        .form-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            margin-top: -1px;
+        }
+
+        .custom-checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            cursor: pointer;
+            user-select: none;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+        }
+
+        .custom-checkbox-label input {
+            position: absolute;
+            opacity: 0; width: 0; height: 0;
+        }
+
+        .custom-checkbox {
+            width: 14px; height: 14px;
+            flex-shrink: 0;
+            border-radius: 3px;
+            background: rgba(8, 10, 16, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: transparent;
+            transition: all 0.2s ease;
+        }
+
+        .custom-checkbox-label input:checked ~ .custom-checkbox {
+            background: #dc2626;
+            border-color: #ef4444;
+            color: #ffffff;
+        }
+
+        /* ─── VIVID RED PRIMARY ACTION BUTTON (Dribbble style) ─── */
+        .btn-private-submit {
+            width: 100%;
+            margin-top: 6px;
+            padding: 11px 18px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: #ffffff;
+            font-size: 0.88rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.22s ease;
+            box-shadow: 0 4px 18px rgba(220, 38, 38, 0.38);
+        }
+
+        .btn-private-submit:hover {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(220, 38, 38, 0.55);
+        }
+
+        .btn-private-submit:active {
+            transform: translateY(0);
+        }
+
+        .btn-private-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-arrow {
+            transition: transform 0.2s ease;
+        }
+
+        .btn-private-submit:hover .btn-arrow {
+            transform: translateX(3px);
+        }
+
+        /* ─── CARD ENVIRONMENT SWITCHER ─── */
+        .card-divider {
+            display: flex;
+            align-items: center;
+            margin: 18px 0 14px;
+            color: rgba(148, 163, 184, 0.45);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .card-divider::before,
+        .card-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .card-divider span {
+            padding: 0 10px;
+        }
+
+        .btn-return-standard {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .return-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .return-arrow {
+            color: rgba(148, 163, 184, 0.6);
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .return-chip {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.64rem;
+            color: rgba(148, 163, 184, 0.5);
+            padding: 2px 7px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.2s ease;
+        }
+
+        .btn-return-standard:hover {
+            background: rgba(220, 38, 38, 0.07);
+            border-color: rgba(220, 38, 38, 0.32);
+            color: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.45);
+        }
+
+        .btn-return-standard:hover .return-arrow {
+            color: #ef4444;
+            transform: translateX(-3px);
+        }
+
+        .btn-return-standard:hover .return-chip {
+            color: #fca5a5;
+            border-color: rgba(220, 38, 38, 0.25);
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        /* ─── TERMINAL BADGES FOOTER ─── */
+        .private-badges {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.055);
+            color: rgba(148, 163, 184, 0.55);
+            font-size: 0.68rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ─── RESPONSIVE (PHONE & TABLET FINISHING) ─── */
+        @media (max-width: 860px) {
+            body { overflow-y: auto; overflow-x: hidden; }
+
+            .navbar { height: 50px; }
+            .nav-inner { padding: 0 14px; }
+            .nav-status-pill { display: none !important; }
+            .nav-back-btn { padding: 4px 10px; font-size: 0.72rem; gap: 5px; }
+
+            .smart-site-split {
+                flex-direction: column;
+                height: auto;
+                min-height: calc(100vh - 50px);
+            }
+
+            .left-viewport {
+                flex: none;
+                height: 140px;
+                min-height: 140px;
+                width: 100%;
+            }
+
+            .hud-chips-container { display: none !important; }
+            .left-hero { top: 14px; left: 16px; right: 16px; }
+            .left-eyebrow { display: none !important; }
+            .left-title {
+                font-size: clamp(1.05rem, 4.2vw, 1.25rem);
+                margin: 0;
+                line-height: 1.2;
+            }
+            .left-sub { display: none !important; }
+
+            .right-viewport {
+                flex: none;
+                min-height: auto;
+                padding: 18px 14px 28px;
+                border-left: none;
+                border-top: 1px solid rgba(255, 255, 255, 0.06);
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .auth-card {
+                max-width: 100%;
+                padding: 20px 16px 18px;
+                border-radius: 14px;
+                box-sizing: border-box;
+            }
+
+            .card-brand-header { margin-bottom: 14px; }
+            .auth-title { font-size: clamp(1.2rem, 5vw, 1.45rem); }
+            .auth-subtitle { font-size: 0.78rem; line-height: 1.35; margin-bottom: 12px; }
+
+            .form-group { margin-bottom: 11px; }
+            .form-input { padding: 9px 12px 9px 34px; font-size: 0.82rem; }
+            .btn-private-submit { padding: 10px 16px; font-size: 0.82rem; }
+            .btn-return-standard { padding: 8px 12px; font-size: 0.78rem; }
+            .private-badges { flex-wrap: wrap; gap: 8px; font-size: 0.64rem; padding-top: 12px; margin-top: 14px; }
+        }
+
+        @media (max-width: 480px) {
+            .navbar { height: 48px; }
+            .nav-inner { padding: 0 12px; }
+            .logo span { font-size: 0.88rem; }
+            .maya-badge { font-size: 0.68rem; }
+            .nav-back-btn span { font-size: 0.68rem; }
+
+            .left-viewport {
+                height: 120px;
+                min-height: 120px;
+            }
+            .left-hero { top: 12px; left: 12px; right: 12px; }
+            .left-title { font-size: 1.02rem; }
+
+            .right-viewport { padding: 14px 10px 24px; }
+            .auth-card { padding: 16px 14px 16px; border-radius: 12px; }
+            .card-logo-icon { width: 32px; height: 32px; }
+            .card-logo-icon img { width: 18px; height: 18px; }
+            .auth-title { font-size: 1.25rem; }
+            .auth-subtitle { font-size: 0.74rem; }
+            .input-wrapper .input-icon { left: 10px; }
+            .form-input { padding: 8px 10px 8px 30px; font-size: 0.8rem; }
+            .private-badges { font-size: 0.6rem; gap: 6px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ─── TOP NAVBAR ─── -->
+    <header class="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><img src="leadintelai-logo.svg" alt="LeadintelAI Logo"></div>
+                <span>LeadintelAI</span><span class="maya-badge">Maya</span>
+            </a>
+
+            <div class="nav-status-pill">
+                <span class="status-dot-pulse"></span>
+                <span>Smart Site System // Node BLR-01</span>
+            </div>
+
+            <a href="login.html" class="nav-back-btn">
+                <svg class="back-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                <span>Standard Login</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- ─── SPLIT VIEWPORT ─── -->
+    <div class="smart-site-split">
+
+        <!-- ══ LEFT PANEL — Smart Site System 3D Command Visualizer ══ -->
+        <div class="left-viewport">
+            <!-- Crimson / Blood Red ambient glow -->
+            <div class="left-aurora" aria-hidden="true">
+                <div class="l-red-blob l-red-blob-1"></div>
+                <div class="l-red-blob l-red-blob-2"></div>
+            </div>
+
+            <!-- Blueprint Grid -->
+            <div class="left-grid" aria-hidden="true"></div>
+
+            <!-- Interactive 3D Isometric Smart Site Canvas -->
+            <canvas id="siteCanvas"></canvas>
+
+            <!-- Radar scanner sweep -->
+            <div class="left-scanner" aria-hidden="true"></div>
+
+            <!-- Fade Vignettes -->
+            <div class="left-vignette" aria-hidden="true"></div>
+            <div class="left-edge-fade" aria-hidden="true"></div>
+
+            <!-- Hero headline overlay -->
+            <div class="left-hero">
+                <div class="left-eyebrow">
+                    <span>Maya Core · Smart Site Architecture</span>
+                </div>
+                <h2 class="left-title">Private Neural Terminal.</h2>
+                <p class="left-sub">Command telemetry, private lead intelligence pipelines, and zero-trust operator authorization.</p>
+            </div>
+
+            <!-- HUD telemetry chips (Dribbble FUI style) -->
+            <div class="hud-chips-container">
+                <div class="hud-chip">
+                    <span class="hud-chip-dot"></span>
+                    <span>PIPELINE_FLOW: ACTIVE</span>
+                    <span class="hud-chip-tag">// 100Gbps</span>
+                </div>
+                <div class="hud-chip">
+                    <span class="hud-chip-dot"></span>
+                    <span>CLEARANCE: LEVEL-5 ISOLATED</span>
+                    <span class="hud-chip-tag">// TLS_AES_256_GCM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══ RIGHT PANEL — Glassmorphic Auth Card ══ -->
+        <div class="right-viewport">
+            <div class="auth-card">
+
+                <!-- Header -->
+                <div class="card-brand-header">
+                    <div class="card-logo-lockup">
+                        <div class="card-logo-icon">
+                            <img src="leadintelai-logo.svg" alt="LeadintelAI Maya Logo">
+                        </div>
+                        <div class="card-logo-title">
+                            <span>LeadintelAI</span><span class="maya-badge">Maya</span>
+                        </div>
+                    </div>
+                    <h1 class="auth-title">Private Login</h1>
+                    <p class="auth-subtitle">Authorized credentials required to access Maya intelligent operations.</p>
+                </div>
+
+                <!-- Alert Box -->
+                <div id="authAlert" class="auth-alert" style="display:none;" role="alert"></div>
+
+                <!-- Private Credentials Form -->
+                <form class="auth-form" id="privateForm" onsubmit="handlePrivateSubmit(event)">
+
+                    <!-- Operator Handle / Email -->
+                    <div class="form-group">
+                        <label for="privateUser" class="form-label">
+                            <span>Operator ID</span>
+                            <span class="label-meta">AUTH_ID</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                            <input type="text" id="privateUser" class="form-input"
+                                placeholder="operator@internal.leadintel.ai" required autocomplete="username">
+                        </div>
+                    </div>
+
+                    <!-- Clearance Passkey -->
+                    <div class="form-group">
+                        <label for="privateKey" class="form-label">
+                            <span>Clearance Passkey</span>
+                            <span class="label-meta">SHA-256</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                            </svg>
+                            <input type="password" id="privateKey" class="form-input" placeholder="••••••••••••" required
+                                autocomplete="current-password" style="padding-right: 36px;">
+                            <button type="button" class="pw-toggle-btn"
+                                onclick="togglePasswordVisibility('privateKey', this)"
+                                aria-label="Toggle password visibility">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Remember Option -->
+                    <div class="form-options">
+                        <label class="custom-checkbox-label">
+                            <input type="checkbox" id="rememberSession" checked>
+                            <span class="custom-checkbox">
+                                <svg width="9" height="7" viewBox="0 0 10 8" fill="none">
+                                    <path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
+                            <span>Trust this console session</span>
+                        </label>
+                    </div>
+
+                    <!-- Red Primary Action Button -->
+                    <button type="submit" id="privateSubmitBtn" class="btn-private-submit">
+                        <span id="btnText">Authenticate Terminal Access</span>
+                        <svg id="btnIcon" class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </form>
+
+                <!-- Environment Switch Divider & Premium Return Button -->
+                <div class="card-divider">
+                    <span>SWITCH ENVIRONMENT</span>
+                </div>
+
+                <a href="login.html" class="btn-return-standard">
+                    <div class="return-left">
+                        <svg class="return-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5M12 19l-7-7 7-7" />
+                        </svg>
+                        <span>Return to Standard Login</span>
+                    </div>
+                    <span class="return-chip">PORTAL_01</span>
+                </a>
+
+                <!-- Terminal Badges -->
+                <div class="private-badges">
+                    <span>NODE://BLR-01</span>
+                    <span>&middot;</span>
+                    <span>DPDP-READY</span>
+                    <span>&middot;</span>
+                    <span>ZERO-TRUST</span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ─── JAVASCRIPT ─── -->
+    <script>
+        const EYE_OPEN = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+        const EYE_CLOSED = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
+
+        function togglePasswordVisibility(inputId, btn) {
+            const input = document.getElementById(inputId);
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+            btn.innerHTML = isPassword ? EYE_CLOSED : EYE_OPEN;
+        }
+
+        function showAlert(message, isSuccess = false) {
+            const alert = document.getElementById('authAlert');
+            alert.textContent = message;
+            alert.className = 'auth-alert' + (isSuccess ? ' success' : '');
+            alert.style.display = 'flex';
+        }
+
+        function hideAlert() {
+            document.getElementById('authAlert').style.display = 'none';
+        }
+
+        async function handlePrivateSubmit(event) {
+            event.preventDefault();
+            hideAlert();
+
+            const user = document.getElementById('privateUser').value.trim();
+            const key = document.getElementById('privateKey').value;
+
+            const submitBtn = document.getElementById('privateSubmitBtn');
+            const btnText = document.getElementById('btnText');
+            const btnIcon = document.getElementById('btnIcon');
+
+            submitBtn.disabled = true;
+            btnText.textContent = 'Authenticating Terminal…';
+            btnIcon.style.display = 'none';
+
+            setTimeout(() => {
+                showAlert('Clearance verified. Launching Maya…', true);
+                btnText.textContent = 'Launching Maya…';
+                setTimeout(() => {
+                    window.location.href = 'maya.html';
+                }, 750);
+            }, 600);
+        }
+
+        /* ─── 3D ISOMETRIC SMART SITE SYSTEM CANVAS ANIMATION ─── */
+        (function initSmartSiteCanvas() {
+            const canvas = document.getElementById('siteCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            let width = 0, height = 0, dpr = 1;
+            let animId = null;
+            let isTabActive = true;
+            let time = 0;
+
+            const mouse = { x: 0, y: 0, targetX: 0, targetY: 0, active: false };
+
+            // 3D Nodes: Smart Site storage depots / tanks / telemetry processors
+            // Coordinates in local 3D isometric space (-150 to +150)
+            const siteNodes = [
+                { x: -140, y: -70,  z: 0,  h: 55, r: 24, label: "DEPOT_CORE_01", status: "STABLE" },
+                { x:  -40, y: -120, z: 0,  h: 40, r: 18, label: "PROCESSOR_ALPHA", status: "SYNC" },
+                { x:   80, y: -90,  z: 0,  h: 65, r: 28, label: "STORAGE_UNIT_B", status: "FLOW" },
+                { x: -110, y:   50, z: 0,  h: 45, r: 20, label: "VALVE_HUB_04", status: "ACTIVE" },
+                { x:    0, y:    0, z: 0,  h: 80, r: 32, label: "MAYA_CENTRAL_CORE", status: "MASTER" },
+                { x:  120, y:   30, z: 0,  h: 50, r: 22, label: "TELEMETRY_EAST", status: "ONLINE" },
+                { x:  -50, y:  120, z: 0,  h: 35, r: 16, label: "SUB_NODE_WEST", status: "SYNC" },
+                { x:   70, y:  110, z: 0,  h: 58, r: 26, label: "DEPOT_RESERVE_C", status: "SECURE" }
+            ];
+
+            // Cybernetic connecting pipelines
+            const sitePipelines = [
+                [0, 1], [1, 2], [0, 3], [3, 4], [4, 2], [4, 5],
+                [3, 6], [6, 4], [4, 7], [5, 7], [1, 4]
+            ];
+
+            // Traveling energy pulses along pipelines
+            const pulses = [];
+            for (let i = 0; i < 9; i++) {
+                pulses.push({
+                    pipelineIdx: Math.floor(Math.random() * sitePipelines.length),
+                    progress: Math.random(),
+                    speed: 0.006 + Math.random() * 0.009
+                });
+            }
+
+            // Ambient floating crimson dust particles
+            const particles = [];
+            for (let i = 0; i < 45; i++) {
+                particles.push({
+                    x: (Math.random() - 0.5) * 440,
+                    y: (Math.random() - 0.5) * 440,
+                    z: Math.random() * 140,
+                    vz: 0.2 + Math.random() * 0.4,
+                    radius: 0.8 + Math.random() * 1.4,
+                    alpha: 0.2 + Math.random() * 0.5
+                });
+            }
+
+            function resize() {
+                dpr = Math.min(window.devicePixelRatio || 1, 2);
+                const rect = canvas.parentElement.getBoundingClientRect();
+                width = rect.width;
+                height = rect.height;
+                canvas.width = Math.floor(width * dpr);
+                canvas.height = Math.floor(height * dpr);
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+
+            window.addEventListener('resize', resize, { passive: true });
+
+            canvas.parentElement.addEventListener('mousemove', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                mouse.targetX = (e.clientX - rect.left - width / 2) / (width / 2);
+                mouse.targetY = (e.clientY - rect.top - height / 2) / (height / 2);
+                mouse.active = true;
+            }, { passive: true });
+
+            canvas.parentElement.addEventListener('mouseleave', () => {
+                mouse.targetX = 0;
+                mouse.targetY = 0;
+                mouse.active = false;
+            }, { passive: true });
+
+            document.addEventListener('visibilitychange', () => {
+                isTabActive = !document.hidden;
+                if (isTabActive && !animId) animId = requestAnimationFrame(render);
+            });
+
+            // Isometric 3D Projection with smooth mouse parallax
+            function project(x, y, z) {
+                const isoAngle = Math.PI / 6; // 30 deg
+                const cosA = Math.cos(isoAngle);
+                const sinA = Math.sin(isoAngle);
+
+                // Subtle mouse tilt
+                const rotX = x * Math.cos(mouse.x * 0.15) - y * Math.sin(mouse.x * 0.15);
+                const rotY = x * Math.sin(mouse.x * 0.15) + y * Math.cos(mouse.x * 0.15);
+
+                const screenX = width * 0.5 + (rotX - rotY) * cosA * 1.35;
+                const screenY = height * 0.52 + (rotX + rotY) * sinA * 1.35 - (z * 1.25) + (mouse.y * 18);
+                return { x: screenX, y: screenY };
+            }
+
+            function render() {
+                if (!isTabActive) { animId = null; return; }
+                time += 0.02;
+
+                // Smooth mouse interpolation
+                mouse.x += (mouse.targetX - mouse.x) * 0.06;
+                mouse.y += (mouse.targetY - mouse.y) * 0.06;
+
+                ctx.clearRect(0, 0, width, height);
+
+                // 1. Draw 3D Isometric Ground Plane Grid (Red / Crimson wireframe)
+                const gridSize = 7;
+                const step = 42;
+                ctx.lineWidth = 0.5;
+                ctx.strokeStyle = "rgba(220, 38, 38, 0.075)";
+
+                for (let i = -gridSize; i <= gridSize; i++) {
+                    const p1 = project(i * step, -gridSize * step, 0);
+                    const p2 = project(i * step, gridSize * step, 0);
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.stroke();
+
+                    const p3 = project(-gridSize * step, i * step, 0);
+                    const p4 = project(gridSize * step, i * step, 0);
+                    ctx.beginPath();
+                    ctx.moveTo(p3.x, p3.y);
+                    ctx.lineTo(p4.x, p4.y);
+                    ctx.stroke();
+                }
+
+                // Radar coordinate rings expanding on ground
+                const radarPhase = (time * 0.4) % 1;
+                const radarRadius = radarPhase * 240;
+                ctx.beginPath();
+                for (let a = 0; a <= Math.PI * 2; a += 0.1) {
+                    const rx = Math.cos(a) * radarRadius;
+                    const ry = Math.sin(a) * radarRadius;
+                    const p = project(rx, ry, 0);
+                    if (a === 0) ctx.moveTo(p.x, p.y);
+                    else ctx.lineTo(p.x, p.y);
+                }
+                ctx.closePath();
+                ctx.strokeStyle = `rgba(239, 68, 68, ${(1 - radarPhase) * 0.22})`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                // 2. Draw Connecting Pipelines (Pipelines with traveling red data pulses)
+                for (let i = 0; i < sitePipelines.length; i++) {
+                    const [idxA, idxB] = sitePipelines[i];
+                    const nodeA = siteNodes[idxA];
+                    const nodeB = siteNodes[idxB];
+
+                    // Base pipeline along the ground
+                    const pA0 = project(nodeA.x, nodeA.y, 4);
+                    const pB0 = project(nodeB.x, nodeB.y, 4);
+
+                    ctx.beginPath();
+                    ctx.moveTo(pA0.x, pA0.y);
+                    ctx.lineTo(pB0.x, pB0.y);
+                    ctx.strokeStyle = "rgba(220, 38, 38, 0.28)";
+                    ctx.lineWidth = 1.2;
+                    ctx.stroke();
+
+                    // Faint elevated data bus
+                    const pA1 = project(nodeA.x, nodeA.y, nodeA.h * 0.7);
+                    const pB1 = project(nodeB.x, nodeB.y, nodeB.h * 0.7);
+
+                    ctx.beginPath();
+                    ctx.moveTo(pA1.x, pA1.y);
+                    ctx.lineTo(pB1.x, pB1.y);
+                    ctx.strokeStyle = "rgba(239, 68, 68, 0.12)";
+                    ctx.lineWidth = 0.6;
+                    ctx.stroke();
+                }
+
+                // 3. Render Traveling Energy Pulses (Fluid Smart Site Data Flow)
+                for (let k = 0; k < pulses.length; k++) {
+                    const pulse = pulses[k];
+                    pulse.progress += pulse.speed;
+                    if (pulse.progress >= 1) {
+                        pulse.progress = 0;
+                        pulse.pipelineIdx = Math.floor(Math.random() * sitePipelines.length);
+                    }
+
+                    const [idxA, idxB] = sitePipelines[pulse.pipelineIdx];
+                    const nodeA = siteNodes[idxA];
+                    const nodeB = siteNodes[idxB];
+
+                    const curX = nodeA.x + (nodeB.x - nodeA.x) * pulse.progress;
+                    const curY = nodeA.y + (nodeB.y - nodeA.y) * pulse.progress;
+                    const pos = project(curX, curY, 4);
+
+                    ctx.beginPath();
+                    ctx.arc(pos.x, pos.y, 2.2, 0, Math.PI * 2);
+                    ctx.fillStyle = "#ef4444";
+                    ctx.shadowColor = "rgba(239, 68, 68, 0.9)";
+                    ctx.shadowBlur = 8;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                }
+
+                // 4. Render 3D Isometric Depot Vessels & Central Maya Core
+                // Sort back-to-front for proper isometric depth layering
+                const sortedNodes = [...siteNodes].sort((a, b) => (a.x + a.y) - (b.x + b.y));
+
+                for (let i = 0; i < sortedNodes.length; i++) {
+                    const node = sortedNodes[i];
+                    const isMaster = node.label.includes("MAYA");
+
+                    const base = project(node.x, node.y, 0);
+                    const top  = project(node.x, node.y, node.h);
+
+                    // Base shadow glow
+                    ctx.beginPath();
+                    ctx.ellipse(base.x, base.y, node.r * 0.9, node.r * 0.45, 0, 0, Math.PI * 2);
+                    ctx.fillStyle = isMaster ? "rgba(220, 38, 38, 0.25)" : "rgba(139, 0, 0, 0.15)";
+                    ctx.fill();
+
+                    // Vertical structural cylinder lines
+                    const leftEdgeBase  = project(node.x - node.r * 0.6, node.y + node.r * 0.6, 0);
+                    const leftEdgeTop   = project(node.x - node.r * 0.6, node.y + node.r * 0.6, node.h);
+                    const rightEdgeBase = project(node.x + node.r * 0.6, node.y - node.r * 0.6, 0);
+                    const rightEdgeTop  = project(node.x + node.r * 0.6, node.y - node.r * 0.6, node.h);
+
+                    // Cylinder body fill
+                    ctx.beginPath();
+                    ctx.moveTo(leftEdgeBase.x, leftEdgeBase.y);
+                    ctx.lineTo(leftEdgeTop.x, leftEdgeTop.y);
+                    ctx.lineTo(rightEdgeTop.x, rightEdgeTop.y);
+                    ctx.lineTo(rightEdgeBase.x, rightEdgeBase.y);
+                    ctx.closePath();
+                    ctx.fillStyle = isMaster ? "rgba(24, 12, 16, 0.88)" : "rgba(15, 14, 18, 0.82)";
+                    ctx.fill();
+
+                    // Cylinder wireframe edges
+                    ctx.beginPath();
+                    ctx.moveTo(leftEdgeBase.x, leftEdgeBase.y);
+                    ctx.lineTo(leftEdgeTop.x, leftEdgeTop.y);
+                    ctx.strokeStyle = isMaster ? "rgba(239, 68, 68, 0.7)" : "rgba(220, 38, 38, 0.35)";
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+
+                    ctx.beginPath();
+                    ctx.moveTo(rightEdgeBase.x, rightEdgeBase.y);
+                    ctx.lineTo(rightEdgeTop.x, rightEdgeTop.y);
+                    ctx.stroke();
+
+                    // Top rim ellipse
+                    ctx.beginPath();
+                    ctx.ellipse(top.x, top.y, node.r * 0.85, node.r * 0.42, 0, 0, Math.PI * 2);
+                    ctx.fillStyle = isMaster ? "rgba(139, 0, 0, 0.75)" : "rgba(35, 15, 20, 0.75)";
+                    ctx.fill();
+                    ctx.strokeStyle = isMaster ? "rgba(239, 68, 68, 0.9)" : "rgba(220, 38, 38, 0.5)";
+                    ctx.lineWidth = isMaster ? 1.5 : 1;
+                    ctx.stroke();
+
+                    // Mid accent glowing ring
+                    const midH = node.h * 0.5;
+                    const mid = project(node.x, node.y, midH);
+                    ctx.beginPath();
+                    ctx.ellipse(mid.x, mid.y, node.r * 0.85, node.r * 0.42, 0, 0, Math.PI * 2);
+                    ctx.strokeStyle = isMaster ? "rgba(239, 68, 68, 0.6)" : "rgba(220, 38, 38, 0.25)";
+                    ctx.lineWidth = 0.8;
+                    ctx.stroke();
+
+                    // Vertical glowing laser beacon on top of Maya Core
+                    if (isMaster) {
+                        const beaconTop = project(node.x, node.y, node.h + 50);
+                        ctx.beginPath();
+                        ctx.moveTo(top.x, top.y);
+                        ctx.lineTo(beaconTop.x, beaconTop.y);
+                        ctx.strokeStyle = "rgba(239, 68, 68, 0.75)";
+                        ctx.lineWidth = 1.8;
+                        ctx.shadowColor = "#ef4444";
+                        ctx.shadowBlur = 10;
+                        ctx.stroke();
+                        ctx.shadowBlur = 0;
+
+                        // Beacon pulse point
+                        ctx.beginPath();
+                        ctx.arc(beaconTop.x, beaconTop.y, 2.5, 0, Math.PI * 2);
+                        ctx.fillStyle = "#ffffff";
+                        ctx.fill();
+                    }
+
+                    // Telemetry label in mono font
+                    ctx.font = "8px 'JetBrains Mono', monospace";
+                    ctx.fillStyle = isMaster ? "rgba(252, 165, 165, 0.88)" : "rgba(148, 163, 184, 0.6)";
+                    ctx.fillText(node.label, top.x + 8, top.y - 4);
+                }
+
+                // 5. Ambient 3D Crimson Dust Particles
+                for (let p = 0; p < particles.length; p++) {
+                    const pt = particles[p];
+                    pt.z += pt.vz;
+                    if (pt.z > 140) pt.z = 0;
+
+                    const screenPt = project(pt.x, pt.y, pt.z);
+                    ctx.beginPath();
+                    ctx.arc(screenPt.x, screenPt.y, pt.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(239, 68, 68, ${pt.alpha})`;
+                    ctx.fill();
+                }
+
+                animId = requestAnimationFrame(render);
+            }
+
+            resize();
+            animId = requestAnimationFrame(render);
+        })();
+    </script>
+</body>
+
+</html>

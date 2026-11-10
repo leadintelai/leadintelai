@@ -4,6 +4,10 @@
   "trailingSlash": false,
   "framework": null,
   "rewrites": [
+    { "source": "/signup", "destination": "/login.html?mode=signup" },
+    { "source": "/signin", "destination": "/login.html" },
+    { "source": "/private-login", "destination": "/private-login.html" },
+    { "source": "/maya", "destination": "/maya.html" },
     { "source": "/(.*)", "destination": "/$1" }
   ]
 }
