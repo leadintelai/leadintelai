@@ -1881,6 +1881,81 @@
 
 
     <style>
+        /* ══════════════════════════════════════════════════════
+           PHONE RESPONSIVE OVERRIDES — index.html
+           These use !important to override inline styles
+        ══════════════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            /* Hero mockup: hide full 3-panel shell entirely */
+            .hero-mockup-wrapper { display: none !important; }
+
+            /* Bento grid: force single column */
+            .bento-grid { grid-template-columns: 1fr !important; gap: 14px !important; }
+            .bento-wide { grid-column: span 1 !important; flex-direction: column !important; gap: 0 !important; }
+            .bento-wide .bento-text { margin-bottom: 20px !important; }
+            .bento-wide .bento-visual { min-height: 180px !important; margin-top: 0 !important; }
+            .bento-card { padding: 24px 18px !important; }
+
+            /* Nav: hide links and actions, show hamburger */
+            .nav-links { display: none !important; }
+            .nav-actions { display: none !important; }
+            .nav-hamburger { display: flex !important; }
+
+            /* Section grids from inline styles */
+            [style*="display:grid"], [style*="display: grid"] {
+                grid-template-columns: 1fr !important;
+            }
+            /* Stat strips / trust bars */
+            #trust-bar { flex-wrap: wrap !important; }
+            #trust-bar > div { flex: 1 1 48% !important; min-width: 0 !important; }
+        }
+
+        @media (max-width: 480px) {
+            /* Headings */
+            h1 { font-size: clamp(1.6rem, 7.5vw, 2.2rem) !important; }
+            h2 { font-size: clamp(1.3rem, 5.5vw, 1.75rem) !important; }
+            h3 { font-size: clamp(1.1rem, 4.5vw, 1.3rem) !important; }
+            p  { font-size: clamp(0.82rem, 3.5vw, 0.95rem) !important; }
+
+            /* Bento */
+            .bento-card { padding: 18px 14px !important; border-radius: 10px !important; }
+            .bento-card h3 { font-size: 1.1rem !important; margin-bottom: 8px !important; }
+            .bento-card p  { font-size: 0.82rem !important; margin-bottom: 12px !important; }
+
+            /* How-it-works / pricing / testimonials from inline grid */
+            [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+
+            /* Nav inner padding */
+            .nav-inner { padding: 0 12px !important; }
+            .logo-wordmark { font-size: 0.88rem !important; }
+
+            /* Hero section */
+            .hero { padding-left: 12px !important; padding-right: 12px !important; }
+
+            /* CTA row */
+            .hero-cta-row { gap: 10px !important; flex-direction: column !important; align-items: stretch !important; }
+            .hero-cta-row a, .hero-cta-row button { text-align: center !important; justify-content: center !important; }
+
+            /* Section padding from inline styles */
+            [style*="padding:120px"], [style*="padding: 120px"] {
+                padding-top: 72px !important; padding-bottom: 48px !important;
+            }
+            [style*="padding-top:120px"], [style*="padding-top: 120px"] {
+                padding-top: 72px !important;
+            }
+
+            /* Trust bar compact */
+            #trust-bar { gap: 0 !important; }
+            #trust-bar > div { flex: 1 1 50% !important; padding: 10px 8px !important; font-size: 0.72rem !important; border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.06) !important; }
+        }
+
+        @media (max-width: 360px) {
+            h1 { font-size: 1.5rem !important; }
+            h2 { font-size: 1.2rem !important; }
+            .bento-card { padding: 14px 12px !important; }
+            .nav-inner { padding: 0 10px !important; }
+        }
+
         .dd-opt {
             padding: 9px 16px;
             font-size: 0.85rem;
@@ -1944,6 +2019,33 @@
                 grid-template-columns: 1fr !important;
             }
             #how-it-works > div:first-of-type > div[style*="position:absolute"] { display: none !important; }
+
+            /* Inline-styled sections */
+            [style*="display:grid"], [style*="display: grid"] {
+                grid-template-columns: 1fr !important;
+            }
+            [style*="padding:120"], [style*="padding: 120"] {
+                padding-top: 72px !important; padding-bottom: 48px !important;
+            }
+        }
+        @media (max-width: 480px) {
+            /* Any hardcoded grid in inline styles */
+            [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+            /* Clamp all inline font-sizes via cascade override */
+            h1 { font-size: clamp(1.6rem, 7.5vw, 2.4rem) !important; }
+            h2 { font-size: clamp(1.3rem, 5.5vw, 1.8rem) !important; }
+            p { font-size: clamp(0.82rem, 3.5vw, 0.95rem) !important; }
+            /* Trust bar */
+            #trust-bar { gap: 0 !important; flex-wrap: wrap !important; }
+            #trust-bar > div { flex: 1 1 50% !important; min-width: 0 !important; padding: 10px 8px !important; font-size: 0.72rem !important; }
+            /* Testimonials */
+            #testimonials [style*="border-radius"] { padding: 20px 14px !important; }
+            /* How it works step cards */
+            #how-it-works [style*="border-radius"] { padding: 20px 14px !important; }
+        }
+        @media (max-width: 360px) {
+            h1 { font-size: 1.5rem !important; }
+            h2 { font-size: 1.2rem !important; }
         }
     </style>
 
