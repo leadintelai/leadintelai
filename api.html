@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REST API Documentation | LeadintelAI Developer Hub</title>
+    <meta name="description" content="Integrate 52M+ verified Indian B2B decision-makers, telecom SIM verification, and Meta WhatsApp broadcasting into your CRM or backend with LeadintelAI REST APIs.">
+    <meta name="keywords" content="LeadintelAI API, B2B Leads API, India Business Data API, WhatsApp Business Cloud API, MCA Director Search API, Telecom Ping API">
+    <link rel="canonical" href="https://leadintelai.in/api.html">
+    <link rel="icon" type="image/svg+xml" href="leadintelai-logo.svg">
+    <link rel="apple-touch-icon" href="leadintelai-logo.svg">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://leadintelai.in/api.html">
+    <meta property="og:title" content="REST API Documentation | LeadintelAI Developer Hub">
+    <meta property="og:description" content="Integrate 52M+ verified Indian B2B decision-makers and Meta WhatsApp automation directly into your stack.">
+    <meta property="og:image" content="https://leadintelai.in/og-image.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="REST API Documentation | LeadintelAI Developer Hub">
+    <meta name="twitter:description" content="Integrate 52M+ verified Indian B2B decision-makers and Meta WhatsApp automation directly into your stack.">
+    <meta name="twitter:image" content="https://leadintelai.in/og-image.png">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebAPI",
+      "name": "LeadintelAI REST API",
+      "description": "Programmatic access to 52M+ verified Indian B2B decision makers, real-time telecom SIM status verification, and Meta WhatsApp Cloud broadcasting.",
+      "documentation": "https://leadintelai.in/api.html",
+      "provider": {
+        "@type": "Organization",
+        "name": "LeadintelAI",
+        "url": "https://leadintelai.in"
+      }
+    }
+    </script>
+
+    <link rel="stylesheet" href="glass-theme.css?v=20261115">
+
+    <style>
+    :root {
+        --api-sidebar-w: 260px;
+    }
+    body {
+        background: #080a0f;
+        color: #f1f5f9;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+    }
+
+    /* Layout */
+    .api-layout {
+        display: flex;
+        max-width: 1440px;
+        margin: 0 auto;
+        padding-top: 80px;
+        min-height: calc(100vh - 80px);
+    }
+    .api-sidebar {
+        width: var(--api-sidebar-w);
+        flex-shrink: 0;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 32px 20px;
+        position: sticky;
+        top: 80px;
+        height: calc(100vh - 80px);
+        overflow-y: auto;
+        background: rgba(10, 12, 18, 0.4);
+    }
+    .api-main {
+        flex: 1;
+        padding: 40px 48px 100px;
+        max-width: calc(100% - var(--api-sidebar-w));
+    }
+
+    /* Sidebar Navigation */
+    .sidebar-group-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #64748b;
+        margin-top: 24px;
+        margin-bottom: 10px;
+        padding-left: 10px;
+    }
+    .sidebar-group-title:first-child { margin-top: 0; }
+    .sidebar-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 8px;
+        font-size: 0.82rem;
+        color: #94a3b8;
+        text-decoration: none;
+        transition: all 0.2s;
+        margin-bottom: 2px;
+    }
+    .sidebar-link:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.05);
+    }
+    .sidebar-link.active {
+        color: #38bdf8;
+        background: rgba(56, 189, 248, 0.1);
+        font-weight: 600;
+    }
+    .method-badge {
+        font-size: 0.62rem;
+        font-weight: 700;
+        padding: 2px 6px;
+        border-radius: 4px;
+        letter-spacing: 0.04em;
+    }
+    .method-post { background: rgba(6, 95, 70, 0.16); color: #34d399; border: 1px solid rgba(4, 120, 87, 0.4); }
+    .method-get { background: rgba(59, 130, 246, 0.18); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+
+    /* Endpoint Sections */
+    .endpoint-card {
+        background: rgba(14, 18, 28, 0.65);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.18), 0 20px 50px rgba(0, 0, 0, 0.4);
+        border-radius: 20px;
+        padding: 32px;
+        margin-bottom: 48px;
+        position: relative;
+        overflow: hidden;
+    }
+    .endpoint-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+    }
+    .endpoint-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(10, 13, 20, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 6px 14px;
+        border-radius: 8px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #fff;
+    }
+    .endpoint-desc {
+        font-size: 0.95rem;
+        color: #94a3b8;
+        line-height: 1.6;
+        margin-bottom: 24px;
+    }
+
+    /* Code Tabs & Snippet */
+    .code-console {
+        background: #090d14;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 24px;
+    }
+    .code-console-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.03);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 8px 16px;
+    }
+    .code-lang-tabs {
+        display: flex;
+        gap: 6px;
+    }
+    .code-tab {
+        background: none;
+        border: none;
+        color: #94a3b8;
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .code-tab.active {
+        background: rgba(255, 255, 255, 0.08);
+        color: #38bdf8;
+    }
+    .code-btn-copy {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #cbd5e1;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 0.72rem;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .code-btn-copy:hover {
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+    }
+    pre.code-block {
+        margin: 0;
+        padding: 18px 20px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.82rem;
+        line-height: 1.6;
+        color: #e2e8f0;
+        overflow-x: auto;
+    }
+
+    /* Interactive Try Console */
+    .try-console {
+        background: rgba(10, 13, 20, 0.85);
+        border: 1px solid rgba(59, 130, 246, 0.25);
+        border-radius: 12px;
+        padding: 16px 20px;
+    }
+    .try-console-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+    .btn-run-request {
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+        padding: 6px 16px;
+        border-radius: 8px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .btn-run-request:hover {
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+    }
+    .param-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.82rem;
+        margin-bottom: 24px;
+    }
+    .param-table th {
+        text-align: left;
+        padding: 10px 14px;
+        background: rgba(255, 255, 255, 0.03);
+        color: #64748b;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .param-table td {
+        padding: 12px 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        color: #cbd5e1;
+    }
+    .param-name { font-family: monospace; color: #38bdf8; font-weight: 600; }
+    .param-req { font-size: 0.65rem; color: #f87171; font-weight: 700; background: rgba(239, 68, 68, 0.1); padding: 2px 6px; border-radius: 4px; margin-left: 6px; }
+    .param-opt { font-size: 0.65rem; color: #94a3b8; background: rgba(255, 255, 255, 0.05); padding: 2px 6px; border-radius: 4px; margin-left: 6px; }
+
+    @media (max-width: 1024px) {
+        .api-sidebar { display: none; }
+        .api-main { max-width: 100%; padding: 30px 20px; }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- ─── FLOATING LIQUID GLASS HEADER ─── -->
+    <header class="liquid-header">
+        <div class="liquid-header-inner">
+            <!-- Top-Left Brand Header Pill -->
+            <a href="index.html" class="brand-top" title="LeadintelAI Home">
+                <span class="li-logo-slot" title="LeadintelAI">
+                    <img src="leadintelai-logo.svg" alt="LeadintelAI Logo">
+                </span>
+                <span class="brand-word">LeadintelAI</span>
+            </a>
+
+            <!-- Center Navigation Links Pill -->
+            <nav class="nav-center-pill" aria-label="Main Navigation">
+                <a href="index.html#platform">Platform</a>
+                <a href="index.html#blueprint">Workflow</a>
+                <a href="index.html#use-cases">Use Cases</a>
+                <a href="pricing.html">Pricing</a>
+            </nav>
+
+            <!-- Top-Right Actions Cluster (Login & Start Free Trial) -->
+            <div class="nav-top-right">
+                <a href="login.html" class="nav-back-pill" title="Sign in to your account">
+                    <span>Login</span>
+                </a>
+                <a href="login.html?mode=signup" class="nav-cta-pill" title="Start Free Trial">
+                    <span>Start Free Trial</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══ API HUB LAYOUT ═══ -->
+    <div class="api-layout">
+        
+        <!-- SIDEBAR -->
+        <aside class="api-sidebar">
+            <div class="sidebar-group-title">Getting Started</div>
+            <a href="#overview" class="sidebar-link active">Overview &amp; Base URL</a>
+            <a href="#authentication" class="sidebar-link">Authentication</a>
+            <a href="#rate-limits" class="sidebar-link">Rate Limits &amp; Headers</a>
+            <a href="#errors" class="sidebar-link">Error Codes</a>
+
+            <div class="sidebar-group-title">DataCloud Endpoints</div>
+            <a href="#leads-search" class="sidebar-link"><span class="method-badge method-post">POST</span> /leads/search</a>
+            <a href="#leads-unlock" class="sidebar-link"><span class="method-badge method-post">POST</span> /leads/unlock</a>
+            <a href="#leads-sim-verify" class="sidebar-link"><span class="method-badge method-get">GET</span> /leads/{id}/sim</a>
+
+            <div class="sidebar-group-title">Outbound &amp; Messaging</div>
+            <a href="#wa-broadcast" class="sidebar-link"><span class="method-badge method-post">POST</span> /whatsapp/send</a>
+            <a href="#aria-agent" class="sidebar-link"><span class="method-badge method-post">POST</span> /aria/converse</a>
+
+            <div class="sidebar-group-title">Account &amp; Webhooks</div>
+            <a href="#wallet-balance" class="sidebar-link"><span class="method-badge method-get">GET</span> /wallet/balance</a>
+            <a href="#webhooks" class="sidebar-link"><span class="method-badge method-post">POST</span> /webhooks</a>
+        </aside>
+
+        <!-- MAIN CANVAS -->
+        <main class="api-main">
+            
+            <!-- Hero Header -->
+            <div style="margin-bottom: 48px;">
+                <div style="display:inline-flex; align-items:center; gap:8px; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#38bdf8; background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25); padding:4px 12px; border-radius:99px; margin-bottom:14px;">
+                    LeadintelAI REST API Reference · v4.2
+                </div>
+                <h1 style="font-size:clamp(2rem, 3.5vw, 2.8rem); font-weight:800; letter-spacing:-0.03em; color:#fff; margin:0 0 12px;">
+                    Programmatic B2B Data &amp; WhatsApp Engine.
+                </h1>
+                <p style="font-size:1.05rem; color:#94a3b8; max-width:760px; line-height:1.7; margin:0;">
+                    Connect your backend, CRM, or internal sales tools directly to 52M+ verified Indian decision-makers, real-time telecom SIM pings, and Meta WhatsApp broadcasting with sub-120ms latency.
+                </p>
+            </div>
+
+            <!-- OVERVIEW & BASE URL -->
+            <section id="overview" class="endpoint-card">
+                <h2 style="font-size:1.3rem; font-weight:700; color:#fff; margin:0 0 10px;">Base URL &amp; Protocol</h2>
+                <p class="endpoint-desc">
+                    All API requests must be served over secure HTTPS. Requests using plain HTTP will be redirected with a 301. All request and response bodies use standardized UTF-8 JSON.
+                </p>
+                <div class="endpoint-pill" style="margin-bottom: 20px; color:#34d399;">
+                    https://api.leadintelai.in/v4
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px;">
+                    <div style="background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); padding: 14px; border-radius: 10px;">
+                        <div style="font-size:0.72rem; color:#64748b; text-transform:uppercase; font-weight:700;">Format</div>
+                        <div style="font-size:0.9rem; color:#fff; font-weight:600; margin-top:4px;">application/json</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); padding: 14px; border-radius: 10px;">
+                        <div style="font-size:0.72rem; color:#64748b; text-transform:uppercase; font-weight:700;">Uptime SLA</div>
+                        <div style="font-size:0.9rem; color:#34d399; font-weight:600; margin-top:4px;">99.98% Guaranteed</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); padding: 14px; border-radius: 10px;">
+                        <div style="font-size:0.72rem; color:#64748b; text-transform:uppercase; font-weight:700;">Region</div>
+                        <div style="font-size:0.9rem; color:#fff; font-weight:600; margin-top:4px;">AWS Mumbai (ap-south-1)</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AUTHENTICATION -->
+            <section id="authentication" class="endpoint-card">
+                <h2 style="font-size:1.3rem; font-weight:700; color:#fff; margin:0 0 10px;">Authentication</h2>
+                <p class="endpoint-desc">
+                    Authenticate all API requests by providing your API secret key in the HTTP <code>Authorization</code> header using the <code>Bearer</code> scheme. You can generate and rotate production keys in your <a href="dashboard.html" style="color:#38bdf8; text-decoration:none;">Dashboard Settings</a>.
+                </p>
+
+                <div class="code-console">
+                    <div class="code-console-header">
+                        <span style="font-size:0.72rem; color:#94a3b8; font-family:monospace;">HTTP Request Header</span>
+                        <button class="code-btn-copy" onclick="navigator.clipboard.writeText('Authorization: Bearer lai_live_8923fd91823ab89c201'); this.textContent = 'Copied!'; setTimeout(() => this.textContent = 'Copy', 1500);">Copy</button>
+                    </div>
+                    <pre class="code-block">Authorization: Bearer lai_live_8923fd91823ab89c201
+Content-Type: application/json
+Accept: application/json</pre>
+                </div>
+            </section>
+
+            <!-- ENDPOINT 1: POST /v4/leads/search -->
+            <section id="leads-search" class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method-badge method-post" style="font-size:0.75rem; padding:4px 10px;">POST</span>
+                    <div class="endpoint-pill">/v4/leads/search</div>
+                </div>
+                <h3 style="font-size:1.15rem; font-weight:700; color:#fff; margin:0 0 8px;">Search 52M+ Decision Makers</h3>
+                <p class="endpoint-desc">
+                    Query the DataCloud database with industry, geography, company size, revenue brackets, and CXO seniority filters. Returns paginated profile summaries with masked contacts at zero credit cost.
+                </p>
+
+                <!-- Parameter Table -->
+                <h4 style="font-size:0.85rem; font-weight:700; color:#cbd5e1; margin-bottom:12px;">Request Body Parameters</h4>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="param-name">industry</span><span class="param-opt">optional</span></td>
+                            <td>string</td>
+                            <td>Filter by sector (e.g. <code>saas</code>, <code>fintech</code>, <code>d2c</code>, <code>manufacturing</code>).</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">city</span><span class="param-opt">optional</span></td>
+                            <td>string</td>
+                            <td>City or region (e.g. <code>bengaluru</code>, <code>mumbai</code>, <code>delhi_ncr</code>).</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">seniority</span><span class="param-opt">optional</span></td>
+                            <td>array</td>
+                            <td>Roles to target: <code>["founder", "cxo", "vp_sales", "cto"]</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="param-name">limit</span><span class="param-opt">default: 25</span></td>
+                            <td>integer</td>
+                            <td>Number of results to return (max 100 per page).</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Code Samples -->
+                <div class="code-console">
+                    <div class="code-console-header">
+                        <div class="code-lang-tabs">
+                            <button class="code-tab active" onclick="switchTab(this, 'curl-search')">cURL</button>
+                            <button class="code-tab" onclick="switchTab(this, 'py-search')">Python</button>
+                            <button class="code-tab" onclick="switchTab(this, 'node-search')">Node.js</button>
+                        </div>
+                        <button class="code-btn-copy" onclick="copySnippet(this)">Copy</button>
+                    </div>
+
+                    <div id="curl-search" class="tab-pane">
+<pre class="code-block">curl -X POST "https://api.leadintelai.in/v4/leads/search"   -H "Authorization: Bearer lai_live_YOUR_KEY"   -H "Content-Type: application/json"   -d '{
+    "industry": "saas",
+    "city": "bengaluru",
+    "seniority": ["founder", "cto"],
+    "limit": 2
+  }'</pre>
+                    </div>
+
+                    <div id="py-search" class="tab-pane" style="display:none;">
+<pre class="code-block">import requests
+
+url = "https://api.leadintelai.in/v4/leads/search"
+headers = {
+    "Authorization": "Bearer lai_live_YOUR_KEY",
+    "Content-Type": "application/json"
+}
+payload = {
+    "industry": "saas",
+    "city": "bengaluru",
+    "seniority": ["founder", "cto"],
+    "limit": 2
+}
+
+response = requests.post(url, json=payload, headers=headers)
+print(response.json())</pre>
+                    </div>
+
+                    <div id="node-search" class="tab-pane" style="display:none;">
+<pre class="code-block">const res = await fetch("https://api.leadintelai.in/v4/leads/search", {
+  method: "POST",
+  headers: {
+    "Authorization": "Bearer lai_live_YOUR_KEY",
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    industry: "saas",
+    city: "bengaluru",
+    seniority: ["founder", "cto"],
+    limit: 2
+  })
+});
+const data = await res.json();
+console.log(data);</pre>
+                    </div>
+                </div>
+
+                <!-- Interactive Try It Console -->
+                <div class="try-console">
+                    <div class="try-console-bar">
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <span style="font-size:0.75rem; font-weight:700; color:#94a3b8; text-transform:uppercase;">Live Sandbox:</span>
+                            <span id="searchStatusPill" style="font-size:0.72rem; font-weight:600; color:#34d399; background:rgba(6,95,70,0.16); border:1px solid rgba(4,120,87,0.4); padding:2px 8px; border-radius:4px;">Ready</span>
+                        </div>
+                        <button class="btn-run-request" onclick="runSearchSimulation()">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                            Execute Test Call
+                        </button>
+                    </div>
+                    <pre id="searchResponseOutput" class="code-block" style="background:#070a0e; border-radius:8px; max-height:220px; overflow-y:auto; border:1px solid rgba(255,255,255,0.06); font-size:0.76rem; color:#34d399;">// Click "Execute Test Call" to simulate live JSON payload...</pre>
+                </div>
+            </section>
+
+            <!-- ENDPOINT 2: POST /v4/leads/unlock -->
+            <section id="leads-unlock" class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method-badge method-post" style="font-size:0.75rem; padding:4px 10px;">POST</span>
+                    <div class="endpoint-pill">/v4/leads/unlock</div>
+                </div>
+                <h3 style="font-size:1.15rem; font-weight:700; color:#fff; margin:0 0 8px;">Reveal Verified Mobile &amp; Work Email</h3>
+                <p class="endpoint-desc">
+                    Consumes 1 wallet credit (₹4–6). Performs a live SIM ping to the recipient's telecom carrier and returns the verified phone number, corporate email address, and MCA Director Identification Number (DIN).
+                </p>
+
+                <div class="code-console">
+                    <div class="code-console-header">
+                        <span style="font-size:0.72rem; color:#94a3b8; font-family:monospace;">cURL Request</span>
+                        <button class="code-btn-copy" onclick="copySnippet(this)">Copy</button>
+                    </div>
+                    <pre class="code-block">curl -X POST "https://api.leadintelai.in/v4/leads/unlock"   -H "Authorization: Bearer lai_live_YOUR_KEY"   -H "Content-Type: application/json"   -d '{"lead_id": "lead_98a72b10"}'</pre>
+                </div>
+
+                <div class="try-console">
+                    <div class="try-console-bar">
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <span style="font-size:0.75rem; font-weight:700; color:#94a3b8; text-transform:uppercase;">Response Preview:</span>
+                            <span style="font-size:0.72rem; font-weight:600; color:#34d399;">200 OK · 1 Credit Deducted</span>
+                        </div>
+                    </div>
+                    <pre class="code-block" style="background:#070a0e; border-radius:8px; border:1px solid rgba(255,255,255,0.06); font-size:0.76rem; color:#93c5fd;">{
+  "status": "success",
+  "lead_id": "lead_98a72b10",
+  "contact": {
+    "name": "Vikramaditya Sharma",
+    "title": "Founder & Managing Director",
+    "company": "KuberScale Logistics Pvt Ltd",
+    "phone": "+919821044821",
+    "phone_status": "ACTIVE_SIM",
+    "carrier": "Airtel 5G India",
+    "sim_ping_at": "2026-11-12T12:44:10Z",
+    "email": "vikram@kuberscale.in",
+    "email_status": "DELIVERABLE_SMTP_250",
+    "din": "08492019"
+  },
+  "credits_remaining": 18434
+}</pre>
+                </div>
+            </section>
+
+            <!-- ENDPOINT 3: POST /v4/whatsapp/send -->
+            <section id="wa-broadcast" class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method-badge method-post" style="font-size:0.75rem; padding:4px 10px;">POST</span>
+                    <div class="endpoint-pill">/v4/whatsapp/send</div>
+                </div>
+                <h3 style="font-size:1.15rem; font-weight:700; color:#fff; margin:0 0 8px;">Send Meta Cloud API WhatsApp Template</h3>
+                <p class="endpoint-desc">
+                    Dispatches pre-approved Meta WhatsApp templates with custom dynamic variables. Features guaranteed zero ban risk and sub-second delivery to verified Indian phone numbers.
+                </p>
+
+                <div class="code-console">
+                    <div class="code-console-header">
+                        <span style="font-size:0.72rem; color:#94a3b8; font-family:monospace;">cURL Request</span>
+                        <button class="code-btn-copy" onclick="copySnippet(this)">Copy</button>
+                    </div>
+                    <pre class="code-block">curl -X POST "https://api.leadintelai.in/v4/whatsapp/send"   -H "Authorization: Bearer lai_live_YOUR_KEY"   -H "Content-Type: application/json"   -d '{
+    "to": "+919821044821",
+    "template_name": "leadintel_cxo_outreach_v1",
+    "parameters": {
+      "name": "Vikram",
+      "company": "Nexus Logic",
+      "offer": "500 Free DataCloud Credits"
+    }
+  }'</pre>
+                </div>
+            </section>
+
+            <!-- ENDPOINT 4: GET /v4/wallet/balance -->
+            <section id="wallet-balance" class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method-badge method-get" style="font-size:0.75rem; padding:4px 10px;">GET</span>
+                    <div class="endpoint-pill">/v4/wallet/balance</div>
+                </div>
+                <h3 style="font-size:1.15rem; font-weight:700; color:#fff; margin:0 0 8px;">Check Available Credit Balance</h3>
+                <p class="endpoint-desc">
+                    Retrieves your workspace's current prepaid balance in INR (₹) and available lead unlock credits with auto-reload threshold statuses.
+                </p>
+
+                <div class="code-console">
+                    <div class="code-console-header">
+                        <span style="font-size:0.72rem; color:#94a3b8; font-family:monospace;">Response (200 OK)</span>
+                    </div>
+                    <pre class="code-block" style="color:#a78bfa;">{
+  "currency": "INR",
+  "wallet_balance": 18450.00,
+  "equivalent_credits": 3690,
+  "auto_topup_enabled": true,
+  "tier": "Scale Growth",
+  "updated_at": "2026-11-12T12:45:00Z"
+}</pre>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+        <div class="container container-wide">
+            <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr 1.6fr; gap:40px; margin-bottom:48px; align-items:start;">
+                <!-- Col 1 -->
+                <div style="display:flex; flex-direction:column; gap:18px;">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon"><img src="leadintelai-logo.svg" alt="LeadintelAI Logo"></div>
+                        <span>LeadintelAI</span>
+                    </a>
+                    <p style="font-size:0.875rem; color:var(--text-secondary); line-height:1.75; max-width:320px;">
+                        Enterprise Autonomous Revenue Platform. Verified Indian B2B DataCloud, Meta-Verified WhatsApp Infrastructure, AI SDR Agents, and Unified CRM.
+                    </p>
+                    <div style="font-size:0.75rem; color:var(--text-tertiary); display:flex; align-items:center; gap:8px;">
+                        <span style="width:7px; height:7px; border-radius:50%; background:#065f46;"></span>
+                        AWS Mumbai (ap-south-1) · DPDP Act 2023 Ready
+                    </div>
+                </div>
+
+                <!-- Col 2: Platform -->
+                <div style="display:flex; flex-direction:column; gap:14px;">
+                    <span style="font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-primary);">Platform</span>
+                    <a href="data.html" style="font-size:0.85rem; color:var(--text-secondary); text-decoration:none;">52M+ DataCloud</a>
+                    <a href="whatsapp.html" style="font-size:0.85rem; color:var(--text-secondary); text-decoration:none;">WhatsApp Suite</a>
+                    <a href="mailing.html" style="font-size:0.85rem; color:var(--text-secondary); text-decoration:none;">MailEngine</a>
+                    <a href="crm.html" style="font-size:0.85rem; color:var(--text-secondary); text-decoration:none;">AI CRM</a>
+                    <a href="api.html" style="font-size:0.85rem; color:#38bdf8; text-decoration:none; font-weight:600;">REST API Docs</a>
+                </div>
+
+                <!-- Col 3: Company -->
+                <div style="display:flex; flex-direction:column; gap:14px;">
+                    <span style="font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-primary);">Company</span>
+                    <a href="about.html" style="font-size:0.85rem; color:var(--text-secondary); text-decoration:none;">About Us</a>
+                    <a href="pricing.html" style="font-size:0.85rem; color:var(--text-secondary); text-decoration:none;">Pricing</a>
+                    <a href="privacy.html" style="font-size:0.85rem; color:var(--text-secondary); text-decoration:none;">Privacy Policy</a>
+                    <a href="terms.html" style="font-size:0.85rem; color:var(--text-secondary); text-decoration:none;">Terms of Service</a>
+                    <a href="refund.html" style="font-size:0.85rem; color:var(--text-secondary); text-decoration:none;">Refund Policy</a>
+                </div>
+
+                <!-- Col 4: Trust -->
+                <div style="display:flex; flex-direction:column; gap:14px;">
+                    <span style="font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-primary);">Security &amp; Compliance</span>
+                    <p style="font-size:0.82rem; color:var(--text-secondary); line-height:1.6;">
+                        100% compliant with India's Digital Personal Data Protection (DPDP) Act 2023. Real-time carrier SIM verification ensures zero WhatsApp bans.
+                    </p>
+                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                        <span style="font-size:0.7rem; color:var(--text-secondary); background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:3px 9px; border-radius:99px;">DPDP 2023</span>
+                        <span style="font-size:0.7rem; color:var(--text-secondary); background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:3px 9px; border-radius:99px;">Meta Cloud API</span>
+                        <span style="font-size:0.7rem; color:var(--text-secondary); background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:3px 9px; border-radius:99px;">AES-256</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:28px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+                <p style="font-size:0.8rem; color:var(--text-tertiary); margin:0;">
+                    &copy; 2026 LeadintelAI Technologies Private Limited. All rights reserved.
+                </p>
+                <div style="display:flex; gap:20px;">
+                    <a href="privacy.html" style="font-size:0.8rem; color:var(--text-tertiary); text-decoration:none;">Privacy</a>
+                    <a href="terms.html" style="font-size:0.8rem; color:var(--text-tertiary); text-decoration:none;">Terms</a>
+                    <a href="refund.html" style="font-size:0.8rem; color:var(--text-tertiary); text-decoration:none;">Refunds</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+    function switchTab(btn, targetId) {
+        const parent = btn.closest('.code-console');
+        parent.querySelectorAll('.code-tab').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        parent.querySelectorAll('.tab-pane').forEach(p => p.style.display = 'none');
+        const target = parent.querySelector('#' + targetId);
+        if (target) target.style.display = 'block';
+    }
+
+    function copySnippet(btn) {
+        const parent = btn.closest('.code-console');
+        const activePane = parent.querySelector('.tab-pane:not([style*="display: none"]), pre.code-block');
+        if (activePane) {
+            navigator.clipboard.writeText(activePane.textContent.trim());
+            btn.textContent = 'Copied!';
+            setTimeout(() => btn.textContent = 'Copy', 1500);
+        }
+    }
+
+    function runSearchSimulation() {
+        const pill = document.getElementById('searchStatusPill');
+        const out = document.getElementById('searchResponseOutput');
+        if (pill) {
+            pill.textContent = 'Querying AWS ap-south-1...';
+            pill.style.color = '#38bdf8';
+        }
+        if (out) {
+            out.textContent = '// Dispatching POST /v4/leads/search...';
+        }
+
+        setTimeout(() => {
+            if (pill) {
+                pill.textContent = '200 OK (84ms)';
+                pill.style.color = '#34d399';
+            }
+            if (out) {
+                out.textContent = JSON.stringify({
+                    "status": "success",
+                    "total_matches": 48210,
+                    "page": 1,
+                    "limit": 2,
+                    "results": [
+                        {
+                            "lead_id": "lead_98a72b10",
+                            "name": "Vikramaditya Sharma",
+                            "title": "Founder & Managing Director",
+                            "company": "KuberScale Logistics Pvt Ltd",
+                            "location": "Bengaluru, KA",
+                            "industry": "SaaS / Enterprise LogiTech",
+                            "phone_masked": "+91 98210 •••••",
+                            "email_masked": "vikram@kuberscale.in",
+                            "sim_verified": true,
+                            "din": "08492019"
+                        },
+                        {
+                            "lead_id": "lead_71c45e82",
+                            "name": "Pooja Nair",
+                            "title": "VP Engineering",
+                            "company": "CloudSpire Technologies",
+                            "location": "Bengaluru, KA",
+                            "industry": "Cloud Infrastructure",
+                            "phone_masked": "+91 99401 •••••",
+                            "email_masked": "p••••@cloudspire.io",
+                            "sim_verified": true,
+                            "din": "09124578"
+                        }
+                    ]
+                }, null, 2);
+            }
+        }, 320);
+    }
+    </script>
+    <script src="chatbot.js" defer></script>
+</body>
+</html>

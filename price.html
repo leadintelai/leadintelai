@@ -7,6 +7,7 @@
     <meta name="description" content="Transparent pricing for Leadintelai.in services: Marketing (WhatsApp API, Mail, Chatbot) and B2B Data Selling.">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="glass-theme.css?v=20261115">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>
         /* Specific overrides for pricing page to ensure content is visible without hero */
@@ -102,18 +103,34 @@
     </style>
 </head>
 <body>
-    <header class="navbar scrolled">
-        <div class="container nav-content">
-            <a href="/" class="logo">
-                <img src="logo.svg" alt="LeadintelAI Logo">
-                <span class="logo-text">Leadintel<span>AI</span></span>
+    <!-- ─── FLOATING LIQUID GLASS HEADER ─── -->
+    <header class="liquid-header">
+        <div class="liquid-header-inner">
+            <!-- Top-Left Brand Header Pill -->
+            <a href="index.html" class="brand-top" title="LeadintelAI Home">
+                <span class="li-logo-slot" title="LeadintelAI">
+                    <img src="leadintelai-logo.svg" alt="LeadintelAI Logo">
+                </span>
+                <span class="brand-word">LeadintelAI</span>
             </a>
-            <nav class="nav-links">
-                <a href="/#services">Services</a>
-                <a href="about">About</a>
-                <a href="price" style="color: var(--clr-electric);">Pricing</a>
-                <a href="login" class="btn btn-primary">Get Started</a>
+
+            <!-- Center Navigation Links Pill -->
+            <nav class="nav-center-pill" aria-label="Main Navigation">
+                <a href="index.html#platform">Platform</a>
+                <a href="index.html#blueprint">Workflow</a>
+                <a href="index.html#use-cases">Use Cases</a>
+                <a href="pricing.html">Pricing</a>
             </nav>
+
+            <!-- Top-Right Actions Cluster (Login & Start Free Trial) -->
+            <div class="nav-top-right">
+                <a href="login.html" class="nav-back-pill" title="Sign in to your account">
+                    <span>Login</span>
+                </a>
+                <a href="login.html?mode=signup" class="nav-cta-pill" title="Start Free Trial">
+                    <span>Start Free Trial</span>
+                </a>
+            </div>
         </div>
     </header>
 
@@ -167,7 +184,7 @@
                                 <li>✓ Decision Maker Titles</li>
                                 <li>✓ Email Support</li>
                             </ul>
-                            <a href="login" class="btn btn-secondary plan-btn">Get Started</a>
+                            <a href="login.html" class="btn btn-secondary plan-btn">Get Started</a>
                         </div>
                         <div class="pricing-card pricing-card--featured">
                             <div class="popular-badge">Most Popular</div>
@@ -180,7 +197,7 @@
                                 <li>✓ CXO/CTO/HR Filters</li>
                                 <li>✓ Priority Support</li>
                             </ul>
-                            <a href="login" class="btn btn-primary plan-btn">Get Started</a>
+                            <a href="login.html" class="btn btn-primary plan-btn">Get Started</a>
                         </div>
                         <div class="pricing-card">
                             <div class="plan-label">Enterprise</div>
@@ -192,7 +209,7 @@
                                 <li>✓ Custom Filters</li>
                                 <li>✓ Dedicated Account Manager</li>
                             </ul>
-                            <a href="login" class="btn btn-secondary plan-btn">Contact Sales</a>
+                            <a href="login.html" class="btn btn-secondary plan-btn">Contact Sales</a>
                         </div>
                     </div>
                 </div>
@@ -202,7 +219,7 @@
                     <div class="pricing-cards-grid">
                         <div class="pricing-card">
                             <div class="plan-label">Basic</div>
-                            <div class="plan-price" style="color:#25D366;">₹2,999<span>/mo</span></div>
+                            <div class="plan-price" style="color:#34d399;">₹2,999<span>/mo</span></div>
                             <div class="plan-desc">Get started with WhatsApp Business</div>
                             <ul class="plan-features">
                                 <li>✓ 1,000 Messages/month</li>
@@ -210,12 +227,12 @@
                                 <li>✓ Template Messages</li>
                                 <li>✓ Email Support</li>
                             </ul>
-                            <a href="login" class="btn btn-secondary plan-btn">Get Started</a>
+                            <a href="login.html" class="btn btn-secondary plan-btn">Get Started</a>
                         </div>
-                        <div class="pricing-card pricing-card--featured" style="--accent: #25D366;">
-                            <div class="popular-badge" style="background: rgba(37,211,102,0.1); color:#25D366; border-color: rgba(37,211,102,0.3);">Most Popular</div>
+                        <div class="pricing-card pricing-card--featured" style="--accent: #065f46;">
+                            <div class="popular-badge" style="background: rgba(6, 95, 70, 0.16); color: #34d399; border-color: rgba(4, 120, 87, 0.4);">Most Popular</div>
                             <div class="plan-label">Pro</div>
-                            <div class="plan-price" style="color:#25D366;">₹5,999<span>/mo</span></div>
+                            <div class="plan-price" style="color:#34d399;">₹5,999<span>/mo</span></div>
                             <div class="plan-desc">With AI Chatbot & automation</div>
                             <ul class="plan-features">
                                 <li>✓ 10,000 Messages/month</li>
@@ -223,11 +240,11 @@
                                 <li>✓ Broadcast Campaigns</li>
                                 <li>✓ Priority Support</li>
                             </ul>
-                            <a href="login.html" class="btn plan-btn" style="background:#25D366; color:#000;">Get Started</a>
+                            <a href="login.html" class="btn plan-btn" style="background:#065f46; color:#ffffff; border:1px solid #047857;">Get Started</a>
                         </div>
                         <div class="pricing-card">
                             <div class="plan-label">Enterprise</div>
-                            <div class="plan-price" style="color:#25D366;">Custom</div>
+                            <div class="plan-price" style="color:#34d399;">Custom</div>
                             <div class="plan-desc">Unlimited scale & integrations</div>
                             <ul class="plan-features">
                                 <li>✓ Unlimited Messages</li>
@@ -235,7 +252,7 @@
                                 <li>✓ CRM Integration</li>
                                 <li>✓ Dedicated Manager</li>
                             </ul>
-                            <a href="login" class="btn btn-secondary plan-btn">Contact Sales</a>
+                            <a href="login.html" class="btn btn-secondary plan-btn">Contact Sales</a>
                         </div>
                     </div>
                 </div>
@@ -253,7 +270,7 @@
                                 <li>✓ Basic Analytics</li>
                                 <li>✓ Email Support</li>
                             </ul>
-                            <a href="login" class="btn btn-secondary plan-btn">Get Started</a>
+                            <a href="login.html" class="btn btn-secondary plan-btn">Get Started</a>
                         </div>
                         <div class="pricing-card pricing-card--featured">
                             <div class="popular-badge">Most Popular</div>
@@ -266,7 +283,7 @@
                                 <li>✓ Open & Click Tracking</li>
                                 <li>✓ Priority Support</li>
                             </ul>
-                            <a href="login" class="btn btn-primary plan-btn">Get Started</a>
+                            <a href="login.html" class="btn btn-primary plan-btn">Get Started</a>
                         </div>
                         <div class="pricing-card">
                             <div class="plan-label">Enterprise</div>
@@ -278,7 +295,7 @@
                                 <li>✓ White-label Option</li>
                                 <li>✓ Dedicated Manager</li>
                             </ul>
-                            <a href="login" class="btn btn-secondary plan-btn">Contact Sales</a>
+                            <a href="login.html" class="btn btn-secondary plan-btn">Contact Sales</a>
                         </div>
                     </div>
                 </div>
@@ -289,7 +306,7 @@
                         <div class="cs-icon">🗂️</div>
                         <h3>Powerful CRM — <span class="text-electric">Coming Soon</span></h3>
                         <p>Our intelligent B2B CRM is currently in development. Be the first to know when it launches.</p>
-                        <a href="login" class="btn btn-primary">Join the Waitlist</a>
+                        <a href="login.html" class="btn btn-primary">Join the Waitlist</a>
                     </div>
                 </div>
 
@@ -348,24 +365,24 @@
         <div class="container footer-content">
             <div class="footer-brand">
             <a href="index.html" class="logo">
-                <img src="logo.svg" alt="LeadintelAI Logo">
+                <img src="leadintelai-logo.svg" alt="LeadintelAI Logo">
                 <span class="logo-text">Leadintel<span>AI</span></span>
             </a>
                 <p>Leading the way in digital B2B solutions.</p>
             </div>
             <div class="footer-links">
                 <h4>Solutions</h4>
-                <a href="/#services">B2B Data</a>
-                <a href="/#services">WhatsApp API</a>
-                <a href="/#services">Mass Mailing</a>
-                <a href="/#services">AI Chatbot</a>
+                <a href="index.html#services">B2B Data</a>
+                <a href="index.html#services">WhatsApp API</a>
+                <a href="index.html#services">Mass Mailing</a>
+                <a href="index.html#services">AI Chatbot</a>
             </div>
             <div class="footer-links">
                 <h4>Company</h4>
-                <a href="about">About</a>
-                <a href="price">Pricing</a>
-                <a href="terms">Terms of Service</a>
-                <a href="privacy">Privacy Policy</a>
+                <a href="about.html">About</a>
+                <a href="price.html">Pricing</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
             </div>
             <div class="footer-links" id="contact">
                 <h4>Contact</h4>
@@ -382,11 +399,9 @@
             <p>&copy; 2026 Leadintelai.in. All rights reserved.</p>
         </div>
     </footer>
-    <!-- GSAP for Animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="transitions.js"></script>
-    <script src="chatbot.js"></script>
+    <!-- Transitions & Maya AI Chatbot (Deferred non-critical execution) -->
+    <script src="transitions.js" defer></script>
+    <script src="chatbot.js" defer></script>
     <script>
         // --- Pricing Tab Switcher ---
         document.querySelectorAll('.pricing-tab').forEach(tab => {

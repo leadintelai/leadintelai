@@ -1,0 +1,27 @@
+# https://leadintelai.in/robots.txt
+User-agent: *
+Allow: /
+Allow: /pricing.html
+Allow: /data.html
+Allow: /whatsapp.html
+Allow: /mailing.html
+Allow: /crm.html
+Allow: /api.html
+Allow: /about.html
+Allow: /contact.html
+Allow: /terms.html
+Allow: /privacy.html
+Allow: /refund.html
+Allow: /og-image.png
+Allow: /leadintelai-logo.svg
+
+# Disallow private user console & auth routes
+Disallow: /dashboard.html
+Disallow: /project.html
+Disallow: /login.html
+Disallow: /private-login.html
+Disallow: /maya.html
+Disallow: /offline.html
+
+# Sitemap declaration
+Sitemap: https://leadintelai.in/sitemap.xml

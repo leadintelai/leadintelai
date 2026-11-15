@@ -1,0 +1,4654 @@
+{
+  "glass-theme.css": {
+    "neon_indicators": [
+      [
+        1469,
+        "background: linear-gradient(90deg, #60a5fa 0%, #22c55e 100%);"
+      ],
+      [
+        1545,
+        "background: linear-gradient(90deg, #22c55e 0%, #86efac 100%);"
+      ],
+      [
+        2039,
+        ".uc-pulse-dot {"
+      ],
+      [
+        2044,
+        "animation: uc-pulse 2s infinite ease-in-out;"
+      ],
+      [
+        2047,
+        ".uc-pulse-green { background: #22c55e; }"
+      ],
+      [
+        2156,
+        "color: #4ade80;"
+      ],
+      [
+        2239,
+        "color: #4ade80;"
+      ],
+      [
+        2246,
+        "color: #22c55e;"
+      ],
+      [
+        2300,
+        "color: #22c55e;"
+      ],
+      [
+        2371,
+        ".uc-text-green { color: #4ade80 !important; }"
+      ],
+      [
+        2959,
+        ".service-kicker.stat-theme-emerald .kicker-dot { background: #4ade80; }"
+      ],
+      [
+        3008,
+        "color: #4ade80 !important;"
+      ],
+      [
+        3078,
+        ".stat-indicator-dot {"
+      ],
+      [
+        3086,
+        ".stat-theme-purple .stat-indicator-dot {"
+      ],
+      [
+        3090,
+        ".stat-theme-blue .stat-indicator-dot {"
+      ],
+      [
+        3094,
+        ".stat-theme-emerald .stat-indicator-dot {"
+      ],
+      [
+        3095,
+        "background: #4ade80;"
+      ],
+      [
+        3098,
+        ".stat-theme-amber .stat-indicator-dot {"
+      ],
+      [
+        3102,
+        ".stat-theme-sky .stat-indicator-dot {"
+      ],
+      [
+        3162,
+        "color: #4ade80;"
+      ],
+      [
+        3325,
+        ".window-stream-pill .stream-dot {"
+      ],
+      [
+        3719,
+        ".status-pulse-dot {"
+      ]
+    ],
+    "pastel_neon_colors": [
+      [
+        487,
+        "color: #38bdf8;"
+      ],
+      [
+        500,
+        "color: #bfdbfe;"
+      ],
+      [
+        813,
+        "color: #6ee7b7;"
+      ],
+      [
+        823,
+        "color: #fca5a5;"
+      ],
+      [
+        1225,
+        "color: #93c5fd;"
+      ],
+      [
+        1231,
+        "color: #86efac;"
+      ],
+      [
+        1237,
+        "color: #fcd34d;"
+      ],
+      [
+        1414,
+        "color: #bfdbfe;"
+      ],
+      [
+        1428,
+        "color: #93c5fd;"
+      ],
+      [
+        1469,
+        "background: linear-gradient(90deg, #60a5fa 0%, #22c55e 100%);"
+      ],
+      [
+        1545,
+        "background: linear-gradient(90deg, #22c55e 0%, #86efac 100%);"
+      ],
+      [
+        1641,
+        "color: #fde68a;"
+      ],
+      [
+        1698,
+        "background: linear-gradient(90deg, #1d4ed8, #60a5fa, transparent);"
+      ],
+      [
+        2047,
+        ".uc-pulse-green { background: #22c55e; }"
+      ],
+      [
+        2048,
+        ".uc-pulse-blue { background: #38bdf8; }"
+      ],
+      [
+        2156,
+        "color: #4ade80;"
+      ],
+      [
+        2162,
+        "color: #38bdf8;"
+      ],
+      [
+        2239,
+        "color: #4ade80;"
+      ],
+      [
+        2246,
+        "color: #22c55e;"
+      ],
+      [
+        2300,
+        "color: #22c55e;"
+      ],
+      [
+        2305,
+        "color: #38bdf8;"
+      ],
+      [
+        2371,
+        ".uc-text-green { color: #4ade80 !important; }"
+      ],
+      [
+        2372,
+        ".uc-text-blue { color: #38bdf8 !important; }"
+      ],
+      [
+        2884,
+        "color: #93c5fd;"
+      ],
+      [
+        2953,
+        "background: #60a5fa;"
+      ],
+      [
+        2958,
+        ".service-kicker.stat-theme-blue .kicker-dot { background: #60a5fa; }"
+      ],
+      [
+        2959,
+        ".service-kicker.stat-theme-emerald .kicker-dot { background: #4ade80; }"
+      ],
+      [
+        2960,
+        ".service-kicker.stat-theme-amber .kicker-dot { background: #fbbf24; }"
+      ],
+      [
+        2961,
+        ".service-kicker.stat-theme-sky .kicker-dot { background: #38bdf8; }"
+      ],
+      [
+        3002,
+        "color: #60a5fa !important;"
+      ],
+      [
+        3008,
+        "color: #4ade80 !important;"
+      ],
+      [
+        3014,
+        "color: #fbbf24 !important;"
+      ],
+      [
+        3020,
+        "color: #38bdf8 !important;"
+      ],
+      [
+        3082,
+        "background: #60a5fa;"
+      ],
+      [
+        3091,
+        "background: #60a5fa;"
+      ],
+      [
+        3095,
+        "background: #4ade80;"
+      ],
+      [
+        3099,
+        "background: #fbbf24;"
+      ],
+      [
+        3103,
+        "background: #38bdf8;"
+      ],
+      [
+        3139,
+        "color: #60a5fa;"
+      ],
+      [
+        3146,
+        "color: #60a5fa;"
+      ],
+      [
+        3157,
+        "color: #60a5fa;"
+      ],
+      [
+        3162,
+        "color: #4ade80;"
+      ],
+      [
+        3167,
+        "color: #fbbf24;"
+      ],
+      [
+        3172,
+        "color: #38bdf8;"
+      ],
+      [
+        3311,
+        "color: #93c5fd;"
+      ],
+      [
+        3488,
+        "color: #93c5fd;"
+      ],
+      [
+        3560,
+        ".telemetry-pill .val-purple { color: #93c5fd; font-weight: 600; }"
+      ],
+      [
+        3953,
+        "color: #93c5fd;"
+      ],
+      [
+        4571,
+        "stroke: #60a5fa !important;"
+      ],
+      [
+        4609,
+        "color: #93c5fd !important;"
+      ]
+    ],
+    "ai_tropes": [
+      [
+        97,
+        "backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        98,
+        "-webkit-backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        107,
+        "backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        108,
+        "-webkit-backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        217,
+        "backdrop-filter: blur(24px) saturate(210%) brightness(1.08) contrast(106%);"
+      ],
+      [
+        218,
+        "-webkit-backdrop-filter: blur(24px) saturate(210%) brightness(1.08) contrast(106%);"
+      ],
+      [
+        261,
+        "backdrop-filter: blur(22px) saturate(200%);"
+      ],
+      [
+        262,
+        "-webkit-backdrop-filter: blur(22px) saturate(200%);"
+      ],
+      [
+        514,
+        "-webkit-background-clip: text;"
+      ],
+      [
+        515,
+        "background-clip: text;"
+      ],
+      [
+        575,
+        "-webkit-backdrop-filter: blur(24px) saturate(210%) brightness(1.08) contrast(106%);"
+      ],
+      [
+        576,
+        "backdrop-filter: blur(24px) saturate(210%) brightness(1.08) contrast(106%);"
+      ],
+      [
+        781,
+        "backdrop-filter: blur(12px);"
+      ],
+      [
+        835,
+        "backdrop-filter: blur(12px);"
+      ],
+      [
+        956,
+        "backdrop-filter: blur(20px) saturate(200%);"
+      ],
+      [
+        957,
+        "-webkit-backdrop-filter: blur(20px) saturate(200%);"
+      ],
+      [
+        1040,
+        "backdrop-filter: blur(8px);"
+      ],
+      [
+        1081,
+        "backdrop-filter: blur(8px);"
+      ],
+      [
+        1145,
+        "backdrop-filter: blur(20px);"
+      ],
+      [
+        1146,
+        "-webkit-backdrop-filter: blur(20px);"
+      ],
+      [
+        1219,
+        "color: #d8b4fe;"
+      ],
+      [
+        1297,
+        "backdrop-filter: blur(12px);"
+      ],
+      [
+        1385,
+        "backdrop-filter: blur(12px);"
+      ],
+      [
+        1517,
+        "backdrop-filter: blur(12px);"
+      ],
+      [
+        1582,
+        "backdrop-filter: blur(12px);"
+      ],
+      [
+        1635,
+        "backdrop-filter: blur(12px);"
+      ],
+      [
+        1664,
+        "backdrop-filter: blur(12px);"
+      ],
+      [
+        1690,
+        "background: linear-gradient(90deg, #7c3aed, #a78bfa, transparent);"
+      ],
+      [
+        1803,
+        "backdrop-filter: blur(16px);"
+      ],
+      [
+        1895,
+        "backdrop-filter: blur(20px);"
+      ],
+      [
+        1917,
+        "backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        1918,
+        "-webkit-backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        2853,
+        "backdrop-filter: blur(16px);"
+      ],
+      [
+        2854,
+        "-webkit-backdrop-filter: blur(16px);"
+      ],
+      [
+        2957,
+        ".service-kicker.stat-theme-purple .kicker-dot { background: #c084fc; }"
+      ],
+      [
+        2996,
+        "color: #c084fc !important;"
+      ],
+      [
+        3046,
+        "backdrop-filter: blur(20px);"
+      ],
+      [
+        3047,
+        "-webkit-backdrop-filter: blur(20px);"
+      ],
+      [
+        3087,
+        "background: #c084fc;"
+      ],
+      [
+        3152,
+        "color: #c084fc;"
+      ],
+      [
+        3228,
+        "backdrop-filter: blur(24px);"
+      ],
+      [
+        3229,
+        "-webkit-backdrop-filter: blur(24px);"
+      ],
+      [
+        3864,
+        "backdrop-filter: blur(16px);"
+      ],
+      [
+        3865,
+        "-webkit-backdrop-filter: blur(16px);"
+      ],
+      [
+        4062,
+        "-webkit-backdrop-filter: blur(28px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        4063,
+        "backdrop-filter: blur(28px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        4194,
+        "-webkit-backdrop-filter: blur(28px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        4195,
+        "backdrop-filter: blur(28px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        4295,
+        "-webkit-backdrop-filter: blur(28px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        4296,
+        "backdrop-filter: blur(28px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        4518,
+        "-webkit-backdrop-filter: blur(10px);"
+      ],
+      [
+        4519,
+        "backdrop-filter: blur(10px);"
+      ],
+      [
+        4541,
+        "-webkit-backdrop-filter: blur(24px) saturate(220%) brightness(1.08) contrast(106%) !important;"
+      ],
+      [
+        4542,
+        "backdrop-filter: blur(24px) saturate(220%) brightness(1.08) contrast(106%) !important;"
+      ],
+      [
+        4631,
+        "backdrop-filter: blur(32px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        4632,
+        "-webkit-backdrop-filter: blur(32px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        4706,
+        "backdrop-filter: blur(28px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        4707,
+        "-webkit-backdrop-filter: blur(28px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        4792,
+        "backdrop-filter: blur(32px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        4793,
+        "-webkit-backdrop-filter: blur(32px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        4867,
+        "backdrop-filter: blur(28px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        4868,
+        "-webkit-backdrop-filter: blur(28px) saturate(220%) brightness(1.08) contrast(108%);"
+      ]
+    ],
+    "tinted_icon_boxes": [
+      [
+        499,
+        "background: rgba(59, 130, 246, 0.08);"
+      ],
+      [
+        1221,
+        "background: rgba(168, 85, 247, 0.12);"
+      ],
+      [
+        1227,
+        "background: rgba(59, 130, 246, 0.12);"
+      ],
+      [
+        1233,
+        "background: rgba(34, 197, 94, 0.12);"
+      ],
+      [
+        1413,
+        "background: rgba(59, 130, 246, 0.12);"
+      ],
+      [
+        2157,
+        "background: rgba(34, 197, 94, 0.1);"
+      ],
+      [
+        2198,
+        "background: rgba(34, 197, 94, 0.03);"
+      ],
+      [
+        2237,
+        "background: rgba(34, 197, 94, 0.1);"
+      ],
+      [
+        2245,
+        "background: rgba(34, 197, 94, 0.05);"
+      ],
+      [
+        2272,
+        "background: rgba(34, 197, 94, 0.04);"
+      ],
+      [
+        2301,
+        "background: rgba(34, 197, 94, 0.12);"
+      ],
+      [
+        2434,
+        "0%, 30%, 100% { border-color: rgba(34, 197, 94, 0.18); background: rgba(34, 197, 94, 0.04); }"
+      ],
+      [
+        2435,
+        "40%, 65% { border-color: rgba(34, 197, 94, 0.38); background: rgba(34, 197, 94, 0.08); }"
+      ]
+    ],
+    "bouncy_transforms": [
+      [
+        1674,
+        "transform: translateY(-4px);"
+      ],
+      [
+        1971,
+        "transform: translateY(-3px);"
+      ],
+      [
+        2415,
+        "50% { opacity: 1; transform: scale(1.15); }"
+      ],
+      [
+        3256,
+        "transform: translateY(14px) scale(1.08);"
+      ],
+      [
+        3260,
+        "transform: translateY(-8px) scale(0.95);"
+      ]
+    ]
+  },
+  "styles.css": {
+    "neon_indicators": [
+      [
+        476,
+        ".pulse-dot {"
+      ],
+      [
+        481,
+        "box-shadow: 0 0 10px #ff4757;"
+      ],
+      [
+        482,
+        "animation: alertPulse 1.5s infinite;"
+      ],
+      [
+        1058,
+        ".status-dot {"
+      ],
+      [
+        1063,
+        "box-shadow: 0 0 10px #00b894;"
+      ]
+    ],
+    "ai_tropes": [
+      [
+        150,
+        "backdrop-filter: blur(10px);"
+      ],
+      [
+        161,
+        "backdrop-filter: blur(16px);"
+      ],
+      [
+        162,
+        "-webkit-backdrop-filter: blur(16px);"
+      ],
+      [
+        182,
+        "backdrop-filter: blur(12px);"
+      ],
+      [
+        329,
+        "backdrop-filter: blur(16px);"
+      ],
+      [
+        330,
+        "-webkit-backdrop-filter: blur(16px);"
+      ],
+      [
+        1042,
+        "backdrop-filter: blur(10px);"
+      ],
+      [
+        1133,
+        "backdrop-filter: blur(10px);"
+      ],
+      [
+        1203,
+        "backdrop-filter: blur(20px); /* Maximize blur */"
+      ],
+      [
+        1204,
+        "-webkit-backdrop-filter: blur(20px);"
+      ]
+    ],
+    "bouncy_transforms": [
+      [
+        487,
+        "50% { transform: scale(1.5); opacity: 0.5; }"
+      ],
+      [
+        569,
+        "transform: scale(1.05);"
+      ],
+      [
+        576,
+        "transform: scale(1.05) translateY(-10px);"
+      ],
+      [
+        581,
+        "transform: scale(1.08) translateY(-10px) !important;"
+      ],
+      [
+        720,
+        "transform: translateY(-8px);"
+      ],
+      [
+        728,
+        "transform: scale(1.04);"
+      ],
+      [
+        733,
+        "transform: scale(1.04) translateY(-8px);"
+      ],
+      [
+        852,
+        "transform: translateY(-8px);"
+      ],
+      [
+        964,
+        "transform: translateY(-3px) scale(1.1);"
+      ],
+      [
+        1010,
+        "transform: scale(1.1) translateY(-5px);"
+      ],
+      [
+        1176,
+        "transform: scale(1.05);"
+      ]
+    ]
+  },
+  "linear-theme.css": {
+    "neon_indicators": [
+      [
+        338,
+        "animation: pulse 2s ease-in-out infinite;"
+      ],
+      [
+        809,
+        ".lm-status-dot {"
+      ],
+      [
+        814,
+        ".lm-status-dot.contacted { background: #4ade80; }"
+      ],
+      [
+        1030,
+        "background: #4ade80;"
+      ],
+      [
+        1135,
+        ".diff-add { color: #4ade80; }"
+      ],
+      [
+        1394,
+        ".dn-sub { color: #4ade80; font-size: 0.65rem; }"
+      ],
+      [
+        1449,
+        ".wa-msg-out span { background: rgba(37,211,102,0.2);  color: #4ade80; }"
+      ],
+      [
+        1516,
+        ".mail-status.opened { background: rgba(74,222,128,0.15); color: #4ade80; }"
+      ],
+      [
+        1576,
+        "color: #4ade80;"
+      ],
+      [
+        2261,
+        "box-shadow: 0 0 8px #fff;"
+      ]
+    ],
+    "pastel_neon_colors": [
+      [
+        814,
+        ".lm-status-dot.contacted { background: #4ade80; }"
+      ],
+      [
+        1030,
+        "background: #4ade80;"
+      ],
+      [
+        1135,
+        ".diff-add { color: #4ade80; }"
+      ],
+      [
+        1136,
+        ".diff-del { color: #f87171; }"
+      ],
+      [
+        1394,
+        ".dn-sub { color: #4ade80; font-size: 0.65rem; }"
+      ],
+      [
+        1449,
+        ".wa-msg-out span { background: rgba(37,211,102,0.2);  color: #4ade80; }"
+      ],
+      [
+        1516,
+        ".mail-status.opened { background: rgba(74,222,128,0.15); color: #4ade80; }"
+      ],
+      [
+        1576,
+        "color: #4ade80;"
+      ]
+    ],
+    "ai_tropes": [
+      [
+        84,
+        "backdrop-filter: blur(20px);"
+      ],
+      [
+        85,
+        "-webkit-backdrop-filter: blur(20px);"
+      ],
+      [
+        220,
+        "backdrop-filter: blur(16px);"
+      ],
+      [
+        2417,
+        "backdrop-filter: blur(8px);"
+      ],
+      [
+        2418,
+        "-webkit-backdrop-filter: blur(8px);"
+      ]
+    ],
+    "bouncy_transforms": [
+      [
+        223,
+        "transform: translateY(-8px);"
+      ],
+      [
+        1409,
+        "@keyframes floatA { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-7px); } }"
+      ],
+      [
+        1410,
+        "@keyframes floatB { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-5px); } }"
+      ],
+      [
+        1411,
+        "@keyframes floatC { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-9px); } }"
+      ],
+      [
+        1462,
+        "animation: bounce 1.2s ease-in-out infinite;"
+      ],
+      [
+        1468,
+        "@keyframes bounce { 0%,80%,100% { transform:translateY(0); } 40% { transform:translateY(-5px); } }"
+      ]
+    ]
+  },
+  "index.html": {
+    "neon_indicators": [
+      [
+        1433,
+        "<img src=\"leadintelai-logo.svg\" alt=\"LeadintelAI\" style=\"width:68px; height:68px; object-fit:contain; filter:drop-shadow(0 6px 16px rgba(0,0,0,0.7)); animation:db-pulse-glow 3s ease-in-out infinite;\">"
+      ],
+      [
+        1462,
+        "<span style=\"font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif; font-size:0.38rem; padding:1px 4px; border-radius:3px; background:rgba(34,197,94,0.12); color:#22c55e; border:0.8px solid rgba(34,197,94,0.25); font-weight:600; letter-spacing:0.03em; line-height:1;\">SDR</span>"
+      ],
+      [
+        1465,
+        "LeadintelAI \u00b7 <span style=\"color:#22c55e; font-weight:500;\">Online</span>"
+      ],
+      [
+        1542,
+        "<div style=\"background:rgba(74,222,128,0.12); border:1px solid rgba(74,222,128,0.3); border-radius:6px; padding:4px 7px; font-size:0.52rem; font-weight:600; color:#4ade80; display:flex; align-items:center; justify-content:center; gap:4px;\">"
+      ],
+      [
+        1820,
+        "<span class=\"uc-pulse-dot uc-pulse-green\"></span>"
+      ],
+      [
+        1868,
+        "<span class=\"uc-pulse-dot uc-pulse-blue\"></span>"
+      ],
+      [
+        1910,
+        "<span class=\"uc-pulse-dot uc-pulse-green\"></span>"
+      ],
+      [
+        1952,
+        "<span class=\"uc-pulse-dot uc-pulse-green\"></span>"
+      ]
+    ],
+    "pastel_neon_colors": [
+      [
+        189,
+        "<span class=\"mock-badge\" style=\"font-size:0.62rem; color:#93c5fd; background:rgba(30,58,138,0.3); border:1px solid rgba(59,130,246,0.3); padding:2px 7px; border-radius:4px; white-space:nowrap; flex-shrink:0; font-weight:600;\">Active</span>"
+      ],
+      [
+        221,
+        "<span class=\"mock-badge\" style=\"font-size:0.62rem; color:#93c5fd; background:rgba(30,58,138,0.28); border:1px solid rgba(59,130,246,0.28); padding:2px 7px; border-radius:4px; white-space:nowrap; flex-shrink:0; font-weight:600;\">\u20b948.2L</span>"
+      ],
+      [
+        231,
+        "<strong style=\"color:#93c5fd; font-weight:700;\">\u20b918,450</strong>"
+      ],
+      [
+        234,
+        "<div style=\"display:block; text-align:center; background:rgba(30,58,138,0.22); border:1px solid rgba(59,130,246,0.28); color:#93c5fd; padding:5px 0; border-radius:6px; font-weight:600; font-size:0.72rem;\">"
+      ],
+      [
+        290,
+        "<span class=\"mock-range-btn active\" onclick=\"selectMockRange(this)\" style=\"display:inline-flex; align-items:center; justify-content:center; min-width:38px; height:24px; background:rgba(30,58,138,0.32); border:1px solid rgba(59,130,246,0.42); color:#93c5fd; font-size:0.72rem; font-weight:600; padding:0 8px; border-radius:6px; cursor:pointer; box-sizing:border-box; transition:all 0.2s cubic-bezier(0.16,1,0.3,1);\">30d</span>"
+      ],
+      [
+        381,
+        "<span style=\"background:rgba(30,58,138,0.25); border:1px solid rgba(59,130,246,0.3); color:#93c5fd; padding:1px 5px; border-radius:4px; font-size:0.64rem; font-weight:700;\">68%</span>"
+      ],
+      [
+        396,
+        "<span style=\"background:rgba(30,58,138,0.25); border:1px solid rgba(59,130,246,0.3); color:#93c5fd; padding:1px 6px; border-radius:4px; font-size:0.65rem; font-weight:700;\">+34% conv</span>"
+      ],
+      [
+        473,
+        "<strong style=\"color:#93c5fd;\">\u20b945,210</strong>"
+      ],
+      [
+        529,
+        "<span style=\"display:inline-block; background:rgba(255,255,255,0.03); border:1px solid rgba(59,130,246,0.2); color:#60a5fa; font-size:0.78rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:5px 14px; border-radius:99px; margin-bottom:20px;\">Platform</span>"
+      ],
+      [
+        783,
+        "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"1.8\">"
+      ],
+      [
+        836,
+        "background: #60a5fa;"
+      ],
+      [
+        855,
+        "background: #60a5fa;"
+      ],
+      [
+        896,
+        "background: #60a5fa;"
+      ],
+      [
+        928,
+        "color: #bfdbfe;"
+      ],
+      [
+        1059,
+        "<span style=\"color: #60a5fa;\">[DATACLOUD]</span>"
+      ],
+      [
+        1126,
+        "payloadEl.innerHTML = '<span style=\"color:#60a5fa;\">' + d.tag + '</span> <span>' + d.text + '</span>';"
+      ],
+      [
+        1164,
+        "<path d=\"M0,50 Q25,20 50,50 T100,70\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"0.5\"/>"
+      ],
+      [
+        1187,
+        "<div style=\"font-size:0.65rem; color:var(--text-tertiary); margin-bottom:4px; display:flex; align-items:center; gap:4px;\"><svg width=\"10\" height=\"10\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><polyline points=\"12 6 12 12 16 14\"/></svg> Startups</div>"
+      ],
+      [
+        1462,
+        "<span style=\"font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif; font-size:0.38rem; padding:1px 4px; border-radius:3px; background:rgba(34,197,94,0.12); color:#22c55e; border:0.8px solid rgba(34,197,94,0.25); font-weight:600; letter-spacing:0.03em; line-height:1;\">SDR</span>"
+      ],
+      [
+        1465,
+        "LeadintelAI \u00b7 <span style=\"color:#22c55e; font-weight:500;\">Online</span>"
+      ],
+      [
+        1507,
+        "<div class=\"db-dot-wave\" style=\"background:#6ee7b7;\"></div>"
+      ],
+      [
+        1508,
+        "<div class=\"db-dot-wave\" style=\"background:#6ee7b7;\"></div>"
+      ],
+      [
+        1509,
+        "<div class=\"db-dot-wave\" style=\"background:#6ee7b7;\"></div>"
+      ],
+      [
+        1521,
+        "<path d=\"M1 5.5L4.5 9L11 1.5\" stroke=\"#38bdf8\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>"
+      ],
+      [
+        1522,
+        "<path d=\"M5 5.5L8.5 9L15 1.5\" stroke=\"#38bdf8\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>"
+      ],
+      [
+        1542,
+        "<div style=\"background:rgba(74,222,128,0.12); border:1px solid rgba(74,222,128,0.3); border-radius:6px; padding:4px 7px; font-size:0.52rem; font-weight:600; color:#4ade80; display:flex; align-items:center; justify-content:center; gap:4px;\">"
+      ],
+      [
+        1545,
+        "<div style=\"background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.25); border-radius:6px; padding:4px 7px; font-size:0.52rem; font-weight:600; color:#60a5fa; display:flex; align-items:center; justify-content:center; gap:4px;\">"
+      ],
+      [
+        1695,
+        "<div style=\"font-size:0.8rem; color:var(--text-primary); margin-bottom:6px; display:flex; align-items:center; gap:6px;\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\" ry=\"2\"/><line x1=\"16\" y1=\"2\" x2=\"16\" y2=\"6\"/><line x1=\"8\" y1=\"2\" x2=\"8\" y2=\"6\"/><line x1=\"3\" y1=\"10\" x2=\"21\" y2=\"10\"/></svg> Michael Chen scheduled a demo</div>"
+      ],
+      [
+        2582,
+        "<a href=\"#\" style=\"width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:var(--text-tertiary); transition:all 0.2s;\" onmouseover=\"this.style.background='rgba(59,130,246,0.15)';this.style.color='#60a5fa'\" onmouseout=\"this.style.background='rgba(255,255,255,0.05)';this.style.color=''\">"
+      ],
+      [
+        2916,
+        "el.style.color = '#93c5fd';"
+      ]
+    ],
+    "ai_tropes": [
+      [
+        168,
+        "<div class=\"dash-shell\" style=\"background:rgba(14,18,28,0.85); backdrop-filter:blur(28px); -webkit-backdrop-filter:blur(28px); border:1px solid rgba(255,255,255,0.14); box-shadow:inset 0 1px 0 0 rgba(255,255,255,0.22), 0 -8px 30px rgba(56,189,248,0.12), 0 25px 75px rgba(0,0,0,0.7); border-radius:20px; overflow:hidden; display:flex; height:740px; position:relative; cursor:default; user-select:none;\" onclick=\"event.stopPropagation();\">"
+      ],
+      [
+        469,
+        "<div style=\"position:absolute; left:735px; top:12px; background:rgba(15,19,29,0.92); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,0.12); box-shadow:0 8px 24px rgba(0,0,0,0.5); border-radius:8px; padding:8px 12px; min-width:145px; pointer-events:none;\">"
+      ],
+      [
+        549,
+        "<div class=\"mockup-avatar\" style=\"background:#7c3aed; display:flex; align-items:center; justify-content:center; font-size:0.62rem; font-weight:700; color:#fff;\">AK</div>"
+      ],
+      [
+        2109,
+        "<div style=\"width:40px; height:40px; border-radius:50%; background:rgba(168,85,247,0.2); color:#a855f7; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; flex-shrink:0;\">AS</div>"
+      ],
+      [
+        2302,
+        "<div style=\"background:rgba(0,0,0,0.5); border:1px solid var(--border-glass); border-radius:12px; width:220px; padding:12px; backdrop-filter:blur(8px);\">"
+      ],
+      [
+        2321,
+        "<div style=\"background:rgba(255,255,255,0.03); border:1px solid var(--accent-blue); border-radius:12px; width:220px; padding:12px; backdrop-filter:blur(8px); transform:translateY(-10px); box-shadow:0 10px 40px rgba(255,255,255,0.05);\">"
+      ],
+      [
+        2393,
+        "<div style=\"width:16px; height:16px; background:rgba(168, 85, 247, 0.2); border-radius:4px; display:flex; align-items:center; justify-content:center;\"><svg width=\"10\" height=\"10\" stroke=\"#a855f7\" stroke-width=\"3\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M22 12h-4l-3 9L9 3l-3 9H2\"/></svg></div>"
+      ],
+      [
+        2409,
+        "<div class=\"bc-icon\" style=\"color:#a855f7;\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M2 12h4l3-9 5 18 3-9h5\"/></svg></div>"
+      ],
+      [
+        2451,
+        "<div class=\"mockup-cmd\" style=\"position:relative; z-index:2; width:100%; max-width:600px; margin:0 auto; background:rgba(20,21,26,0.9); border:1px solid var(--border-glass); border-radius:18px; box-shadow:0 30px 60px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.1); backdrop-filter:blur(32px); text-align:left; overflow:hidden;\">"
+      ]
+    ],
+    "emoji_clutter": [
+      [
+        8,
+        "<meta name=\"description\" content=\"Access 52M+ verified B2B contacts, automate WhatsApp & cold email campaigns, and close deals with autonomous AI CRM. Start accelerating revenue today \u2713\">"
+      ],
+      [
+        18,
+        "<meta property=\"og:description\" content=\"Access 52M+ verified B2B contacts, automate WhatsApp & cold email campaigns, and close deals with autonomous AI CRM. Start accelerating revenue today \u2713\">"
+      ],
+      [
+        31,
+        "<meta name=\"twitter:description\" content=\"Access 52M+ verified B2B contacts, automate WhatsApp & cold email campaigns, and close deals with autonomous AI CRM. Start accelerating revenue today \u2713\">"
+      ],
+      [
+        263,
+        "<span style=\"position:absolute; right:8px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.08); padding:1px 5px; border-radius:4px; font-size:0.62rem; font-weight:700; color:#64748b; pointer-events:none;\">\u2318K</span>"
+      ],
+      [
+        498,
+        "<div style=\"font-size:13px; font-weight:600; color:rgba(255,255,255,0.9);\">4.8 <span style=\"color:#facc15;\">\u2605</span> rated</div>"
+      ],
+      [
+        1192,
+        "<div style=\"font-size:0.9rem; font-weight:600; color:var(--text-primary);\">12 days <span style=\"font-size:0.65rem; color:var(--accent-red);\">\u26a0</span></div>"
+      ],
+      [
+        1483,
+        "\ud83d\udd12 Verified WhatsApp Business API \u00b7 Zero Ban Risk"
+      ],
+      [
+        1543,
+        "<span>\u26a1</span> Sync 50 Free Leads Now"
+      ],
+      [
+        1546,
+        "<span>\ud83d\udcc5</span> Lock 5-Min Video Demo"
+      ],
+      [
+        1562,
+        "<span style=\"font-size:0.55rem; color:rgba(255,255,255,0.4);\">\ud83d\udcce</span>"
+      ],
+      [
+        1921,
+        "<span class=\"uc-step-status uc-text-green\">\u2713 94% Opened</span>"
+      ],
+      [
+        1928,
+        "<span class=\"uc-step-status uc-text-green\">\u2713 Reply Detected</span>"
+      ],
+      [
+        1935,
+        "<span class=\"uc-step-status uc-text-blue\">\u2713 Booked</span>"
+      ],
+      [
+        1963,
+        "<span class=\"uc-radar-status uc-text-green\">\u2713 Broadcast Delivered</span>"
+      ],
+      [
+        2009,
+        "<li style=\"display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:rgba(148,163,184,0.8);\"><span style=\"color:var(--accent-green); flex-shrink:0; margin-top:1px;\">\u2713</span> DataCloud access (500 leads)</li>"
+      ],
+      [
+        2010,
+        "<li style=\"display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:rgba(148,163,184,0.8);\"><span style=\"color:var(--accent-green); flex-shrink:0; margin-top:1px;\">\u2713</span> AI CRM (up to 500 contacts)</li>"
+      ],
+      [
+        2011,
+        "<li style=\"display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:rgba(148,163,184,0.8);\"><span style=\"color:var(--accent-green); flex-shrink:0; margin-top:1px;\">\u2713</span> WhatsApp campaigns</li>"
+      ],
+      [
+        2012,
+        "<li style=\"display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:rgba(148,163,184,0.8);\"><span style=\"color:var(--accent-green); flex-shrink:0; margin-top:1px;\">\u2713</span> Basic email sequences</li>"
+      ],
+      [
+        2013,
+        "<li style=\"display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:rgba(148,163,184,0.8);\"><span style=\"color:var(--accent-green); flex-shrink:0; margin-top:1px;\">\u2713</span> 5 custom fields</li>"
+      ],
+      [
+        2028,
+        "<li style=\"display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:rgba(148,163,184,0.8);\"><span style=\"color:var(--accent-green); flex-shrink:0; margin-top:1px;\">\u2713</span> Everything in Starter</li>"
+      ],
+      [
+        2029,
+        "<li style=\"display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:rgba(148,163,184,0.8);\"><span style=\"color:var(--accent-green); flex-shrink:0; margin-top:1px;\">\u2713</span> AI lead scoring</li>"
+      ],
+      [
+        2030,
+        "<li style=\"display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:rgba(148,163,184,0.8);\"><span style=\"color:var(--accent-green); flex-shrink:0; margin-top:1px;\">\u2713</span> WhatsApp drip sequences</li>"
+      ],
+      [
+        2031,
+        "<li style=\"display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:rgba(148,163,184,0.8);\"><span style=\"color:var(--accent-green); flex-shrink:0; margin-top:1px;\">\u2713</span> Meeting Scheduler</li>"
+      ],
+      [
+        2032,
+        "<li style=\"display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:rgba(148,163,184,0.8);\"><span style=\"color:var(--accent-green); flex-shrink:0; margin-top:1px;\">\u2713</span> IndiaMART &amp; Justdial integration</li>"
+      ],
+      [
+        2033,
+        "<li style=\"display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:rgba(148,163,184,0.8);\"><span style=\"color:var(--accent-green); flex-shrink:0; margin-top:1px;\">\u2713</span> 20 custom fields</li>"
+      ],
+      [
+        2034,
+        "<li style=\"display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:rgba(148,163,184,0.8);\"><span style=\"color:var(--accent-green); flex-shrink:0; margin-top:1px;\">\u2713</span> Team management</li>"
+      ],
+      [
+        2048,
+        "<li style=\"display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:rgba(148,163,184,0.8);\"><span style=\"color:var(--accent-green); flex-shrink:0; margin-top:1px;\">\u2713</span> Everything in Growth</li>"
+      ],
+      [
+        2049,
+        "<li style=\"display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:rgba(148,163,184,0.8);\"><span style=\"color:var(--accent-green); flex-shrink:0; margin-top:1px;\">\u2713</span> Unlimited DataCloud credits</li>"
+      ],
+      [
+        2050,
+        "<li style=\"display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:rgba(148,163,184,0.8);\"><span style=\"color:var(--accent-green); flex-shrink:0; margin-top:1px;\">\u2713</span> White-label booking pages</li>"
+      ],
+      [
+        2051,
+        "<li style=\"display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:rgba(148,163,184,0.8);\"><span style=\"color:var(--accent-green); flex-shrink:0; margin-top:1px;\">\u2713</span> API access + Webhooks</li>"
+      ],
+      [
+        2052,
+        "<li style=\"display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:rgba(148,163,184,0.8);\"><span style=\"color:var(--accent-green); flex-shrink:0; margin-top:1px;\">\u2713</span> Zapier integration</li>"
+      ],
+      [
+        2053,
+        "<li style=\"display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:rgba(148,163,184,0.8);\"><span style=\"color:var(--accent-green); flex-shrink:0; margin-top:1px;\">\u2713</span> Dedicated account manager</li>"
+      ],
+      [
+        2054,
+        "<li style=\"display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:rgba(148,163,184,0.8);\"><span style=\"color:var(--accent-green); flex-shrink:0; margin-top:1px;\">\u2713</span> Unlimited custom fields</li>"
+      ],
+      [
+        2077,
+        "<div style=\"color:#facc15; font-size:0.9rem; letter-spacing:2px; margin-bottom:16px;\">\u2605\u2605\u2605\u2605\u2605</div>"
+      ],
+      [
+        2091,
+        "<div style=\"color:#facc15; font-size:0.9rem; letter-spacing:2px; margin-bottom:16px;\">\u2605\u2605\u2605\u2605\u2605</div>"
+      ],
+      [
+        2105,
+        "<div style=\"color:#facc15; font-size:0.9rem; letter-spacing:2px; margin-bottom:16px;\">\u2605\u2605\u2605\u2605\u2605</div>"
+      ],
+      [
+        2233,
+        "<li style=\"display:flex; align-items:flex-start; gap:12px;\"><span style=\"color:var(--accent-blue);\">\u2713</span> Built-in DataCloud for high-intent B2B leads</li>"
+      ],
+      [
+        2234,
+        "<li style=\"display:flex; align-items:flex-start; gap:12px;\"><span style=\"color:var(--accent-blue);\">\u2713</span> Integrated AI-CRM that scores leads automatically</li>"
+      ],
+      [
+        2235,
+        "<li style=\"display:flex; align-items:flex-start; gap:12px;\"><span style=\"color:var(--accent-blue);\">\u2713</span> Native WhatsApp API & Email Sequences</li>"
+      ],
+      [
+        2236,
+        "<li style=\"display:flex; align-items:flex-start; gap:12px;\"><span style=\"color:var(--accent-blue);\">\u2713</span> Real-time intelligence tracking every customer touchpoint</li>"
+      ],
+      [
+        2428,
+        "<p class=\"section-desc\" style=\"max-width:620px; margin:0 auto 80px;\">Hit <kbd style=\"background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:4px; font-family:inherit; font-size:0.95rem; border:1px solid var(--border-glass);\">\u2318 K</kbd> anywhere in LeadintelAI to instantly find leads, launch outreach sequences, or check your pipeline without ever touching your mouse.</p>"
+      ],
+      [
+        2446,
+        "<div class=\"key\" style=\"width:150px;\"></div><div class=\"key\"></div><div class=\"key\"></div><div class=\"key glowing\" style=\"width:80px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; font-size:0.75rem; font-weight:600;\"><span style=\"font-size:1.2rem; font-weight:400; margin-bottom:2px;\">\u2318</span>command</div><div class=\"key\" style=\"width:380px;\"></div><div class=\"key\" style=\"width:80px;\"></div><div class=\"key\"></div><div class=\"key\" style=\"width:150px;\"></div>"
+      ]
+    ],
+    "tinted_icon_boxes": [
+      [
+        1462,
+        "<span style=\"font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif; font-size:0.38rem; padding:1px 4px; border-radius:3px; background:rgba(34,197,94,0.12); color:#22c55e; border:0.8px solid rgba(34,197,94,0.25); font-weight:600; letter-spacing:0.03em; line-height:1;\">SDR</span>"
+      ],
+      [
+        1545,
+        "<div style=\"background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.25); border-radius:6px; padding:4px 7px; font-size:0.52rem; font-weight:600; color:#60a5fa; display:flex; align-items:center; justify-content:center; gap:4px;\">"
+      ],
+      [
+        2081,
+        "<div style=\"width:40px; height:40px; border-radius:50%; background:rgba(59,130,246,0.2); color:var(--accent-blue); display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; flex-shrink:0;\">RM</div>"
+      ],
+      [
+        2095,
+        "<div style=\"width:40px; height:40px; border-radius:50%; background:rgba(34,197,94,0.2); color:var(--accent-green); display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; flex-shrink:0;\">PS</div>"
+      ],
+      [
+        2109,
+        "<div style=\"width:40px; height:40px; border-radius:50%; background:rgba(168,85,247,0.2); color:#a855f7; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; flex-shrink:0;\">AS</div>"
+      ],
+      [
+        2393,
+        "<div style=\"width:16px; height:16px; background:rgba(168, 85, 247, 0.2); border-radius:4px; display:flex; align-items:center; justify-content:center;\"><svg width=\"10\" height=\"10\" stroke=\"#a855f7\" stroke-width=\"3\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M22 12h-4l-3 9L9 3l-3 9H2\"/></svg></div>"
+      ],
+      [
+        2402,
+        "<div style=\"width:16px; height:16px; background:rgba(34, 197, 94, 0.2); border-radius:4px; display:flex; align-items:center; justify-content:center;\"><svg width=\"10\" height=\"10\" stroke=\"var(--accent-green)\" stroke-width=\"3\" viewBox=\"0 0 24 24\" fill=\"none\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M16 12l-4 4-4-4M12 8v8\"/></svg></div>"
+      ],
+      [
+        2764,
+        ".dd-opt.dd-active { color: #f8fafc; font-weight: 600; background: rgba(59,130,246,0.12); }"
+      ]
+    ],
+    "bouncy_transforms": [
+      [
+        1211,
+        "24%   { opacity:0; transform:scale(1.05) translateZ(0); visibility:hidden; }"
+      ],
+      [
+        1225,
+        "33%, 100% { opacity:0; transform:translateY(-4px); }"
+      ],
+      [
+        1235,
+        "57%, 100% { opacity:0; transform:translateY(-4px); }"
+      ],
+      [
+        1245,
+        "76%, 100% { opacity:0; transform:translateY(-4px); }"
+      ],
+      [
+        1254,
+        "50%      { transform:scale(1.03); opacity:1; filter:drop-shadow(0 6px 18px rgba(0,0,0,0.8)); }"
+      ],
+      [
+        1258,
+        "40%           { transform:scale(1.15); opacity:1; }"
+      ],
+      [
+        1281,
+        "animation: db-dot-bounce 1.2s infinite ease-in-out;"
+      ],
+      [
+        1614,
+        "splash.style.transform = 'scale(1.04)';"
+      ]
+    ]
+  },
+  "about.html": {
+    "pastel_neon_colors": [
+      [
+        135,
+        "color: #93c5fd;"
+      ],
+      [
+        155,
+        "background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);"
+      ],
+      [
+        403,
+        "color: #93c5fd;"
+      ],
+      [
+        685,
+        ".comp-table tr.hl td:first-child { font-weight: 700; color: #60a5fa; }"
+      ],
+      [
+        826,
+        "<svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2.2\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\"/><line x1=\"16\" y1=\"2\" x2=\"16\" y2=\"6\"/><line x1=\"8\" y1=\"2\" x2=\"8\" y2=\"6\"/><line x1=\"3\" y1=\"10\" x2=\"21\" y2=\"10\"/></svg>"
+      ],
+      [
+        885,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"1.8\"><ellipse cx=\"12\" cy=\"5\" rx=\"9\" ry=\"3\"/><path d=\"M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5\"/><path d=\"M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3\"/></svg>"
+      ],
+      [
+        1000,
+        "<div class=\"mod-card reveal\" style=\"--mod-glow: var(--accent-blue); --mod-shadow: rgba(59,130,246,0.06); --feat-check: #60a5fa;\">"
+      ],
+      [
+        1008,
+        "<circle cx=\"190\" cy=\"90\" r=\"4\" fill=\"#60a5fa\" opacity=\"0.6\"/>"
+      ],
+      [
+        1010,
+        "<circle cx=\"90\" cy=\"190\" r=\"4\" fill=\"#93c5fd\" opacity=\"0.6\"/>"
+      ],
+      [
+        1011,
+        "<defs><linearGradient id=\"blue-grad\" x1=\"60\" y1=\"60\" x2=\"220\" y2=\"220\"><stop stop-color=\"#60a5fa\"/><stop offset=\"1\" stop-color=\"#1d4ed8\" stop-opacity=\"0\"/></linearGradient></defs>"
+      ],
+      [
+        1016,
+        "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"1.8\"><ellipse cx=\"12\" cy=\"5\" rx=\"9\" ry=\"3\"/><path d=\"M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5\"/><path d=\"M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3\"/></svg>"
+      ],
+      [
+        1020,
+        "<div class=\"mod-tag\" style=\"color:#60a5fa;\">B2B Data Intelligence</div>"
+      ],
+      [
+        1147,
+        "<div class=\"flow-badge\" style=\"background:rgba(255,255,255,0.03); color:#60a5fa; border:1px solid rgba(59,130,246,0.2);\">CAC Engine</div>"
+      ],
+      [
+        1195,
+        "<div class=\"flow-badge\" style=\"background:rgba(34,211,238,0.08); color:#22d3ee; border:1px solid rgba(34,211,238,0.2);\">AI Engine</div>"
+      ],
+      [
+        1225,
+        "<div class=\"val-icon\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"1.8\"><path d=\"M13 2L3 14h9l-1 8 10-12h-9l1-8z\"/></svg></div>"
+      ],
+      [
+        1230,
+        "<div class=\"val-icon\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"1.8\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><line x1=\"21\" y1=\"21\" x2=\"16.65\" y2=\"16.65\"/><line x1=\"11\" y1=\"8\" x2=\"11\" y2=\"14\"/><line x1=\"8\" y1=\"11\" x2=\"14\" y2=\"11\"/></svg></div>"
+      ],
+      [
+        1235,
+        "<div class=\"val-icon\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"1.8\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/></svg></div>"
+      ],
+      [
+        1240,
+        "<div class=\"val-icon\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"1.8\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"2\" y1=\"12\" x2=\"22\" y2=\"12\"/><path d=\"M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z\"/></svg></div>"
+      ],
+      [
+        1245,
+        "<div class=\"val-icon\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"1.8\"><path d=\"M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2\"/><circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75\"/></svg></div>"
+      ],
+      [
+        1250,
+        "<div class=\"val-icon\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"1.8\"><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"23\"/><path d=\"M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6\"/></svg></div>"
+      ],
+      [
+        1278,
+        "<div class=\"str-dot\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2\"><path d=\"M13 2L3 14h9l-1 8 10-12h-9l1-8z\"/></svg></div>"
+      ],
+      [
+        1282,
+        "<div class=\"str-dot\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><line x1=\"21\" y1=\"21\" x2=\"16.65\" y2=\"16.65\"/></svg></div>"
+      ],
+      [
+        1286,
+        "<div class=\"str-dot\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"2\" y1=\"12\" x2=\"22\" y2=\"12\"/><path d=\"M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z\"/></svg></div>"
+      ],
+      [
+        1290,
+        "<div class=\"str-dot\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2\"><path d=\"M12 2a7 7 0 017 7c0 2.5-1.3 4.7-3.3 6l-.7 3H9l-.7-3A7 7 0 0112 2z\"/><line x1=\"9\" y1=\"21\" x2=\"15\" y2=\"21\"/></svg></div>"
+      ],
+      [
+        1294,
+        "<div class=\"str-dot\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/></svg></div>"
+      ],
+      [
+        1390,
+        "<a href=\"#\" style=\"width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:var(--text-tertiary); transition:all 0.2s;\" onmouseover=\"this.style.background='rgba(59,130,246,0.15)';this.style.color='#60a5fa'\" onmouseout=\"this.style.background='rgba(255,255,255,0.05)';this.style.color=''\">"
+      ]
+    ],
+    "ai_tropes": [
+      [
+        156,
+        "-webkit-background-clip: text;"
+      ],
+      [
+        158,
+        "background-clip: text;"
+      ],
+      [
+        304,
+        "background: linear-gradient(135deg,var(--accent-blue),#8b5cf6);"
+      ],
+      [
+        642,
+        "background: linear-gradient(135deg,var(--accent-blue),#8b5cf6);"
+      ],
+      [
+        1035,
+        "<div class=\"mod-card reveal d1\" style=\"--mod-glow: #8b5cf6; --mod-shadow: rgba(139,92,246,0.06); --feat-check: #a78bfa;\">"
+      ],
+      [
+        1043,
+        "<circle cx=\"110\" cy=\"70\" r=\"4\" fill=\"#a78bfa\"/><circle cx=\"125\" cy=\"105\" r=\"4\" fill=\"#8b5cf6\"/><circle cx=\"140\" cy=\"140\" r=\"4\" fill=\"#7c3aed\"/>"
+      ]
+    ],
+    "emoji_clutter": [
+      [
+        7,
+        "<meta name=\"description\" content=\"Learn how LeadintelAI is replacing fragmented sales stacks with an integrated, AI-driven B2B outbound and intelligence platform built in Bengaluru, India \u2713\">"
+      ],
+      [
+        17,
+        "<meta property=\"og:description\" content=\"Learn how LeadintelAI is replacing fragmented sales stacks with an integrated, AI-driven B2B outbound and intelligence platform built in Bengaluru, India \u2713\">"
+      ],
+      [
+        30,
+        "<meta name=\"twitter:description\" content=\"Learn how LeadintelAI is replacing fragmented sales stacks with an integrated, AI-driven B2B outbound and intelligence platform built in Bengaluru, India \u2713\">"
+      ],
+      [
+        479,
+        "content: '\u2713'; color: var(--feat-check, var(--accent-blue)); font-size: 0.75rem; flex-shrink: 0; font-weight: 800;"
+      ],
+      [
+        1143,
+        "<div class=\"flow-n\">0\u2605</div>"
+      ],
+      [
+        1324,
+        "<td><span class=\"yes\">\u2713 Yes</span></td>"
+      ],
+      [
+        1325,
+        "<td><span class=\"yes\">\u2713 AI-Powered</span></td>"
+      ],
+      [
+        1326,
+        "<td><span class=\"yes\">\u2713 Official API</span></td>"
+      ],
+      [
+        1327,
+        "<td><span class=\"yes\">\u2713 Full Suite</span></td>"
+      ],
+      [
+        1328,
+        "<td><span class=\"yes\">\u2713 Full Roles</span></td>"
+      ],
+      [
+        1329,
+        "<td><span class=\"yes\">\u2713 \u20b94,499/mo</span></td>"
+      ],
+      [
+        1333,
+        "<td><span class=\"yes\">\u2713</span></td>"
+      ],
+      [
+        1335,
+        "<td><span class=\"no\">\u2715</span></td>"
+      ],
+      [
+        1342,
+        "<td><span class=\"no\">\u2715</span></td>"
+      ],
+      [
+        1343,
+        "<td><span class=\"no\">\u2715</span></td>"
+      ],
+      [
+        1344,
+        "<td><span class=\"yes\">\u2713</span></td>"
+      ],
+      [
+        1345,
+        "<td><span class=\"no\">\u2715</span></td>"
+      ],
+      [
+        1351,
+        "<td><span class=\"no\">\u2715</span></td>"
+      ],
+      [
+        1352,
+        "<td><span class=\"yes\">\u2713 Powerful</span></td>"
+      ],
+      [
+        1353,
+        "<td><span class=\"no\">\u2715 Add-on</span></td>"
+      ],
+      [
+        1354,
+        "<td><span class=\"yes\">\u2713</span></td>"
+      ],
+      [
+        1355,
+        "<td><span class=\"yes\">\u2713</span></td>"
+      ],
+      [
+        1360,
+        "<td><span class=\"no\">\u2715</span></td>"
+      ],
+      [
+        1361,
+        "<td><span class=\"yes\">\u2713 Enterprise</span></td>"
+      ],
+      [
+        1362,
+        "<td><span class=\"no\">\u2715</span></td>"
+      ],
+      [
+        1364,
+        "<td><span class=\"yes\">\u2713</span></td>"
+      ]
+    ],
+    "tinted_icon_boxes": [
+      [
+        324,
+        "background: rgba(59,130,246,0.04);"
+      ],
+      [
+        326,
+        ".pillar-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }"
+      ],
+      [
+        387,
+        ".swap-good:hover { background: rgba(59,130,246,0.02); }"
+      ],
+      [
+        400,
+        "background: rgba(59,130,246,0.07);"
+      ],
+      [
+        658,
+        "background: rgba(59,130,246,0.10);"
+      ],
+      [
+        884,
+        "<div class=\"pillar-icon\" style=\"background:rgba(255,255,255,0.03); border:1px solid rgba(59,130,246,0.2);\">"
+      ],
+      [
+        891,
+        "<div class=\"pillar-icon\" style=\"background:rgba(139,92,246,0.1); border:1px solid rgba(139,92,246,0.2);\">"
+      ],
+      [
+        898,
+        "<div class=\"pillar-icon\" style=\"background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.2);\">"
+      ],
+      [
+        905,
+        "<div class=\"pillar-icon\" style=\"background:rgba(251,146,60,0.1); border:1px solid rgba(251,146,60,0.2);\">"
+      ],
+      [
+        1049,
+        "<div class=\"mod-icon\" style=\"background:rgba(139,92,246,0.1); border:1px solid rgba(139,92,246,0.25);\">"
+      ],
+      [
+        1081,
+        "<div class=\"mod-icon\" style=\"background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.25);\">"
+      ],
+      [
+        1155,
+        "<div class=\"flow-badge\" style=\"background:rgba(34,197,94,0.08); color:var(--accent-green); border:1px solid rgba(34,197,94,0.2);\">DataCloud</div>"
+      ],
+      [
+        1163,
+        "<div class=\"flow-badge\" style=\"background:rgba(139,92,246,0.08); color:#a78bfa; border:1px solid rgba(139,92,246,0.2);\">AI CRM</div>"
+      ],
+      [
+        1179,
+        "<div class=\"flow-badge\" style=\"background:rgba(34,197,94,0.08); color:var(--accent-green); border:1px solid rgba(34,197,94,0.2);\">WA + Mail</div>"
+      ],
+      [
+        1187,
+        "<div class=\"flow-badge\" style=\"background:rgba(139,92,246,0.08); color:#a78bfa; border:1px solid rgba(139,92,246,0.2);\">Webhooks</div>"
+      ],
+      [
+        1211,
+        "<div class=\"flow-badge\" style=\"background:rgba(34,197,94,0.08); color:var(--accent-green); border:1px solid rgba(34,197,94,0.2);\">Reports</div>"
+      ]
+    ],
+    "bouncy_transforms": [
+      [
+        323,
+        "transform: translateY(-3px);"
+      ],
+      [
+        448,
+        "transform: scale(1.08) translate(-5px, -10px);"
+      ],
+      [
+        539,
+        "background: rgba(255,255,255,0.03); border-color: rgba(0,0,0,0.4); transform: translateY(-3px); box-shadow: 0 10px 40px rgba(0,0,0,0.5);"
+      ]
+    ]
+  },
+  "api.html": {
+    "neon_indicators": [
+      [
+        122,
+        ".method-post { background: rgba(34, 197, 94, 0.18); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }"
+      ],
+      [
+        365,
+        "<div class=\"endpoint-pill\" style=\"margin-bottom: 20px; color:#4ade80;\">"
+      ],
+      [
+        517,
+        "<pre id=\"searchResponseOutput\" class=\"code-block\" style=\"background:#070a0e; border-radius:8px; max-height:220px; overflow-y:auto; border:1px solid rgba(255,255,255,0.06); font-size:0.76rem; color:#4ade80;\">// Click \"Execute Test Call\" to simulate live JSON payload...</pre>"
+      ]
+    ],
+    "pastel_neon_colors": [
+      [
+        111,
+        "color: #38bdf8;"
+      ],
+      [
+        122,
+        ".method-post { background: rgba(34, 197, 94, 0.18); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }"
+      ],
+      [
+        123,
+        ".method-get { background: rgba(59, 130, 246, 0.18); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }"
+      ],
+      [
+        197,
+        "color: #38bdf8;"
+      ],
+      [
+        275,
+        ".param-name { font-family: monospace; color: #38bdf8; font-weight: 600; }"
+      ],
+      [
+        276,
+        ".param-req { font-size: 0.65rem; color: #f87171; font-weight: 700; background: rgba(239, 68, 68, 0.1); padding: 2px 6px; border-radius: 4px; margin-left: 6px; }"
+      ],
+      [
+        348,
+        "<div style=\"display:inline-flex; align-items:center; gap:8px; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#38bdf8; background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25); padding:4px 12px; border-radius:99px; margin-bottom:14px;\">"
+      ],
+      [
+        365,
+        "<div class=\"endpoint-pill\" style=\"margin-bottom: 20px; color:#4ade80;\">"
+      ],
+      [
+        388,
+        "Authenticate all API requests by providing your API secret key in the HTTP <code>Authorization</code> header using the <code>Bearer</code> scheme. You can generate and rotate production keys in your <a href=\"dashboard.html\" style=\"color:#38bdf8; text-decoration:none;\">Dashboard Settings</a>."
+      ],
+      [
+        517,
+        "<pre id=\"searchResponseOutput\" class=\"code-block\" style=\"background:#070a0e; border-radius:8px; max-height:220px; overflow-y:auto; border:1px solid rgba(255,255,255,0.06); font-size:0.76rem; color:#4ade80;\">// Click \"Execute Test Call\" to simulate live JSON payload...</pre>"
+      ],
+      [
+        547,
+        "<pre class=\"code-block\" style=\"background:#070a0e; border-radius:8px; border:1px solid rgba(255,255,255,0.06); font-size:0.76rem; color:#93c5fd;\">{"
+      ],
+      [
+        650,
+        "<a href=\"api.html\" style=\"font-size:0.85rem; color:#38bdf8; text-decoration:none; font-weight:600;\">REST API Docs</a>"
+      ],
+      [
+        716,
+        "pill.style.color = '#38bdf8';"
+      ]
+    ],
+    "ai_tropes": [
+      [
+        128,
+        "backdrop-filter: blur(24px);"
+      ],
+      [
+        129,
+        "-webkit-backdrop-filter: blur(24px);"
+      ]
+    ],
+    "tinted_icon_boxes": [
+      [
+        122,
+        ".method-post { background: rgba(34, 197, 94, 0.18); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }"
+      ],
+      [
+        123,
+        ".method-get { background: rgba(59, 130, 246, 0.18); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }"
+      ]
+    ]
+  },
+  "contact.html": {
+    "pastel_neon_colors": [
+      [
+        134,
+        "color: #93c5fd;"
+      ],
+      [
+        154,
+        "background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);"
+      ],
+      [
+        402,
+        "color: #93c5fd;"
+      ],
+      [
+        684,
+        ".comp-table tr.hl td:first-child { font-weight: 700; color: #60a5fa; }"
+      ],
+      [
+        889,
+        "<a href=\"#\" style=\"width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:var(--text-tertiary); transition:all 0.2s;\" onmouseover=\"this.style.background='rgba(59,130,246,0.15)';this.style.color='#60a5fa'\" onmouseout=\"this.style.background='rgba(255,255,255,0.05)';this.style.color=''\">"
+      ]
+    ],
+    "ai_tropes": [
+      [
+        155,
+        "-webkit-background-clip: text;"
+      ],
+      [
+        157,
+        "background-clip: text;"
+      ],
+      [
+        303,
+        "background: linear-gradient(135deg,var(--accent-blue),#8b5cf6);"
+      ],
+      [
+        641,
+        "background: linear-gradient(135deg,var(--accent-blue),#8b5cf6);"
+      ],
+      [
+        830,
+        "<div style=\"position: relative; background: var(--bg-surface-glass); border: 1px solid var(--border-glass); border-radius: 16px; padding: 36px; backdrop-filter: blur(16px); overflow: hidden;\">"
+      ]
+    ],
+    "emoji_clutter": [
+      [
+        7,
+        "<meta name=\"description\" content=\"Get in touch with the LeadintelAI team for enterprise sales, custom API integration, or technical support. Accelerate your outbound revenue today \u2713\">"
+      ],
+      [
+        17,
+        "<meta property=\"og:description\" content=\"Get in touch with the LeadintelAI team for enterprise sales, custom API integration, or technical support. Accelerate your outbound revenue today \u2713\">"
+      ],
+      [
+        30,
+        "<meta name=\"twitter:description\" content=\"Get in touch with the LeadintelAI team for enterprise sales, custom API integration, or technical support. Accelerate your outbound revenue today \u2713\">"
+      ],
+      [
+        478,
+        "content: '\u2713'; color: var(--feat-check, var(--accent-blue)); font-size: 0.75rem; flex-shrink: 0; font-weight: 800;"
+      ]
+    ],
+    "tinted_icon_boxes": [
+      [
+        323,
+        "background: rgba(59,130,246,0.04);"
+      ],
+      [
+        325,
+        ".pillar-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }"
+      ],
+      [
+        386,
+        ".swap-good:hover { background: rgba(59,130,246,0.02); }"
+      ],
+      [
+        399,
+        "background: rgba(59,130,246,0.07);"
+      ],
+      [
+        657,
+        "background: rgba(59,130,246,0.10);"
+      ]
+    ],
+    "bouncy_transforms": [
+      [
+        322,
+        "transform: translateY(-3px);"
+      ],
+      [
+        447,
+        "transform: scale(1.08) translate(-5px, -10px);"
+      ],
+      [
+        538,
+        "background: rgba(255,255,255,0.03); border-color: rgba(0,0,0,0.4); transform: translateY(-3px); box-shadow: 0 10px 40px rgba(0,0,0,0.5);"
+      ],
+      [
+        833,
+        "<div style=\"position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.15; mask-image: radial-gradient(ellipse at bottom right, black 10%, transparent 80%); -webkit-mask-image: radial-gradient(ellipse at bottom right, black 10%, transparent 80%); transform: scale(1.5);\">"
+      ]
+    ]
+  },
+  "crm.html": {
+    "neon_indicators": [
+      [
+        555,
+        "<span class=\"stat-indicator-dot\"></span>"
+      ],
+      [
+        563,
+        "<span class=\"stat-indicator-dot\"></span>"
+      ],
+      [
+        571,
+        "<span class=\"stat-indicator-dot\"></span>"
+      ],
+      [
+        579,
+        "<span class=\"stat-indicator-dot\"></span>"
+      ],
+      [
+        619,
+        "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2\"><path d=\"M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z\"/></svg>"
+      ]
+    ],
+    "pastel_neon_colors": [
+      [
+        136,
+        "color: #60a5fa;"
+      ],
+      [
+        156,
+        "color: #60a5fa;"
+      ],
+      [
+        286,
+        ".swap-header-bad { color: #f87171; text-align: right; padding-right: 12px; }"
+      ],
+      [
+        287,
+        ".swap-header-good { color: #60a5fa; padding-left: 12px; }"
+      ],
+      [
+        346,
+        "color: #60a5fa;"
+      ],
+      [
+        381,
+        ".gov-pill svg { color: #60a5fa; }"
+      ],
+      [
+        405,
+        "color: #60a5fa;"
+      ],
+      [
+        601,
+        "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"5\" rx=\"1\"/><rect x=\"14\" y=\"12\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"3\" y=\"16\" width=\"7\" height=\"5\" rx=\"1\"/></svg>"
+      ],
+      [
+        610,
+        "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2\"><path d=\"M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\"/></svg>"
+      ],
+      [
+        619,
+        "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2\"><path d=\"M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z\"/></svg>"
+      ],
+      [
+        650,
+        "<div class=\"swap-header-title swap-header-good\" style=\"color:#60a5fa;\">Leadintel AI CRM</div>"
+      ],
+      [
+        657,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2.5\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>"
+      ],
+      [
+        660,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        669,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2.5\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>"
+      ],
+      [
+        672,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        681,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2.5\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>"
+      ],
+      [
+        684,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        693,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2.5\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>"
+      ],
+      [
+        696,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        705,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2.5\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>"
+      ],
+      [
+        708,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        726,
+        "<div class=\"governance-badge\" style=\"background:rgba(59,130,246,0.1); border-color:rgba(59,130,246,0.25); color:#60a5fa;\">"
+      ],
+      [
+        736,
+        "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        740,
+        "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        744,
+        "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        748,
+        "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        808,
+        "<a href=\"#\" style=\"width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:var(--text-tertiary); transition:all 0.2s;\" onmouseover=\"this.style.background='rgba(59,130,246,0.15)';this.style.color='#60a5fa'\" onmouseout=\"this.style.background='rgba(255,255,255,0.05)';this.style.color=''\">"
+      ]
+    ],
+    "emoji_clutter": [
+      [
+        7,
+        "<meta name=\"description\" content=\"Close deals faster with modern AI CRM. Kanban pipeline, predictive deal scoring (0\u2013100), automated next-best actions, and 1-click WhatsApp & email sync \u2713\">"
+      ],
+      [
+        17,
+        "<meta property=\"og:description\" content=\"Close deals faster with modern AI CRM. Kanban pipeline, predictive deal scoring (0\u2013100), automated next-best actions, and 1-click WhatsApp & email sync \u2713\">"
+      ],
+      [
+        30,
+        "<meta name=\"twitter:description\" content=\"Close deals faster with modern AI CRM. Kanban pipeline, predictive deal scoring (0\u2013100), automated next-best actions, and 1-click WhatsApp & email sync \u2713\">"
+      ]
+    ],
+    "tinted_icon_boxes": [
+      [
+        123,
+        "background: rgba(59,130,246,0.12);"
+      ],
+      [
+        243,
+        "background: rgba(59,130,246,0.04);"
+      ],
+      [
+        245,
+        ".pillar-icon {"
+      ],
+      [
+        314,
+        ".swap-good:hover { background: rgba(59,130,246,0.04); }"
+      ],
+      [
+        344,
+        "background: rgba(59,130,246,0.1);"
+      ],
+      [
+        600,
+        "<div class=\"pillar-icon\" style=\"background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.25);\">"
+      ],
+      [
+        609,
+        "<div class=\"pillar-icon\" style=\"background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.25);\">"
+      ],
+      [
+        618,
+        "<div class=\"pillar-icon\" style=\"background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.25);\">"
+      ],
+      [
+        627,
+        "<div class=\"pillar-icon\" style=\"background:rgba(251,146,60,0.1); border:1px solid rgba(251,146,60,0.25);\">"
+      ],
+      [
+        726,
+        "<div class=\"governance-badge\" style=\"background:rgba(59,130,246,0.1); border-color:rgba(59,130,246,0.25); color:#60a5fa;\">"
+      ]
+    ],
+    "bouncy_transforms": [
+      [
+        242,
+        "transform: translateY(-3px);"
+      ]
+    ]
+  },
+  "dashboard.html": {
+    "neon_indicators": [
+      [
+        96,
+        ".pulse-dot {"
+      ],
+      [
+        984,
+        "<span class=\"pulse-dot\"></span>"
+      ]
+    ],
+    "pastel_neon_colors": [
+      [
+        78,
+        "background: linear-gradient(135deg, #60a5fa, #2563eb);"
+      ],
+      [
+        93,
+        "color: #93c5fd;"
+      ],
+      [
+        130,
+        "color: #38bdf8;"
+      ],
+      [
+        239,
+        "color: #60a5fa;"
+      ],
+      [
+        246,
+        ".reset-link:hover { color: #93c5fd; text-decoration: underline; }"
+      ],
+      [
+        313,
+        "color: #93c5fd;"
+      ],
+      [
+        494,
+        "color: #bfdbfe;"
+      ],
+      [
+        545,
+        "color: #93c5fd;"
+      ],
+      [
+        725,
+        "color: #60a5fa;"
+      ],
+      [
+        762,
+        "color: #93c5fd;"
+      ],
+      [
+        1159,
+        "<span class=\"stat-tag\" style=\"color: #60a5fa;\">\u20b915 / contact</span>"
+      ],
+      [
+        1283,
+        "<span class=\"signal-pill\" style=\"color: #60a5fa; background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);\">\u2709\ufe0f MX Deliverable</span>"
+      ],
+      [
+        1334,
+        "<span class=\"signal-pill\" style=\"color: #60a5fa; background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);\">\u2709\ufe0f MX Deliverable</span>"
+      ],
+      [
+        1385,
+        "<span class=\"signal-pill\" style=\"color: #60a5fa; background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);\">\u2709\ufe0f MX Deliverable</span>"
+      ],
+      [
+        1436,
+        "<span class=\"signal-pill\" style=\"color: #60a5fa; background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);\">\u2709\ufe0f MX Deliverable</span>"
+      ],
+      [
+        1453,
+        "<div class=\"person-avatar\" style=\"background: linear-gradient(135deg, #06b6d4, #0891b2);\">VN</div>"
+      ],
+      [
+        1487,
+        "<span class=\"signal-pill\" style=\"color: #60a5fa; background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);\">\u2709\ufe0f MX Deliverable</span>"
+      ],
+      [
+        1538,
+        "<span class=\"signal-pill\" style=\"color: #60a5fa; background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);\">\u2709\ufe0f MX Deliverable</span>"
+      ],
+      [
+        1573,
+        "<div style=\"font-weight: 700; color: #38bdf8; font-family: var(--font-mono);\">+\u20b95,000</div>"
+      ],
+      [
+        1581,
+        "<div style=\"font-weight: 700; color: #38bdf8; font-family: var(--font-mono);\">+\u20b910,000</div>"
+      ],
+      [
+        1589,
+        "<div style=\"font-weight: 700; color: #38bdf8; font-family: var(--font-mono);\">+\u20b925,000</div>"
+      ],
+      [
+        1669,
+        "<a href=\"tel:${rawPhone}\" style=\"color: #38bdf8; text-decoration: underline;\" title=\"Call via SIM\">${rawPhone}</a>"
+      ],
+      [
+        1680,
+        "<a href=\"mailto:${rawEmail}\" style=\"color: #60a5fa; text-decoration: underline;\" title=\"Send Work Email\">${rawEmail}</a>"
+      ]
+    ],
+    "ai_tropes": [
+      [
+        42,
+        "backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        43,
+        "-webkit-backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        79,
+        "-webkit-background-clip: text;"
+      ],
+      [
+        205,
+        "backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        206,
+        "-webkit-backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        411,
+        "backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        412,
+        "-webkit-backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        461,
+        "backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        462,
+        "-webkit-backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        555,
+        "backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        556,
+        "-webkit-backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        584,
+        "backdrop-filter: blur(16px);"
+      ],
+      [
+        585,
+        "-webkit-backdrop-filter: blur(16px);"
+      ],
+      [
+        794,
+        "backdrop-filter: blur(8px);"
+      ],
+      [
+        795,
+        "-webkit-backdrop-filter: blur(8px);"
+      ],
+      [
+        833,
+        "backdrop-filter: blur(20px);"
+      ],
+      [
+        834,
+        "-webkit-backdrop-filter: blur(20px);"
+      ],
+      [
+        858,
+        "backdrop-filter: blur(8px);"
+      ],
+      [
+        859,
+        "-webkit-backdrop-filter: blur(8px);"
+      ],
+      [
+        874,
+        "backdrop-filter: blur(28px);"
+      ],
+      [
+        1351,
+        "<div class=\"person-avatar\" style=\"background: linear-gradient(135deg, #8b5cf6, #6d28d9);\">RD</div>"
+      ],
+      [
+        1453,
+        "<div class=\"person-avatar\" style=\"background: linear-gradient(135deg, #06b6d4, #0891b2);\">VN</div>"
+      ]
+    ],
+    "emoji_clutter": [
+      [
+        992,
+        "<span style=\"font-size: 0.95rem;\">\ud83d\udcb3</span>"
+      ],
+      [
+        1022,
+        "<span>\ud83c\udfaf</span>"
+      ],
+      [
+        1078,
+        "<option value=\"IN\" selected>\ud83c\uddee\ud83c\uddf3 India (Pan-India HQ)</option>"
+      ],
+      [
+        1079,
+        "<option value=\"BLR\">\ud83c\uddee\ud83c\uddf3 Bengaluru / Karnataka</option>"
+      ],
+      [
+        1080,
+        "<option value=\"MUM\">\ud83c\uddee\ud83c\uddf3 Mumbai / Maharashtra</option>"
+      ],
+      [
+        1081,
+        "<option value=\"DEL\">\ud83c\uddee\ud83c\uddf3 Delhi NCR / Gurgaon / Noida</option>"
+      ],
+      [
+        1082,
+        "<option value=\"HYD\">\ud83c\uddee\ud83c\uddf3 Hyderabad / Telangana</option>"
+      ],
+      [
+        1083,
+        "<option value=\"PUN\">\ud83c\uddee\ud83c\uddf3 Pune / Tech Corridor</option>"
+      ],
+      [
+        1084,
+        "<option value=\"US\">\ud83c\uddfa\ud83c\uddf8 United States (Global Tier 1)</option>"
+      ],
+      [
+        1085,
+        "<option value=\"AE\">\ud83c\udde6\ud83c\uddea UAE / Middle East Hub</option>"
+      ],
+      [
+        1124,
+        "<span class=\"kbd-hint\">\u2318\u21b5</span>"
+      ],
+      [
+        1170,
+        "<span class=\"chip-remove\" onclick=\"removeFilter('role')\">\u2715</span>"
+      ],
+      [
+        1174,
+        "<span class=\"chip-remove\" onclick=\"removeFilter('industry')\">\u2715</span>"
+      ],
+      [
+        1180,
+        "<span>\u2713 SIM Active</span>"
+      ],
+      [
+        1256,
+        "<span>\ud83d\udccd Bengaluru, Karnataka</span>"
+      ],
+      [
+        1282,
+        "<span class=\"signal-pill\">\u26a1 SIM Active</span>"
+      ],
+      [
+        1283,
+        "<span class=\"signal-pill\" style=\"color: #60a5fa; background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);\">\u2709\ufe0f MX Deliverable</span>"
+      ],
+      [
+        1307,
+        "<span>\ud83d\udccd Mumbai, Maharashtra</span>"
+      ],
+      [
+        1333,
+        "<span class=\"signal-pill\">\u26a1 SIM Active</span>"
+      ],
+      [
+        1334,
+        "<span class=\"signal-pill\" style=\"color: #60a5fa; background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);\">\u2709\ufe0f MX Deliverable</span>"
+      ],
+      [
+        1358,
+        "<span>\ud83d\udccd Delhi NCR / Gurgaon</span>"
+      ],
+      [
+        1384,
+        "<span class=\"signal-pill\">\u26a1 SIM Active</span>"
+      ],
+      [
+        1385,
+        "<span class=\"signal-pill\" style=\"color: #60a5fa; background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);\">\u2709\ufe0f MX Deliverable</span>"
+      ],
+      [
+        1409,
+        "<span>\ud83d\udccd Hyderabad, Telangana</span>"
+      ],
+      [
+        1435,
+        "<span class=\"signal-pill\">\u26a1 SIM Active</span>"
+      ],
+      [
+        1436,
+        "<span class=\"signal-pill\" style=\"color: #60a5fa; background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);\">\u2709\ufe0f MX Deliverable</span>"
+      ],
+      [
+        1460,
+        "<span>\ud83d\udccd Pune, Maharashtra</span>"
+      ],
+      [
+        1486,
+        "<span class=\"signal-pill\">\u26a1 SIM Active</span>"
+      ],
+      [
+        1487,
+        "<span class=\"signal-pill\" style=\"color: #60a5fa; background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);\">\u2709\ufe0f MX Deliverable</span>"
+      ],
+      [
+        1511,
+        "<span>\ud83d\udccd Kolkata / Bengaluru</span>"
+      ],
+      [
+        1537,
+        "<span class=\"signal-pill\">\u26a1 SIM Active</span>"
+      ],
+      [
+        1538,
+        "<span class=\"signal-pill\" style=\"color: #60a5fa; background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);\">\u2709\ufe0f MX Deliverable</span>"
+      ],
+      [
+        1560,
+        "<button class=\"modal-close\" onclick=\"closeTopUpModal()\">\u2715</button>"
+      ],
+      [
+        1617,
+        "function showToast(msg, icon = '\u2728') {"
+      ],
+      [
+        1648,
+        "showToast('Insufficient wallet balance. Please top up credits.', '\u26a0\ufe0f');"
+      ],
+      [
+        1694,
+        "showToast(`Contact revealed! -\u20b9${cost} deducted. Remaining: \u20b9${currentWallet.toLocaleString('en-IN')}`, '\ud83d\udd13');"
+      ],
+      [
+        1699,
+        "showToast(`Copied: ${str}`, '\ud83d\udccb');"
+      ],
+      [
+        1701,
+        "showToast(`Copied to clipboard`, '\ud83d\udccb');"
+      ],
+      [
+        1721,
+        "showToast('All filters have been reset to default', '\ud83d\udd04');"
+      ],
+      [
+        1745,
+        "showToast(`Refreshed: ${baseCount.toLocaleString('en-IN')} verified contacts matched`, '\u26a1');"
+      ],
+      [
+        1776,
+        "const loc = row.querySelector('.person-geo span').textContent.trim().replace('\ud83d\udccd ', '');"
+      ],
+      [
+        1791,
+        "showToast(\"CSV file generated and downloaded successfully!\", \"\ud83d\udce5\");"
+      ],
+      [
+        1795,
+        "showToast(\"Query saved to your Saved Searches dashboard tab\", \"\ud83d\udcbe\");"
+      ],
+      [
+        1800,
+        "showToast(`Synced ${selected} verified mobile records to WhatsApp Suite drip campaign!`, \"\ud83d\udcac\");"
+      ],
+      [
+        1819,
+        "showToast(`Recharge successful! +\u20b9${selectedTopUpAmount.toLocaleString('en-IN')} added to your wallet.`, '\ud83d\udcb3');"
+      ],
+      [
+        1856,
+        "showToast('Connected from DataCloud: Query context synchronized', '\ud83c\udfaf');"
+      ]
+    ],
+    "tinted_icon_boxes": [
+      [
+        1283,
+        "<span class=\"signal-pill\" style=\"color: #60a5fa; background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);\">\u2709\ufe0f MX Deliverable</span>"
+      ],
+      [
+        1334,
+        "<span class=\"signal-pill\" style=\"color: #60a5fa; background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);\">\u2709\ufe0f MX Deliverable</span>"
+      ],
+      [
+        1385,
+        "<span class=\"signal-pill\" style=\"color: #60a5fa; background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);\">\u2709\ufe0f MX Deliverable</span>"
+      ],
+      [
+        1436,
+        "<span class=\"signal-pill\" style=\"color: #60a5fa; background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);\">\u2709\ufe0f MX Deliverable</span>"
+      ],
+      [
+        1487,
+        "<span class=\"signal-pill\" style=\"color: #60a5fa; background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);\">\u2709\ufe0f MX Deliverable</span>"
+      ],
+      [
+        1538,
+        "<span class=\"signal-pill\" style=\"color: #60a5fa; background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.2);\">\u2709\ufe0f MX Deliverable</span>"
+      ]
+    ]
+  },
+  "data.html": {
+    "neon_indicators": [
+      [
+        197,
+        "color: #22c55e;"
+      ],
+      [
+        337,
+        "color: #4ade80;"
+      ],
+      [
+        527,
+        "<span class=\"stat-indicator-dot\"></span>"
+      ],
+      [
+        535,
+        "<span class=\"stat-indicator-dot\"></span>"
+      ],
+      [
+        543,
+        "<span class=\"stat-indicator-dot\"></span>"
+      ],
+      [
+        551,
+        "<span class=\"stat-indicator-dot\"></span>"
+      ],
+      [
+        579,
+        "<span class=\"stream-dot\"></span>"
+      ],
+      [
+        707,
+        "<span class=\"status-pulse-dot\"></span>"
+      ],
+      [
+        1047,
+        "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2\"><rect x=\"2\" y=\"4\" width=\"20\" height=\"16\" rx=\"2\"/><path d=\"m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7\"/></svg>"
+      ]
+    ],
+    "pastel_neon_colors": [
+      [
+        197,
+        "color: #22c55e;"
+      ],
+      [
+        277,
+        ".swap-header-bad { color: #f87171; text-align: right; padding-right: 12px; }"
+      ],
+      [
+        337,
+        "color: #4ade80;"
+      ],
+      [
+        667,
+        "<svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2.2\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/></svg>"
+      ],
+      [
+        1047,
+        "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2\"><rect x=\"2\" y=\"4\" width=\"20\" height=\"16\" rx=\"2\"/><path d=\"m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7\"/></svg>"
+      ],
+      [
+        1094,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2.5\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>"
+      ],
+      [
+        1106,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2.5\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>"
+      ],
+      [
+        1118,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2.5\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>"
+      ],
+      [
+        1130,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2.5\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>"
+      ],
+      [
+        1142,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2.5\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>"
+      ]
+    ],
+    "ai_tropes": [
+      [
+        145,
+        "color: #d8b4fe;"
+      ],
+      [
+        165,
+        "color: #c084fc;"
+      ],
+      [
+        278,
+        ".swap-header-good { color: #c084fc; padding-left: 12px; }"
+      ],
+      [
+        372,
+        ".gov-pill svg { color: #c084fc; }"
+      ],
+      [
+        510,
+        "<a href=\"login.html?mode=signup\" class=\"btn-primary\" style=\"padding: 11px 22px; font-size: 0.92rem; background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);\">Start Prospecting (50 Free Leads) \u2192</a>"
+      ],
+      [
+        1038,
+        "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#c084fc\" stroke-width=\"2\"><path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"/></svg>"
+      ],
+      [
+        1097,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#c084fc\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        1109,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#c084fc\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        1121,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#c084fc\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        1133,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#c084fc\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        1145,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#c084fc\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        1210,
+        "<a href=\"#\" style=\"width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:var(--text-tertiary); transition:all 0.2s;\" onmouseover=\"this.style.background='rgba(168,85,247,0.15)';this.style.color='#c084fc'\" onmouseout=\"this.style.background='rgba(255,255,255,0.05)';this.style.color=''\">"
+      ]
+    ],
+    "emoji_clutter": [
+      [
+        7,
+        "<meta name=\"description\" content=\"Access 52M+ verified Indian B2B decision-makers with direct mobile SIM pings and MCA-matched corporate emails. \u20b94\u20136/lead with 99.4% deliverability guarantee \u2713\">"
+      ],
+      [
+        17,
+        "<meta property=\"og:description\" content=\"Access 52M+ verified Indian B2B decision-makers with direct mobile SIM pings and MCA-matched corporate emails. \u20b94\u20136/lead with 99.4% deliverability guarantee \u2713\">"
+      ],
+      [
+        30,
+        "<meta name=\"twitter:description\" content=\"Access 52M+ verified Indian B2B decision-makers with direct mobile SIM pings and MCA-matched corporate emails. \u20b94\u20136/lead with 99.4% deliverability guarantee \u2713\">"
+      ],
+      [
+        914,
+        "btn.innerHTML = '<svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#25d366\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg><span style=\"color:#25d366;\">Copied \u2713</span>';"
+      ]
+    ],
+    "tinted_icon_boxes": [
+      [
+        234,
+        "background: rgba(168,85,247,0.04);"
+      ],
+      [
+        236,
+        ".pillar-icon {"
+      ],
+      [
+        305,
+        ".swap-good:hover { background: rgba(168,85,247,0.04); }"
+      ],
+      [
+        335,
+        "background: rgba(34,197,94,0.1);"
+      ],
+      [
+        1037,
+        "<div class=\"pillar-icon\" style=\"background:rgba(168,85,247,0.1); border:1px solid rgba(168,85,247,0.25);\">"
+      ],
+      [
+        1046,
+        "<div class=\"pillar-icon\" style=\"background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.25);\">"
+      ],
+      [
+        1055,
+        "<div class=\"pillar-icon\" style=\"background:rgba(139,92,246,0.1); border:1px solid rgba(139,92,246,0.25);\">"
+      ],
+      [
+        1064,
+        "<div class=\"pillar-icon\" style=\"background:rgba(251,146,60,0.1); border:1px solid rgba(251,146,60,0.25);\">"
+      ]
+    ],
+    "bouncy_transforms": [
+      [
+        233,
+        "transform: translateY(-3px);"
+      ]
+    ]
+  },
+  "login.html": {
+    "neon_indicators": [
+      [
+        1413,
+        "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2.5\">"
+      ]
+    ],
+    "pastel_neon_colors": [
+      [
+        469,
+        "color: #fca5a5;"
+      ],
+      [
+        643,
+        "color: #93c5fd;"
+      ],
+      [
+        692,
+        "color: #60a5fa;"
+      ],
+      [
+        701,
+        "color: #93c5fd;"
+      ],
+      [
+        778,
+        "color: #60a5fa;"
+      ],
+      [
+        789,
+        "color: #93c5fd;"
+      ],
+      [
+        1413,
+        "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2.5\">"
+      ],
+      [
+        1419,
+        "We sent recovery instructions to <strong id=\"sentEmailTarget\" style=\"color:#60a5fa;\"></strong>. Link valid for 15 minutes."
+      ]
+    ],
+    "ai_tropes": [
+      [
+        128,
+        "backdrop-filter: blur(20px) saturate(200%);"
+      ],
+      [
+        129,
+        "-webkit-backdrop-filter: blur(20px) saturate(200%);"
+      ],
+      [
+        274,
+        "backdrop-filter: blur(32px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        275,
+        "-webkit-backdrop-filter: blur(32px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        382,
+        "backdrop-filter: blur(20px) saturate(200%);"
+      ],
+      [
+        383,
+        "-webkit-backdrop-filter: blur(20px) saturate(200%);"
+      ],
+      [
+        465,
+        "backdrop-filter: blur(14px);"
+      ],
+      [
+        466,
+        "-webkit-backdrop-filter: blur(14px);"
+      ],
+      [
+        485,
+        "backdrop-filter: blur(14px);"
+      ],
+      [
+        486,
+        "-webkit-backdrop-filter: blur(14px);"
+      ],
+      [
+        612,
+        "backdrop-filter: blur(16px);"
+      ],
+      [
+        613,
+        "-webkit-backdrop-filter: blur(16px);"
+      ],
+      [
+        712,
+        "backdrop-filter: blur(16px);"
+      ],
+      [
+        713,
+        "-webkit-backdrop-filter: blur(16px);"
+      ],
+      [
+        847,
+        "-webkit-background-clip: text;"
+      ],
+      [
+        869,
+        "backdrop-filter: blur(28px) saturate(210%);"
+      ],
+      [
+        870,
+        "-webkit-backdrop-filter: blur(28px) saturate(210%);"
+      ],
+      [
+        985,
+        "backdrop-filter: blur(32px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        986,
+        "-webkit-backdrop-filter: blur(32px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        1141,
+        "backdrop-filter: blur(20px);"
+      ],
+      [
+        1142,
+        "-webkit-backdrop-filter: blur(20px);"
+      ]
+    ]
+  },
+  "mailing.html": {
+    "neon_indicators": [
+      [
+        528,
+        "<span class=\"stat-indicator-dot\"></span>"
+      ],
+      [
+        536,
+        "<span class=\"stat-indicator-dot\"></span>"
+      ],
+      [
+        544,
+        "<span class=\"stat-indicator-dot\"></span>"
+      ],
+      [
+        552,
+        "<span class=\"stat-indicator-dot\"></span>"
+      ],
+      [
+        592,
+        "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2\"><polyline points=\"22 12 18 12 15 21 9 3 6 12 2 12\"/></svg>"
+      ]
+    ],
+    "pastel_neon_colors": [
+      [
+        136,
+        "color: #fbbf24;"
+      ],
+      [
+        156,
+        "color: #fbbf24;"
+      ],
+      [
+        167,
+        "background: linear-gradient(90deg, #fbbf24, transparent);"
+      ],
+      [
+        178,
+        ".about-hero-note svg { color: #fbbf24; flex-shrink: 0; }"
+      ],
+      [
+        196,
+        "color: #fbbf24; margin-bottom: 14px;"
+      ],
+      [
+        266,
+        ".swap-header-bad { color: #f87171; text-align: right; padding-right: 12px; }"
+      ],
+      [
+        267,
+        ".swap-header-good { color: #fbbf24; padding-left: 12px; }"
+      ],
+      [
+        326,
+        "color: #fbbf24;"
+      ],
+      [
+        361,
+        ".gov-pill svg { color: #fbbf24; }"
+      ],
+      [
+        390,
+        "color: #fbbf24;"
+      ],
+      [
+        574,
+        "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fbbf24\" stroke-width=\"2\"><path d=\"M13 2L3 14h9l-1 8 10-12h-9l1-8z\"/></svg>"
+      ],
+      [
+        592,
+        "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2\"><polyline points=\"22 12 18 12 15 21 9 3 6 12 2 12\"/></svg>"
+      ],
+      [
+        623,
+        "<div class=\"swap-header-title swap-header-good\" style=\"color:#fbbf24;\">Leadintel MailEngine</div>"
+      ],
+      [
+        630,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2.5\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>"
+      ],
+      [
+        633,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fbbf24\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        642,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2.5\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>"
+      ],
+      [
+        645,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fbbf24\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        654,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2.5\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>"
+      ],
+      [
+        657,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fbbf24\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        666,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2.5\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>"
+      ],
+      [
+        669,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fbbf24\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        678,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2.5\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>"
+      ],
+      [
+        681,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fbbf24\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        709,
+        "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fbbf24\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        713,
+        "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fbbf24\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        717,
+        "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fbbf24\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        721,
+        "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fbbf24\" stroke-width=\"2.5\"><polyline points=\"20 6 9 17 4 12\"/></svg>"
+      ],
+      [
+        781,
+        "<a href=\"#\" style=\"width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:var(--text-tertiary); transition:all 0.2s;\" onmouseover=\"this.style.background='rgba(59,130,246,0.15)';this.style.color='#60a5fa'\" onmouseout=\"this.style.background='rgba(255,255,255,0.05)';this.style.color=''\">"
+      ]
+    ],
+    "emoji_clutter": [
+      [
+        7,
+        "<meta name=\"description\" content=\"Scale high-volume cold email outreach with automated domain warmup, multi-inbox rotation, dynamic A/B testing, and real-time AI CRM pipeline sync \u2713\">"
+      ],
+      [
+        17,
+        "<meta property=\"og:description\" content=\"Scale high-volume cold email outreach with automated domain warmup, multi-inbox rotation, dynamic A/B testing, and real-time AI CRM pipeline sync \u2713\">"
+      ],
+      [
+        30,
+        "<meta name=\"twitter:description\" content=\"Scale high-volume cold email outreach with automated domain warmup, multi-inbox rotation, dynamic A/B testing, and real-time AI CRM pipeline sync \u2713\">"
+      ]
+    ],
+    "tinted_icon_boxes": [
+      [
+        123,
+        "background: rgba(245,158,11,0.12);"
+      ],
+      [
+        223,
+        "background: rgba(245,158,11,0.04);"
+      ],
+      [
+        225,
+        ".pillar-icon {"
+      ],
+      [
+        294,
+        ".swap-good:hover { background: rgba(245,158,11,0.04); }"
+      ],
+      [
+        324,
+        "background: rgba(245,158,11,0.12);"
+      ],
+      [
+        573,
+        "<div class=\"pillar-icon\" style=\"background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.25);\">"
+      ],
+      [
+        582,
+        "<div class=\"pillar-icon\" style=\"background:rgba(99,102,241,0.1); border:1px solid rgba(99,102,241,0.25);\">"
+      ],
+      [
+        591,
+        "<div class=\"pillar-icon\" style=\"background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.25);\">"
+      ],
+      [
+        600,
+        "<div class=\"pillar-icon\" style=\"background:rgba(251,146,60,0.1); border:1px solid rgba(251,146,60,0.25);\">"
+      ]
+    ],
+    "bouncy_transforms": [
+      [
+        222,
+        "transform: translateY(-3px);"
+      ]
+    ]
+  },
+  "maya.html": {
+    "neon_indicators": [
+      [
+        209,
+        ".cn[data-s=ask] .cnd{background:var(--ac)}.cn[data-s=busy] .cnd{background:#e8912d;animation:cnPulse 1.1s ease-in-out infinite}"
+      ],
+      [
+        266,
+        ".cva{position:absolute;top:12px;right:12px;width:8px;height:8px;border-radius:50%;background:var(--cr);box-shadow:0 0 0 3px var(--crb);animation:cnPulse 1.4s ease-in-out infinite}"
+      ]
+    ],
+    "pastel_neon_colors": [
+      [
+        13,
+        ":root{--tx:#f8fafc;--tx2:#94a3b8;--tx3:#64748b;--ac:#2563eb;--acs:rgba(37,99,235,.16);--line:rgba(255,255,255,.08);--line-strong:rgba(255,255,255,.12);--g1:rgba(12,13,18,.75);--g2:rgba(10,11,16,.85);--sel:rgba(255,255,255,.06);--bub:rgba(18,20,28,.82);--elev:rgba(24,26,36,.94);--cg:#10b981;--cr:#ef4444;--co:#f59e0b;--cgb:rgba(16,185,129,.16);--crb:rgba(239,68,68,.16);--cob:rgba(245,158,11,.16);--ct:#38bdf8;--tintb:rgba(56,189,248,.12);--w1:rgba(37,99,235,.09);--w2:rgba(15,23,42,.65);--w3:rgba(139,0,0,.07);--ok:#10b981;--bad:#ef4444}"
+      ],
+      [
+        14,
+        "@media (prefers-color-scheme:dark){:root:not([data-theme=\"light\"]){--tx:#f8fafc;--tx2:#94a3b8;--line:rgba(255,255,255,.08);--g1:rgba(12,13,18,.75);--g2:rgba(10,11,16,.85);--sel:rgba(255,255,255,.06);--bub:rgba(18,20,28,.82);--elev:rgba(24,26,36,.94);--cg:#10b981;--cr:#ef4444;--co:#f59e0b;--cgb:rgba(16,185,129,.16);--crb:rgba(239,68,68,.16);--cob:rgba(245,158,11,.16);--ct:#38bdf8;--tintb:rgba(56,189,248,.12);--w1:rgba(37,99,235,.09);--w2:rgba(15,23,42,.65);--w3:rgba(139,0,0,.07)}}"
+      ],
+      [
+        15,
+        ":root[data-theme=\"dark\"]{--tx:#f8fafc;--tx2:#94a3b8;--line:rgba(255,255,255,.08);--g1:rgba(12,13,18,.75);--g2:rgba(10,11,16,.85);--sel:rgba(255,255,255,.06);--bub:rgba(18,20,28,.82);--elev:rgba(24,26,36,.94);--cg:#10b981;--cr:#ef4444;--co:#f59e0b;--cgb:rgba(16,185,129,.16);--crb:rgba(239,68,68,.16);--cob:rgba(245,158,11,.16);--ct:#38bdf8;--tintb:rgba(56,189,248,.12);--w1:rgba(37,99,235,.09);--w2:rgba(15,23,42,.65);--w3:rgba(139,0,0,.07)}"
+      ],
+      [
+        413,
+        "const AG=[['cipher','Cipher','Research','#38bdf8'],['root','Root','Code','#30a46c'],['ghost','Ghost','Automation','#e8912d'],['vault','Vault','Memory + Security','#e5484d']];"
+      ],
+      [
+        938,
+        "const GP=['#2563eb','#38bdf8','#30a46c','#e8912d','#e5484d','#14b8c8'],GS={};let gN=0,lastUser='';"
+      ]
+    ],
+    "ai_tropes": [
+      [
+        25,
+        ".glass{background:var(--g1);backdrop-filter:blur(36px) saturate(180%);-webkit-backdrop-filter:blur(36px) saturate(180%)}"
+      ],
+      [
+        67,
+        ".center{display:flex;flex-direction:column;min-width:0;min-height:0;overflow:hidden;position:relative;background:var(--g2);backdrop-filter:blur(30px) saturate(160%);-webkit-backdrop-filter:blur(30px) saturate(160%)}"
+      ],
+      [
+        116,
+        ".sheet,.pal{width:min(460px,92vw);border-radius:14px;background:var(--g2);backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);box-shadow:0 24px 70px rgba(0,0,0,.35),0 0 0 .5px var(--line)}"
+      ],
+      [
+        163,
+        ".ov.gf{align-items:center;padding:0}.gc.big{width:min(94vw,980px);padding:18px 22px 16px;background:var(--g2);backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);box-shadow:0 24px 70px rgba(0,0,0,.35),0 0 0 .5px var(--line)}"
+      ],
+      [
+        168,
+        ".rec[data-o=\"1\"]{border-radius:14px;border-color:var(--line);background:var(--g2);backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);box-shadow:0 18px 50px rgba(0,0,0,.25)}"
+      ],
+      [
+        256,
+        ".cvk.on{width:236px;height:var(--eh,244px);cursor:default;border-radius:26px;background:var(--elev);-webkit-backdrop-filter:blur(26px) saturate(170%);backdrop-filter:blur(26px) saturate(170%);box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 22px 48px rgba(0,0,0,.28)}"
+      ],
+      [
+        298,
+        ".side-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:90;display:none}"
+      ]
+    ],
+    "emoji_clutter": [
+      [
+        345,
+        "<div class=\"sh\"><div class=\"sh-brand\"><div class=\"sh-logo-icon\"><img src=\"leadintelai-logo.svg\" alt=\"LeadintelAI Logo\"></div><span class=\"sh-logo-title\">LeadintelAI</span><span class=\"maya-badge\">Maya</span></div><button id=\"openSet\" title=\"Settings (\u2318,)\" aria-label=\"Settings\"><svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2\"/></svg></button><button id=\"closeSideBtn\" class=\"close-side-btn\" aria-label=\"Close sidebar\" title=\"Close\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg></button></div>"
+      ],
+      [
+        1392,
+        "const CMD=[['New chat','\u2318N',newChat],['Preview chart types','',gDemo],['Preview choice picker','',pkDemo],['View all API keys','',()=>addCollection('keys')],['View connected apps','',()=>addCollection('apps')],['View plugins','',()=>addCollection('plugins')],['Preview key pool (sample)','',()=>addCollection('sample')],['Add an API key','',()=>addConnect({kind:'key'})],['Connect an app','',()=>addConnect({kind:'app'})],['Settings','\u2318,',openSet],['Show or hide side panel','',togglePanel],['Refresh data','',()=>{loadAll();toast('Refreshed')}],['Download backup','',backup]];"
+      ]
+    ],
+    "bouncy_transforms": [
+      [
+        99,
+        ".panel{border-left:1px solid var(--line);padding:14px 12px 12px;overflow-x:hidden;overflow-y:auto;min-width:0;transition:opacity .4s ease .1s,transform .6s cubic-bezier(.34,1.3,.64,1),visibility 0s}"
+      ],
+      [
+        134,
+        ".fchip{display:flex;align-items:center;gap:6px;padding:3px 5px 3px 11px;border-radius:99px;background:var(--bub);border:1px solid var(--line);font-size:11.5px;animation:pop .32s cubic-bezier(.34,1.56,.64,1)}"
+      ],
+      [
+        137,
+        ".cbar{display:flex;align-items:center;gap:8px;min-height:52px;width:52px;max-width:760px;border-radius:26px;padding:0 8px 0 16px;background:var(--bub);border:1px solid var(--line);box-shadow:0 6px 24px rgba(0,0,0,.1);overflow:hidden;transition:width .8s cubic-bezier(.34,1.32,.64,1),transform .22s cubic-bezier(.4,0,.2,1),background .22s,border-color .2s,box-shadow .2s}"
+      ],
+      [
+        142,
+        ".cbar>*:not(.si2){opacity:0;pointer-events:none;transition:opacity .35s ease .3s,transform .35s cubic-bezier(.34,1.56,.64,1),background .2s,color .2s}"
+      ],
+      [
+        157,
+        ".gi{display:flex;gap:2px;flex:none}.gi button{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;color:var(--tx2);transition:background .2s,color .2s,transform .2s}.gi button:hover{background:var(--sel);color:var(--tx);transform:scale(1.08)}.gi svg{width:14px;height:14px}"
+      ],
+      [
+        183,
+        ".rec[data-o=\"1\"] .dr{animation:dIn .45s cubic-bezier(.34,1.4,.64,1) backwards;animation-delay:calc(var(--i)*40ms + 140ms)}"
+      ],
+      [
+        184,
+        ".ib{transition:background .2s,color .2s,transform .25s cubic-bezier(.34,1.56,.64,1)}.ib:active{transform:scale(.88)}"
+      ],
+      [
+        194,
+        ".pkc{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line);display:none;place-items:center;flex:none;transition:background .2s,border-color .2s,transform .3s cubic-bezier(.34,1.56,.64,1)}"
+      ],
+      [
+        196,
+        ".pkr.chk .pkc{background:var(--ac);border-color:var(--ac);transform:scale(1.1)}.pkr.chk .pkc svg{opacity:1}"
+      ],
+      [
+        202,
+        ".cn{position:relative;background:var(--bub);border:1px solid var(--line);border-radius:16px;padding:12px 16px 14px;width:420px;max-width:100%;overflow:hidden;animation:cnIn .6s cubic-bezier(.34,1.3,.64,1) both}"
+      ],
+      [
+        206,
+        ".cnp{display:flex;align-items:center;gap:7px;width:max-content;margin:0 auto 8px;padding:3px 11px 3px 9px;border-radius:99px;background:var(--sel);font-size:11px;font-weight:600;color:var(--tx2);animation:cnDrop .5s cubic-bezier(.34,1.4,.64,1) .15s backwards}"
+      ],
+      [
+        207,
+        "@keyframes cnDrop{from{opacity:0;transform:translateY(-8px) scale(.9)}}"
+      ],
+      [
+        213,
+        ".cnl{position:absolute;inset:11px;border-radius:26px;background:var(--sel);box-shadow:0 10px 30px rgba(10,132,255,.2);animation:cnLogo .7s cubic-bezier(.34,1.3,.64,1) .25s backwards}"
+      ],
+      [
+        218,
+        "@keyframes lgOut{from{opacity:1}to{opacity:0;filter:blur(10px);transform:scale(1.15)}}"
+      ],
+      [
+        226,
+        ".cnbd{position:absolute;right:4px;bottom:4px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;transform:scale(0);transition:transform .5s cubic-bezier(.34,1.8,.64,1) .5s}"
+      ],
+      [
+        253,
+        ".cvk{position:relative;flex:none;width:104px;height:150px;border-radius:22px;background:var(--sel);border:1px solid var(--line);overflow:hidden;cursor:pointer;transition:width .6s cubic-bezier(.32,.72,0,1),height .6s cubic-bezier(.32,.72,0,1),border-radius .6s cubic-bezier(.32,.72,0,1),background .4s,box-shadow .5s,transform .3s cubic-bezier(.32,.72,0,1);animation:cvIn .7s cubic-bezier(.34,1.3,.64,1) both;animation-delay:calc(var(--d)*70ms)}"
+      ],
+      [
+        275,
+        ".cvsd.on{opacity:1;transform:none;filter:none;pointer-events:auto}.cvsd.out{transform:translateY(-8px)}"
+      ],
+      [
+        290,
+        ".cvn{display:flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border-radius:16px;background:var(--bub);border:1px solid var(--co);width:max-content;max-width:100%;animation:cnDrop .5s cubic-bezier(.34,1.4,.64,1) both}.cvn.bad{border-color:var(--cr)}.cvn b{font-size:13px;font-weight:600}"
+      ]
+    ]
+  },
+  "offline.html": {
+    "neon_indicators": [
+      [
+        73,
+        "<span id=\"status-dot\" style=\"width: 8px; height: 8px; border-radius: 50%; background: #2563eb; transition: background 2s;\"></span>"
+      ],
+      [
+        99,
+        ".power-off #status-dot { background: #ef4444 !important; box-shadow: 0 0 10px #ef4444; }"
+      ]
+    ],
+    "ai_tropes": [
+      [
+        83,
+        "<button onclick=\"window.location.reload()\" id=\"retry-btn\" style=\"background: transparent; border: 1px solid var(--border-glass); color: var(--text-primary); padding: 14px 32px; border-radius: 6px; font-weight: 600; cursor: pointer; backdrop-filter: blur(10px); transition: 0.3s; opacity: 0; pointer-events: none; transform: translateY(10px);\">"
+      ]
+    ]
+  },
+  "price.html": {
+    "emoji_clutter": [
+      [
+        182,
+        "<li>\u2713 5,000 B2B Leads/month</li>"
+      ],
+      [
+        183,
+        "<li>\u2713 Phone + Email Included</li>"
+      ],
+      [
+        184,
+        "<li>\u2713 Decision Maker Titles</li>"
+      ],
+      [
+        185,
+        "<li>\u2713 Email Support</li>"
+      ],
+      [
+        195,
+        "<li>\u2713 20,000 B2B Leads/month</li>"
+      ],
+      [
+        196,
+        "<li>\u2713 Phone + Email Included</li>"
+      ],
+      [
+        197,
+        "<li>\u2713 CXO/CTO/HR Filters</li>"
+      ],
+      [
+        198,
+        "<li>\u2713 Priority Support</li>"
+      ],
+      [
+        207,
+        "<li>\u2713 Unlimited Leads</li>"
+      ],
+      [
+        208,
+        "<li>\u2713 All Data Fields</li>"
+      ],
+      [
+        209,
+        "<li>\u2713 Custom Filters</li>"
+      ],
+      [
+        210,
+        "<li>\u2713 Dedicated Account Manager</li>"
+      ],
+      [
+        225,
+        "<li>\u2713 1,000 Messages/month</li>"
+      ],
+      [
+        226,
+        "<li>\u2713 Verified Business Number</li>"
+      ],
+      [
+        227,
+        "<li>\u2713 Template Messages</li>"
+      ],
+      [
+        228,
+        "<li>\u2713 Email Support</li>"
+      ],
+      [
+        238,
+        "<li>\u2713 10,000 Messages/month</li>"
+      ],
+      [
+        239,
+        "<li>\u2713 24/7 AI Chatbot</li>"
+      ],
+      [
+        240,
+        "<li>\u2713 Broadcast Campaigns</li>"
+      ],
+      [
+        241,
+        "<li>\u2713 Priority Support</li>"
+      ],
+      [
+        250,
+        "<li>\u2713 Unlimited Messages</li>"
+      ],
+      [
+        251,
+        "<li>\u2713 Multi-Agent Live Chat</li>"
+      ],
+      [
+        252,
+        "<li>\u2713 CRM Integration</li>"
+      ],
+      [
+        253,
+        "<li>\u2713 Dedicated Manager</li>"
+      ],
+      [
+        268,
+        "<li>\u2713 10,000 Emails/month</li>"
+      ],
+      [
+        269,
+        "<li>\u2713 Drag & Drop Editor</li>"
+      ],
+      [
+        270,
+        "<li>\u2713 Basic Analytics</li>"
+      ],
+      [
+        271,
+        "<li>\u2713 Email Support</li>"
+      ],
+      [
+        281,
+        "<li>\u2713 1,00,000 Emails/month</li>"
+      ],
+      [
+        282,
+        "<li>\u2713 Advanced Personalization</li>"
+      ],
+      [
+        283,
+        "<li>\u2713 Open & Click Tracking</li>"
+      ],
+      [
+        284,
+        "<li>\u2713 Priority Support</li>"
+      ],
+      [
+        293,
+        "<li>\u2713 Unlimited Emails</li>"
+      ],
+      [
+        294,
+        "<li>\u2713 Dedicated IP Warm-up</li>"
+      ],
+      [
+        295,
+        "<li>\u2713 White-label Option</li>"
+      ],
+      [
+        296,
+        "<li>\u2713 Dedicated Manager</li>"
+      ],
+      [
+        306,
+        "<div class=\"cs-icon\">\ud83d\uddc2\ufe0f</div>"
+      ]
+    ]
+  },
+  "pricing.html": {
+    "neon_indicators": [
+      [
+        191,
+        ".badge-pill .pulse-dot {"
+      ],
+      [
+        922,
+        "<span class=\"pulse-dot\"></span>"
+      ]
+    ],
+    "pastel_neon_colors": [
+      [
+        187,
+        "color: #93c5fd;"
+      ],
+      [
+        214,
+        "background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #34d399 100%);"
+      ],
+      [
+        336,
+        "color: #60a5fa;"
+      ],
+      [
+        344,
+        "color: #93c5fd;"
+      ],
+      [
+        596,
+        "color: #60a5fa;"
+      ],
+      [
+        672,
+        "color: #93c5fd;"
+      ],
+      [
+        689,
+        "color: #93c5fd;"
+      ],
+      [
+        793,
+        "color: #60a5fa;"
+      ],
+      [
+        1747,
+        "<a href=\"https://www.linkedin.com/company/leadintel-ai\" target=\"_blank\" style=\"width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:var(--text-tertiary); transition:all 0.2s;\" onmouseover=\"this.style.background='rgba(59,130,246,0.15)';this.style.color='#60a5fa'\" onmouseout=\"this.style.background='rgba(255,255,255,0.05)';this.style.color=''\">"
+      ]
+    ],
+    "ai_tropes": [
+      [
+        182,
+        "backdrop-filter: blur(12px);"
+      ],
+      [
+        215,
+        "-webkit-background-clip: text;"
+      ],
+      [
+        217,
+        "background-clip: text;"
+      ],
+      [
+        237,
+        "backdrop-filter: blur(20px) saturate(200%);"
+      ],
+      [
+        294,
+        "backdrop-filter: blur(20px);"
+      ],
+      [
+        380,
+        "backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        381,
+        "-webkit-backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        579,
+        "backdrop-filter: blur(16px);"
+      ],
+      [
+        640,
+        "backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        754,
+        "backdrop-filter: blur(20px);"
+      ]
+    ],
+    "emoji_clutter": [
+      [
+        7,
+        "<meta name=\"description\" content=\"Predictable B2B DataCloud, WhatsApp Suite, MailEngine & AI CRM pricing in \u20b9 INR. Save 20% on annual billing. Unlock high-converting outbound at scale \u2713\">"
+      ],
+      [
+        17,
+        "<meta property=\"og:description\" content=\"Predictable B2B DataCloud, WhatsApp Suite, MailEngine & AI CRM pricing in \u20b9 INR. Save 20% on annual billing. Unlock high-converting outbound at scale \u2713\">"
+      ],
+      [
+        30,
+        "<meta name=\"twitter:description\" content=\"Predictable B2B DataCloud, WhatsApp Suite, MailEngine & AI CRM pricing in \u20b9 INR. Save 20% on annual billing. Unlock high-converting outbound at scale \u2713\">"
+      ],
+      [
+        1536,
+        "<td class=\"matrix-val\"><span class=\"matrix-val check\">\u2713 Standard</span></td>"
+      ],
+      [
+        1537,
+        "<td class=\"matrix-val featured-col\"><span class=\"matrix-val check\">\u2713 Advanced CXO</span></td>"
+      ],
+      [
+        1538,
+        "<td class=\"matrix-val\"><span class=\"matrix-val check\">\u2713 Advanced CXO</span></td>"
+      ],
+      [
+        1539,
+        "<td class=\"matrix-val\"><span class=\"matrix-val check\">\u2713 Custom Org Charts</span></td>"
+      ],
+      [
+        1547,
+        "<td class=\"matrix-val featured-col\"><span class=\"matrix-val check\">\u2713 Included</span></td>"
+      ],
+      [
+        1548,
+        "<td class=\"matrix-val\"><span class=\"matrix-val check\">\u2713 Included</span></td>"
+      ],
+      [
+        1549,
+        "<td class=\"matrix-val\"><span class=\"matrix-val check\">\u2713 Real-time API Sync</span></td>"
+      ],
+      [
+        1582,
+        "<td class=\"matrix-val featured-col\"><span class=\"matrix-val check\">\u2713 Included</span></td>"
+      ],
+      [
+        1583,
+        "<td class=\"matrix-val\"><span class=\"matrix-val check\">\u2713 Custom Personas</span></td>"
+      ],
+      [
+        1584,
+        "<td class=\"matrix-val\"><span class=\"matrix-val check\">\u2713 Fine-tuned Model</span></td>"
+      ],
+      [
+        1612,
+        "<td class=\"matrix-val featured-col\"><span class=\"matrix-val check\">\u2713 Included</span></td>"
+      ],
+      [
+        1613,
+        "<td class=\"matrix-val\"><span class=\"matrix-val check\">\u2713 Included</span></td>"
+      ],
+      [
+        1614,
+        "<td class=\"matrix-val\"><span class=\"matrix-val check\">\u2713 Custom DNS Setup</span></td>"
+      ],
+      [
+        1637,
+        "<td class=\"matrix-val featured-col\"><span class=\"matrix-val check\">\u2713 Included</span></td>"
+      ],
+      [
+        1638,
+        "<td class=\"matrix-val\"><span class=\"matrix-val check\">\u2713 Included</span></td>"
+      ],
+      [
+        1639,
+        "<td class=\"matrix-val\"><span class=\"matrix-val check\">\u2713 Custom ML Weights</span></td>"
+      ]
+    ],
+    "tinted_icon_boxes": [
+      [
+        343,
+        "background: rgba(59, 130, 246, 0.2);"
+      ],
+      [
+        591,
+        "background: rgba(59, 130, 246, 0.12);"
+      ],
+      [
+        671,
+        "background: rgba(59, 130, 246, 0.08);"
+      ],
+      [
+        678,
+        "background: rgba(59, 130, 246, 0.03);"
+      ]
+    ],
+    "bouncy_transforms": [
+      [
+        201,
+        "50% { opacity: 1; transform: scale(1.25); }"
+      ],
+      [
+        390,
+        "transform: translateY(-4px);"
+      ]
+    ]
+  },
+  "privacy.html": {
+    "neon_indicators": [
+      [
+        459,
+        "<div class=\"policy-callout-icon\" style=\"background:rgba(34,197,94,0.15); color:#4ade80;\">"
+      ]
+    ],
+    "pastel_neon_colors": [
+      [
+        167,
+        "color: #60a5fa;"
+      ],
+      [
+        189,
+        "color: #60a5fa;"
+      ],
+      [
+        294,
+        "<circle cx=\"0\" cy=\"0\" r=\"1.5\" fill=\"#60a5fa\"/>"
+      ],
+      [
+        310,
+        "<span style=\"font-size:0.68rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#60a5fa; display:block; margin-bottom:8px;\">Compliance &amp; Trust</span>"
+      ],
+      [
+        338,
+        "<span style=\"font-size:0.72rem; color:#93c5fd; font-weight:600; display:block; margin-bottom:4px;\">Data Protection Officer</span>"
+      ],
+      [
+        348,
+        "<div style=\"display:inline-flex; align-items:center; gap:8px; padding:4px 12px; border-radius:6px; background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.25); color:#60a5fa; font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:16px;\">"
+      ],
+      [
+        459,
+        "<div class=\"policy-callout-icon\" style=\"background:rgba(34,197,94,0.15); color:#4ade80;\">"
+      ],
+      [
+        537,
+        "<p style=\"color:var(--text-secondary); font-size:0.88rem; line-height:1.7; margin-bottom:12px;\">Email: <a href=\"mailto:grievance@leadintelai.com\" style=\"color:#60a5fa; text-decoration:none; font-weight:600;\">grievance@leadintelai.com</a> | <a href=\"mailto:privacy@leadintelai.com\" style=\"color:#60a5fa; text-decoration:none; font-weight:600;\">privacy@leadintelai.com</a></p>"
+      ],
+      [
+        566,
+        "<a href=\"#\" style=\"width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:var(--text-tertiary); transition:all 0.2s;\" onmouseover=\"this.style.background='rgba(59,130,246,0.15)';this.style.color='#60a5fa'\" onmouseout=\"this.style.background='rgba(255,255,255,0.05)';this.style.color=''\">"
+      ]
+    ],
+    "ai_tropes": [
+      [
+        104,
+        "backdrop-filter: blur(40px);"
+      ],
+      [
+        105,
+        "-webkit-backdrop-filter: blur(40px);"
+      ]
+    ],
+    "emoji_clutter": [
+      [
+        7,
+        "<meta name=\"description\" content=\"Understand how LeadintelAI collects, protects, and governs B2B business contact information in compliance with Indian DPDP Act and GDPR regulations \u2713\">"
+      ],
+      [
+        17,
+        "<meta property=\"og:description\" content=\"Understand how LeadintelAI collects, protects, and governs B2B business contact information in compliance with Indian DPDP Act and GDPR regulations \u2713\">"
+      ],
+      [
+        30,
+        "<meta name=\"twitter:description\" content=\"Understand how LeadintelAI collects, protects, and governs B2B business contact information in compliance with Indian DPDP Act and GDPR regulations \u2713\">"
+      ]
+    ],
+    "tinted_icon_boxes": [
+      [
+        150,
+        "background: rgba(59,130,246,0.05);"
+      ],
+      [
+        163,
+        "background: rgba(59,130,246,0.15);"
+      ],
+      [
+        337,
+        "<div style=\"margin-top:14px; padding:14px; border-radius:10px; background:rgba(59,130,246,0.06); border:1px solid rgba(59,130,246,0.2);\">"
+      ],
+      [
+        348,
+        "<div style=\"display:inline-flex; align-items:center; gap:8px; padding:4px 12px; border-radius:6px; background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.25); color:#60a5fa; font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:16px;\">"
+      ],
+      [
+        458,
+        "<div class=\"policy-callout\" style=\"background:rgba(34,197,94,0.05); border-color:rgba(34,197,94,0.25);\">"
+      ],
+      [
+        459,
+        "<div class=\"policy-callout-icon\" style=\"background:rgba(34,197,94,0.15); color:#4ade80;\">"
+      ]
+    ]
+  },
+  "private-login.html": {
+    "neon_indicators": [
+      [
+        929,
+        "background: #22c55e;"
+      ],
+      [
+        1060,
+        "<div class=\"info-pill\"><span class=\"dot-ind\" style=\"background:#22c55e;\"></span><b>Air-gapped security</b><span>\u00b7 Verified</span></div>"
+      ],
+      [
+        1072,
+        "<div class=\"info-pill\"><span class=\"dot-ind\" style=\"background:#22c55e;\"></span><b>Root</b><span>\u00b7 Code</span></div>"
+      ],
+      [
+        1105,
+        "<div class=\"info-pill\"><span class=\"dot-ind\" style=\"background:#22c55e;\"></span><b>Auto-healing pipelines</b><span>\u00b7 Active</span></div>"
+      ]
+    ],
+    "pastel_neon_colors": [
+      [
+        174,
+        "color: #60a5fa;"
+      ],
+      [
+        618,
+        "color: #93c5fd;"
+      ],
+      [
+        629,
+        "border-color: #60a5fa;"
+      ],
+      [
+        656,
+        "color: #86efac;"
+      ],
+      [
+        683,
+        "color: #fca5a5;"
+      ],
+      [
+        689,
+        "color: #86efac;"
+      ],
+      [
+        761,
+        "color: #93c5fd;"
+      ],
+      [
+        929,
+        "background: #22c55e;"
+      ],
+      [
+        1059,
+        "<div class=\"info-pill\"><span class=\"dot-ind\" style=\"background:#38bdf8;\"></span><b>Zero telemetry leak</b><span>\u00b7 Local-first</span></div>"
+      ],
+      [
+        1060,
+        "<div class=\"info-pill\"><span class=\"dot-ind\" style=\"background:#22c55e;\"></span><b>Air-gapped security</b><span>\u00b7 Verified</span></div>"
+      ],
+      [
+        1071,
+        "<div class=\"info-pill\"><span class=\"dot-ind\" style=\"background:#38bdf8;\"></span><b>Cipher</b><span>\u00b7 Research</span></div>"
+      ],
+      [
+        1072,
+        "<div class=\"info-pill\"><span class=\"dot-ind\" style=\"background:#22c55e;\"></span><b>Root</b><span>\u00b7 Code</span></div>"
+      ],
+      [
+        1085,
+        "<div class=\"info-pill\"><span class=\"dot-ind\" style=\"background:#38bdf8;\"></span><b>DeepSeek R1</b><span>\u00b7 95%</span></div>"
+      ],
+      [
+        1104,
+        "<div class=\"info-pill\"><span class=\"dot-ind\" style=\"background:#38bdf8;\"></span><b>Instant deploy</b><span>\u00b7 Zero config</span></div>"
+      ],
+      [
+        1105,
+        "<div class=\"info-pill\"><span class=\"dot-ind\" style=\"background:#22c55e;\"></span><b>Auto-healing pipelines</b><span>\u00b7 Active</span></div>"
+      ],
+      [
+        1106,
+        "<div class=\"info-pill\"><span class=\"dot-ind\" style=\"background:#60a5fa;\"></span><b>Sub-second dispatch</b><span>\u00b7 Real-time</span></div>"
+      ],
+      [
+        1846,
+        "drawPolygonPiece([[200, 224], [288, 312], [288, 384], [182, 384], [128, 332], [178, 246]], 128, 224, 288, 384, [[0, '#2563eb'], [0.5, '#3b82f6'], [1, '#60a5fa']], 22);"
+      ],
+      [
+        1847,
+        "drawPolygonPiece([[286, 250], [420, 250], [450, 286], [450, 300], [388, 300], [288, 356]], 286, 250, 450, 356, [[0, '#3b82f6'], [0.5, '#60a5fa'], [1, '#7dd3fc']], 20);"
+      ],
+      [
+        1848,
+        "drawPolygonPiece([[272, 356], [388, 300], [450, 300], [450, 384], [344, 450], [272, 396]], 272, 300, 450, 450, [[0, '#60a5fa'], [0.5, '#93c5fd'], [1, '#bfdbfe']], 22);"
+      ]
+    ],
+    "ai_tropes": [
+      [
+        144,
+        "-webkit-backdrop-filter: blur(24px) saturate(200%);"
+      ],
+      [
+        145,
+        "backdrop-filter: blur(24px) saturate(200%);"
+      ],
+      [
+        210,
+        "-webkit-backdrop-filter: blur(24px) saturate(200%);"
+      ],
+      [
+        211,
+        "backdrop-filter: blur(24px) saturate(200%);"
+      ],
+      [
+        323,
+        "-webkit-backdrop-filter: blur(20px) saturate(190%);"
+      ],
+      [
+        324,
+        "backdrop-filter: blur(20px) saturate(190%);"
+      ],
+      [
+        368,
+        "-webkit-backdrop-filter: blur(20px) saturate(190%);"
+      ],
+      [
+        369,
+        "backdrop-filter: blur(20px) saturate(190%);"
+      ],
+      [
+        436,
+        "backdrop-filter: blur(28px) saturate(210%) brightness(1.08);"
+      ],
+      [
+        437,
+        "-webkit-backdrop-filter: blur(28px) saturate(210%) brightness(1.08);"
+      ],
+      [
+        522,
+        "backdrop-filter: blur(16px);"
+      ],
+      [
+        523,
+        "-webkit-backdrop-filter: blur(16px);"
+      ],
+      [
+        615,
+        "backdrop-filter: blur(12px);"
+      ],
+      [
+        616,
+        "-webkit-backdrop-filter: blur(12px);"
+      ],
+      [
+        679,
+        "backdrop-filter: blur(14px);"
+      ],
+      [
+        680,
+        "-webkit-backdrop-filter: blur(14px);"
+      ],
+      [
+        732,
+        "backdrop-filter: blur(16px);"
+      ],
+      [
+        733,
+        "-webkit-backdrop-filter: blur(16px);"
+      ],
+      [
+        1086,
+        "<div class=\"info-pill\"><span class=\"dot-ind\" style=\"background:#6366f1;\"></span><b>Qwen 2.5 Coder</b><span>\u00b7 94%</span></div>"
+      ]
+    ],
+    "tinted_icon_boxes": [
+      [
+        687,
+        "background: rgba(34, 197, 94, 0.12);"
+      ]
+    ],
+    "bouncy_transforms": [
+      [
+        658,
+        "transform: translateY(-3px);"
+      ]
+    ]
+  },
+  "project.html": {
+    "neon_indicators": [
+      [
+        105,
+        ".pulse-dot {"
+      ],
+      [
+        931,
+        "<span class=\"pulse-dot\"></span>"
+      ]
+    ],
+    "pastel_neon_colors": [
+      [
+        86,
+        "background: linear-gradient(135deg, #60a5fa, #2563eb);"
+      ],
+      [
+        101,
+        "color: #93c5fd;"
+      ],
+      [
+        141,
+        "color: #38bdf8;"
+      ],
+      [
+        265,
+        "background: linear-gradient(135deg, #93c5fd, #3b82f6);"
+      ],
+      [
+        506,
+        "color: #93c5fd;"
+      ],
+      [
+        545,
+        "color: #fcd34d;"
+      ],
+      [
+        680,
+        "color: #fcd34d;"
+      ],
+      [
+        714,
+        "color: #38bdf8;"
+      ],
+      [
+        1001,
+        "<span class=\"telemetry-tag\" style=\"color: #60a5fa;\">Meta Cloud API</span>"
+      ],
+      [
+        1028,
+        "style=\"font-size: 0.82rem; color: #60a5fa; font-weight: 500; text-decoration: underline;\">Compare"
+      ],
+      [
+        1039,
+        "<div class=\"engine-icon-pill\" style=\"color: #60a5fa;\">\ud83c\udfaf</div>"
+      ],
+      [
+        1041,
+        "style=\"background: rgba(37, 99, 235, 0.15); color: #93c5fd; border: 1px solid rgba(96, 165, 250, 0.3);\">52M+"
+      ],
+      [
+        1108,
+        "<div class=\"engine-icon-pill\" style=\"color: #fcd34d;\">\u26a1</div>"
+      ],
+      [
+        1110,
+        "style=\"background: rgba(245, 158, 11, 0.15); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.3);\">Predictive"
+      ],
+      [
+        1180,
+        "<td style=\"font-family: var(--font-mono); color: #93c5fd;\">INV-2024-089</td>"
+      ],
+      [
+        1191,
+        "<td style=\"font-family: var(--font-mono); color: #93c5fd;\">INV-2024-075</td>"
+      ],
+      [
+        1202,
+        "<td style=\"font-family: var(--font-mono); color: #93c5fd;\">INV-2024-098</td>"
+      ],
+      [
+        1265,
+        "<div style=\"font-weight: 700; color: #38bdf8; font-family: var(--font-mono);\">+\u20b95,000</div>"
+      ],
+      [
+        1274,
+        "<div style=\"font-weight: 700; color: #38bdf8; font-family: var(--font-mono);\">+\u20b910,000</div>"
+      ]
+    ],
+    "ai_tropes": [
+      [
+        45,
+        "backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        46,
+        "-webkit-backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        87,
+        "-webkit-background-clip: text;"
+      ],
+      [
+        224,
+        "backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        225,
+        "-webkit-backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        266,
+        "-webkit-background-clip: text;"
+      ],
+      [
+        331,
+        "backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        332,
+        "-webkit-backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        408,
+        "backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        409,
+        "-webkit-backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        536,
+        "background: #8b5cf6;"
+      ],
+      [
+        558,
+        "backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        559,
+        "-webkit-backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        626,
+        "backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        627,
+        "-webkit-backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        686,
+        "backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        687,
+        "-webkit-backdrop-filter: blur(24px) saturate(210%);"
+      ],
+      [
+        729,
+        "backdrop-filter: blur(10px);"
+      ],
+      [
+        730,
+        "-webkit-backdrop-filter: blur(10px);"
+      ],
+      [
+        747,
+        "backdrop-filter: blur(28px);"
+      ]
+    ],
+    "emoji_clutter": [
+      [
+        939,
+        "<span style=\"font-size: 0.95rem;\">\ud83d\udcb3</span>"
+      ],
+      [
+        965,
+        "<span style=\"font-size: 1.5rem;\">\u26a1</span>"
+      ],
+      [
+        983,
+        "<span>\ud83d\udcb3 Recharge Wallet</span>"
+      ],
+      [
+        1039,
+        "<div class=\"engine-icon-pill\" style=\"color: #60a5fa;\">\ud83c\udfaf</div>"
+      ],
+      [
+        1062,
+        "<div class=\"engine-icon-pill\" style=\"color: #34d399;\">\ud83d\udcac</div>"
+      ],
+      [
+        1085,
+        "<div class=\"engine-icon-pill\" style=\"color: #c4b5fd;\">\u2709\ufe0f</div>"
+      ],
+      [
+        1108,
+        "<div class=\"engine-icon-pill\" style=\"color: #fcd34d;\">\u26a1</div>"
+      ],
+      [
+        1184,
+        "<td><span class=\"badge-status badge-paid\">\u2713 Paid</span></td>"
+      ],
+      [
+        1195,
+        "<td><span class=\"badge-status badge-paid\">\u2713 Paid</span></td>"
+      ],
+      [
+        1206,
+        "<td><span class=\"badge-status badge-paid\">\u2713 Paid</span></td>"
+      ],
+      [
+        1232,
+        "<span>\ud83d\udcb3 Add Funds to Balance</span>"
+      ],
+      [
+        1251,
+        "<button class=\"modal-close-btn\" onclick=\"closeWalletModal()\">\u2715</button>"
+      ],
+      [
+        1295,
+        "<button class=\"modal-close-btn\" onclick=\"closeModal()\">\u2715</button>"
+      ],
+      [
+        1383,
+        "btn.innerHTML = '<span>\u26a1 Processing Gateway...</span>';"
+      ],
+      [
+        1389,
+        "btn.innerHTML = '<span>\u2713 Recharge Successful!</span>';"
+      ]
+    ],
+    "tinted_icon_boxes": [
+      [
+        530,
+        "background: rgba(139, 92, 246, 0.15);"
+      ],
+      [
+        543,
+        "background: rgba(245, 158, 11, 0.15);"
+      ],
+      [
+        678,
+        "background: rgba(245, 158, 11, 0.15);"
+      ],
+      [
+        1087,
+        "style=\"background: rgba(139, 92, 246, 0.15); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.3);\">98.7%"
+      ],
+      [
+        1110,
+        "style=\"background: rgba(245, 158, 11, 0.15); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.3);\">Predictive"
+      ]
+    ],
+    "bouncy_transforms": [
+      [
+        436,
+        "transform: translateY(-4px);"
+      ]
+    ]
+  },
+  "refund.html": {
+    "neon_indicators": [
+      [
+        355,
+        "<div style=\"width:8px; height:8px; border-radius:50%; background:#38bdf8; box-shadow:0 0 10px #38bdf8;\"></div>"
+      ],
+      [
+        402,
+        "<div class=\"policy-callout-icon\" style=\"background:rgba(34,197,94,0.15); color:#4ade80;\">"
+      ]
+    ],
+    "pastel_neon_colors": [
+      [
+        126,
+        "color: #38bdf8;"
+      ],
+      [
+        167,
+        "color: #38bdf8;"
+      ],
+      [
+        189,
+        "color: #38bdf8;"
+      ],
+      [
+        321,
+        "<circle cx=\"0\" cy=\"0\" r=\"1.5\" fill=\"#38bdf8\"/>"
+      ],
+      [
+        337,
+        "<span style=\"font-size:0.68rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#38bdf8; display:block; margin-bottom:8px;\">Assurance &amp; SLA</span>"
+      ],
+      [
+        355,
+        "<div style=\"width:8px; height:8px; border-radius:50%; background:#38bdf8; box-shadow:0 0 10px #38bdf8;\"></div>"
+      ],
+      [
+        363,
+        "<span style=\"font-size:0.72rem; color:#38bdf8; font-weight:600; display:block; margin-bottom:4px;\">Billing &amp; SLA Inquiries</span>"
+      ],
+      [
+        373,
+        "<div style=\"display:inline-flex; align-items:center; gap:8px; padding:4px 12px; border-radius:6px; background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25); color:#38bdf8; font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:16px;\">"
+      ],
+      [
+        402,
+        "<div class=\"policy-callout-icon\" style=\"background:rgba(34,197,94,0.15); color:#4ade80;\">"
+      ],
+      [
+        520,
+        "<td><strong style=\"color:#f87171;\">P1 - Critical</strong></td>"
+      ],
+      [
+        538,
+        "<td><strong style=\"color:#60a5fa;\">P4 - Low</strong></td>"
+      ],
+      [
+        595,
+        "<p style=\"color:var(--text-secondary); font-size:0.88rem; line-height:1.7; margin-bottom:12px;\">Email: <a href=\"mailto:billing@leadintelai.com\" style=\"color:#38bdf8; text-decoration:none; font-weight:600;\">billing@leadintelai.com</a> | <a href=\"mailto:sla@leadintelai.com\" style=\"color:#38bdf8; text-decoration:none; font-weight:600;\">sla@leadintelai.com</a></p>"
+      ],
+      [
+        624,
+        "<a href=\"#\" style=\"width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:var(--text-tertiary); transition:all 0.2s;\" onmouseover=\"this.style.background='rgba(59,130,246,0.15)';this.style.color='#60a5fa'\" onmouseout=\"this.style.background='rgba(255,255,255,0.05)';this.style.color=''\">"
+      ]
+    ],
+    "ai_tropes": [
+      [
+        104,
+        "backdrop-filter: blur(40px);"
+      ],
+      [
+        105,
+        "-webkit-backdrop-filter: blur(40px);"
+      ]
+    ],
+    "emoji_clutter": [
+      [
+        7,
+        "<meta name=\"description\" content=\"Learn about LeadintelAI's 99.4% deliverability guarantee, automated wallet bounce credits, and subscription cancellation terms \u2713\">"
+      ],
+      [
+        17,
+        "<meta property=\"og:description\" content=\"Learn about LeadintelAI's 99.4% deliverability guarantee, automated wallet bounce credits, and subscription cancellation terms \u2713\">"
+      ],
+      [
+        30,
+        "<meta name=\"twitter:description\" content=\"Learn about LeadintelAI's 99.4% deliverability guarantee, automated wallet bounce credits, and subscription cancellation terms \u2713\">"
+      ]
+    ],
+    "tinted_icon_boxes": [
+      [
+        401,
+        "<div class=\"policy-callout\" style=\"background:rgba(34,197,94,0.05); border-color:rgba(34,197,94,0.25);\">"
+      ],
+      [
+        402,
+        "<div class=\"policy-callout-icon\" style=\"background:rgba(34,197,94,0.15); color:#4ade80;\">"
+      ]
+    ]
+  },
+  "terms.html": {
+    "pastel_neon_colors": [
+      [
+        114,
+        "color: #93c5fd;"
+      ],
+      [
+        134,
+        "background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);"
+      ],
+      [
+        382,
+        "color: #93c5fd;"
+      ],
+      [
+        664,
+        ".comp-table tr.hl td:first-child { font-weight: 700; color: #60a5fa; }"
+      ],
+      [
+        885,
+        "<a href=\"#\" style=\"width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:var(--text-tertiary); transition:all 0.2s;\" onmouseover=\"this.style.background='rgba(59,130,246,0.15)';this.style.color='#60a5fa'\" onmouseout=\"this.style.background='rgba(255,255,255,0.05)';this.style.color=''\">"
+      ]
+    ],
+    "ai_tropes": [
+      [
+        135,
+        "-webkit-background-clip: text;"
+      ],
+      [
+        137,
+        "background-clip: text;"
+      ],
+      [
+        283,
+        "background: linear-gradient(135deg,var(--accent-blue),#8b5cf6);"
+      ],
+      [
+        621,
+        "background: linear-gradient(135deg,var(--accent-blue),#8b5cf6);"
+      ],
+      [
+        814,
+        "<article style=\"max-width: 920px; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); border-radius: 2px; padding: 60px 80px; box-shadow: 0 40px 100px rgba(0,0,0,0.4); backdrop-filter: blur(40px);\">"
+      ]
+    ],
+    "emoji_clutter": [
+      [
+        7,
+        "<meta name=\"description\" content=\"Read the LeadintelAI Master Subscription Agreement and Terms of Service governing platform usage, data privacy, and SLA terms \u2713\">"
+      ],
+      [
+        17,
+        "<meta property=\"og:description\" content=\"Read the LeadintelAI Master Subscription Agreement and Terms of Service governing platform usage, data privacy, and SLA terms \u2713\">"
+      ],
+      [
+        30,
+        "<meta name=\"twitter:description\" content=\"Read the LeadintelAI Master Subscription Agreement and Terms of Service governing platform usage, data privacy, and SLA terms \u2713\">"
+      ],
+      [
+        458,
+        "content: '\u2713'; color: var(--feat-check, var(--accent-blue)); font-size: 0.75rem; flex-shrink: 0; font-weight: 800;"
+      ]
+    ],
+    "tinted_icon_boxes": [
+      [
+        303,
+        "background: rgba(59,130,246,0.04);"
+      ],
+      [
+        305,
+        ".pillar-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }"
+      ],
+      [
+        366,
+        ".swap-good:hover { background: rgba(59,130,246,0.02); }"
+      ],
+      [
+        379,
+        "background: rgba(59,130,246,0.07);"
+      ],
+      [
+        637,
+        "background: rgba(59,130,246,0.10);"
+      ]
+    ],
+    "bouncy_transforms": [
+      [
+        302,
+        "transform: translateY(-3px);"
+      ],
+      [
+        427,
+        "transform: scale(1.08) translate(-5px, -10px);"
+      ],
+      [
+        518,
+        "background: rgba(255,255,255,0.03); border-color: rgba(0,0,0,0.4); transform: translateY(-3px); box-shadow: 0 10px 40px rgba(0,0,0,0.5);"
+      ]
+    ]
+  },
+  "whatsapp.html": {
+    "neon_indicators": [
+      [
+        157,
+        "color: #4ade80;"
+      ],
+      [
+        182,
+        "color: #4ade80;"
+      ],
+      [
+        196,
+        "background: linear-gradient(90deg, #4ade80, transparent);"
+      ],
+      [
+        217,
+        "color: #4ade80;"
+      ],
+      [
+        247,
+        "color: #4ade80;"
+      ],
+      [
+        360,
+        "color: #4ade80;"
+      ],
+      [
+        451,
+        "color: #4ade80;"
+      ],
+      [
+        492,
+        "color: #4ade80;"
+      ],
+      [
+        525,
+        "color: #4ade80;"
+      ],
+      [
+        683,
+        "<span class=\"stat-indicator-dot\"></span>"
+      ],
+      [
+        692,
+        "<span class=\"stat-indicator-dot\"></span>"
+      ],
+      [
+        701,
+        "<span class=\"stat-indicator-dot\"></span>"
+      ],
+      [
+        710,
+        "<span class=\"stat-indicator-dot\"></span>"
+      ],
+      [
+        736,
+        "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2\">"
+      ],
+      [
+        822,
+        "color: #4ade80;"
+      ],
+      [
+        955,
+        "style=\"color: #4ade80;\">80 msgs/s</strong></div>"
+      ],
+      [
+        959,
+        "style=\"color: #4ade80;\">0.00% Verified</strong></div>"
+      ],
+      [
+        966,
+        "style=\"width: 320px; height: 580px; background: #0c1317; border-radius: 40px; border: 3px solid rgba(255,255,255,0.14); box-shadow: 0 0 0 4px #1b2028, 0 25px 60px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.15); position: relative; overflow: hidden; display: flex; flex-direction: column;\">"
+      ],
+      [
+        1158,
+        "typing.style.cssText = \"align-self: flex-start; background: #202c33; padding: 6px 12px; border-radius: 8px; font-size: 0.65rem; color: #4ade80;\";"
+      ],
+      [
+        1200,
+        "<div class=\"swap-header-title swap-header-good\" style=\"color:#4ade80;\">Leadintel WhatsApp Suite"
+      ],
+      [
+        1214,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2.5\">"
+      ],
+      [
+        1231,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2.5\">"
+      ],
+      [
+        1248,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2.5\">"
+      ],
+      [
+        1265,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2.5\">"
+      ],
+      [
+        1283,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2.5\">"
+      ],
+      [
+        1320,
+        "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2.5\">"
+      ],
+      [
+        1326,
+        "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2.5\">"
+      ],
+      [
+        1332,
+        "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2.5\">"
+      ],
+      [
+        1338,
+        "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2.5\">"
+      ]
+    ],
+    "pastel_neon_colors": [
+      [
+        157,
+        "color: #4ade80;"
+      ],
+      [
+        182,
+        "color: #4ade80;"
+      ],
+      [
+        196,
+        "background: linear-gradient(90deg, #4ade80, transparent);"
+      ],
+      [
+        217,
+        "color: #4ade80;"
+      ],
+      [
+        247,
+        "color: #4ade80;"
+      ],
+      [
+        354,
+        "color: #f87171;"
+      ],
+      [
+        360,
+        "color: #4ade80;"
+      ],
+      [
+        451,
+        "color: #4ade80;"
+      ],
+      [
+        492,
+        "color: #4ade80;"
+      ],
+      [
+        525,
+        "color: #4ade80;"
+      ],
+      [
+        736,
+        "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2\">"
+      ],
+      [
+        749,
+        "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#38bdf8\" stroke-width=\"2\">"
+      ],
+      [
+        822,
+        "color: #4ade80;"
+      ],
+      [
+        829,
+        "color: #38bdf8;"
+      ],
+      [
+        955,
+        "style=\"color: #4ade80;\">80 msgs/s</strong></div>"
+      ],
+      [
+        957,
+        "style=\"color: #38bdf8;\">99.8%</strong></div>"
+      ],
+      [
+        959,
+        "style=\"color: #4ade80;\">0.00% Verified</strong></div>"
+      ],
+      [
+        1158,
+        "typing.style.cssText = \"align-self: flex-start; background: #202c33; padding: 6px 12px; border-radius: 8px; font-size: 0.65rem; color: #4ade80;\";"
+      ],
+      [
+        1200,
+        "<div class=\"swap-header-title swap-header-good\" style=\"color:#4ade80;\">Leadintel WhatsApp Suite"
+      ],
+      [
+        1208,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2.5\">"
+      ],
+      [
+        1214,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2.5\">"
+      ],
+      [
+        1225,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2.5\">"
+      ],
+      [
+        1231,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2.5\">"
+      ],
+      [
+        1242,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2.5\">"
+      ],
+      [
+        1248,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2.5\">"
+      ],
+      [
+        1259,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2.5\">"
+      ],
+      [
+        1265,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2.5\">"
+      ],
+      [
+        1277,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2.5\">"
+      ],
+      [
+        1283,
+        "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2.5\">"
+      ],
+      [
+        1320,
+        "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2.5\">"
+      ],
+      [
+        1326,
+        "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2.5\">"
+      ],
+      [
+        1332,
+        "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2.5\">"
+      ],
+      [
+        1338,
+        "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#4ade80\" stroke-width=\"2.5\">"
+      ],
+      [
+        1414,
+        "onmouseover=\"this.style.background='rgba(59,130,246,0.15)';this.style.color='#60a5fa'\""
+      ]
+    ],
+    "ai_tropes": [
+      [
+        762,
+        "<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#c084fc\" stroke-width=\"2\">"
+      ],
+      [
+        869,
+        "style=\"background: rgba(14, 18, 28, 0.65); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.18), 0 24px 60px rgba(0, 0, 0, 0.5); border-radius: 24px; padding: 40px 36px; position: relative; overflow: hidden;\">"
+      ]
+    ],
+    "emoji_clutter": [
+      [
+        9,
+        "content=\"Scale conversational B2B sales with official Meta Cloud API, 24/7 autonomous Maya AI SDR, 1-click broadcast templates, and CRM sync with zero ban risk \u2713\">"
+      ],
+      [
+        21,
+        "content=\"Scale conversational B2B sales with official Meta Cloud API, 24/7 autonomous Maya AI SDR, 1-click broadcast templates, and CRM sync with zero ban risk \u2713\">"
+      ],
+      [
+        35,
+        "content=\"Scale conversational B2B sales with official Meta Cloud API, 24/7 autonomous Maya AI SDR, 1-click broadcast templates, and CRM sync with zero ban risk \u2713\">"
+      ],
+      [
+        907,
+        "<span>\ud83c\udfaf</span> <strong>Cold CXO Outreach</strong>"
+      ],
+      [
+        910,
+        "<span>\u26a1</span> <strong>Lead Reactivation</strong>"
+      ],
+      [
+        913,
+        "<span>\ud83d\udcc5</span> <strong>Demo Confirmation</strong>"
+      ],
+      [
+        916,
+        "<span>\ud83c\udf81</span> <strong>Early Adopter Credits</strong>"
+      ],
+      [
+        1048,
+        "\ud83d\udd12 Messages and calls are end-to-end encrypted with Meta Cloud API."
+      ],
+      [
+        1071,
+        "<button class=\"wa-btn-option\" id=\"waBtnDemo\" type=\"button\">\ud83d\udcc5 Book 10-Min"
+      ],
+      [
+        1073,
+        "<button class=\"wa-btn-option\" id=\"waBtnPricing\" type=\"button\">\ud83d\udcb0 View Pricing"
+      ],
+      [
+        1153,
+        "userMsg.innerHTML = '<div style=\"font-size:0.72rem; color:#fff;\">' + text + '</div><div style=\"font-size:0.55rem; color:rgba(255,255,255,0.7); text-align:right; margin-top:2px;\">09:42 AM \u00b7 \u2713\u2713</div>';"
+      ],
+      [
+        1166,
+        "botMsg.innerHTML = '<div style=\"font-size:0.72rem; color:#e9edef; line-height:1.4;\">' + botReply + '</div><div style=\"font-size:0.55rem; color:#8696a0; text-align:right; margin-top:3px;\">09:42 AM \u00b7 \u2713\u2713</div>';"
+      ],
+      [
+        1174,
+        "simulateUserReply(\"\ud83d\udcc5 Book 10-Min Demo\", \"Awesome \" + n + \"! I have reserved 3:00 PM tomorrow. Here is your calendar invite link: <strong>leadintelai.in/cal/demo</strong>. Meeting automatically synced with your AI CRM!\");"
+      ],
+      [
+        1180,
+        "simulateUserReply(\"\ud83d\udcb0 View Pricing (\u20b94\u20136/lead)\", \"Our transparent pricing: \u20b94\u20136 per verified lead with direct mobile dial & active SIM ping. Plus zero monthly Meta seat fees. Open to seeing the full tier comparison?\");"
+      ]
+    ],
+    "tinted_icon_boxes": [
+      [
+        288,
+        ".pillar-icon {"
+      ],
+      [
+        734,
+        "<div class=\"pillar-icon\""
+      ],
+      [
+        747,
+        "<div class=\"pillar-icon\""
+      ],
+      [
+        760,
+        "<div class=\"pillar-icon\""
+      ],
+      [
+        761,
+        "style=\"background:rgba(168,85,247,0.1); border:1px solid rgba(168,85,247,0.25);\">"
+      ],
+      [
+        773,
+        "<div class=\"pillar-icon\""
+      ]
+    ],
+    "bouncy_transforms": [
+      [
+        284,
+        "transform: translateY(-3px);"
+      ]
+    ]
+  },
+  "chatbot.js": {
+    "neon_indicators": [
+      [
+        94,
+        "#aria-bubble .aria-ping-dot {"
+      ],
+      [
+        515,
+        "<div class=\"aria-ping-dot\" id=\"aria-dot\"></div>"
+      ]
+    ],
+    "pastel_neon_colors": [
+      [
+        83,
+        "color: #93c5fd;"
+      ],
+      [
+        329,
+        "color: #93c5fd;"
+      ],
+      [
+        388,
+        "color: #93c5fd;"
+      ]
+    ],
+    "ai_tropes": [
+      [
+        32,
+        "backdrop-filter: blur(28px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        33,
+        "-webkit-backdrop-filter: blur(28px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        122,
+        "backdrop-filter: blur(32px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        123,
+        "-webkit-backdrop-filter: blur(32px) saturate(220%) brightness(1.08) contrast(108%);"
+      ],
+      [
+        399,
+        "backdrop-filter: blur(16px) saturate(200%);"
+      ],
+      [
+        400,
+        "-webkit-backdrop-filter: blur(16px) saturate(200%);"
+      ]
+    ],
+    "emoji_clutter": [
+      [
+        557,
+        "<button class=\"aria-quick-btn\" onclick=\"window.__ariaSendQuick('Can you explain your B2B DataCloud and sample lead accuracy?')\">\u26a1 Test B2B Leads</button>"
+      ],
+      [
+        558,
+        "<button class=\"aria-quick-btn\" onclick=\"window.__ariaSendQuick('What are the official WhatsApp Business API features and pricing?')\">\ud83d\udcac WhatsApp API</button>"
+      ],
+      [
+        559,
+        "<button class=\"aria-quick-btn\" onclick=\"window.__ariaSendQuick('How does MailEngine ensure cold emails never land in spam?')\">\u2709\ufe0f Cold Email Setup</button>"
+      ],
+      [
+        560,
+        "<button class=\"aria-quick-btn\" onclick=\"window.__ariaSendQuick('What plans do you recommend for scaling our outbound revenue?')\">\ud83d\udcca Pricing Plans</button>"
+      ]
+    ],
+    "bouncy_transforms": [
+      [
+        70,
+        "transform: translateY(-3px) scale(1.06);"
+      ],
+      [
+        90,
+        "transform: scale(1.08);"
+      ],
+      [
+        248,
+        "transform: scale(1.04);"
+      ],
+      [
+        269,
+        "transform: scale(1.04);"
+      ],
+      [
+        352,
+        "animation: ariaDotBounce 1.2s ease infinite;"
+      ],
+      [
+        360,
+        "40% { transform: translateY(-5px); opacity: 1; background: #3b82f6; }"
+      ],
+      [
+        473,
+        "transform: translateY(-1px) scale(1.04);"
+      ]
+    ]
+  },
+  "script.js": {
+    "emoji_clutter": [
+      [
+        300,
+        "addBotMessage(\"Hi there! \ud83d\udc4b I'm the LeadintelAI Assistant. How can I help you grow your business today?\");"
+      ]
+    ]
+  }
+}

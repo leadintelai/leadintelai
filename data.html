@@ -3,405 +3,1271 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leadintel DataCloud | B2B Intelligence</title>
-    <meta name="description" content="Access verified decision-maker data for CXOs, CTOs, HR Heads, and Sales Leaders. Build targeted outreach from day one with subscription-based daily leads or one-time bulk lists.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-/* ── Linear Layout System (Extracted from Production CSS) ── */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-    background: #000103;
-    color: #fff;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-}
-a { text-decoration: none; color: inherit; }
+    <title>B2B DataCloud | 52M+ Verified Indian Decision Makers — LeadintelAI</title>
+    <meta name="description" content="Access 52M+ verified Indian B2B decision-makers with direct mobile SIM pings and MCA-matched corporate emails. ₹4–6/lead with 99.4% deliverability guarantee ✓">
+    <meta name="keywords" content="B2B database India, verified mobile dials, CXO contact list, MCA verified company database, intent data India, B2B sales leads">
+    <link rel="canonical" href="https://leadintelai.in/data.html">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
-/* ── Navbar ── */
-.navbar {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 60px;
-    z-index: 9999;
-}
-.navbar.scrolled {
-    background: rgba(0,1,3,0.75);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1440px;
-    margin: 0 auto;
-    height: 60px;
-    padding: 0 48px;
-}
-.logo { display: flex; align-items: center; gap: 10px; }
-.logo-wordmark { font-size: 0.95rem; font-weight: 600; letter-spacing: -0.01em; color: #fff; }
-.logo-ai { opacity: 0.6; }
-.logo-icon { flex-shrink: 0; }
-.nav-links { display: flex; align-items: center; gap: 32px; }
-.nav-links a { font-size: 0.875rem; color: rgba(255,255,255,0.6); transition: color 0.2s; }
-.nav-links a:hover { color: #fff; }
-.nav-actions { display: flex; align-items: center; gap: 10px; }
-.nav-login { font-size: 0.875rem; color: rgba(255,255,255,0.6); padding: 6px 14px; border-radius: 6px; transition: color 0.2s; }
-.nav-login:hover { color: #fff; }
-.btn-nav-cta { background: #EAEAEC; color: #0B0B0D; font-size: 0.8rem; font-weight: 500; padding: 6px 14px; border-radius: 6px; transition: background 0.2s; }
-.btn-nav-cta:hover { background: #fff; }
-.nav-hamburger { display: none; }
-.nav-mobile-drawer { display: none; }
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="LeadintelAI">
+    <meta property="og:url" content="https://leadintelai.in/data.html">
+    <meta property="og:title" content="B2B DataCloud | 52M+ Verified Indian Decision Makers — LeadintelAI">
+    <meta property="og:description" content="Access 52M+ verified Indian B2B decision-makers with direct mobile SIM pings and MCA-matched corporate emails. ₹4–6/lead with 99.4% deliverability guarantee ✓">
+    <meta property="og:image" content="https://leadintelai.in/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="LeadintelAI B2B Sales Execution Engine">
+    <meta property="og:locale" content="en_IN">
 
-/* ── Page container (Linear: width:100% + max-width) ── */
-.linear-container {
-    width: 100%;
-    max-width: 1440px;
-    padding-inline: 80px;
-    margin-inline: auto;
-}
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@LeadintelAI">
+    <meta name="twitter:creator" content="@LeadintelAI">
+    <meta name="twitter:url" content="https://leadintelai.in/data.html">
+    <meta name="twitter:title" content="B2B DataCloud | 52M+ Verified Indian Decision Makers — LeadintelAI">
+    <meta name="twitter:description" content="Access 52M+ verified Indian B2B decision-makers with direct mobile SIM pings and MCA-matched corporate emails. ₹4–6/lead with 99.4% deliverability guarantee ✓">
+    <meta name="twitter:image" content="https://leadintelai.in/og-image.png">
 
-/* ── Split Header (inspired by Linear homepage section headers) ── */
-.page-hero {
-    width: 100%;
-    padding-block: 128px;
-    padding-top: calc(60px + 80px);
-}
-.page-hero-inner {
-    width: 100%;
-    max-width: 1440px;
-    padding-inline: 80px;
-    margin-inline: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-}
-.page-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 4px 12px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.09);
-    border-radius: 99px;
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 28px;
-}
-.page-h1 {
-    font-size: clamp(2.8rem, 5vw, 5rem);
-    font-weight: 500;
-    letter-spacing: -0.04em;
-    line-height: 1.0;
-    color: #fff;
-    margin-bottom: 36px;
-}
-.page-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: rgba(255,255,255,0.4);
-    font-size: 0.83rem;
-    margin-bottom: 48px;
-    transition: color 0.2s;
-}
-.page-back:hover { color: #fff; }
-.page-desc {
-    font-size: 1.1rem;
-    line-height: 1.75;
-    color: rgba(255,255,255,0.7);
-    border-left: 2px solid;
-    padding-left: 24px;
-    margin-bottom: 0;
-}
-.page-cta {
-    margin-top: 40px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #fff;
-    color: #000;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-weight: 500;
-    font-size: 0.88rem;
-    transition: background 0.2s;
-}
-.page-cta:hover { background: #ddd; }
-
-/* ── Hairline divider ── */
-.section-divider {
-    width: 100%;
-    height: 1px;
-    background: rgba(255,255,255,0.08);
-    margin: 0;
-}
-
-/* ── Feature Grid (Linear-style) ── */
-.features-section {
-    width: 100%;
-    padding-block: 128px;
-}
-.features-inner {
-    width: 100%;
-    max-width: 1440px;
-    padding-inline: 80px;
-    margin-inline: auto;
-}
-.features-eyebrow {
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
-    margin-bottom: 48px;
-    font-weight: 500;
-}
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-    overflow: hidden;
-}
-.feature-cell {
-    padding: 48px;
-    background: #000103;
-    transition: background 0.2s;
-}
-.feature-cell:hover { background: rgba(255,255,255,0.02); }
-.feature-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    margin-bottom: 24px;
-}
-.feature-cell h4 {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: -0.02em;
-    margin-bottom: 12px;
-}
-.feature-cell p {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.65;
-}
-
-/* ── Founder block ── */
-.founder-section-full {
-    width: 100%;
-    padding-block: 0 128px;
-}
-.founder-inner-full {
-    width: 100%;
-    max-width: 1440px;
-    padding-inline: 80px;
-    margin-inline: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4px;
-    border-radius: 12px;
-    overflow: hidden;
-}
-.founder-quote-card {
-    padding: 64px;
-    background: rgba(255,255,255,0.025);
-    border: 1px solid rgba(255,255,255,0.08);
-}
-.founder-quote-card blockquote {
-    font-size: 1.4rem;
-    font-weight: 400;
-    color: #fff;
-    line-height: 1.55;
-    letter-spacing: -0.02em;
-    margin-bottom: 48px;
-}
-.founder-meta-row {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-.f-avatar {
-    width: 48px; height: 48px;
-    border-radius: 50%;
-    background: #111;
-    border: 1px solid rgba(255,255,255,0.1);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.1rem; font-weight: 700; color: #fff;
-}
-.f-name { font-size: 0.95rem; font-weight: 600; color: #fff; }
-.f-role { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 2px; }
-.founder-mission-card {
-    padding: 64px;
-    background: rgba(94,106,210,0.07);
-    border: 1px solid rgba(94,106,210,0.15);
-}
-.founder-mission-card h3 {
-    font-size: 1.3rem; font-weight: 600; color: #fff;
-    letter-spacing: -0.02em; margin-bottom: 16px;
-}
-.founder-mission-card p {
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.7;
-    margin-bottom: 40px;
-}
-
-/* ── Footer ── */
-.page-footer {
-    width: 100%;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding: 32px 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1440px;
-    margin-inline: auto;
-}
-.page-footer p, .page-footer a { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
-.page-footer a:hover { color: rgba(255,255,255,0.7); }
-.footer-links { display: flex; gap: 20px; }
-
-/* ── Mobile ── */
-@media (max-width: 900px) {
-    .nav-inner { padding: 0 24px; }
-    .nav-links { display: none; }
-    .page-hero-inner { grid-template-columns: 1fr; padding-inline: 24px; gap: 32px; }
-    .linear-container { padding-inline: 24px; }
-    .features-inner { padding-inline: 24px; }
-    .feature-grid { grid-template-columns: 1fr; }
-    .founder-inner-full { grid-template-columns: 1fr; padding-inline: 24px; gap: 2px; }
-    .page-footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
-}
-
-    .page-tag { color: #5E6AD2; }
-    .page-desc { border-color: #5E6AD2; }
-    .feature-dot { background: #5E6AD2; }
-    
-        .nav-links { display: flex; align-items: center; gap: 24px; flex-wrap: nowrap; }
-        @media (max-width: 480px) {
-            .nav-inner { padding: 0 14px; height: 52px; }
-            .nav-actions { gap: 6px; }
-            .nav-login { display: none; }
-            .btn-nav-cta { font-size: 0.74rem; padding: 5px 10px; }
-            .page-hero-inner { padding-top: 80px; padding-inline: 14px; gap: 20px; }
-            .page-h1 { font-size: clamp(1.5rem, 7vw, 2.2rem) !important; }
-            .page-desc { font-size: 0.82rem; }
-            .page-cta { font-size: 0.82rem; padding: 10px 18px; }
-            .linear-container { padding-inline: 14px; }
-            .features-inner { padding-inline: 14px; }
-            .founder-inner-full { padding-inline: 14px; }
-            .footer-links { flex-wrap: wrap; gap: 10px; }
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://leadintelai.in/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "DataCloud",
+            "item": "https://leadintelai.in/data.html"
         }
+    ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "LeadintelAI India B2B Decision Maker Database",
+    "description": "52M+ B2B contacts across India with verified mobile SIM pings and corporate email validation.",
+    "url": "https://leadintelai.in/data.html",
+    "keywords": [
+        "B2B Data",
+        "CXO Leads",
+        "Verified Mobile",
+        "MCA Entities"
+    ],
+    "creator": {
+        "@type": "Organization",
+        "name": "LeadintelAI"
+    }
+}
+    </script>
+    
+    <link rel="stylesheet" href="glass-theme.css?v=20261115">
+    
+    <!-- LeadintelAI Silent Connection Detector -->
+    <script>
+        window.addEventListener('offline', () => {
+            localStorage.setItem('leadintel_last_url', window.location.href);
+            window.location.href = 'offline.html';
+        });
+    </script>
+    <style>
+        /* ── Subpage Hero (Matches About, Contact, Terms) ── */
+        .about-hero {
+            padding: 124px 0 56px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .about-hero-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 60% at 20% 0%, rgba(168,85,247,0.10) 0%, transparent 65%),
+                radial-gradient(ellipse 50% 50% at 80% 100%, rgba(147,51,234,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .about-hero-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        /* Left column */
+        .about-founding-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 16px 7px 10px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.10);
+            margin-bottom: 32px;
+        }
+        .about-founding-badge .badge-dot {
+            width: 24px; height: 24px; border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(168,85,247,0.3);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .about-founding-badge .badge-dot svg { display: block; }
+        .about-founding-badge span {
+            font-size: 0.78rem; font-weight: 600;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 0.04em;
+        }
+        .about-founding-badge strong {
+            font-size: 0.78rem; font-weight: 700;
+            color: #d8b4fe;
+            letter-spacing: 0.02em;
+        }
+        .about-hero-eyebrow {
+            font-size: 0.68rem; font-weight: 700;
+            letter-spacing: 0.16em; text-transform: uppercase;
+            color: var(--text-tertiary);
+            margin-bottom: 20px;
+            display: block;
+        }
+        .about-hero-h1 {
+            font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            color: #fff;
+            margin-bottom: 0;
+        }
+        .about-hero-h1 em {
+            font-style: normal;
+            color: #c084fc;
+        }
+        /* Right column */
+        .about-hero-right {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .about-hero-desc {
+            font-size: 1.05rem;
+            line-height: 1.78;
+            color: var(--text-secondary);
+        }
+        .about-hero-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.07);
+        }
+        .about-hero-cta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .about-hero-note {
+            font-size: 0.78rem;
+            color: var(--text-tertiary);
+            line-height: 1.6;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .about-hero-note svg {
+            color: #34d399;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 900px) {
+            .about-hero-inner { grid-template-columns: 1fr; gap: 36px; padding: 0 24px; }
+            .about-hero { padding: 120px 0 60px; }
+            .platform-pillars { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .about-hero { padding-top: 110px; padding-bottom: 50px; }
+            .about-hero-inner { padding: 0 20px; }
+            .about-hero-cta { flex-direction: column; align-items: stretch; width: 100%; }
+            .about-hero-cta a { text-align: center; justify-content: center; display: flex; }
+            .section.container-wide { padding-left: 20px !important; padding-right: 20px !important; }
+            .governance-card { padding: 28px 20px; }
+            .cta-box { padding: 40px 20px; }
+            .cta-actions { flex-direction: column; align-items: stretch; }
+            .cta-actions a { display: flex; justify-content: center; text-align: center; }
+        }
+
+
+
+        /* ── Platform Pillars (Cards) ── */
+        .platform-pillars {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+        }
+        .pillar {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px; padding: 24px;
+            transition: border-color 0.25s, transform 0.25s, background 0.25s;
+        }
+        .pillar:hover {
+            border-color: rgba(168,85,247,0.35);
+            transform: translateY(-3px);
+            background: rgba(168,85,247,0.04);
+        }
+        .pillar-icon {
+            width: 38px; height: 38px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 14px;
+        }
+        .pillar-t { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+        .pillar-d { font-size: 0.8rem; line-height: 1.6; color: var(--text-secondary); }
+        @media (max-width: 900px) {
+            .platform-pillars { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 540px) {
+            .platform-pillars { grid-template-columns: 1fr; }
+        }
+
+        /* ── Comparison / Swap Rows ── */
+        .swap-shell {
+            position: relative;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            padding-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 16px;
+            background: rgba(255,255,255,0.015);
+            overflow: hidden;
+        }
+        .swap-header-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.02);
+            padding: 16px 28px;
+            gap: 20px;
+        }
+        .swap-header-title {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .swap-header-bad { color: #f87171; text-align: right; padding-right: 12px; }
+        .swap-header-good { color: #c084fc; padding-left: 12px; }
+        .swap-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .swap-row:last-child { border-bottom: none; }
+        .swap-bad, .swap-good {
+            padding: 16px 28px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.84rem;
+            color: var(--text-secondary);
+            transition: background 0.2s;
+        }
+        .swap-bad {
+            justify-content: flex-end;
+            text-align: right;
+            border-right: 1px solid rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.6);
+        }
+        .swap-good {
+            color: #fff;
+            font-weight: 500;
+        }
+        .swap-bad:hover { background: rgba(239,68,68,0.03); }
+        .swap-good:hover { background: rgba(168,85,247,0.04); }
+        @media (max-width: 768px) {
+            .swap-header-row { display: none; }
+            .swap-row { grid-template-columns: 1fr; }
+            .swap-bad { justify-content: flex-start; text-align: left; border-right: none; border-bottom: 1px dashed rgba(255,255,255,0.06); }
+        }
+
+        /* ── Governance & DPDP Card (About Founder Quote Style) ── */
+        .governance-card {
+            margin-top: 28px;
+            position: relative;
+            overflow: hidden;
+            background: #0f1117;
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 16px;
+            padding: 36px;
+        }
+        .governance-svg {
+            position: absolute;
+            top: 0; right: 0;
+            width: 180px; height: 160px;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        .governance-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px;
+            border-radius: 6px;
+            background: rgba(6,95,70,0.16);
+            border: 1px solid rgba(4,120,87,0.4);
+            color: #34d399;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .governance-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+        .governance-desc {
+            font-size: 0.9rem;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            max-width: 860px;
+        }
+        .governance-pills {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .gov-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            color: var(--text-tertiary);
+        }
+        .gov-pill svg { color: #c084fc; }
+
+        /* ── CTA Banner ── */
+        .cta-box {
+            position: relative;
+            background: linear-gradient(135deg, rgba(37,99,235,0.08) 0%, rgba(139,92,246,0.06) 100%);
+            border: 1px solid rgba(99,102,241,0.25);
+            border-radius: 16px;
+            padding: 56px 40px;
+            text-align: center;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+        .cta-box h2 {
+            font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+        }
+        .cta-box p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 28px;
+            line-height: 1.6;
+        }
+        .cta-actions {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        /* ── Generic Section Typography (Matching About/Contact) ── */
+        .section-header {
+            text-align: center;
+            max-width: 840px;
+            margin: 0 auto 56px;
+        }
+        .section-eyebrow {
+            font-size: 0.68rem; font-weight: 700;
+            letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--text-tertiary); margin-bottom: 14px;
+            display: block;
+        }
+        .section-h2 {
+            font-size: clamp(1.4rem, 2vw, 1.9rem);
+            font-weight: 700; letter-spacing: -0.02em;
+            line-height: 1.25; color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+        .section-p {
+            font-size: 0.92rem; line-height: 1.75;
+            color: var(--text-secondary);
+        }
+
+        /* Scroll reveal styling */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.on {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .d1 { transition-delay: 0.1s; }
+        .d2 { transition-delay: 0.2s; }
     </style>
 </head>
 <body>
 
-    <header class="navbar" id="navbar">
-        <div class="nav-inner">
-            <a href="index.html" class="logo">
-                <svg class="logo-icon" width="26" height="26" viewBox="0 0 100 100" fill="none" style="vertical-align: middle;">
-                    <path class="ghost-body" d="M20,50 Q20,20 50,20 Q80,20 80,50 L80,80 Q70,75 60,80 Q50,85 40,80 Q30,75 20,80 Z" fill="white" />
-                    <ellipse class="ghost-eye" cx="40" cy="45" rx="4" ry="6" fill="black" />
-                    <ellipse class="ghost-eye" cx="60" cy="45" rx="4" ry="6" fill="black" />
-                </svg>
-                <span class="logo-wordmark">Leadintel<span class="logo-ai">AI</span></span>
+    <!-- ─── FLOATING LIQUID GLASS HEADER (MATCHING LOGIN PAGE) ─── -->
+    <header class="liquid-header">
+        <div class="liquid-header-inner">
+            <!-- Top-Left Brand Header Pill -->
+            <a href="index.html" class="brand-top" title="LeadintelAI Home">
+                <span class="li-logo-slot" title="LeadintelAI">
+                    <img src="leadintelai-logo.svg" alt="LeadintelAI Logo">
+                </span>
+                <span class="brand-word">LeadintelAI</span>
             </a>
-            <nav class="nav-links">
-                <a href="index.html#services">Services</a>
+
+            <!-- Center Navigation Links Pill -->
+            <nav class="nav-center-pill" aria-label="Main Navigation">
+                <a href="index.html#platform">Platform</a>
+                <a href="index.html#blueprint">Workflow</a>
+                <a href="index.html#use-cases">Use Cases</a>
                 <a href="pricing.html">Pricing</a>
-                <a href="about.html">About</a>
-                <a href="index.html#contact">Contact</a>
             </nav>
-            <div class="nav-actions">
-                <a href="login.html" class="nav-login">Log in</a>
-                <a href="login.html" class="btn-nav-cta">Get Started</a>
+
+            <!-- Top-Right Actions Cluster (Login & Start Free Trial) -->
+            <div class="nav-top-right">
+                <a href="login.html" class="nav-back-pill" title="Sign in to your account">
+                    <span>Login</span>
+                </a>
+                <a href="login.html?mode=signup" class="nav-cta-pill" title="Start Free Trial">
+                    <span>Start Free Trial</span>
+                </a>
             </div>
         </div>
     </header>
 
-    <main>
-        <!-- Split Hero Header -->
-        <div class="page-hero">
-            <div class="page-hero-inner">
-                <div>
-                    <a href="index.html" class="page-back">
-                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-                        Back
-                    </a>
-                    <div class="page-tag">DataCloud</div>
-                    <h1 class="page-h1">Leadintel DataCloud</h1>
-                    <a href="login.html?mode=signup" class="page-cta">Start Prospecting &rarr;</a>
-                </div>
-                <div>
-                    <p class="page-desc">Access verified decision-maker data for CXOs, CTOs, HR Heads, and Sales Leaders. Build targeted outreach from day one with subscription-based daily leads or one-time bulk lists.</p>
-                </div>
-            </div>
+<main>
+
+    <!-- ─── DATACLOUD HERO (Split Hero matching about.html) ─── -->
+    <section class="about-hero">
+
+        <!-- Motion-Grade 3D Wave Ribbon Background with Radial Vignette Finishing -->
+        <div class="platform-wave-bg" aria-hidden="true">
+            <canvas class="platform-wave-canvas" data-wave-theme="purple"></canvas>
         </div>
 
-        <div class="section-divider"></div>
+        <div class="about-hero-inner">
 
-        
+            <!-- Left: Identity & Big Heading -->
+            <div class="about-hero-left">
+                <div class="service-kicker stat-theme-purple">
+                    <span class="kicker-dot"></span>
+                    <span class="kicker-title">DataCloud</span>
+                    <span class="kicker-sep">/</span>
+                    <span class="kicker-meta">B2B Decision-Maker Intelligence</span>
+                </div>
+                <h1 class="about-hero-h1">
+                    10M+ Verified<br>
+                    <em>Decision-Maker</em><br>
+                    Intelligence
+                </h1>
+            </div>
 
-        <!-- Features -->
-        <div class="features-section">
-            <div class="features-inner">
-                <div class="features-eyebrow">Key Features</div>
-                <div class="feature-grid">
-                    
-                    <div class="feature-cell">
-                        <div class="feature-dot"></div>
-                        <h4>Verified Records</h4>
-                        <p>Company, Employee Name, Designation, Email ID, Contact Number, and Profile URLs — all confirmed.</p>
-                    </div>
-                    <div class="feature-cell">
-                        <div class="feature-dot"></div>
-                        <h4>Daily Fresh Leads</h4>
-                        <p>Subscription plans deliver industry-filtered, fresh decision-maker contacts every single day.</p>
-                    </div>
-                    <div class="feature-cell">
-                        <div class="feature-dot"></div>
-                        <h4>One-Time Bulk Purchase</h4>
-                        <p>Need a large-scale dataset fast? Acquire a targeted bulk list for immediate high-scale outreach.</p>
-                    </div>
-                    <div class="feature-cell">
-                        <div class="feature-dot"></div>
-                        <h4>Industry-Specific Targeting</h4>
-                        <p>Filter leads by industry vertical, designation type, company size, and geography.</p>
-                    </div>
+            <!-- Right: Description, CTAs & Compliance Note -->
+            <div class="about-hero-right">
+                <p class="about-hero-desc">
+                    Direct mobile dials, verified corporate emails, and active intent signals for Founders, Directors, and CXOs across India. Source qualified B2B accounts at ₹4–6/lead with 99.4% verified accuracy and zero bounce guarantee.
+                </p>
+                <div class="about-hero-divider"></div>
+                <div class="about-hero-cta">
+                    <a href="login.html?mode=signup" class="btn-primary" style="padding: 11px 22px; font-size: 0.92rem; background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);">Start Prospecting (50 Free Leads) →</a>
+                    <a href="contact.html" class="btn-secondary" style="padding: 11px 18px; font-size: 0.92rem;">Request Bulk Segment</a>
+                </div>
+                <div class="about-hero-note">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>DPDP Act 2023 Compliant · Real-time Telecom Check · Auto-Credit Refunds</span>
                 </div>
             </div>
-        </div>
-    </main>
 
-    <footer style="border-top: 1px solid rgba(255,255,255,0.08);">
-        <div class="page-footer">
-            <p>&copy; 2026 Leadintelai.in. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
+        </div>
+    </section>
+
+    <!-- ─── PREMIUM CRAFTED STATS BAR ─── -->
+    <div class="stat-strip">
+        <div class="stat-strip-inner stat-theme-purple">
+            <div class="stat-cell">
+                <div class="stat-cell-top">
+                    <span class="stat-indicator-dot"></span>
+                    <span class="stat-eyebrow">Verified Scale</span>
+                </div>
+                <div class="stat-num"><span class="stat-num-val" data-target="52">52</span><span class="stat-suf">M+</span></div>
+                <p class="stat-label">Verified Indian decision-makers across 50+ sectors</p>
+            </div>
+            <div class="stat-cell">
+                <div class="stat-cell-top">
+                    <span class="stat-indicator-dot"></span>
+                    <span class="stat-eyebrow">Transparent Cost</span>
+                </div>
+                <div class="stat-num"><span class="stat-pre">₹</span><span class="stat-num-val" data-target="4–6">4–6</span></div>
+                <p class="stat-label">Transparent flat cost per lead · 30% below market</p>
+            </div>
+            <div class="stat-cell">
+                <div class="stat-cell-top">
+                    <span class="stat-indicator-dot"></span>
+                    <span class="stat-eyebrow">Data Accuracy</span>
+                </div>
+                <div class="stat-num"><span class="stat-num-val" data-target="99.4">99.4</span><span class="stat-suf">%</span></div>
+                <p class="stat-label">Verified accuracy with instant auto-credit bounce refunds</p>
+            </div>
+            <div class="stat-cell">
+                <div class="stat-cell-top">
+                    <span class="stat-indicator-dot"></span>
+                    <span class="stat-eyebrow">DPDP Compliance</span>
+                </div>
+                <div class="stat-num"><span class="stat-num-val" data-target="100">100</span><span class="stat-suf">%</span></div>
+                <p class="stat-label">DPDP Act 2023 &amp; GDPR compliant data sourcing</p>
             </div>
         </div>
-    </footer>
+    </div>
 
+    <!-- ─── B2B INTELLIGENCE CONSOLE PREVIEW & LIVE SIMULATOR ─── -->
+    <section class="section container-wide" id="data-playground" style="padding: 28px 40px 24px;">
+        <div class="console-preview-frame">
+            
+            <!-- Window Console Top Navigation Bar -->
+            <div class="console-window-top">
+                <div class="window-traffic-dots" aria-hidden="true">
+                    <span class="w-dot"></span>
+                    <span class="w-dot"></span>
+                    <span class="w-dot"></span>
+                </div>
+                <div class="window-path-spec">
+                    <span class="path-segment">leadintel.datacloud</span>
+                    <span class="path-sep">/</span>
+                    <span class="path-segment">query-engine</span>
+                    <span class="path-sep">/</span>
+                    <span class="path-active">interactive-preview</span>
+                </div>
+                <div class="window-stream-pill">
+                    <span class="stream-dot"></span>
+                    <span>52M+ Decision-Makers Online</span>
+                </div>
+            </div>
+
+            <!-- Console Interior Body -->
+            <div class="console-body">
+
+                <!-- Header Row: Query Engine Title + Seamless In-Screen Telemetry Flow -->
+                <div class="console-intro-row">
+                    <div class="console-intro-text">
+                        <h2 class="console-headline">Query 52M+ Verified Decision-Makers Live</h2>
+                        <p class="console-subhead">Filter by vertical, metropolitan hub, and leadership tier. Verify contact telemetry before sourcing.</p>
+                    </div>
+
+                    <!-- Pure Minimal In-Screen Telemetry Flow (Zero Boxes, Seamless Canvas Motion) -->
+                    <div class="console-flow-wrapper" aria-hidden="true">
+                        <canvas id="consoleFlowCanvas" class="console-flow-canvas" width="720" height="160"></canvas>
+                    </div>
+                </div>
+
+                <!-- Custom Tactile Filter Bar -->
+                <div class="console-filter-bar">
+                    <!-- Industry Select -->
+                    <div class="console-filter-field">
+                        <label class="filter-mini-label" for="pgIndustry">Target Industry</label>
+                        <div class="select-wrapper">
+                            <select id="pgIndustry" class="console-select">
+                                <option value="saas" selected>SaaS &amp; Software (142,800+ Cos)</option>
+                                <option value="fintech">FinTech &amp; Banking (68,400+ Cos)</option>
+                                <option value="d2c">E-Commerce &amp; D2C (94,200+ Cos)</option>
+                                <option value="health">Healthcare &amp; Pharma (52,100+ Cos)</option>
+                                <option value="logistics">Supply Chain &amp; Logistics (118,000+ Cos)</option>
+                            </select>
+                            <svg class="select-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- Location Select -->
+                    <div class="console-filter-field">
+                        <label class="filter-mini-label" for="pgCity">Hub Location</label>
+                        <div class="select-wrapper">
+                            <select id="pgCity" class="console-select">
+                                <option value="blr" selected>Bengaluru (Silicon Plateau)</option>
+                                <option value="mum">Mumbai &amp; Pune (Financial Hub)</option>
+                                <option value="delhi">Delhi NCR (Gurugram / Noida)</option>
+                                <option value="hyd">Hyderabad (Cyberabad)</option>
+                                <option value="pan">Pan-India (All 28 States)</option>
+                            </select>
+                            <svg class="select-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- Role Select -->
+                    <div class="console-filter-field">
+                        <label class="filter-mini-label" for="pgRole">Leadership Tier</label>
+                        <div class="select-wrapper">
+                            <select id="pgRole" class="console-select">
+                                <option value="cxo" selected>Founder / Managing Director</option>
+                                <option value="tech">CTO / VP Engineering</option>
+                                <option value="sales">VP Sales / Chief Revenue Officer</option>
+                                <option value="finance">Chief Financial Officer (CFO)</option>
+                            </select>
+                            <svg class="select-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- Trigger Query Button -->
+                    <div class="console-filter-action">
+                        <button id="pgRefreshBtn" type="button" class="console-refresh-btn" title="Re-query live data pipeline">
+                            <svg id="pgRefreshIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                            <span>Run Query</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Telemetry Row (Zero Emojis, Clean Monospace) -->
+                <div class="console-telemetry-row">
+                    <div class="telemetry-count-wrap">
+                        <span class="telemetry-count-val" id="pgMatchCount">48,210</span>
+                        <span class="telemetry-count-meta">verified accounts matched in 14ms</span>
+                    </div>
+                    <div class="telemetry-badges">
+                        <div class="telemetry-pill">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.2"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V4"/></svg>
+                            <span>SIM Ping: <strong class="val-green">99.4% Live</strong></span>
+                        </div>
+                        <div class="telemetry-pill">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <span>MCA Registry: <strong class="val-purple">100% DIN Valid</strong></span>
+                        </div>
+                        <div class="telemetry-pill">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            <span>Flat Rate: <strong class="val-amber">₹4–6 / lead</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Sample Table -->
+                <div class="console-table-wrap data-table-scroll">
+                    <div class="console-table" id="pgTableElement">
+                        <!-- Table Head -->
+                        <div class="console-th-row">
+                            <div>Decision-Maker &amp; Entity</div>
+                            <div>Location &amp; Sector</div>
+                            <div>Verified Mobile Dial</div>
+                            <div>Corporate Work Email</div>
+                            <div style="text-align: right;">Record Action</div>
+                        </div>
+
+                        <!-- Row 1: Unlocked Live Sample -->
+                        <div class="console-tr-row tr-unlocked" id="pgSampleRow1">
+                            <div class="col-main">
+                                <div class="person-avatar" id="pgLead1Avatar">VS</div>
+                                <div class="person-info">
+                                    <div class="person-name-line">
+                                        <strong class="person-name" id="pgLead1Name">Vikramaditya Sharma</strong>
+                                    </div>
+                                    <span class="person-role-co" id="pgLead1Role">Founder &amp; MD · KuberScale Logistics Pvt Ltd</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="loc-val" id="pgLead1Loc">Bengaluru, KA</div>
+                                <div class="sector-val" id="pgLead1Sector">SaaS &amp; Enterprise LogiTech</div>
+                            </div>
+                            <div>
+                                <div class="phone-num-mono" id="pgLead1Phone" data-raw-phone="+91 98210 44821">+91 98210 •••••</div>
+                                <div class="phone-status">
+                                    <span class="status-pulse-dot"></span>
+                                    <span>Airtel 5G Live · Ping 12m ago</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="email-val-mono" id="pgLead1Email">vikram@kuberscale.in</div>
+                                <div class="email-status">
+                                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>SMTP 250 OK · Google Workspace</span>
+                                </div>
+                            </div>
+                            <div class="col-action">
+                                <button type="button" class="btn-copy-contact" id="pgCopyBtn" onclick="copyContactLead(this)">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                    <span>Copy Details</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Teaser Record (Marketing Demo) -->
+                        <div class="console-tr-row tr-teaser">
+                            <div class="col-main">
+                                <div class="person-avatar avatar-muted">PN</div>
+                                <div class="person-info">
+                                    <strong class="person-name">Pooja Nair</strong>
+                                    <span class="person-role-co">VP Engineering · CloudSpire Technologies</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="loc-val">Bengaluru, KA</div>
+                                <div class="sector-val">Cloud Infrastructure &amp; DevOps</div>
+                            </div>
+                            <div>
+                                <div class="masked-field">+91 99401 •••••</div>
+                                <div class="field-meta">SIM verified · Jio 5G Active</div>
+                            </div>
+                            <div>
+                                <div class="masked-field">p.nair@•••••••••.io</div>
+                                <div class="field-meta">Corporate MX verified</div>
+                            </div>
+                            <div class="col-action">
+                                <a href="login.html?mode=signup" class="btn-unlock-jump" title="Sign up free to unlock all 52M+ verified decision-makers">
+                                    <span>Unlock Record</span>
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 11V7a5 5 0 0 1 10 0v4"/><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/></svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Row 3: Teaser Record (Marketing Demo) -->
+                        <div class="console-tr-row tr-teaser">
+                            <div class="col-main">
+                                <div class="person-avatar avatar-muted">AD</div>
+                                <div class="person-info">
+                                    <strong class="person-name">Ananya Deshmukh</strong>
+                                    <span class="person-role-co">Chief Revenue Officer · FinVeda Intelligence</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="loc-val">Bengaluru, KA</div>
+                                <div class="sector-val">FinTech &amp; Risk Analytics</div>
+                            </div>
+                            <div>
+                                <div class="masked-field">+91 97112 •••••</div>
+                                <div class="field-meta">SIM verified · Airtel 5G Active</div>
+                            </div>
+                            <div>
+                                <div class="masked-field">ananya@•••••••••.ai</div>
+                                <div class="field-meta">Corporate MX verified</div>
+                            </div>
+                            <div class="col-action">
+                                <a href="login.html?mode=signup" class="btn-unlock-jump" title="Sign up free to unlock all 52M+ verified decision-makers">
+                                    <span>Unlock Record</span>
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 11V7a5 5 0 0 1 10 0v4"/><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Console Dock Bar -->
+                <div class="console-dock-footer">
+                    <div class="dock-info">
+                        <strong class="dock-title">Need all <span id="pgBottomMatchCount">48,210</span> verified accounts in your CRM?</strong>
+                        <span class="dock-subtitle">Export verified direct dials, corporate work emails, and MCA director profiles directly to HubSpot, Zoho, or CSV with 1-click.</span>
+                    </div>
+                    <div class="dock-actions">
+                        <a href="login.html?mode=signup" class="btn-console-launch">
+                            <span>Export Target Segment →</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ─── JUMP ANIMATION & DYNAMIC QUERY ENGINE SCRIPT ─── -->
     <script>
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 20);
-        }, { passive: true });
+    (function() {
+        var dataMatrix = {
+            saas: {
+                blr: { count: "48,210", initials: "VS", name: "Vikramaditya Sharma", role: "Founder & MD · KuberScale Logistics", loc: "Bengaluru, KA", sector: "SaaS / Enterprise LogiTech", phone: "+91 98210 44821", email: "vikram@kuberscale.in" },
+                mum: { count: "39,540", initials: "RS", name: "Rohan Singhania", role: "Co-Founder & CEO · QuantaRisk Cloud", loc: "Mumbai, MH", sector: "InsurTech / B2B SaaS", phone: "+91 98190 28190", email: "rohan@quantarisk.com" },
+                delhi: { count: "44,120", initials: "AM", name: "Aditya Malhotra", role: "Chief Executive · HyperScale CRM", loc: "Gurugram, HR", sector: "Marketing Cloud / SaaS", phone: "+91 98711 90432", email: "aditya@hyperscalecrm.io" },
+                hyd: { count: "31,890", initials: "KR", name: "Kiran Reddy", role: "Managing Director · ByteWave AI", loc: "Hyderabad, TS", sector: "AI Cloud Infrastructure", phone: "+91 99890 34120", email: "kiran@bytewave.ai" },
+                pan: { count: "142,800+", initials: "VS", name: "Vikramaditya Sharma", role: "Founder & MD · KuberScale Logistics", loc: "Pan-India Hubs", sector: "All SaaS Sub-sectors", phone: "+91 98210 44821", email: "vikram@kuberscale.in" }
+            },
+            fintech: {
+                blr: { count: "28,450", initials: "SN", name: "Sameer Nambiar", role: "Founder & CEO · PayPulse Gateway", loc: "Bengaluru, KA", sector: "Payment Infra / API Banking", phone: "+91 98450 71239", email: "sameer@paypulse.in" },
+                mum: { count: "36,900", initials: "PV", name: "Priya Varma", role: "Director & COO · CapitalEdge Lending", loc: "Mumbai, MH", sector: "Digital NBFC & Wealth", phone: "+91 98200 45671", email: "priya@capitaledge.in" },
+                delhi: { count: "26,100", initials: "MA", name: "Manish Agarwal", role: "Managing Director · Credix Finance", loc: "Noida, UP", sector: "SME Credit Underwriting", phone: "+91 98100 89214", email: "manish@credix.in" },
+                hyd: { count: "19,400", initials: "SC", name: "Suresh Chukkapalli", role: "Founder · FinStack Open Banking", loc: "Hyderabad, TS", sector: "Neo-Banking Infrastructure", phone: "+91 99660 12890", email: "suresh@finstack.io" },
+                pan: { count: "68,400+", initials: "SN", name: "Sameer Nambiar", role: "Founder & CEO · PayPulse Gateway", loc: "Pan-India FinTech", sector: "All FinTech & NBFC", phone: "+91 98450 71239", email: "sameer@paypulse.in" }
+            },
+            d2c: {
+                blr: { count: "34,120", initials: "AK", name: "Arjun Krishnan", role: "Founder · PureBotanics D2C", loc: "Bengaluru, KA", sector: "Clean Beauty / E-Commerce", phone: "+91 98440 33901", email: "arjun@purebotanics.in" },
+                mum: { count: "38,700", initials: "NK", name: "Natasha Kapadia", role: "Co-Founder · UrbanThreads India", loc: "Mumbai, MH", sector: "Apparel & Lifestyle D2C", phone: "+91 98201 99234", email: "natasha@urbanthreads.in" },
+                delhi: { count: "41,200", initials: "KK", name: "Kabir Khanna", role: "Managing Director · NutriFuel Organics", loc: "Delhi NCR", sector: "Consumer Health & FMCG", phone: "+91 98110 55432", email: "kabir@nutrifuel.in" },
+                hyd: { count: "16,800", initials: "DR", name: "Deepak Rao", role: "Founder · SmartGourmet Retail", loc: "Hyderabad, TS", sector: "Packaged Food & Quick Commerce", phone: "+91 98660 77123", email: "deepak@smartgourmet.in" },
+                pan: { count: "94,200+", initials: "NK", name: "Natasha Kapadia", role: "Co-Founder · UrbanThreads India", loc: "Pan-India D2C", sector: "All D2C & Omnichannel", phone: "+91 98201 99234", email: "natasha@urbanthreads.in" }
+            },
+            health: {
+                blr: { count: "18,400", initials: "AS", name: "Dr. Arvind Swaminathan", role: "Managing Director · CellGene Therapeutics", loc: "Bengaluru, KA", sector: "Biotech & Oncology", phone: "+91 98451 22904", email: "arvind@cellgene.in" },
+                mum: { count: "24,800", initials: "GP", name: "Gautam Parekh", role: "Executive Director · Apex Pharma Labs", loc: "Mumbai, MH", sector: "Formulations & APIs", phone: "+91 98202 33145", email: "gautam@apexpharma.in" },
+                delhi: { count: "19,500", initials: "SG", name: "Sunil Grover", role: "Founder · CareMatrix Diagnostics", loc: "Gurugram, HR", sector: "Digital Pathology & Diagnostics", phone: "+91 98101 66789", email: "sunil@carematrix.in" },
+                hyd: { count: "22,300", initials: "KM", name: "Dr. K. S. Murthy", role: "CEO · Genesis LifeSciences", loc: "Hyderabad, TS", sector: "Genome Sequencing & Pharma", phone: "+91 99891 44567", email: "murthy@genesislife.in" },
+                pan: { count: "52,100+", initials: "GP", name: "Gautam Parekh", role: "Executive Director · Apex Pharma Labs", loc: "Pan-India Pharma", sector: "All Healthcare & Biotech", phone: "+91 98202 33145", email: "gautam@apexpharma.in" }
+            },
+            logistics: {
+                blr: { count: "29,800", initials: "RH", name: "Rajeshwar Hegde", role: "Founder & MD · TransRoute 3PL", loc: "Bengaluru, KA", sector: "Cold Chain & Warehousing", phone: "+91 98442 88123", email: "rajesh@transroute.in" },
+                mum: { count: "48,900", initials: "MS", name: "Mahendra Shah", role: "Managing Director · OceanGate Cargo", loc: "Navi Mumbai, MH", sector: "Freight Forwarding & Multi-Modal", phone: "+91 98203 11987", email: "mahendra@oceangate.in" },
+                delhi: { count: "39,400", initials: "VA", name: "Vikas Aggarwal", role: "CEO · RapidFleet Express", loc: "Delhi NCR", sector: "Inter-City Fleet & Heavy Logistics", phone: "+91 98102 77432", email: "vikas@rapidfleet.in" },
+                hyd: { count: "24,200", initials: "VR", name: "Venkat Raman", role: "Director · Deccan Warehousing Corp", loc: "Hyderabad, TS", sector: "Industrial Parks & Logistics", phone: "+91 99892 55321", email: "venkat@deccanwarehousing.com" },
+                pan: { count: "118,000+", initials: "MS", name: "Mahendra Shah", role: "Managing Director · OceanGate Cargo", loc: "Pan-India Logistics", sector: "All Logistics & Supply Chain", phone: "+91 98203 11987", email: "mahendra@oceangate.in" }
+            }
+        };
+
+        var indSel = document.getElementById("pgIndustry");
+        var citySel = document.getElementById("pgCity");
+        var roleSel = document.getElementById("pgRole");
+        var countEl = document.getElementById("pgMatchCount");
+        var bottomCountEl = document.getElementById("pgBottomMatchCount");
+        var avatarEl = document.getElementById("pgLead1Avatar");
+        var nameEl = document.getElementById("pgLead1Name");
+        var roleEl = document.getElementById("pgLead1Role");
+        var locEl = document.getElementById("pgLead1Loc");
+        var sectorEl = document.getElementById("pgLead1Sector");
+        var phoneEl = document.getElementById("pgLead1Phone");
+        var emailEl = document.getElementById("pgLead1Email");
+        var refreshBtn = document.getElementById("pgRefreshBtn");
+        var refreshIcon = document.getElementById("pgRefreshIcon");
+        var tableEl = document.getElementById("pgTableElement");
+
+        function updatePlayground() {
+            var ind = indSel ? indSel.value : "saas";
+            var city = citySel ? citySel.value : "blr";
+            var rec = (dataMatrix[ind] && dataMatrix[ind][city]) || dataMatrix.saas.blr;
+
+            // Trigger scan sweep animation
+            if (tableEl) {
+                tableEl.classList.remove("table-scanning");
+                void tableEl.offsetWidth; // trigger reflow
+                tableEl.classList.add("table-scanning");
+            }
+
+            if (countEl) countEl.textContent = rec.count;
+            if (bottomCountEl) bottomCountEl.textContent = rec.count;
+            if (avatarEl) avatarEl.textContent = rec.initials || "VS";
+            if (nameEl) nameEl.textContent = rec.name;
+            if (roleEl) roleEl.textContent = rec.role;
+            if (locEl) locEl.textContent = rec.loc;
+            if (sectorEl) sectorEl.textContent = rec.sector;
+            if (phoneEl) {
+                var rawPhone = rec.phone || "+91 98210 44821";
+                phoneEl.setAttribute("data-raw-phone", rawPhone);
+                phoneEl.textContent = rawPhone.substring(0, 9) + " •••••";
+            }
+            if (emailEl) emailEl.textContent = rec.email;
+        }
+
+        if (indSel) indSel.addEventListener("change", updatePlayground);
+        if (citySel) citySel.addEventListener("change", updatePlayground);
+        if (roleSel) roleSel.addEventListener("change", updatePlayground);
+
+        if (refreshBtn) {
+            refreshBtn.addEventListener("click", function() {
+                if (refreshIcon) {
+                    refreshIcon.style.transition = "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)";
+                    refreshIcon.style.transform = "rotate(180deg)";
+                    setTimeout(function() {
+                        refreshIcon.style.transform = "none";
+                    }, 400);
+                }
+                updatePlayground();
+            });
+        }
+
+        // Copy contact handler with tactile button feedback
+        window.copyContactLead = function(btn) {
+            var phoneText = (phoneEl && phoneEl.getAttribute("data-raw-phone")) ? phoneEl.getAttribute("data-raw-phone") : "+91 98210 44821";
+            var emailText = emailEl ? emailEl.textContent : "vikram@kuberscale.in";
+            var nameText = nameEl ? nameEl.textContent : "Vikramaditya Sharma";
+            var clipContent = nameText + " | " + phoneText + " | " + emailText;
+
+            navigator.clipboard.writeText(clipContent).then(function() {
+                var originalHTML = btn.innerHTML;
+                btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span style="color:#34d399;">Copied ✓</span>';
+                setTimeout(function() {
+                    btn.innerHTML = originalHTML;
+                }, 1800);
+            });
+        };
+
+        // ─── MINIMAL IN-SCREEN TELEMETRY FLOW CANVAS (Zero Box, Pure Motion) ───
+        (function initFlowCanvas() {
+            var canvas = document.getElementById("consoleFlowCanvas");
+            if (!canvas) return;
+            var ctx = canvas.getContext("2d");
+            if (!ctx) return;
+
+            var width = canvas.width = 720;
+            var height = canvas.height = 160;
+            var t = 0;
+            var isVisible = true;
+
+            if ("IntersectionObserver" in window) {
+                var observer = new IntersectionObserver(function(entries) {
+                    isVisible = entries[0].isIntersecting;
+                }, { threshold: 0.1 });
+                observer.observe(canvas);
+            }
+
+            var pulses = [
+                { progress: 0.1, speed: 0.0024, wave: 0 },
+                { progress: 0.48, speed: 0.0028, wave: 1 },
+                { progress: 0.82, speed: 0.0022, wave: 2 }
+            ];
+
+            function drawWave(amplitude, frequency, phase, color, lineWidth) {
+                ctx.beginPath();
+                ctx.lineWidth = lineWidth;
+                ctx.strokeStyle = color;
+
+                var midY = height / 2;
+                var points = [];
+
+                for (var x = 0; x <= width; x += 4) {
+                    var normalizedX = (x / width) * 2 - 1;
+                    var envelope = Math.exp(-3.5 * normalizedX * normalizedX);
+                    var y = midY + Math.sin(x * frequency + phase) * amplitude * envelope;
+                    points.push({ x: x, y: y });
+                    if (x === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                }
+                ctx.stroke();
+                return points;
+            }
+
+            function animate() {
+                if (!isVisible) {
+                    requestAnimationFrame(animate);
+                    return;
+                }
+
+                ctx.clearRect(0, 0, width, height);
+
+                // Wave 1: Primary deep royal blue signal
+                var pts1 = drawWave(26, 0.016, t * 0.034, "rgba(37, 99, 235, 0.80)", 1.6);
+
+                // Wave 2: Harmonic sky blue telemetry stream
+                var pts2 = drawWave(18, 0.025, -t * 0.026 + 1.2, "rgba(147, 197, 253, 0.65)", 1.4);
+
+                // Wave 3: Tertiary matte WhatsApp green sync wave
+                var pts3 = drawWave(12, 0.035, t * 0.042 + 2.5, "rgba(6, 95, 70, 0.65)", 1.2);
+
+                var wavePoints = [pts1, pts2, pts3];
+
+                // Render tiny, elegant travelling verification packets (minimal nodes)
+                for (var i = 0; i < pulses.length; i++) {
+                    var p = pulses[i];
+                    p.progress += p.speed;
+                    if (p.progress > 1) p.progress = 0;
+
+                    var pts = wavePoints[p.wave];
+                    if (pts && pts.length > 0) {
+                        var idx = Math.floor(p.progress * (pts.length - 1));
+                        var pt = pts[idx];
+                        var normX = (pt.x / width) * 2 - 1;
+                        var env = Math.exp(-3.5 * normX * normX);
+
+                        if (env > 0.1) {
+                            ctx.beginPath();
+                            ctx.arc(pt.x, pt.y, 2.6, 0, Math.PI * 2);
+                            ctx.fillStyle = (p.wave === 2) ? "rgba(52, 211, 153, " + (0.9 * env) + ")" : "rgba(255, 255, 255, " + (0.95 * env) + ")";
+                            ctx.fill();
+
+                            ctx.beginPath();
+                            ctx.arc(pt.x, pt.y, 5.5, 0, Math.PI * 2);
+                            ctx.fillStyle = (p.wave === 2) ? "rgba(6, 95, 70, " + (0.22 * env) + ")" : "rgba(59, 130, 246, " + (0.25 * env) + ")";
+                            ctx.fill();
+                        }
+                    }
+                }
+
+                t += 1;
+                requestAnimationFrame(animate);
+            }
+
+            requestAnimationFrame(animate);
+        })();
+
+    })();
     </script>
+
+    <!-- ─── CORE DATA CAPABILITIES (Matching Platform Pillars) ─── -->
+    <section class="section container-wide" style="padding: 80px 40px;">
+
+        <div class="section-header reveal">
+            <span class="section-eyebrow">Intelligence Architecture</span>
+            <h2 class="section-h2">Engineered for Zero-Bounce Sales Execution</h2>
+            <p class="section-p">Traditional contact brokers sell stale spreadsheets that burn your domain reputation and WhatsApp accounts. Leadintel DataCloud verifies contacts live before they ever enter your pipeline.</p>
+        </div>
+
+        <div class="platform-pillars reveal d1">
+            <!-- Pillar 1 -->
+            <div class="pillar">
+                <div class="pillar-icon" style="background:rgba(168,85,247,0.1); border:1px solid rgba(168,85,247,0.25);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div class="pillar-t">Direct Mobile Dials</div>
+                <div class="pillar-d">Real-time telecom line ping to verify active SIM status for Indian Founders, Directors, and CXOs. 99.4% direct dial reach rate.</div>
+            </div>
+
+            <!-- Pillar 2 -->
+            <div class="pillar">
+                <div class="pillar-icon" style="background:rgba(6,95,70,0.16); border:1px solid rgba(4,120,87,0.4);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </div>
+                <div class="pillar-t">SMTP Email Hygiene</div>
+                <div class="pillar-d">Triple SMTP handshakes, catch-all server detection, and spam-trap filtering ensure your domain inbox health never takes a hit.</div>
+            </div>
+
+            <!-- Pillar 3 -->
+            <div class="pillar">
+                <div class="pillar-icon" style="background:rgba(139,92,246,0.1); border:1px solid rgba(139,92,246,0.25);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><path d="M12 2a7 7 0 0 1 7 7c0 2.5-1.3 4.7-3.3 6l-.7 3H9l-.7-3A7 7 0 0 1 12 2z"/><line x1="9" y1="21" x2="15" y2="21"/></svg>
+                </div>
+                <div class="pillar-t">Native 1-Click Sync</div>
+                <div class="pillar-d">Directly push filtered accounts into AI CRM, WhatsApp campaigns, or MailEngine drip sequences with zero CSV export friction.</div>
+            </div>
+
+            <!-- Pillar 4 -->
+            <div class="pillar">
+                <div class="pillar-icon" style="background:rgba(251,146,60,0.1); border:1px solid rgba(251,146,60,0.25);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <div class="pillar-t">MCA &amp; Intent Triggers</div>
+                <div class="pillar-d">Fresh company incorporation data, new director filings, funding milestones, and hiring spikes across Indian enterprises.</div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ─── PROBLEM VS SOLUTION (Matching about.html Swap Shell) ─── -->
+    <section class="section container-wide" style="padding: 20px 40px 80px;">
+
+        <div class="section-header reveal">
+            <span class="section-eyebrow">Market Comparison</span>
+            <h2 class="section-h2">Why Modern Sales Teams Choose DataCloud</h2>
+            <p class="section-p">Stop burning capital on stale spreadsheets and fragmented scraping tools.</p>
+        </div>
+
+        <div class="swap-shell reveal d1">
+            <!-- Table Header -->
+            <div class="swap-header-row">
+                <div class="swap-header-title swap-header-bad">Traditional Data Brokers &amp; Scrapers</div>
+                <div class="swap-header-title swap-header-good">Leadintel DataCloud</div>
+            </div>
+
+            <!-- Row 1 -->
+            <div class="swap-row">
+                <div class="swap-bad">
+                    <span>30% to 45% email bounce rates that burn your domain</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </div>
+                <div class="swap-good">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>&lt;0.6% bounce rate guaranteed with live telecom &amp; SMTP check</span>
+                </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="swap-row">
+                <div class="swap-bad">
+                    <span>Overpriced packages charging ₹15 to ₹30 per contact</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </div>
+                <div class="swap-good">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>Transparent flat pricing at ₹4–6 per verified decision-maker</span>
+                </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="swap-row">
+                <div class="swap-bad">
+                    <span>Zero refunds when numbers are switched off or dead</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </div>
+                <div class="swap-good">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>Automatic 100% credit refund instantly credited on any bounce</span>
+                </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="swap-row">
+                <div class="swap-bad">
+                    <span>Unregulated web scrapers exposing you to DPDP penalties</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </div>
+                <div class="swap-good">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>100% compliant with the Digital Personal Data Protection Act 2023</span>
+                </div>
+            </div>
+
+            <!-- Row 5 -->
+            <div class="swap-row">
+                <div class="swap-bad">
+                    <span>Disconnected CSV files that require tedious CRM formatting</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </div>
+                <div class="swap-good">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>Native 1-click execution into CRM, WhatsApp campaigns &amp; MailEngine</span>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ─── DATA COMPLIANCE & GOVERNANCE (Matching Founder Quote Card) ─── -->
+    <section class="section container-wide" style="padding: 0 40px 100px;">
+        <div class="governance-card reveal">
+            <svg class="governance-svg" viewBox="0 0 180 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="180" cy="0" r="80" stroke="rgba(168,85,247,0.18)" stroke-width="1"/>
+                <circle cx="180" cy="0" r="120" stroke="rgba(168,85,247,0.10)" stroke-width="1"/>
+                <circle cx="180" cy="0" r="160" stroke="rgba(168,85,247,0.06)" stroke-width="1"/>
+                <line x1="120" y1="20" x2="180" y2="20" stroke="rgba(99,102,241,0.25)" stroke-width="0.8"/>
+                <line x1="140" y1="10" x2="140" y2="70" stroke="rgba(99,102,241,0.25)" stroke-width="0.8"/>
+            </svg>
+
+            <span class="governance-badge">DPDP Act 2023 · Enterprise Compliance</span>
+            <h3 class="governance-title">Ethical Sourcing &amp; Rigorous Data Protection</h3>
+            <p class="governance-desc">
+                LeadintelAI operates in strict accordance with the Digital Personal Data Protection Act (DPDP) 2023 and global B2B privacy standards. Our intelligence is aggregated exclusively from publicly available business registries (such as MCA filings), official corporate portals, and verified partner opt-ins. We honor instant opt-out requests, never collect sensitive personal information, and maintain a dedicated Grievance Officer for enterprise compliance inquiries.
+            </p>
+
+            <div class="governance-pills">
+                <div class="gov-pill">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <span>DPDP Act 2023 Architecture</span>
+                </div>
+                <div class="gov-pill">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <span>256-bit AES Vault Encryption</span>
+                </div>
+                <div class="gov-pill">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+                    <span>Zero Spam Honeypots</span>
+                </div>
+                <div class="gov-pill">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>Automated Opt-Out Engine</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ─── FOOTER (Exact copy from about.html, index.html) ─── -->
+<!-- ─── FOOTER ─── -->
+<footer class="footer">
+    <div class="container container-wide">
+        <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr 1.6fr; gap:40px; margin-bottom:48px; align-items:start;">
+            <!-- Col 1 -->
+            <div style="display:flex; flex-direction:column; gap:18px;">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><img src="leadintelai-logo.svg" alt="LeadintelAI Logo"></div>
+                    <span>LeadintelAI</span>
+                </a>
+                <p style="color:var(--text-tertiary); font-size:0.82rem; line-height:1.7; max-width:260px;">The AI-powered B2B sales execution platform tailored for modern revenue teams.</p>
+                <a href="mailto:leadintelai@gmail.com" style="display:flex; align-items:center; gap:8px; color:var(--text-secondary); font-size:0.8rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>
+                    leadintelai@gmail.com
+                </a>
+                <div style="display:flex; gap:12px; margin-top:4px;">
+                    <a href="#" style="width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:var(--text-tertiary); transition:all 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.15)';this.style.color='#c084fc'" onmouseout="this.style.background='rgba(255,255,255,0.05)';this.style.color=''">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.238 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                    <a href="#" style="width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:var(--text-tertiary); transition:all 0.2s;" onmouseover="this.style.background='rgba(236,72,153,0.15)';this.style.color='#f472b6'" onmouseout="this.style.background='rgba(255,255,255,0.05)';this.style.color=''">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="#" style="width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:var(--text-tertiary); transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.05)';this.style.color=''">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <!-- Col 2 -->
+            <div>
+                <h4 style="font-size:0.8rem; font-weight:600; color:var(--text-primary); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:20px;">Platform</h4>
+                <ul style="list-style:none; display:flex; flex-direction:column; gap:11px;">
+                    <li><a href="data.html" style="color:var(--text-secondary); font-size:0.83rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">DataCloud</a></li>
+                    <li><a href="crm.html" style="color:var(--text-secondary); font-size:0.83rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">AI CRM</a></li>
+                    <li><a href="whatsapp.html" style="color:var(--text-secondary); font-size:0.83rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">WhatsApp Suite</a></li>
+                    <li><a href="mailing.html" style="color:var(--text-secondary); font-size:0.83rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">MailEngine</a></li>
+                </ul>
+            </div>
+            <!-- Col 3 -->
+            <div>
+                <h4 style="font-size:0.8rem; font-weight:600; color:var(--text-primary); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:20px;">Company</h4>
+                <ul style="list-style:none; display:flex; flex-direction:column; gap:11px;">
+                    <li><a href="about.html" style="color:var(--text-secondary); font-size:0.83rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">About Us</a></li>
+                    <li><a href="contact.html" style="color:var(--text-secondary); font-size:0.83rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Contact</a></li>
+                    <li><a href="terms.html" style="color:var(--text-secondary); font-size:0.83rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Terms of Service</a></li>
+                    <li><a href="privacy.html" style="color:var(--text-secondary); font-size:0.83rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Privacy Policy</a></li>
+                    <li><a href="refund.html" style="color:var(--text-secondary); font-size:0.83rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Refund &amp; SLA</a></li>
+                </ul>
+            </div>
+            <!-- Col 4 -->
+            <div>
+                <h4 style="font-size:0.8rem; font-weight:600; color:var(--text-primary); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:10px;">Stay Updated</h4>
+                <p style="color:var(--text-tertiary); font-size:0.78rem; line-height:1.6; margin-bottom:16px;">Get product updates, sales tips, and revenue insights straight to your inbox.</p>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                    <div style="display:flex; gap:0; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:10px; overflow:hidden;">
+                        <input type="email" id="footer-subscribe-email" placeholder="Your email address" style="flex:1; background:transparent; border:none; outline:none; padding:11px 14px; font-size:0.8rem; color:var(--text-primary); font-family:inherit;">
+                        <button onclick="(function(){var el=document.getElementById('footer-subscribe-email');if(el&&el.value){alert('Thanks! We\'ll be in touch.');el.value=''}})()" style="background:rgba(255,255,255,0.1); border:none; border-left:1px solid rgba(255,255,255,0.08); padding:10px 18px; color:#fff; font-size:0.78rem; font-weight:600; cursor:pointer; font-family:inherit; white-space:nowrap; transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Subscribe →</button>
+                    </div>
+                    <p style="color:var(--text-tertiary); font-size:0.7rem; opacity:0.7;">No spam. Unsubscribe anytime.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom bar -->
+        <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:20px; display:flex; justify-content:space-between; align-items:center;">
+            <span style="color:var(--text-tertiary); font-size:0.78rem;">© 2026 LeadintelAI. All rights reserved.</span>
+            <span style="color:var(--text-tertiary); font-size:0.78rem;">Built for modern revenue teams.</span>
+        </div>
+    </div>
+</footer>
+
+<script>
+    /* Scroll-triggered reveal */
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+    <script src="wave-ribbon.js" defer></script>
+    <script src="chatbot.js" defer></script>
 </body>
 </html>

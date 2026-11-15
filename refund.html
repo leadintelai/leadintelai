@@ -1,118 +1,679 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Refund &amp; SLA | LeadintelAI</title>
-    <meta name="description" content="High-level information about LeadintelAI billing questions, cancellations, refund handling, and service expectations.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="linear-theme.css">
-<style>
-        @media (max-width:480px) {
-            main section { padding-top: 100px !important; padding-bottom: 48px !important; padding-left: 14px !important; padding-right: 14px !important; }
-            main h1 { font-size: clamp(1.5rem, 6.5vw, 2rem) !important; }
-            main h3 { font-size: 1rem !important; }
-            main p, main li { font-size: 0.84rem !important; }
-            .nav-inner { padding: 0 14px; }
-            .nav-actions .btn-primary, .btn-nav-cta { font-size: 0.74rem; padding: 5px 10px; }
-        }
-</style>
-</head>
+    <title>Refund & Cancellation Policy | Transparent Credit Protections — LeadintelAI</title>
+    <meta name="description" content="Learn about LeadintelAI's 99.4% deliverability guarantee, automated wallet bounce credits, and subscription cancellation terms ✓">
+    <meta name="keywords" content="LeadintelAI refund policy, credit protection, bounce refund guarantee">
+    <link rel="canonical" href="https://leadintelai.in/refund.html">
+    <meta name="robots" content="index, follow">
 
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="LeadintelAI">
+    <meta property="og:url" content="https://leadintelai.in/refund.html">
+    <meta property="og:title" content="Refund & Cancellation Policy | Transparent Credit Protections — LeadintelAI">
+    <meta property="og:description" content="Learn about LeadintelAI's 99.4% deliverability guarantee, automated wallet bounce credits, and subscription cancellation terms ✓">
+    <meta property="og:image" content="https://leadintelai.in/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="LeadintelAI B2B Sales Execution Engine">
+    <meta property="og:locale" content="en_IN">
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@LeadintelAI">
+    <meta name="twitter:creator" content="@LeadintelAI">
+    <meta name="twitter:url" content="https://leadintelai.in/refund.html">
+    <meta name="twitter:title" content="Refund & Cancellation Policy | Transparent Credit Protections — LeadintelAI">
+    <meta name="twitter:description" content="Learn about LeadintelAI's 99.4% deliverability guarantee, automated wallet bounce credits, and subscription cancellation terms ✓">
+    <meta name="twitter:image" content="https://leadintelai.in/og-image.png">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "LeadintelAI Refund & Cancellation Policy",
+    "url": "https://leadintelai.in/refund.html"
+}
+    </script>
+    
+    <link rel="stylesheet" href="glass-theme.css?v=20261115">
+    
+    <!-- LeadintelAI Silent Connection Detector -->
+    <script>
+        window.addEventListener('offline', () => {
+            localStorage.setItem('leadintel_last_url', window.location.href);
+            window.location.href = 'offline.html';
+        });
+    </script>
+    <style>
+        .terms-hero {
+            padding-top: 140px;
+            padding-bottom: 120px;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: #090a0f;
+        }
+        .terms-layout-grid {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 60px;
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        .terms-sidebar {
+            position: sticky;
+            top: 120px;
+            height: max-content;
+        }
+        .terms-toc-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .terms-toc-link {
+            color: var(--text-secondary);
+            font-size: 0.86rem;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .terms-toc-link:hover, .terms-toc-link.active {
+            color: #fff;
+            background: rgba(255,255,255,0.05);
+            transform: translateX(4px);
+        }
+        .terms-article {
+            background: rgba(255,255,255,0.015);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 64px 72px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+        }
+        .policy-section {
+            margin-bottom: 56px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .policy-section:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .policy-sec-tag {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .policy-sec-num {
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: #38bdf8;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .policy-sec-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, rgba(56,189,248,0.3), transparent);
+        }
+        .policy-h2 {
+            font-size: 1.65rem;
+            color: #fff;
+            margin-bottom: 18px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .policy-p {
+            color: var(--text-secondary);
+            font-size: 0.94rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+        .policy-callout {
+            background: rgba(56,189,248,0.05);
+            border: 1px solid rgba(56,189,248,0.2);
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin: 20px 0;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        .policy-callout-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: rgba(56,189,248,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #38bdf8;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .policy-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 16px 0;
+        }
+        .policy-list li {
+            position: relative;
+            padding-left: 24px;
+            font-size: 0.92rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+        .policy-list li::before {
+            content: "•";
+            position: absolute;
+            left: 6px;
+            color: #38bdf8;
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        /* ── SLA Table ── */
+        .sla-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.88rem;
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .sla-table th {
+            background: rgba(255,255,255,0.04);
+            color: #fff;
+            text-align: left;
+            padding: 14px 18px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .sla-table td {
+            padding: 14px 18px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .sla-table tr:last-child td { border-bottom: none; }
+        .sla-table tr:hover td { background: rgba(255,255,255,0.015); }
+
+        @media (max-width: 900px) {
+            .terms-layout-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 0 20px;
+            }
+            .terms-sidebar {
+                position: relative;
+                top: 0;
+            }
+            .terms-article {
+                padding: 36px 24px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .terms-hero {
+                padding-top: 84px;
+                padding-bottom: 50px;
+            }
+            .nav-inner {
+                padding: 0 14px !important;
+            }
+            .nav-actions {
+                gap: 6px !important;
+            }
+            .nav-actions a:not(.btn-primary) {
+                font-size: 0.78rem !important;
+                margin-right: 2px !important;
+            }
+            .nav-actions .btn-primary {
+                padding: 6px 11px !important;
+                font-size: 0.75rem !important;
+            }
+            .terms-layout-grid {
+                padding: 0 14px;
+            }
+            .terms-article {
+                padding: 28px 16px;
+                border-radius: 14px;
+            }
+            .terms-article h1 {
+                font-size: 1.6rem;
+            }
+            .terms-article h2 {
+                font-size: 1.22rem;
+            }
+            .sla-table {
+                font-size: 0.78rem;
+            }
+            .sla-table th, .sla-table td {
+                padding: 10px 10px;
+            }
+        }
+    </style>
+</head>
 <body>
 
-    <header class="navbar" id="navbar">
-        <div class="nav-inner">
-            <a href="index.html" class="logo" aria-label="LeadintelAI home">
-                <svg class="logo-icon" width="26" height="26" viewBox="0 0 100 100" fill="none" style="vertical-align: middle;">
-                    <path class="ghost-body" d="M20,50 Q20,20 50,20 Q80,20 80,50 L80,80 Q70,75 60,80 Q50,85 40,80 Q30,75 20,80 Z" fill="white" />
-                    <ellipse class="ghost-eye" cx="40" cy="45" rx="4" ry="6" fill="black" />
-                    <ellipse class="ghost-eye" cx="60" cy="45" rx="4" ry="6" fill="black" />
-                </svg>
-                <span class="logo-wordmark">Leadintel<span class="logo-ai">AI</span></span>
+    <!-- ─── FLOATING LIQUID GLASS HEADER ─── -->
+    <header class="liquid-header">
+        <div class="liquid-header-inner">
+            <!-- Top-Left Brand Header Pill -->
+            <a href="index.html" class="brand-top" title="LeadintelAI Home">
+                <span class="li-logo-slot" title="LeadintelAI">
+                    <img src="leadintelai-logo.svg" alt="LeadintelAI Logo">
+                </span>
+                <span class="brand-word">LeadintelAI</span>
             </a>
 
-            <nav class="nav-links">
+            <!-- Center Navigation Links Pill -->
+            <nav class="nav-center-pill" aria-label="Main Navigation">
                 <a href="index.html#platform">Platform</a>
+                <a href="index.html#blueprint">Workflow</a>
+                <a href="index.html#use-cases">Use Cases</a>
                 <a href="pricing.html">Pricing</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
             </nav>
 
-            <div class="nav-actions">
-                <a href="login.html" class="nav-login">Log in</a>
-                <a href="login.html?mode=signup" class="btn-nav-cta">Get Started</a>
+            <!-- Top-Right Actions Cluster (Login & Start Free Trial) -->
+            <div class="nav-top-right">
+                <a href="login.html" class="nav-back-pill" title="Sign in to your account">
+                    <span>Login</span>
+                </a>
+                <a href="login.html?mode=signup" class="nav-cta-pill" title="Start Free Trial">
+                    <span>Start Free Trial</span>
+                </a>
             </div>
         </div>
     </header>
 
     <main>
-        <section style="padding-top:160px; padding-bottom:80px; max-width:800px; margin:0 auto; padding-left:24px; padding-right:24px; color:var(--text-muted); line-height:1.7;">
-            <h1 style="color:var(--white); font-size:2.5rem; margin-bottom:0.5rem; letter-spacing:-0.03em;">Refund &amp; SLA Policy</h1>
-            <p style="margin-bottom:2rem;"><strong>Effective Date: April 2026</strong></p>
 
-            <p style="margin-bottom:1rem;">This page provides a high-level outline of how LeadintelAI handles cancellations, billing questions, service expectations, and data replacement requests while the full policy is being finalized.</p>
+        <!-- ─── ELEGANT DOCUMENT VIEW ─── -->
+        <section class="terms-hero">
 
-            <h3 style="color:var(--white); margin-top:2rem;">1. Trials &amp; Cancellations</h3>
-            <p style="margin-bottom:1rem;">Free trials can be stopped at any time before upgrading. Paid plans can be cancelled before the next renewal cycle to avoid future charges.</p>
+            <!-- Global Schematic Grid -->
+            <div style="position: absolute; inset: 0; opacity: 0.10; pointer-events: none; mask-image: radial-gradient(circle at center, black, transparent 90%); -webkit-mask-image: radial-gradient(circle at center, black, transparent 90%);">
+                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="sla-grid" width="80" height="80" patternUnits="userSpaceOnUse">
+                            <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="0.5"/>
+                            <circle cx="0" cy="0" r="1.5" fill="#38bdf8"/>
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#sla-grid)" />
+                </svg>
+            </div>
 
-            <h3 style="color:var(--white); margin-top:2rem;">2. Billing Questions</h3>
-            <p style="margin-bottom:1rem;">If you believe there is an incorrect charge, please contact our team with your company name, invoice details, and a short description of the issue so we can review it promptly.</p>
+            <!-- Ambient Glow Spots -->
+            <div style="position:absolute; top:10%; left:15%; width:480px; height:480px; background:radial-gradient(circle, rgba(56,189,248,0.06) 0%, transparent 70%); pointer-events:none;"></div>
+            <div style="position:absolute; bottom:15%; right:10%; width:540px; height:540px; background:radial-gradient(circle, rgba(37,99,235,0.05) 0%, transparent 70%); pointer-events:none;"></div>
 
-            <h3 style="color:var(--white); margin-top:2rem;">3. Data Replacement Requests</h3>
-            <p style="margin-bottom:1rem;">If a delivered record appears invalid, submit the request with the relevant details and our team will review it under the applicable replacement process for your plan.</p>
+            <div class="terms-layout-grid">
 
-            <h3 style="color:var(--white); margin-top:2rem;">4. Service Expectations</h3>
-            <p style="margin-bottom:1rem;">We work to keep core services available and respond to priority issues as quickly as possible. Response and resolution timing can vary based on the plan level and issue severity.</p>
+                <!-- Left Column: Sticky Minimalist Sidebar -->
+                <aside class="terms-sidebar">
+                    <div style="padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 20px;">
+                        <span style="font-size:0.68rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#38bdf8; display:block; margin-bottom:8px;">Assurance &amp; SLA</span>
+                        <h1 style="font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 6px; letter-spacing: -0.02em;">Refund &amp; SLA</h1>
+                        <p style="font-size: 0.8rem; color: var(--text-tertiary);">Version 2.4 · April 2026</p>
+                    </div>
 
-            <h3 style="color:var(--white); margin-top:2rem;">5. Contact</h3>
-            <p style="margin-bottom:1rem;">For billing, cancellation, refund, or SLA questions, please reach out through the contact page and include your account email and company name.</p>
+                    <nav class="terms-toc-nav">
+                        <a href="#sec-1" class="terms-toc-link"><span>01.</span> 100% Bounce Auto-Refund</a>
+                        <a href="#sec-2" class="terms-toc-link"><span>02.</span> Trials &amp; Cancellations</a>
+                        <a href="#sec-3" class="terms-toc-link"><span>03.</span> Refund Eligibility Matrix</a>
+                        <a href="#sec-4" class="terms-toc-link"><span>04.</span> 99.9% Uptime Commitment</a>
+                        <a href="#sec-5" class="terms-toc-link"><span>05.</span> Incident Severity &amp; SLAs</a>
+                        <a href="#sec-6" class="terms-toc-link"><span>06.</span> Outage Service Credits</a>
+                        <a href="#sec-7" class="terms-toc-link"><span>07.</span> Dispute Redressal &amp; Billing</a>
+                    </nav>
+
+                    <!-- Trust Pill Badge -->
+                    <div style="margin-top:28px; padding:16px; border-radius:12px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07);">
+                        <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                            <div style="width:8px; height:8px; border-radius:50%; background:#38bdf8; box-shadow:0 0 10px #38bdf8;"></div>
+                            <span style="font-size:0.75rem; font-weight:700; color:#fff;">99.9% SLA Commitment</span>
+                        </div>
+                        <p style="font-size:0.73rem; color:var(--text-tertiary); line-height:1.5;">Guaranteed core platform uptime with automatic service credit remedies.</p>
+                    </div>
+
+                    <!-- Direct Billing Contact Pill -->
+                    <div style="margin-top:14px; padding:14px; border-radius:10px; background:rgba(56,189,248,0.06); border:1px solid rgba(56,189,248,0.2);">
+                        <span style="font-size:0.72rem; color:#38bdf8; font-weight:600; display:block; margin-bottom:4px;">Billing &amp; SLA Inquiries</span>
+                        <a href="mailto:billing@leadintelai.com" style="color:#fff; font-size:0.8rem; text-decoration:none; font-weight:600;">billing@leadintelai.com</a>
+                    </div>
+                </aside>
+
+                <!-- Right Column: Document Paper -->
+                <article class="terms-article">
+
+                    <!-- Document Header -->
+                    <div style="margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                        <div style="display:inline-flex; align-items:center; gap:8px; padding:4px 12px; border-radius:6px; background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25); color:#38bdf8; font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:16px;">
+                            Commercial Assurance &amp; SLA
+                        </div>
+                        <h2 style="font-size: 2.3rem; font-weight: 800; color: #fff; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 14px;">
+                            Refund Policy &amp; Service Level Agreement
+                        </h2>
+                        <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap; color:var(--text-tertiary); font-size:0.82rem; margin-bottom:20px;">
+                            <span><strong>Effective Date:</strong> April 1, 2026</span>
+                            <span>•</span>
+                            <span><strong>Jurisdiction:</strong> Republic of India</span>
+                            <span>•</span>
+                            <span><strong>Scope:</strong> DataCloud, AI CRM, WhatsApp Suite &amp; MailEngine</span>
+                        </div>
+                        <p style="font-size: 1rem; line-height: 1.8; color: var(--text-secondary); max-width: 820px;">
+                            At LeadintelAI, we hold our platform to the highest technical reliability standards. This document codifies our 100% data bounce credit replacement guarantee, subscription cancellation terms, system availability commitments (SLA), and automated service credit remedies.
+                        </p>
+                    </div>
+
+                    <!-- Section 01 -->
+                    <section id="sec-1" class="policy-section">
+                        <div class="policy-sec-tag">
+                            <span class="policy-sec-num">Section 01</span>
+                            <div class="policy-sec-line"></div>
+                        </div>
+                        <h3 class="policy-h2">100% Data Bounce Credit Guarantee</h3>
+                        <p class="policy-p">
+                            LeadintelAI guarantees that every B2B record unlocked via DataCloud has been pre-verified through real-time telecom HLR pings and triple SMTP handshakes.
+                        </p>
+                        <div class="policy-callout" style="background:rgba(6,95,70,0.16); border-color:rgba(4,120,87,0.4);">
+                            <div class="policy-callout-icon" style="background:rgba(6,95,70,0.2); color:#34d399;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <div>
+                                <strong style="color:#fff; font-size:0.9rem; display:block; margin-bottom:4px;">Automated 100% Credit Auto-Refund</strong>
+                                <span style="color:var(--text-secondary); font-size:0.83rem; line-height:1.6; display:block;">
+                                    If any unlocked contact results in a permanent SMTP bounce (5xx error code) or a disconnected mobile line, 100% of the credits expended for that record are automatically refunded to your platform balance within 60 minutes. No support tickets or manual verification forms are required.
+                                </span>
+                            </div>
+                        </div>
+                        <ul class="policy-list">
+                            <li><strong>Eligible Bounce Types:</strong> Hard bounces (user mailbox does not exist, domain not found), disconnected SIMs, and dead telecom numbers.</li>
+                            <li><strong>Excluded Cases:</strong> Soft bounces caused by recipient mailbox full, recipient server rate-limiting, or domain spam filtering caused by improper user DNS setup.</li>
+                        </ul>
+                    </section>
+
+                    <!-- Section 02 -->
+                    <section id="sec-2" class="policy-section">
+                        <div class="policy-sec-tag">
+                            <span class="policy-sec-num">Section 02</span>
+                            <div class="policy-sec-line"></div>
+                        </div>
+                        <h3 class="policy-h2">7-Day Free Trial &amp; Subscription Cancellations</h3>
+                        <p class="policy-p">
+                            We believe enterprise sales software should prove its value before asking for long-term capital commitments:
+                        </p>
+                        <ul class="policy-list">
+                            <li><strong>7-Day Free Trial:</strong> Full access to DataCloud, AI CRM, WhatsApp Suite, and MailEngine with 50 verified contacts included. No credit card required to activate trial accounts.</li>
+                            <li><strong>1-Click Cancellation:</strong> Active monthly or annual subscriptions may be cancelled at any time through the Billing &amp; Subscriptions portal.</li>
+                            <li><strong>Term Expiration:</strong> When a paid plan is cancelled, access to platform modules and remaining credits remains active until the final day of the current billing cycle. No further automatic charges will occur.</li>
+                        </ul>
+                    </section>
+
+                    <!-- Section 03 -->
+                    <section id="sec-3" class="policy-section">
+                        <div class="policy-sec-tag">
+                            <span class="policy-sec-num">Section 03</span>
+                            <div class="policy-sec-line"></div>
+                        </div>
+                        <h3 class="policy-h2">Refund Eligibility Matrix</h3>
+                        <p class="policy-p">
+                            Refund requests are processed in accordance with the product categories defined below:
+                        </p>
+                        <table class="sla-table">
+                            <thead>
+                                <tr>
+                                    <th>Product / Plan</th>
+                                    <th>Refund Eligibility</th>
+                                    <th>Remedy / Policy</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>DataCloud Packs</strong></td>
+                                    <td>100% Credit Replacement</td>
+                                    <td>Automatic 1-for-1 credit refund on hard bounces</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Software Subscriptions</strong><br><small style="color:var(--text-tertiary);">AI CRM, WhatsApp, MailEngine</small></td>
+                                    <td>14-Day Initial Window</td>
+                                    <td>Full pro-rated refund within 14 days of first paid activation upon technical failure</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Meta API Usage Fees</strong></td>
+                                    <td>Non-refundable</td>
+                                    <td>Billed directly at wholesale carrier cost without markups once messages are delivered</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Enterprise Annual Contracts</strong></td>
+                                    <td>Custom SLA Bound</td>
+                                    <td>Governed by Master Services Agreement (MSA) termination clauses</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- Section 04 -->
+                    <section id="sec-4" class="policy-section">
+                        <div class="policy-sec-tag">
+                            <span class="policy-sec-num">Section 04</span>
+                            <div class="policy-sec-line"></div>
+                        </div>
+                        <h3 class="policy-h2">Service Level Agreement (99.9% Uptime)</h3>
+                        <p class="policy-p">
+                            LeadintelAI commits to maintaining a Monthly Uptime Percentage of at least <strong>99.9%</strong> during each calendar month across our core production systems:
+                        </p>
+                        <ul class="policy-list">
+                            <li><strong>DataCloud Query API:</strong> Search endpoints, lead enrichment microservices, and Chrome extension data reveal pipelines.</li>
+                            <li><strong>AI CRM Pipeline Engine:</strong> Deal stage database transactions, contact enrichment sync, and webhook event streaming.</li>
+                            <li><strong>WhatsApp Webhook Dispatcher:</strong> Meta Cloud API message routing, Maya AI auto-reply triggers, and team inbox sync.</li>
+                            <li><strong>MailEngine SMTP Cluster:</strong> Outbound email dispatch queue, inbox rotation proxy, and bounce detection listeners.</li>
+                        </ul>
+                        <p class="policy-p" style="font-size:0.83rem; color:var(--text-tertiary);">
+                            <strong>Exclusions:</strong> Uptime calculations exclude scheduled maintenance windows (conducted Sundays between 02:00–04:00 IST with 48 hours prior notification), upstream telecom network outages, or client-side ISP disconnections.
+                        </p>
+                    </section>
+
+                    <!-- Section 05 -->
+                    <section id="sec-5" class="policy-section">
+                        <div class="policy-sec-tag">
+                            <span class="policy-sec-num">Section 05</span>
+                            <div class="policy-sec-line"></div>
+                        </div>
+                        <h3 class="policy-h2">Incident Severity &amp; Response SLAs</h3>
+                        <p class="policy-p">
+                            Our site reliability engineering team monitors infrastructure 24/7/365. Incidents are triaged according to the severity matrix below:
+                        </p>
+                        <table class="sla-table">
+                            <thead>
+                                <tr>
+                                    <th>Severity Level</th>
+                                    <th>Impact Description</th>
+                                    <th>Initial Response</th>
+                                    <th>Resolution Target</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong style="color:#f87171;">P1 - Critical</strong></td>
+                                    <td>Total service outage; API unavailable; all sends blocked</td>
+                                    <td><strong>&lt; 15 Minutes</strong> (24/7)</td>
+                                    <td>&lt; 4 Hours</td>
+                                </tr>
+                                <tr>
+                                    <td><strong style="color:#fb923c;">P2 - Major</strong></td>
+                                    <td>Severe degradation; one module impacted (e.g. email queue delay)</td>
+                                    <td><strong>&lt; 2 Hours</strong></td>
+                                    <td>&lt; 12 Hours</td>
+                                </tr>
+                                <tr>
+                                    <td><strong style="color:#facc15;">P3 - Minor</strong></td>
+                                    <td>Non-critical feature issue; workaround available</td>
+                                    <td><strong>&lt; 8 Hours</strong></td>
+                                    <td>&lt; 48 Hours</td>
+                                </tr>
+                                <tr>
+                                    <td><strong style="color:#60a5fa;">P4 - Low</strong></td>
+                                    <td>General inquiry, billing question, or cosmetic enhancement</td>
+                                    <td><strong>&lt; 24 Hours</strong></td>
+                                    <td>Next release cycle</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- Section 06 -->
+                    <section id="sec-6" class="policy-section">
+                        <div class="policy-sec-tag">
+                            <span class="policy-sec-num">Section 06</span>
+                            <div class="policy-sec-line"></div>
+                        </div>
+                        <h3 class="policy-h2">Downtime Service Credits</h3>
+                        <p class="policy-p">
+                            If our Monthly Uptime Percentage falls below 99.9%, customers are entitled to automated Service Credits applied against their subsequent monthly subscription renewal:
+                        </p>
+                        <table class="sla-table">
+                            <thead>
+                                <tr>
+                                    <th>Monthly Uptime Percentage</th>
+                                    <th>Service Credit Remedy</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>99.0% to &lt; 99.9%</strong></td>
+                                    <td><strong>10% Credit</strong> of monthly platform fee</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>95.0% to &lt; 99.0%</strong></td>
+                                    <td><strong>25% Credit</strong> of monthly platform fee</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>&lt; 95.0%</strong></td>
+                                    <td><strong>50% Credit</strong> of monthly platform fee</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- Section 07 -->
+                    <section id="sec-7" class="policy-section">
+                        <div class="policy-sec-tag">
+                            <span class="policy-sec-num">Section 07</span>
+                            <div class="policy-sec-line"></div>
+                        </div>
+                        <h3 class="policy-h2">Dispute Resolution &amp; Billing Support</h3>
+                        <p class="policy-p">
+                            For any billing questions, service credit claims, or invoice clarifications, our finance and SLA operations team is directly available:
+                        </p>
+                        <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:24px; margin-top:16px;">
+                            <strong style="color:#fff; font-size:1.05rem; display:block; margin-bottom:8px;">Billing &amp; SLA Operations Team</strong>
+                            <p style="color:var(--text-secondary); font-size:0.88rem; line-height:1.7; margin-bottom:4px;">LeadintelAI Technologies Private Limited</p>
+                            <p style="color:var(--text-secondary); font-size:0.88rem; line-height:1.7; margin-bottom:4px;">Indiranagar, Bengaluru, Karnataka 560038, India</p>
+                            <p style="color:var(--text-secondary); font-size:0.88rem; line-height:1.7; margin-bottom:12px;">Email: <a href="mailto:billing@leadintelai.com" style="color:#38bdf8; text-decoration:none; font-weight:600;">billing@leadintelai.com</a> | <a href="mailto:sla@leadintelai.com" style="color:#38bdf8; text-decoration:none; font-weight:600;">sla@leadintelai.com</a></p>
+                            <span style="font-size:0.78rem; color:var(--text-tertiary);">Turnaround SLA: Dispute acknowledgment within 24 hours · Approved bank refunds credited in 3–5 working days.</span>
+                        </div>
+                    </section>
+
+                </article>
+
+            </div>
         </section>
+
     </main>
 
-    <footer class="footer" id="contact">
-        <div class="footer-inner">
-            <div class="footer-top">
-                <div class="footer-brand-col">
-                    <a href="index.html" class="logo" aria-label="LeadintelAI home">
-                        <svg class="logo-icon" width="24" height="24" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path d="M14 2C7.373 2 2 7.373 2 14s5.373 12 12 12 12-5.373 12-12S20.627 2 14 2z" fill="white" opacity="0.12" />
-                            <path d="M14 6 L20 10 L20 18 L14 22 L8 18 L8 10 Z" stroke="white" stroke-width="1.5" stroke-linejoin="round" fill="none" />
-                            <path d="M10 12 L14 10 L18 12 L18 16 L14 18 L10 16 Z" fill="white" opacity="0.9" />
-                            <circle cx="14" cy="14" r="2.5" fill="white" />
-                        </svg>
-                        <span class="logo-wordmark">Leadintel<span class="logo-ai">AI</span></span>
+    <!-- ─── FOOTER (Exact copy from data.html, about.html, crm.html, privacy.html) ─── -->
+    <!-- ─── FOOTER ─── -->
+<footer class="footer">
+    <div class="container container-wide">
+        <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr 1.6fr; gap:40px; margin-bottom:48px; align-items:start;">
+            <!-- Col 1 -->
+            <div style="display:flex; flex-direction:column; gap:18px;">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><img src="leadintelai-logo.svg" alt="LeadintelAI Logo"></div>
+                    <span>LeadintelAI</span>
+                </a>
+                <p style="color:var(--text-tertiary); font-size:0.82rem; line-height:1.7; max-width:260px;">The AI-powered B2B sales execution platform tailored for modern revenue teams.</p>
+                <a href="mailto:leadintelai@gmail.com" style="display:flex; align-items:center; gap:8px; color:var(--text-secondary); font-size:0.8rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>
+                    leadintelai@gmail.com
+                </a>
+                <div style="display:flex; gap:12px; margin-top:4px;">
+                    <a href="#" style="width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:var(--text-tertiary); transition:all 0.2s;" onmouseover="this.style.background='rgba(59,130,246,0.15)';this.style.color='#60a5fa'" onmouseout="this.style.background='rgba(255,255,255,0.05)';this.style.color=''">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.238 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                     </a>
-                    <p class="footer-tagline">The AI-powered B2B sales workflow for modern revenue teams.</p>
-                </div>
-
-                <div class="footer-links-grid">
-                    <div class="footer-link-col">
-                        <h4>Platform</h4>
-                        <a href="data.html">DataCloud</a>
-                        <a href="crm.html">AI CRM</a>
-                        <a href="whatsapp.html">WhatsApp Suite</a>
-                        <a href="mailing.html">MailEngine</a>
-                    </div>
-                    <div class="footer-link-col">
-                        <h4>Company</h4>
-                        <a href="about.html">About</a>
-                        <a href="contact.html">Contact</a>
-                        <a href="terms.html">Terms</a>
-                        <a href="privacy.html">Privacy</a>
-                    </div>
+                    <a href="#" style="width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:var(--text-tertiary); transition:all 0.2s;" onmouseover="this.style.background='rgba(236,72,153,0.15)';this.style.color='#f472b6'" onmouseout="this.style.background='rgba(255,255,255,0.05)';this.style.color=''">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="#" style="width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:var(--text-tertiary); transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.05)';this.style.color=''">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
                 </div>
             </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 LeadintelAI. All rights reserved.</p>
+            <!-- Col 2 -->
+            <div>
+                <h4 style="font-size:0.8rem; font-weight:600; color:var(--text-primary); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:20px;">Platform</h4>
+                <ul style="list-style:none; display:flex; flex-direction:column; gap:11px;">
+                    <li><a href="data.html" style="color:var(--text-secondary); font-size:0.83rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">DataCloud</a></li>
+                    <li><a href="crm.html" style="color:var(--text-secondary); font-size:0.83rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">AI CRM</a></li>
+                    <li><a href="whatsapp.html" style="color:var(--text-secondary); font-size:0.83rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">WhatsApp Suite</a></li>
+                    <li><a href="mailing.html" style="color:var(--text-secondary); font-size:0.83rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">MailEngine</a></li>
+                </ul>
+            </div>
+            <!-- Col 3 -->
+            <div>
+                <h4 style="font-size:0.8rem; font-weight:600; color:var(--text-primary); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:20px;">Company</h4>
+                <ul style="list-style:none; display:flex; flex-direction:column; gap:11px;">
+                    <li><a href="about.html" style="color:var(--text-secondary); font-size:0.83rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">About Us</a></li>
+                    <li><a href="contact.html" style="color:var(--text-secondary); font-size:0.83rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Contact</a></li>
+                    <li><a href="terms.html" style="color:var(--text-secondary); font-size:0.83rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Terms of Service</a></li>
+                    <li><a href="privacy.html" style="color:var(--text-secondary); font-size:0.83rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Privacy Policy</a></li>
+                    <li><a href="refund.html" style="color:var(--text-secondary); font-size:0.83rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Refund &amp; SLA</a></li>
+                </ul>
+            </div>
+            <!-- Col 4 -->
+            <div>
+                <h4 style="font-size:0.8rem; font-weight:600; color:var(--text-primary); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:10px;">Stay Updated</h4>
+                <p style="color:var(--text-tertiary); font-size:0.78rem; line-height:1.6; margin-bottom:16px;">Get product updates, sales tips, and revenue insights straight to your inbox.</p>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                    <div style="display:flex; gap:0; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:10px; overflow:hidden;">
+                        <input type="email" id="footer-subscribe-email" placeholder="Your email address" style="flex:1; background:transparent; border:none; outline:none; padding:11px 14px; font-size:0.8rem; color:var(--text-primary); font-family:inherit;">
+                        <button onclick="(function(){var el=document.getElementById('footer-subscribe-email');if(el&&el.value){alert('Thanks! We\'ll be in touch.');el.value=''}})()" style="background:rgba(255,255,255,0.1); border:none; border-left:1px solid rgba(255,255,255,0.08); padding:10px 18px; color:#fff; font-size:0.78rem; font-weight:600; cursor:pointer; font-family:inherit; white-space:nowrap; transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Subscribe →</button>
+                    </div>
+                    <p style="color:var(--text-tertiary); font-size:0.7rem; opacity:0.7;">No spam. Unsubscribe anytime.</p>
+                </div>
             </div>
         </div>
-    </footer>
+        <!-- Bottom bar -->
+        <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:20px; display:flex; justify-content:space-between; align-items:center;">
+            <span style="color:var(--text-tertiary); font-size:0.78rem;">© 2026 LeadintelAI. All rights reserved.</span>
+            <span style="color:var(--text-tertiary); font-size:0.78rem;">Built for modern revenue teams.</span>
+        </div>
+    </div>
+</footer>
 
+    <script src="chatbot.js" defer></script>
 </body>
-
 </html>

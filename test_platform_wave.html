@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Wave Test</title>
+    <style>
+        body {
+            margin: 0;
+            background: #060911;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+        }
+
+        .platform-section {
+            position: relative;
+            padding: 120px 0;
+            overflow: hidden;
+            background: #060911;
+        }
+
+        .platform-wave-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+            mask-image: radial-gradient(ellipse 85% 70% at 50% 50%, #000 30%, transparent 95%);
+            -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 50%, #000 30%, transparent 95%);
+        }
+
+        .platform-wave-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .content-layer {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(14, 18, 28, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 30px;
+            min-height: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <section class="platform-section" id="platformSection">
+        <div class="platform-wave-bg">
+            <canvas id="platformWaveCanvas" class="platform-wave-canvas"></canvas>
+        </div>
+
+        <div class="content-layer">
+            <div class="header">
+                <span style="font-size:0.75rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#60a5fa;">Platform</span>
+                <h2 style="font-size:2.4rem; margin:12px 0;">One platform. Four revenue engines.</h2>
+                <p style="color:#94a3b8; max-width:540px; margin:0 auto;">Sourcing, qualification, omnichannel delivery, and deal tracking run as one continuous state machine.</p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>01 DataCloud</h3>
+                    <p style="color:#94a3b8;">52M+ verified B2B decision-makers with live telecom checks.</p>
+                </div>
+                <div class="card">
+                    <h3>02 AI CRM</h3>
+                    <p style="color:#94a3b8;">Predictive pipeline scoring and automated deal acceleration.</p>
+                </div>
+                <div class="card">
+                    <h3>03 WhatsApp Suite</h3>
+                    <p style="color:#94a3b8;">Official Meta Cloud API verified outreach and team inboxes.</p>
+                </div>
+                <div class="card">
+                    <h3>04 MailEngine</h3>
+                    <p style="color:#94a3b8;">Multi-step email journeys with warm-up protection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    (function() {
+        const canvas = document.getElementById('platformWaveCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let width = 0;
+        let height = 0;
+        let t = 0;
+        let animId = null;
+
+        function resize() {
+            const rect = canvas.parentElement.getBoundingClientRect();
+            width = rect.width;
+            height = rect.height;
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            canvas.width = width * dpr;
+            canvas.height = height * dpr;
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.scale(dpr, dpr);
+        }
+
+        window.addEventListener('resize', resize, { passive: true });
+        resize();
+
+        const numLines = 48;
+        const numPoints = 100;
+        const crossSteps = 8; // Draw cross mesh line every 8 columns
+
+        function render() {
+            ctx.clearRect(0, 0, width, height);
+            t += 0.0035;
+
+            const midY = height * 0.52;
+            const spreadZ = Math.min(height * 0.42, 280);
+
+            // Store point grid to draw cross lines
+            const grid = [];
+
+            for (let i = 0; i < numLines; i++) {
+                const normI = i / (numLines - 1);
+                const offsetZ = (normI - 0.5) * spreadZ;
+                
+                // Moiré & opacity weighting: peak in the center crest, gentle on flanks
+                const crestWeight = Math.sin(normI * Math.PI);
+                const alpha = 0.06 + crestWeight * 0.32;
+
+                const grad = ctx.createLinearGradient(0, 0, width, 0);
+                grad.addColorStop(0.0, 'rgba(96, 165, 250, 0)');
+                grad.addColorStop(0.18, `rgba(96, 165, 250, ${alpha * 0.4})`);
+                grad.addColorStop(0.5, `rgba(186, 230, 253, ${alpha * 0.9})`);
+                grad.addColorStop(0.82, `rgba(96, 165, 250, ${alpha * 0.45})`);
+                grad.addColorStop(1.0, 'rgba(96, 165, 250, 0)');
+
+                ctx.strokeStyle = grad;
+                ctx.lineWidth = 0.85;
+                ctx.beginPath();
+
+                const linePoints = [];
+
+                for (let j = 0; j <= numPoints; j++) {
+                    const normJ = j / numPoints;
+                    const x = normJ * width;
+
+                    // Undulating 3D wave harmonics matching Motion reference
+                    const w1 = Math.sin(normJ * Math.PI * 2.4 + t + normI * 1.6) * 60;
+                    const w2 = Math.cos(normJ * Math.PI * 3.6 - t * 0.8 + normI * 0.9) * 32;
+                    const w3 = Math.sin(normJ * Math.PI * 1.2 + t * 0.5) * 40;
+
+                    const y = midY + offsetZ + (w1 + w2 + w3) * (0.65 + normI * 0.55);
+
+                    linePoints.push({ x, y });
+
+                    if (j === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                }
+                ctx.stroke();
+                grid.push(linePoints);
+            }
+
+            // Draw subtle vertical cross-contour lines for that authentic 3D wireframe terrain finish
+            ctx.lineWidth = 0.5;
+            for (let j = 0; j <= numPoints; j += crossSteps) {
+                const normJ = j / numPoints;
+                const edgeFade = Math.sin(normJ * Math.PI);
+                ctx.strokeStyle = `rgba(147, 197, 253, ${0.03 + edgeFade * 0.08})`;
+                ctx.beginPath();
+                for (let i = 0; i < numLines; i++) {
+                    const pt = grid[i][j];
+                    if (i === 0) {
+                        ctx.moveTo(pt.x, pt.y);
+                    } else {
+                        ctx.lineTo(pt.x, pt.y);
+                    }
+                }
+                ctx.stroke();
+            }
+
+            animId = requestAnimationFrame(render);
+        }
+
+        // Performance: IntersectionObserver pauses loop when off-screen
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (!animId) render();
+                } else {
+                    if (animId) {
+                        cancelAnimationFrame(animId);
+                        animId = null;
+                    }
+                }
+            });
+        }, { threshold: 0.05 });
+
+        observer.observe(canvas.parentElement);
+    })();
+    </script>
+</body>
+</html>
+

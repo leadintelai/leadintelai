@@ -12,7 +12,7 @@
     --clr-electric-glow: rgba(9, 132, 227, 0.4);
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, var(--clr-electric) 0%, #00b894 100%);
+    --gradient-primary: linear-gradient(135deg, var(--clr-electric) 0%, #065f46 100%);
     --gradient-glass: linear-gradient(
         135deg, 
         rgba(255, 255, 255, 0.1) 0%, 
@@ -1058,9 +1058,9 @@ footer {
 .status-dot {
     width: 10px;
     height: 10px;
-    background-color: #00b894;
+    background-color: #065f46;
     border-radius: 50%;
-    box-shadow: 0 0 10px #00b894;
+    box-shadow: none;
 }
 
 .chatbot-close {

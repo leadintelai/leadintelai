@@ -1,95 +1,1512 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leadintel CRM AI | Sales Automation</title>
-    <link rel="stylesheet" href="linear-theme.css">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Predictive AI CRM Console | Pipeline Velocity — LeadintelAI</title>
+    <meta name="description" content="Enterprise AI CRM console: Interactive Kanban deal pipeline, automated predictive scoring (0-100), rep assignment, and next-best actions.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-        @media (max-width:480px) {
-            .page-hero-inner { padding-top: 70px !important; padding-inline: 14px !important; gap: 16px; }
-            .page-h1 { font-size: clamp(1.5rem, 6.5vw, 2.2rem) !important; }
-            .nav-inner { padding: 0 14px; }
-            .nav-actions .btn-nav-cta { font-size: 0.74rem; padding: 5px 10px; }
-            .nav-login { display: none !important; }
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="glass-theme.css?v=20261115">
+
+    <style>
+        :root {
+            --crm-bg: #07090e;
+            --surface-panel: #0b0f17;
+            --surface-panel-sub: #080c13;
+            --border-panel: rgba(255, 255, 255, 0.08);
+            --border-subtle: rgba(255, 255, 255, 0.05);
+            --font-mono: 'JetBrains Mono', monospace;
+            --accent-blue-deep: #1e3a8a;
+            --accent-blue-border: #1e40af;
+            --accent-blue-text: #60a5fa;
+            --accent-green-deep: #065f46;
+            --accent-green-border: #047857;
+            --accent-green-text: #34d399;
+            --accent-saffron-deep: #ea580c;
+            --accent-saffron-border: #c2410c;
+            --accent-saffron-text: #fb923c;
         }
-</style>
+
+        body {
+            background-color: var(--crm-bg);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 85% 15%, rgba(30, 58, 138, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 15% 85%, rgba(6, 95, 70, 0.06) 0%, transparent 45%);
+            background-attachment: fixed;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── IN-SCREEN APPLICATION SHELL ─── */
+        .app-main-layout {
+            min-height: 100vh;
+            width: 100%;
+            margin-left: 0;
+            display: flex;
+            flex-direction: column;
+            transition: margin-left 0.25s cubic-bezier(0.16, 1, 0.3, 1), width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        @media (min-width: 1024px) {
+            body.sidebar-open .app-main-layout {
+                margin-left: 260px;
+                width: calc(100% - 260px);
+            }
+        }
+
+        /* ─── ENTERPRISE IN-SCREEN COLLAPSIBLE SIDEBAR ─── */
+        .enterprise-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 260px;
+            background: #090c14;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            z-index: 1050;
+            box-shadow: none;
+            transform: translateX(-100%);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            box-sizing: border-box;
+        }
+
+        body.sidebar-open .enterprise-sidebar,
+        .enterprise-sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1.15rem;
+            min-height: 56px;
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: #090c14;
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sidebar-collapse-btn {
+            background: #0d111a;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #94a3b8;
+            width: 30px;
+            height: 30px;
+            border-radius: 7px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .sidebar-collapse-btn:hover {
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.2);
+            background: #141a29;
+        }
+
+        .sidebar-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem 0.85rem;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .sidebar-group-title {
+            font-size: 0.66rem;
+            font-weight: 700;
+            color: #64748b;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            font-family: var(--font-mono);
+            padding: 14px 10px 4px;
+        }
+
+        .sidebar-group-title:first-child {
+            padding-top: 0;
+        }
+
+        .sidebar-nav-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .sidebar-nav-item,
+        .sidebar-nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: #94a3b8;
+            text-decoration: none;
+            background: transparent;
+            border: 1px solid transparent;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: left;
+            transition: all 0.15s ease;
+            font-family: inherit;
+        }
+
+        .sidebar-nav-item:hover,
+        .sidebar-nav-btn:hover {
+            background: #111726;
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .sidebar-nav-item.active {
+            background: #1e3a8a;
+            border-color: #1e40af;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .sidebar-item-pill {
+            margin-left: auto;
+            font-size: 0.62rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-family: var(--font-mono);
+        }
+
+        .sidebar-footer {
+            padding: 0.85rem 1.15rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            background: #07090f;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar-user-block {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            overflow: hidden;
+        }
+
+        .sidebar-user-info {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .sidebar-user-name {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .sidebar-user-role {
+            font-size: 0.66rem;
+            color: #64748b;
+            font-family: var(--font-mono);
+        }
+
+        .sidebar-footer-btn {
+            background: #0d111a;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #94a3b8;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .sidebar-footer-btn:hover {
+            color: #ef4444;
+            border-color: rgba(239, 68, 68, 0.3);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* ─── MOBILE BACKDROP ─── */
+        .sidebar-backdrop {
+            display: none;
+        }
+
+        @media (max-width: 1023px) {
+            .sidebar-backdrop {
+                display: block;
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.45);
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                z-index: 1040;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.2s ease;
+            }
+
+            body.sidebar-open .sidebar-backdrop {
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
+
+        /* ─── CONSOLE TOP NAVIGATION ─── */
+        .hub-nav {
+            background: #090c14;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0.75rem 1.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .nav-brand-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .sidebar-toggle-btn {
+            background: #0d111a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            width: 32px;
+            height: 32px;
+            border-radius: 7px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            flex-shrink: 0;
+        }
+
+        .sidebar-toggle-btn:hover {
+            background: #111726;
+            border-color: rgba(255, 255, 255, 0.22);
+            color: #ffffff;
+        }
+
+        .hub-logo {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hub-logo img {
+            height: 28px;
+            width: auto;
+        }
+
+        .hub-logo span span {
+            color: #3b82f6;
+        }
+
+        .module-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 3px 9px;
+            border-radius: 6px;
+            background: rgba(30, 58, 138, 0.25);
+            border: 1px solid rgba(30, 58, 138, 0.5);
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #93c5fd;
+            font-family: var(--font-mono);
+        }
+
+        .back-hub-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            background: #0d111a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.15s ease;
+        }
+
+        .back-hub-btn:hover {
+            background: #151b2a;
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ─── MAIN WORKSPACE ─── */
+        .workspace-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.75rem 1.75rem 3.5rem;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* ─── TELEMETRY STRIP ─── */
+        .telemetry-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+        }
+
+        .telemetry-card {
+            background: #0a0e16;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 1.1rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .telemetry-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-family: var(--font-mono);
+        }
+
+        .telemetry-val {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #f8fafc;
+            letter-spacing: -0.02em;
+            font-family: var(--font-mono);
+        }
+
+        .telemetry-sub {
+            font-size: 0.72rem;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .badge-status-blue {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 2px 7px;
+            border-radius: 4px;
+            background: rgba(30, 58, 138, 0.2);
+            border: 1px solid #1e40af;
+            color: #93c5fd;
+            font-size: 0.68rem;
+            font-weight: 600;
+            font-family: var(--font-mono);
+        }
+
+        .badge-status-green {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 2px 7px;
+            border-radius: 4px;
+            background: rgba(6, 95, 70, 0.2);
+            border: 1px solid #047857;
+            color: #34d399;
+            font-size: 0.68rem;
+            font-weight: 600;
+            font-family: var(--font-mono);
+        }
+
+        /* ─── TAB NAVIGATION ─── */
+        .tabs-header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 0.75rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tabs-switch-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #090c14;
+            padding: 4px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: #94a3b8;
+            padding: 7px 14px;
+            border-radius: 7px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .tab-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .tab-btn.active {
+            background: #1e3a8a;
+            border-color: #1e40af;
+            color: #ffffff;
+        }
+
+        .btn-action-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: #1e3a8a;
+            border: 1px solid #1e40af;
+            color: #ffffff;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-decoration: none;
+        }
+
+        .btn-action-primary:hover {
+            background: #1e40af;
+            filter: brightness(1.1);
+        }
+
+        /* ─── KANBAN PIPELINE BOARD ─── */
+        .kanban-board-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+            align-items: flex-start;
+        }
+
+        .kanban-column {
+            background: #0a0e16;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            display: flex;
+            flex-direction: column;
+            min-height: 520px;
+            overflow: hidden;
+        }
+
+        .kanban-col-head {
+            padding: 12px 14px;
+            background: #0c111a;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .col-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .col-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #f8fafc;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .col-count-badge {
+            font-size: 0.66rem;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            padding: 1px 6px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #94a3b8;
+        }
+
+        .col-sub-val {
+            font-size: 0.7rem;
+            color: #64748b;
+            font-family: var(--font-mono);
+        }
+
+        .kanban-cards-stack {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .deal-card {
+            background: #0d121c;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: all 0.15s ease;
+            cursor: pointer;
+        }
+
+        .deal-card:hover {
+            border-color: rgba(96, 165, 250, 0.3);
+            background: #111724;
+            transform: translateY(-1px);
+        }
+
+        .deal-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        .deal-company {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            line-height: 1.25;
+        }
+
+        .deal-ai-score {
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            white-space: nowrap;
+        }
+
+        .deal-ai-high {
+            background: rgba(6, 95, 70, 0.25);
+            border: 1px solid #047857;
+            color: #34d399;
+        }
+
+        .deal-ai-med {
+            background: rgba(234, 88, 12, 0.2);
+            border: 1px solid #c2410c;
+            color: #fb923c;
+        }
+
+        .deal-val {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #34d399;
+            font-family: var(--font-mono);
+        }
+
+        .deal-next-action {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            background: #080c13;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 5px 8px;
+            border-radius: 6px;
+            line-height: 1.35;
+        }
+
+        .deal-card-foot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.68rem;
+            color: #64748b;
+            padding-top: 4px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .advance-deal-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.66rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .advance-deal-btn:hover {
+            color: #fff;
+            background: #1e3a8a;
+            border-color: #1e40af;
+        }
+
+        /* ─── DATA TABLE VIEW ─── */
+        .table-responsive-wrapper {
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            background: #080c13;
+        }
+
+        table.console-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.82rem;
+        }
+
+        table.console-table th {
+            padding: 10px 14px;
+            background: #0c111a;
+            color: #64748b;
+            font-weight: 700;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            font-family: var(--font-mono);
+        }
+
+        table.console-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: #cbd5e1;
+            vertical-align: middle;
+        }
+
+        table.console-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .canned-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+        }
+
+        .canned-btn:hover {
+            color: #60a5fa;
+            border-color: #1e40af;
+            background: rgba(30, 58, 138, 0.16);
+        }
+
+        /* ─── MODAL STYLES ─── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-card {
+            background: #0a0e17;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 540px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            box-sizing: border-box;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            font-family: var(--font-mono);
+        }
+
+        .form-input,
+        .form-select {
+            background: #080b12;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            padding: 9px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            outline: none;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        @media (max-width: 1200px) {
+            .kanban-board-container {
+                grid-template-columns: repeat(3, 280px);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .telemetry-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .telemetry-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .hub-nav {
+                padding: 0.6rem 1rem;
+            }
+
+            .workspace-container {
+                padding: 1rem 0.85rem 3rem;
+            }
+
+            .kanban-board-container {
+                grid-template-columns: repeat(5, 260px);
+            }
+        }
+    </style>
 </head>
-<body class="strict-matte">
-    <header class="navbar" id="navbar">
-        <div class="nav-inner">
-            <a href="index.html" class="logo">
-                <svg class="logo-icon" width="26" height="26" viewBox="0 0 100 100" fill="none" style="vertical-align: middle;">
-                    <path class="ghost-body" d="M20,50 Q20,20 50,20 Q80,20 80,50 L80,80 Q70,75 60,80 Q50,85 40,80 Q30,75 20,80 Z" fill="white" />
-                    <ellipse class="ghost-eye" cx="40" cy="45" rx="4" ry="6" fill="black" />
-                    <ellipse class="ghost-eye" cx="60" cy="45" rx="4" ry="6" fill="black" />
+
+<body class="sidebar-open">
+
+    <!-- SIDEBAR BACKDROP (MOBILE DISMISS) -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeSidebar()" aria-hidden="true"></div>
+
+    <!-- ENTERPRISE IN-SCREEN COLLAPSIBLE SIDEBAR -->
+    <aside class="enterprise-sidebar" id="enterpriseSidebar" aria-label="Main Navigation">
+        <!-- Sidebar Brand Header -->
+        <div class="sidebar-header">
+            <div class="sidebar-brand">
+                <a href="index.html" class="hub-logo" style="font-size: 1.05rem; gap: 8px;">
+                    <img src="leadintelai-logo.svg" alt="LeadintelAI Logo" style="height: 22px;" onerror="this.src='favicon.svg'">
+                    <span>Leadintel<span>AI</span></span>
+                </a>
+                <span class="role-badge role-badge-super" style="font-size: 0.58rem; padding: 2px 6px; background:#1e3a8a; border:1px solid #1e40af; color:#93c5fd;">SUPER ADMIN</span>
+            </div>
+            <button class="sidebar-collapse-btn" onclick="toggleSidebar()" aria-label="Collapse Navigation Sidebar" title="Collapse Sidebar (Ctrl+B)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="9" y1="3" x2="9" y2="21"></line>
+                    <polyline points="14 9 11 12 14 15"></polyline>
                 </svg>
-                <span class="logo-wordmark">Leadintel<span class="logo-ai">AI</span></span>
-            </a>
-            <nav class="nav-links">
-                <a href="index.html#services">Services</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="about.html">About</a>
-                <a href="index.html#contact">Contact</a>
+            </button>
+        </div>
+
+        <!-- Sidebar Navigation Body -->
+        <div class="sidebar-content">
+            <div class="sidebar-group-title">Command Center</div>
+            <nav class="sidebar-nav-list">
+                <a href="project.html" class="sidebar-nav-item" onclick="closeSidebarOnMobile()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    <span>Overview Hub</span>
+                    <span class="sidebar-item-pill">HUB</span>
+                </a>
+                <a href="project.html#team-management-section" class="sidebar-nav-item" onclick="closeSidebarOnMobile()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <span>Team & RBAC</span>
+                    <span class="sidebar-item-pill">5 Seats</span>
+                </a>
+                <a href="project.html#billing-section" class="sidebar-nav-item" onclick="closeSidebarOnMobile()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="21" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                    <span>Billing & Wallet</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-group-title">Revenue Engines</div>
+            <nav class="sidebar-nav-list">
+                <a href="dashboard.html" class="sidebar-nav-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="22" y1="12" x2="18" y2="12"></line>
+                        <line x1="6" y1="12" x2="2" y2="12"></line>
+                        <line x1="12" y1="6" x2="12" y2="2"></line>
+                        <line x1="12" y1="22" x2="12" y2="18"></line>
+                    </svg>
+                    <span>DataCloud Search</span>
+                    <span class="sidebar-item-pill" style="color: #60a5fa; border-color: rgba(96, 165, 250, 0.3);">52M+</span>
+                </a>
+                <a href="whatsapp.html" class="sidebar-nav-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                    </svg>
+                    <span>WhatsApp Suite</span>
+                    <span class="sidebar-item-pill" style="color: #34d399; border-color: rgba(52, 211, 153, 0.3);">META API</span>
+                </a>
+                <a href="mailing.html" class="sidebar-nav-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <span>MailEngine Outreach</span>
+                    <span class="sidebar-item-pill" style="color: #fb923c; border-color: rgba(251, 146, 60, 0.3);">98.7%</span>
+                </a>
+                <a href="crm.html" class="sidebar-nav-item active">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#93c5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                    <span>Predictive CRM</span>
+                    <span class="sidebar-item-pill" style="background: rgba(30, 58, 138, 0.4); border-color: #1e40af; color: #93c5fd;">VELOCITY</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-group-title">Quick Actions</div>
+            <nav class="sidebar-nav-list">
+                <button type="button" class="sidebar-nav-btn" onclick="openNewDealModal()">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span>+ Add New Deal</span>
+                </button>
+                <button type="button" class="sidebar-nav-btn" onclick="exportDealsCSV()">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span>Export Deals CSV</span>
+                </button>
             </nav>
         </div>
-    </header>
 
-    <main>
-        <div class="page-hero">
-            <div class="page-hero-inner">
-                <div>
-                    <a href="index.html" class="page-back">
-                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-                        Back
-                    </a>
-                    <div class="page-tag">CRM AI</div>
-                    <h1 class="page-h1">Leadintel CRM AI</h1>
-                    <a href="login.html?mode=signup" class="page-cta">Start Managing Leads &rarr;</a>
-                </div>
-                <div>
-                    <p class="page-desc">Manage your entire sales pipeline with intelligence. Lead tracking, automated follow-ups, and AI-driven insights designed to help your sales team move at lightspeed.</p>
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+            <div class="sidebar-user-block">
+                <div class="user-avatar-circle" style="width: 28px; height: 28px; font-size: 0.78rem; background:#1e3a8a; border:1px solid #1e40af; color:#fff; display:flex; align-items:center; justify-content:center; border-radius:50%;">G</div>
+                <div class="sidebar-user-info">
+                    <div class="sidebar-user-name">Gaurav Yadav</div>
+                    <div class="sidebar-user-role">Super Admin</div>
                 </div>
             </div>
+            <button class="sidebar-footer-btn" onclick="location.href='login.html'" title="Sign Out" aria-label="Sign Out">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+            </button>
         </div>
+    </aside>
 
-        <div class="section-divider"></div>
+    <!-- MAIN IN-SCREEN APP LAYOUT -->
+    <div class="app-main-layout" id="appMainLayout">
 
-        <div class="features-section">
-            <div class="features-inner">
-                <div class="features-eyebrow">Core Features</div>
-                <div class="feature-grid">
-                    <div class="feature-cell">
-                        <div class="feature-dot"></div>
-                        <h4>Lead Tracking</h4>
-                        <p>Monitor every stage of your sales funnel with real-time status updates and priority scoring.</p>
-                    </div>
-                    <div class="feature-cell">
-                        <div class="feature-dot"></div>
-                        <h4>Follow-up Automation</h4>
-                        <p>Never miss a lead again. Let AI handle the heavy lifting of scheduling and reminders.</p>
-                    </div>
-                    <div class="feature-cell">
-                        <div class="feature-dot"></div>
-                        <h4>Smart Reminders</h4>
-                        <p>Get notified precisely when a lead shows high intent signals or needs attention.</p>
-                    </div>
-                    <div class="feature-cell">
-                        <div class="feature-dot"></div>
-                        <h4>AI Insights</h4>
-                        <p>Deep analytics on your conversion rates and agent performance to optimize your revenue engine.</p>
-                    </div>
+        <!-- CONSOLE TOP NAVIGATION BAR -->
+        <header class="hub-nav">
+            <div class="nav-brand-group">
+                <button class="sidebar-toggle-btn" id="sidebarToggleBtn" onclick="toggleSidebar()" aria-label="Toggle Navigation Sidebar" title="Toggle Sidebar (Ctrl+B)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <a href="index.html" class="hub-logo" title="LeadintelAI Home">
+                    <img src="leadintelai-logo.svg" alt="LeadintelAI Logo" onerror="this.src='favicon.svg'">
+                    <span>Leadintel<span>AI</span></span>
+                </a>
+                <div class="module-badge">
+                    <span style="width:7px; height:7px; border-radius:50%; background:#1e40af; border:1px solid #3b82f6;"></span>
+                    <span>Predictive AI CRM · Pipeline Velocity</span>
                 </div>
             </div>
-        </div>
-    </main>
 
-    <footer class="footer-inner container" style="border-top: 1px solid rgba(255,255,255,0.08); padding: 40px 0; margin-top: 100px;">
-        <p style="font-size: 0.8rem; color: var(--text-dim);">&copy; 2026 LeadintelAI. All rights reserved.</p>
-    </footer>
-    <script src="chatbot.js"></script>
+            <a href="project.html" class="back-hub-btn" title="Return to Super Admin Hub">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Command Hub</span>
+            </a>
+        </header>
+
+        <!-- WORKSPACE CONTENT -->
+        <main class="workspace-container">
+
+            <!-- TELEMETRY KPI STRIP -->
+            <section class="telemetry-strip" aria-label="Predictive CRM Telemetry">
+                <div class="telemetry-card">
+                    <div class="telemetry-label">Active Pipeline Value</div>
+                    <div class="telemetry-val" style="color:#60a5fa;">₹1,42,80,000</div>
+                    <div class="telemetry-sub">48 Total Active Enterprise Deals</div>
+                </div>
+
+                <div class="telemetry-card">
+                    <div class="telemetry-label">Average Predictive Score</div>
+                    <div class="telemetry-val" style="color:#34d399;">84.6 <span style="font-size:0.85rem; color:#64748b; font-weight:500;">/ 100</span></div>
+                    <div class="telemetry-sub">High Intent CXO Signal Model</div>
+                </div>
+
+                <div class="telemetry-card">
+                    <div class="telemetry-label">Rolling Win Rate (30d)</div>
+                    <div class="telemetry-val">38.2%</div>
+                    <div class="telemetry-sub">+14.2% Higher Than Manual Outreach</div>
+                </div>
+
+                <div class="telemetry-card">
+                    <div class="telemetry-label">Pipeline Velocity</div>
+                    <div class="telemetry-val">3.2x</div>
+                    <div class="telemetry-sub">14-Day Average Sales Cycle Duration</div>
+                </div>
+            </section>
+
+            <!-- TABS CONTROLLER BAR -->
+            <div class="tabs-header-bar">
+                <div class="tabs-switch-group" role="tablist">
+                    <button class="tab-btn active" onclick="switchView('kanban')" id="tab-btn-kanban">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="18"></rect>
+                            <rect x="14" y="3" width="7" height="11"></rect>
+                        </svg>
+                        <span>Kanban Pipeline</span>
+                    </button>
+                    <button class="tab-btn" onclick="switchView('table')" id="tab-btn-table">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg>
+                        <span>Data Grid View</span>
+                    </button>
+                    <button class="tab-btn" onclick="switchView('actions')" id="tab-btn-actions">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                        <span>Next-Best Actions (3 Urgent)</span>
+                    </button>
+                </div>
+
+                <div style="display:flex; gap:8px;">
+                    <button class="canned-btn" onclick="exportDealsCSV()">Export CSV</button>
+                    <button class="btn-action-primary" onclick="openNewDealModal()">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        <span>+ Add New Deal</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- VIEW 1: KANBAN PIPELINE -->
+            <section id="view-kanban">
+                <div class="kanban-board-container" id="kanban-board">
+                    <!-- Column 1: New Inbound -->
+                    <div class="kanban-column" id="col-inbound">
+                        <div class="kanban-col-head">
+                            <div class="col-title-row">
+                                <span class="col-title">New Inbound</span>
+                                <span class="col-count-badge" id="badge-inbound">2</span>
+                            </div>
+                            <span class="col-sub-val" id="val-inbound">₹18,50,000</span>
+                        </div>
+                        <div class="kanban-cards-stack" id="stack-inbound">
+                            <div class="deal-card" onclick="alert('Viewing Deal: Swiggy Instamart Ops')">
+                                <div class="deal-card-top">
+                                    <div class="deal-company">Swiggy Instamart Ops</div>
+                                    <span class="deal-ai-score deal-ai-high">92/100</span>
+                                </div>
+                                <div class="deal-val">₹8,50,000</div>
+                                <div class="deal-next-action">Inbound request for 15 sales rep seats.</div>
+                                <div class="deal-card-foot">
+                                    <span>Priya Sharma</span>
+                                    <button class="advance-deal-btn" onclick="event.stopPropagation(); advanceDeal(this, 'col-qualified')">Advance →</button>
+                                </div>
+                            </div>
+
+                            <div class="deal-card" onclick="alert('Viewing Deal: Nykaa Supply Chain')">
+                                <div class="deal-card-top">
+                                    <div class="deal-company">Nykaa Retail Ops</div>
+                                    <span class="deal-ai-score deal-ai-med">78/100</span>
+                                </div>
+                                <div class="deal-val">₹10,000,00</div>
+                                <div class="deal-next-action">Form submitted on B2B DataCloud page.</div>
+                                <div class="deal-card-foot">
+                                    <span>Vikram Malhotra</span>
+                                    <button class="advance-deal-btn" onclick="event.stopPropagation(); advanceDeal(this, 'col-qualified')">Advance →</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: AI Qualified -->
+                    <div class="kanban-column" id="col-qualified">
+                        <div class="kanban-col-head">
+                            <div class="col-title-row">
+                                <span class="col-title">AI Qualified</span>
+                                <span class="col-count-badge" id="badge-qualified">2</span>
+                            </div>
+                            <span class="col-sub-val" id="val-qualified">₹42,00,000</span>
+                        </div>
+                        <div class="kanban-cards-stack" id="stack-qualified">
+                            <div class="deal-card" onclick="alert('Viewing Deal: Reliance Retail CXO Expansion')">
+                                <div class="deal-card-top">
+                                    <div class="deal-company">Reliance Retail CXO</div>
+                                    <span class="deal-ai-score deal-ai-high">96/100</span>
+                                </div>
+                                <div class="deal-val">₹24,00,000</div>
+                                <div class="deal-next-action">Verified active mobile SIM pings matched.</div>
+                                <div class="deal-card-foot">
+                                    <span>Priya Sharma</span>
+                                    <button class="advance-deal-btn" onclick="event.stopPropagation(); advanceDeal(this, 'col-proposal')">Advance →</button>
+                                </div>
+                            </div>
+
+                            <div class="deal-card" onclick="alert('Viewing Deal: Zomato Enterprise Sales')">
+                                <div class="deal-card-top">
+                                    <div class="deal-company">Zomato Enterprise</div>
+                                    <span class="deal-ai-score deal-ai-high">89/100</span>
+                                </div>
+                                <div class="deal-val">₹18,00,000</div>
+                                <div class="deal-next-action">Replied to WhatsApp campaign: requested demo.</div>
+                                <div class="deal-card-foot">
+                                    <span>Arjun Patel</span>
+                                    <button class="advance-deal-btn" onclick="event.stopPropagation(); advanceDeal(this, 'col-proposal')">Advance →</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 3: Demo & Proposal -->
+                    <div class="kanban-column" id="col-proposal">
+                        <div class="kanban-col-head">
+                            <div class="col-title-row">
+                                <span class="col-title">Demo & Proposal</span>
+                                <span class="col-count-badge" id="badge-proposal">2</span>
+                            </div>
+                            <span class="col-sub-val" id="val-proposal">₹48,20,000</span>
+                        </div>
+                        <div class="kanban-cards-stack" id="stack-proposal">
+                            <div class="deal-card" onclick="alert('Viewing Deal: HDFC Sales Operations')">
+                                <div class="deal-card-top">
+                                    <div class="deal-company">HDFC Bank Outbound</div>
+                                    <span class="deal-ai-score deal-ai-high">98/100</span>
+                                </div>
+                                <div class="deal-val">₹32,00,000</div>
+                                <div class="deal-next-action">Proposal sent · Lock Friday 4 PM calendar call.</div>
+                                <div class="deal-card-foot">
+                                    <span>Gaurav Yadav</span>
+                                    <button class="advance-deal-btn" onclick="event.stopPropagation(); advanceDeal(this, 'col-negotiation')">Advance →</button>
+                                </div>
+                            </div>
+
+                            <div class="deal-card" onclick="alert('Viewing Deal: Meesho Vendor Growth')">
+                                <div class="deal-card-top">
+                                    <div class="deal-company">Meesho Vendor Network</div>
+                                    <span class="deal-ai-score deal-ai-med">82/100</span>
+                                </div>
+                                <div class="deal-val">₹16,20,000</div>
+                                <div class="deal-next-action">Technical sandbox test completed.</div>
+                                <div class="deal-card-foot">
+                                    <span>Vikram Malhotra</span>
+                                    <button class="advance-deal-btn" onclick="event.stopPropagation(); advanceDeal(this, 'col-negotiation')">Advance →</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 4: Negotiation -->
+                    <div class="kanban-column" id="col-negotiation">
+                        <div class="kanban-col-head">
+                            <div class="col-title-row">
+                                <span class="col-title">Negotiation</span>
+                                <span class="col-count-badge" id="badge-negotiation">1</span>
+                            </div>
+                            <span class="col-sub-val" id="val-negotiation">₹26,50,000</span>
+                        </div>
+                        <div class="kanban-cards-stack" id="stack-negotiation">
+                            <div class="deal-card" onclick="alert('Viewing Deal: Tata Elxsi Tech')">
+                                <div class="deal-card-top">
+                                    <div class="deal-company">Tata Elxsi R&D</div>
+                                    <span class="deal-ai-score deal-ai-high">94/100</span>
+                                </div>
+                                <div class="deal-val">₹26,50,000</div>
+                                <div class="deal-next-action">Contract review with legal department.</div>
+                                <div class="deal-card-foot">
+                                    <span>Gaurav Yadav</span>
+                                    <button class="advance-deal-btn" onclick="event.stopPropagation(); advanceDeal(this, 'col-won')">Win Deal ✓</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 5: Closed Won -->
+                    <div class="kanban-column" id="col-won">
+                        <div class="kanban-col-head" style="border-bottom: 2px solid #047857;">
+                            <div class="col-title-row">
+                                <span class="col-title" style="color:#34d399;">Closed Won</span>
+                                <span class="col-count-badge" style="background:#065f46; color:#fff;" id="badge-won">1</span>
+                            </div>
+                            <span class="col-sub-val" style="color:#34d399;" id="val-won">₹7,60,000</span>
+                        </div>
+                        <div class="kanban-cards-stack" id="stack-won">
+                            <div class="deal-card" style="border-color: rgba(4, 120, 87, 0.4);" onclick="alert('Viewing Closed Deal: Razorpay Integration')">
+                                <div class="deal-card-top">
+                                    <div class="deal-company">Razorpay Fintech</div>
+                                    <span class="deal-ai-score deal-ai-high">100/100</span>
+                                </div>
+                                <div class="deal-val">₹7,60,000</div>
+                                <div class="deal-next-action" style="color:#34d399;">Annual subscription activated & paid.</div>
+                                <div class="deal-card-foot">
+                                    <span>Arjun Patel</span>
+                                    <span style="color:#34d399; font-weight:700;">CLOSED ✓</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 2: DATA GRID VIEW -->
+            <section class="console-panel" id="view-table" style="display: none;">
+                <div class="panel-heading-row">
+                    <div class="panel-title">
+                        <span>All Pipeline Deals Data Grid</span>
+                        <span class="badge-status-blue">48 Active Deals</span>
+                    </div>
+                    <button class="canned-btn" onclick="exportDealsCSV()">Export CSV</button>
+                </div>
+
+                <div class="table-responsive-wrapper">
+                    <table class="console-table">
+                        <thead>
+                            <tr>
+                                <th>Deal Title & Company</th>
+                                <th>Value</th>
+                                <th>Stage</th>
+                                <th>AI Intent Score</th>
+                                <th>Assigned Rep</th>
+                                <th>Next Best Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Swiggy Instamart Ops</strong></td>
+                                <td><span style="color:#34d399; font-family:var(--font-mono); font-weight:700;">₹8,50,000</span></td>
+                                <td><span class="badge-status-blue">New Inbound</span></td>
+                                <td><span class="deal-ai-score deal-ai-high">92 / 100</span></td>
+                                <td>Priya Sharma</td>
+                                <td>Inbound request for 15 sales rep seats</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Reliance Retail CXO</strong></td>
+                                <td><span style="color:#34d399; font-family:var(--font-mono); font-weight:700;">₹24,00,000</span></td>
+                                <td><span class="badge-status-blue">AI Qualified</span></td>
+                                <td><span class="deal-ai-score deal-ai-high">96 / 100</span></td>
+                                <td>Priya Sharma</td>
+                                <td>Verified active mobile SIM pings matched</td>
+                            </tr>
+                            <tr>
+                                <td><strong>HDFC Bank Outbound</strong></td>
+                                <td><span style="color:#34d399; font-family:var(--font-mono); font-weight:700;">₹32,00,000</span></td>
+                                <td><span class="badge-status-blue">Demo & Proposal</span></td>
+                                <td><span class="deal-ai-score deal-ai-high">98 / 100</span></td>
+                                <td>Gaurav Yadav</td>
+                                <td>Lock Friday 4 PM calendar call</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tata Elxsi R&D</strong></td>
+                                <td><span style="color:#34d399; font-family:var(--font-mono); font-weight:700;">₹26,50,000</span></td>
+                                <td><span class="badge-status-blue">Negotiation</span></td>
+                                <td><span class="deal-ai-score deal-ai-high">94 / 100</span></td>
+                                <td>Gaurav Yadav</td>
+                                <td>Contract review with legal department</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- VIEW 3: NEXT-BEST ACTIONS FEED -->
+            <section class="console-panel" id="view-actions" style="display: none;">
+                <div class="panel-heading-row">
+                    <div class="panel-title">
+                        <span>Predictive AI Next-Best Action Feed</span>
+                        <span class="badge-status-green">Real-time Signals</span>
+                    </div>
+                </div>
+
+                <div style="display:flex; flex-direction:column; gap:12px;">
+                    <div style="background:#0c111c; border:1px solid rgba(255,255,255,0.08); border-left:4px solid #3b82f6; border-radius:10px; padding:14px; display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <strong style="color:#fff; font-size:0.88rem;">HDFC Bank Outbound (₹32L)</strong>
+                            <div style="font-size:0.75rem; color:#cbd5e1; margin-top:3px;">
+                                Prospect opened cold sequence email 3 times in 2 hours. High closing intent detected.
+                            </div>
+                            <div style="font-size:0.68rem; color:#64748b; margin-top:4px; font-family:var(--font-mono);">Recommended Rep: Gaurav Yadav · Action: Send WhatsApp demo confirmation</div>
+                        </div>
+                        <a href="whatsapp.html" class="canned-btn" style="color:#34d399; border-color:#047857;">Open WhatsApp Suite →</a>
+                    </div>
+
+                    <div style="background:#0c111c; border:1px solid rgba(255,255,255,0.08); border-left:4px solid #fb923c; border-radius:10px; padding:14px; display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <strong style="color:#fff; font-size:0.88rem;">Reliance Retail CXO (₹24L)</strong>
+                            <div style="font-size:0.75rem; color:#cbd5e1; margin-top:3px;">
+                                48 hours passed since proposal delivery. Send automated case study nudge.
+                            </div>
+                            <div style="font-size:0.68rem; color:#64748b; margin-top:4px; font-family:var(--font-mono);">Assigned Rep: Priya Sharma · Action: MailEngine Step 2 trigger</div>
+                        </div>
+                        <a href="mailing.html" class="canned-btn" style="color:#fb923c; border-color:#c2410c;">Open MailEngine →</a>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ADD NEW DEAL MODAL -->
+    <div class="modal-overlay" id="dealModal" onclick="if(event.target===this) closeNewDealModal()">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div style="font-weight:700; font-size:1.1rem; color:#fff;">Add New Deal to CRM Pipeline</div>
+                <button onclick="closeNewDealModal()" style="background:none; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;">✕</button>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Company / Account Name</label>
+                <input type="text" class="form-input" id="new-deal-company" placeholder="e.g. Infosys Enterprise Cloud">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Deal Value (₹)</label>
+                <input type="number" class="form-input" id="new-deal-val" placeholder="e.g. 1500000">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Pipeline Stage</label>
+                <select class="form-select" id="new-deal-stage">
+                    <option value="col-inbound">New Inbound</option>
+                    <option value="col-qualified">AI Qualified</option>
+                    <option value="col-proposal">Demo & Proposal</option>
+                    <option value="col-negotiation">Negotiation</option>
+                    <option value="col-won">Closed Won</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Assign Sales Rep</label>
+                <select class="form-select" id="new-deal-rep">
+                    <option value="Priya Sharma">Priya Sharma (Manager)</option>
+                    <option value="Vikram Malhotra">Vikram Malhotra (Admin)</option>
+                    <option value="Arjun Patel">Arjun Patel (Manager)</option>
+                    <option value="Gaurav Yadav">Gaurav Yadav (Super Admin)</option>
+                </select>
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:8px;">
+                <button class="canned-btn" onclick="closeNewDealModal()">Cancel</button>
+                <button class="btn-action-primary" onclick="submitNewDeal()">Add Deal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        /* Sidebar Toggle Logic */
+        function toggleSidebar() {
+            if (document.body.classList.contains('sidebar-open')) {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
+        }
+
+        function openSidebar() {
+            const sb = document.getElementById('enterpriseSidebar');
+            if (sb) sb.classList.add('open');
+            document.body.classList.add('sidebar-open');
+            try { localStorage.setItem('leadintel_sidebar_state', 'open'); } catch (e) {}
+        }
+
+        function closeSidebar() {
+            const sb = document.getElementById('enterpriseSidebar');
+            if (sb) sb.classList.remove('open');
+            document.body.classList.remove('sidebar-open');
+            try { localStorage.setItem('leadintel_sidebar_state', 'closed'); } catch (e) {}
+        }
+
+        function closeSidebarOnMobile() {
+            if (window.innerWidth < 1024) closeSidebar();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedState = localStorage.getItem('leadintel_sidebar_state');
+            if (savedState === 'open' || (savedState !== 'closed' && window.innerWidth >= 1200)) {
+                openSidebar();
+            } else {
+                closeSidebar();
+            }
+
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && window.innerWidth < 1024) closeSidebar();
+                if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'b') {
+                    e.preventDefault();
+                    toggleSidebar();
+                }
+            });
+        });
+
+        /* Tabs Switching */
+        function switchView(viewName) {
+            document.getElementById('view-kanban').style.display = viewName === 'kanban' ? 'block' : 'none';
+            document.getElementById('view-table').style.display = viewName === 'table' ? 'flex' : 'none';
+            document.getElementById('view-actions').style.display = viewName === 'actions' ? 'flex' : 'none';
+
+            document.getElementById('tab-btn-kanban').classList.toggle('active', viewName === 'kanban');
+            document.getElementById('tab-btn-table').classList.toggle('active', viewName === 'table');
+            document.getElementById('tab-btn-actions').classList.toggle('active', viewName === 'actions');
+        }
+
+        /* Modal Logic */
+        function openNewDealModal() {
+            document.getElementById('dealModal').classList.add('active');
+        }
+
+        function closeNewDealModal() {
+            document.getElementById('dealModal').classList.remove('active');
+        }
+
+        function submitNewDeal() {
+            const company = document.getElementById('new-deal-company').value.trim() || 'New Enterprise Deal';
+            const valNum = parseInt(document.getElementById('new-deal-val').value) || 1200000;
+            const stage = document.getElementById('new-deal-stage').value;
+            const rep = document.getElementById('new-deal-rep').value;
+
+            const card = document.createElement('div');
+            card.className = 'deal-card';
+            card.innerHTML = `
+                <div class="deal-card-top">
+                    <div class="deal-company">${company}</div>
+                    <span class="deal-ai-score deal-ai-high">90/100</span>
+                </div>
+                <div class="deal-val">₹${valNum.toLocaleString('en-IN')}</div>
+                <div class="deal-next-action">Direct pipeline creation by Super Admin.</div>
+                <div class="deal-card-foot">
+                    <span>${rep}</span>
+                    <button class="advance-deal-btn" onclick="event.stopPropagation(); advanceDeal(this, 'col-proposal')">Advance →</button>
+                </div>
+            `;
+
+            const stackId = stage.replace('col-', 'stack-');
+            const targetStack = document.getElementById(stackId);
+            if (targetStack) {
+                targetStack.insertBefore(card, targetStack.firstChild);
+            }
+
+            closeNewDealModal();
+            alert(`Deal "${company}" (₹${valNum.toLocaleString('en-IN')}) added to pipeline.`);
+        }
+
+        function advanceDeal(btn, nextColId) {
+            const card = btn.closest('.deal-card');
+            const stackId = nextColId.replace('col-', 'stack-');
+            const targetStack = document.getElementById(stackId);
+            if (card && targetStack) {
+                targetStack.appendChild(card);
+                if (nextColId === 'col-won') {
+                    btn.outerHTML = '<span style="color:#34d399; font-weight:700;">CLOSED ✓</span>';
+                    card.style.borderColor = 'rgba(4, 120, 87, 0.4)';
+                }
+            }
+        }
+
+        function exportDealsCSV() {
+            alert('Exporting 48 deals to Leadintel_CRM_Deals_2026.csv...');
+        }
+    </script>
 </body>
+
 </html>

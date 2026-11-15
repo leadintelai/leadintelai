@@ -1,1424 +1,2124 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Login — LeadintelAI | Smart Site System</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="glass-theme.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet">
-    <meta name="robots" content="noindex, nofollow">
-
-    <!-- LeadintelAI Silent Connection Detector -->
-    <script>
-        window.addEventListener('offline', () => {
-            localStorage.setItem('leadintel_last_url', window.location.href);
-            window.location.href = 'offline.html';
-        });
-    </script>
-
-    <style>
-        /* ─── RESET & BASE ─── */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: #07080c;
-            color: var(--text-primary);
-            font-family: var(--font-main);
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* ─── NAVBAR ─── */
-        .navbar {
-            height: 54px;
-            min-height: 54px;
-            flex-shrink: 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(7, 8, 12, 0.94);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            z-index: 50;
-            position: relative;
-        }
-
-        .nav-inner {
-            max-width: 100%;
-            height: 100%;
-            padding: 0 28px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 700;
-            font-size: 0.98rem;
-            letter-spacing: -0.02em;
-        }
-
-        .logo-icon img {
-            width: 25px;
-            height: 25px;
-            display: block;
-        }
-
-        /* Maya Deep Blood Red — No Glow */
-        .maya-badge {
-            color: #8b0000;
-            font-size: 0.74rem;
-            font-weight: 700;
-            letter-spacing: 0.04em;
-            margin-left: 2px;
-            text-shadow: none !important;
-        }
-
-        .nav-status-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 4px 12px;
-            border-radius: 999px;
-            background: rgba(220, 38, 38, 0.08);
-            border: 1px solid rgba(220, 38, 38, 0.22);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            color: #fca5a5;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-        }
-
-        .status-dot-pulse {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ef4444;
-            box-shadow: 0 0 8px #ef4444;
-            animation: pulseRed 2s infinite ease-in-out;
-        }
-
-        @keyframes pulseRed {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.85); }
-        }
-
-        .nav-back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            padding: 6px 14px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            color: var(--text-secondary);
-            font-size: 0.78rem;
-            font-weight: 500;
-            text-decoration: none;
-            letter-spacing: -0.01em;
-            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .nav-back-btn .back-icon {
-            transition: transform 0.2s ease, color 0.2s ease;
-        }
-
-        .nav-back-btn:hover {
-            background: rgba(220, 38, 38, 0.1);
-            border-color: rgba(220, 38, 38, 0.35);
-            color: #ffffff;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), 0 0 12px rgba(220, 38, 38, 0.15);
-        }
-
-        .nav-back-btn:hover .back-icon {
-            transform: translateX(-3px);
-            color: #ef4444;
-        }
-
-        /* ─── SPLIT LAYOUT ─── */
-        .smart-site-split {
-            flex: 1;
-            display: flex;
-            overflow: hidden;
-            min-height: 0;
-            position: relative;
-        }
-
-        /* ══════════════════════════════════════
-           LEFT PANEL — Smart Site System Visualizer
-        ══════════════════════════════════════ */
-        .left-viewport {
-            flex: 0 0 58%;
-            position: relative;
-            overflow: hidden;
-            background: #07080c;
-        }
-
-        /* Deep Crimson / Blood Red Aurora Ambient */
-        .left-aurora {
-            position: absolute;
-            inset: -20%;
-            pointer-events: none;
-            filter: blur(100px);
-            opacity: 0.55;
-        }
-
-        .l-red-blob {
-            position: absolute;
-            border-radius: 50%;
-            mix-blend-mode: screen;
-        }
-
-        .l-red-blob-1 {
-            width: 540px; height: 500px;
-            top: 5%; left: 8%;
-            background: radial-gradient(circle, rgba(220, 38, 38, 0.35) 0%, rgba(139, 0, 0, 0.12) 50%, transparent 75%);
-            animation: driftRed1 22s ease-in-out infinite alternate;
-        }
-
-        .l-red-blob-2 {
-            width: 460px; height: 420px;
-            bottom: 5%; right: 12%;
-            background: radial-gradient(circle, rgba(239, 68, 68, 0.25) 0%, rgba(185, 28, 28, 0.1) 50%, transparent 75%);
-            animation: driftRed2 26s ease-in-out infinite alternate;
-        }
-
-        @keyframes driftRed1 {
-            0%   { transform: translate(0, 0) scale(1); }
-            50%  { transform: translate(50px, 40px) scale(1.1); }
-            100% { transform: translate(-40px, 60px) scale(0.93); }
-        }
-
-        @keyframes driftRed2 {
-            0%   { transform: translate(0, 0) scale(1); }
-            50%  { transform: translate(-60px, -50px) scale(1.12); }
-            100% { transform: translate(45px, -35px) scale(0.9); }
-        }
-
-        /* Isometric Blueprint Grid Mask */
-        .left-grid {
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(220, 38, 38, 0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(220, 38, 38, 0.04) 1px, transparent 1px);
-            background-size: 40px 40px;
-            pointer-events: none;
-        }
-
-        /* 3D Smart Site Interactive Canvas */
-        #siteCanvas {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Radar scan beam */
-        .left-scanner {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%;
-            height: 110px;
-            background: linear-gradient(180deg,
-                transparent 0%,
-                rgba(220, 38, 38, 0.02) 50%,
-                rgba(239, 68, 68, 0.07) 98%,
-                rgba(252, 165, 165, 0.2) 100%);
-            pointer-events: none;
-            animation: scanRadar 15s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-        }
-
-        @keyframes scanRadar {
-            0%   { transform: translateY(-120px); opacity: 0; }
-            4%   { opacity: 0.7; }
-            96%  { opacity: 0.7; }
-            100% { transform: translateY(105vh); opacity: 0; }
-        }
-
-        .left-vignette {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 35% 50%, transparent 35%, rgba(7, 8, 12, 0.55) 75%, #07080c 95%);
-            pointer-events: none;
-        }
-
-        .left-edge-fade {
-            position: absolute;
-            top: 0; right: 0; bottom: 0;
-            width: 130px;
-            background: linear-gradient(90deg, transparent, rgba(10, 11, 16, 0.88) 85%, #0a0b10 100%);
-            pointer-events: none;
-        }
-
-        /* ─── LEFT HERO COPY ─── */
-        .left-hero {
-            position: absolute;
-            top: 40px;
-            left: 44px;
-            right: 120px;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        .left-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            padding: 4px 11px;
-            border-radius: 999px;
-            border: 1px solid rgba(220, 38, 38, 0.28);
-            background: rgba(220, 38, 38, 0.08);
-            font-size: 0.65rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: #fca5a5;
-            margin-bottom: 14px;
-        }
-
-        .left-title {
-            font-size: clamp(1.7rem, 2.5vw, 2.3rem);
-            font-weight: 800;
-            line-height: 1.15;
-            letter-spacing: -0.04em;
-            background: linear-gradient(160deg, #ffffff 0%, #fca5a5 60%, #ef4444 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            max-width: 440px;
-        }
-
-        .left-sub {
-            margin-top: 10px;
-            font-size: 0.82rem;
-            color: rgba(148, 163, 184, 0.75);
-            line-height: 1.6;
-            max-width: 380px;
-        }
-
-        /* ─── HUD TELEMETRY CHIPS ─── */
-        .hud-chips-container {
-            position: absolute;
-            bottom: 40px;
-            left: 44px;
-            z-index: 10;
-            pointer-events: none;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .hud-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 14px;
-            border-radius: 10px;
-            background: rgba(12, 14, 20, 0.78);
-            border: 1px solid rgba(220, 38, 38, 0.22);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.72rem;
-            color: rgba(248, 250, 252, 0.88);
-            letter-spacing: 0.02em;
-        }
-
-        .hud-chip-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ef4444;
-            box-shadow: 0 0 6px #ef4444;
-        }
-
-        .hud-chip-tag {
-            color: rgba(148, 163, 184, 0.6);
-            font-size: 0.68rem;
-        }
-
-        /* ══════════════════════════════════════
-           RIGHT PANEL — Glassmorphic Login Form
-        ══════════════════════════════════════ */
-        .right-viewport {
-            flex: 1;
-            min-width: 0;
-            background: rgba(10, 11, 16, 0.9);
-            backdrop-filter: blur(28px);
-            -webkit-backdrop-filter: blur(28px);
-            border-left: 1px solid rgba(255, 255, 255, 0.06);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 28px 36px;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .right-viewport::before {
-            content: '';
-            position: absolute;
-            top: 0; right: 0;
-            width: 320px; height: 240px;
-            background: radial-gradient(ellipse at top right, rgba(220, 38, 38, 0.09) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        /* ─── GLASSMORPHIC CARD ─── */
-        .auth-card {
-            width: 100%;
-            max-width: 370px;
-            background: rgba(13, 15, 22, 0.72);
-            backdrop-filter: blur(28px);
-            -webkit-backdrop-filter: blur(28px);
-            border: 1px solid rgba(220, 38, 38, 0.22);
-            border-radius: 22px;
-            padding: 32px 28px 28px;
-            box-shadow:
-                0 24px 60px -12px rgba(0, 0, 0, 0.85),
-                0 0 35px rgba(220, 38, 38, 0.07),
-                inset 0 1px 0 rgba(255, 255, 255, 0.12);
-            position: relative;
-            overflow: hidden;
-            animation: cardAppear 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .auth-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 15%; right: 15%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.55), transparent);
-            pointer-events: none;
-        }
-
-        @keyframes cardAppear {
-            from { opacity: 0; transform: translateY(14px) scale(0.98); }
-            to   { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        /* ─── CARD BRAND LOCKUP ─── */
-        .card-brand-header {
-            text-align: center;
-            margin-bottom: 22px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .card-logo-lockup {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 12px;
-            border-radius: 999px;
-            background: rgba(139, 0, 0, 0.08);
-            border: 1px solid rgba(139, 0, 0, 0.28);
-            margin-bottom: 12px;
-        }
-
-        .card-logo-icon {
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .card-logo-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .card-logo-title {
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
-            display: flex;
-            align-items: center;
-            gap: 2px;
-        }
-
-        .auth-title {
-            font-size: 1.5rem;
-            line-height: 1.2;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            margin-bottom: 6px;
-            background: linear-gradient(170deg, #ffffff 0%, #cbd5e1 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .auth-subtitle {
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-            max-width: 320px;
-        }
-
-        /* ─── ALERT BOX ─── */
-        .auth-alert {
-            padding: 8px 12px;
-            border-radius: 9px;
-            font-size: 0.78rem;
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(220, 38, 38, 0.12);
-            border: 1px solid rgba(220, 38, 38, 0.35);
-            color: #fca5a5;
-            animation: alertFadeIn 0.3s ease;
-        }
-
-        .auth-alert.success {
-            background: rgba(22, 163, 74, 0.12);
-            border-color: rgba(22, 163, 74, 0.35);
-            color: #86efac;
-        }
-
-        @keyframes alertFadeIn {
-            from { opacity: 0; transform: translateY(-3px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ─── FORM CONTROLS ─── */
-        .auth-form {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            text-align: left;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .form-label {
-            font-size: 0.72rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-            letter-spacing: -0.01em;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .label-meta {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            color: rgba(148, 163, 184, 0.55);
-        }
-
-        .input-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .input-icon {
-            position: absolute;
-            left: 12px;
-            color: rgba(148, 163, 184, 0.5);
-            pointer-events: none;
-            transition: color 0.2s ease;
-        }
-
-        .form-input {
-            width: 100%;
-            background: rgba(8, 10, 16, 0.72);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
-            padding: 10px 12px 10px 36px;
-            color: var(--text-primary);
-            font-size: 0.84rem;
-            font-family: 'JetBrains Mono', monospace;
-            outline: none;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-        }
-
-        .form-input::placeholder {
-            color: rgba(148, 163, 184, 0.38);
-            font-family: var(--font-main);
-        }
-
-        .form-input:focus {
-            border-color: #ef4444;
-            background: rgba(12, 14, 22, 0.9);
-            box-shadow: 0 0 0 2.5px rgba(220, 38, 38, 0.22);
-        }
-
-        .input-wrapper:focus-within .input-icon {
-            color: #ef4444;
-        }
-
-        .pw-toggle-btn {
-            position: absolute;
-            right: 10px;
-            background: transparent;
-            border: none;
-            color: rgba(148, 163, 184, 0.5);
-            cursor: pointer;
-            padding: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 5px;
-            transition: color 0.2s ease;
-        }
-
-        .pw-toggle-btn:hover {
-            color: var(--text-primary);
-        }
-
-        /* ─── REMEMBER CHECKBOX ─── */
-        .form-options {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 0.75rem;
-            margin-top: -1px;
-        }
-
-        .custom-checkbox-label {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            cursor: pointer;
-            user-select: none;
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-        }
-
-        .custom-checkbox-label input {
-            position: absolute;
-            opacity: 0; width: 0; height: 0;
-        }
-
-        .custom-checkbox {
-            width: 14px; height: 14px;
-            flex-shrink: 0;
-            border-radius: 3px;
-            background: rgba(8, 10, 16, 0.65);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: transparent;
-            transition: all 0.2s ease;
-        }
-
-        .custom-checkbox-label input:checked ~ .custom-checkbox {
-            background: #dc2626;
-            border-color: #ef4444;
-            color: #ffffff;
-        }
-
-        /* ─── VIVID RED PRIMARY ACTION BUTTON (Dribbble style) ─── */
-        .btn-private-submit {
-            width: 100%;
-            margin-top: 6px;
-            padding: 11px 18px;
-            border-radius: 10px;
-            border: none;
-            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-            color: #ffffff;
-            font-size: 0.88rem;
-            font-weight: 600;
-            font-family: inherit;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.22s ease;
-            box-shadow: 0 4px 18px rgba(220, 38, 38, 0.38);
-        }
-
-        .btn-private-submit:hover {
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 24px rgba(220, 38, 38, 0.55);
-        }
-
-        .btn-private-submit:active {
-            transform: translateY(0);
-        }
-
-        .btn-private-submit:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .btn-arrow {
-            transition: transform 0.2s ease;
-        }
-
-        .btn-private-submit:hover .btn-arrow {
-            transform: translateX(3px);
-        }
-
-        /* ─── CARD ENVIRONMENT SWITCHER ─── */
-        .card-divider {
-            display: flex;
-            align-items: center;
-            margin: 18px 0 14px;
-            color: rgba(148, 163, 184, 0.45);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.62rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .card-divider::before,
-        .card-divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.07);
-        }
-
-        .card-divider span {
-            padding: 0 10px;
-        }
-
-        .btn-return-standard {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 14px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.035);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .return-left {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .return-arrow {
-            color: rgba(148, 163, 184, 0.6);
-            transition: transform 0.2s ease, color 0.2s ease;
-        }
-
-        .return-chip {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.64rem;
-            color: rgba(148, 163, 184, 0.5);
-            padding: 2px 7px;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.035);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            transition: all 0.2s ease;
-        }
-
-        .btn-return-standard:hover {
-            background: rgba(220, 38, 38, 0.07);
-            border-color: rgba(220, 38, 38, 0.32);
-            color: #ffffff;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.45);
-        }
-
-        .btn-return-standard:hover .return-arrow {
-            color: #ef4444;
-            transform: translateX(-3px);
-        }
-
-        .btn-return-standard:hover .return-chip {
-            color: #fca5a5;
-            border-color: rgba(220, 38, 38, 0.25);
-            background: rgba(220, 38, 38, 0.1);
-        }
-
-        /* ─── TERMINAL BADGES FOOTER ─── */
-        .private-badges {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 18px;
-            padding-top: 16px;
-            border-top: 1px solid rgba(255, 255, 255, 0.055);
-            color: rgba(148, 163, 184, 0.55);
-            font-size: 0.68rem;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        /* ─── RESPONSIVE (PHONE & TABLET FINISHING) ─── */
-        @media (max-width: 860px) {
-            body { overflow-y: auto; overflow-x: hidden; }
-
-            .navbar { height: 50px; }
-            .nav-inner { padding: 0 14px; }
-            .nav-status-pill { display: none !important; }
-            .nav-back-btn { padding: 4px 10px; font-size: 0.72rem; gap: 5px; }
-
-            .smart-site-split {
-                flex-direction: column;
-                height: auto;
-                min-height: calc(100vh - 50px);
-            }
-
-            .left-viewport {
-                flex: none;
-                height: 140px;
-                min-height: 140px;
-                width: 100%;
-            }
-
-            .hud-chips-container { display: none !important; }
-            .left-hero { top: 14px; left: 16px; right: 16px; }
-            .left-eyebrow { display: none !important; }
-            .left-title {
-                font-size: clamp(1.05rem, 4.2vw, 1.25rem);
-                margin: 0;
-                line-height: 1.2;
-            }
-            .left-sub { display: none !important; }
-
-            .right-viewport {
-                flex: none;
-                min-height: auto;
-                padding: 18px 14px 28px;
-                border-left: none;
-                border-top: 1px solid rgba(255, 255, 255, 0.06);
-                width: 100%;
-                box-sizing: border-box;
-            }
-
-            .auth-card {
-                max-width: 100%;
-                padding: 20px 16px 18px;
-                border-radius: 14px;
-                box-sizing: border-box;
-            }
-
-            .card-brand-header { margin-bottom: 14px; }
-            .auth-title { font-size: clamp(1.2rem, 5vw, 1.45rem); }
-            .auth-subtitle { font-size: 0.78rem; line-height: 1.35; margin-bottom: 12px; }
-
-            .form-group { margin-bottom: 11px; }
-            .form-input { padding: 9px 12px 9px 34px; font-size: 0.82rem; }
-            .btn-private-submit { padding: 10px 16px; font-size: 0.82rem; }
-            .btn-return-standard { padding: 8px 12px; font-size: 0.78rem; }
-            .private-badges { flex-wrap: wrap; gap: 8px; font-size: 0.64rem; padding-top: 12px; margin-top: 14px; }
-        }
-
-        @media (max-width: 480px) {
-            .navbar { height: 48px; }
-            .nav-inner { padding: 0 12px; }
-            .logo span { font-size: 0.88rem; }
-            .maya-badge { font-size: 0.68rem; }
-            .nav-back-btn span { font-size: 0.68rem; }
-
-            .left-viewport {
-                height: 120px;
-                min-height: 120px;
-            }
-            .left-hero { top: 12px; left: 12px; right: 12px; }
-            .left-title { font-size: 1.02rem; }
-
-            .right-viewport { padding: 14px 10px 24px; }
-            .auth-card { padding: 16px 14px 16px; border-radius: 12px; }
-            .card-logo-icon { width: 32px; height: 32px; }
-            .card-logo-icon img { width: 18px; height: 18px; }
-            .auth-title { font-size: 1.25rem; }
-            .auth-subtitle { font-size: 0.74rem; }
-            .input-wrapper .input-icon { left: 10px; }
-            .form-input { padding: 8px 10px 8px 30px; font-size: 0.8rem; }
-            .private-badges { font-size: 0.6rem; gap: 6px; }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07080c">
+<title>LeadintelAI · Maya — Private Neural Access</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Silent Connection Detector -->
+<script>
+    window.addEventListener('offline', () => {
+        localStorage.setItem('leadintel_last_url', window.location.href);
+        window.location.href = 'offline.html';
+    });
+</script>
+
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #07080c;
+    --ac: #2563eb;
+    --ac-hover: #3b82f6;
+    --tx: #f8fafc;
+    --tx2: #94a3b8;
+    --tx3: #64748b;
+    --line: rgba(255, 255, 255, 0.08);
+    --line-subtle: rgba(255, 255, 255, 0.04);
+    --glass: rgba(11, 13, 19, 0.78);
+    --surface: rgba(15, 18, 26, 0.72);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg);
+    font: 13px/1.5 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+    color: var(--tx);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* ─── FULLSCREEN WEBGL LIQUID CHROME BACKGROUND (Derived from DavidHDev/react-bits) ─── */
+  .liquid-chrome-container {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    background: #07080c;
+  }
+
+  .liquid-chrome-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* Atmospheric darkening vignette so typography has deep contrast */
+  .chrome-vignette {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 42% 46%, rgba(7, 8, 12, 0.0) 0%, rgba(7, 8, 12, 0.38) 65%, #07080c 100%),
+      linear-gradient(180deg, rgba(7, 8, 12, 0.42) 0%, rgba(7, 8, 12, 0.04) 40%, rgba(7, 8, 12, 0.68) 100%);
+    pointer-events: none;
+  }
+
+  /* Subtle 40px architectural alignment grid */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center;
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 30%, transparent 80%);
+    mask-image: radial-gradient(circle at 50% 50%, #000 30%, transparent 80%);
+  }
+
+  /* Fine atmospheric film grain */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.04;
+    mix-blend-mode: screen;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E");
+  }
+
+  /* Logo Canvas Slot */
+  .li-logo-slot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    background: #000000;
+    border-radius: 7px;
+    padding: 1.5px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  .logo-cv {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* Top-Left Brand Header Pill (Liquid Glass) */
+  .brand-top {
+    position: fixed;
+    top: 28px;
+    left: clamp(24px, 5vw, 72px);
+    z-index: 20;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 15px 5px 7px;
+    border-radius: 99px;
+    background: rgba(10, 14, 26, 0.44);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    backdrop-filter: blur(24px) saturate(200%);
+    box-shadow:
+      0 12px 32px rgba(0, 0, 0, 0.45),
+      inset 0 1px 1px rgba(255, 255, 255, 0.28);
+    text-decoration: none;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .brand-top:hover {
+    background: rgba(14, 20, 36, 0.58);
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow:
+      0 16px 36px rgba(0, 0, 0, 0.5),
+      inset 0 1px 1.5px rgba(255, 255, 255, 0.35);
+  }
+
+  .brand-top .li-logo-slot {
+    width: 26px;
+    height: 26px;
+  }
+
+  .brand-word {
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--tx);
+  }
+
+  .maya-badge {
+    color: #60a5fa;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-left: 2px;
+    line-height: 1;
+    display: inline-block;
+  }
+
+  .brand-sep {
+    width: 1px;
+    height: 12px;
+    background: var(--line);
+    margin: 0 2px;
+  }
+
+  .brand-tag {
+    font: 500 10px 'JetBrains Mono', ui-monospace, monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tx2);
+  }
+
+  /* Top-Right Navigation Pill (Liquid Glass) */
+  .nav-back-pill {
+    position: fixed;
+    top: 28px;
+    right: clamp(24px, 5vw, 72px);
+    z-index: 20;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 16px;
+    border-radius: 99px;
+    background: rgba(10, 14, 26, 0.44);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    backdrop-filter: blur(24px) saturate(200%);
+    color: var(--tx2);
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    font-family: inherit;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow:
+      0 12px 32px rgba(0, 0, 0, 0.4),
+      inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  }
+
+  .nav-back-pill svg {
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .nav-back-pill:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.26);
+    background: rgba(18, 24, 42, 0.62);
+    transform: translateY(-1px);
+    box-shadow:
+      0 16px 36px rgba(0, 0, 0, 0.5),
+      inset 0 1px 1.5px rgba(255, 255, 255, 0.35);
+  }
+
+  .nav-back-pill:hover svg {
+    transform: translateX(-3px);
+    color: var(--tx);
+  }
+
+  /* ─── LEFT-SIDE CINEMATIC SHOWCASE STAGE ─── */
+  .intro-stage {
+    position: fixed;
+    left: clamp(32px, 7vw, 100px);
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(500px, 46vw);
+    z-index: 10;
+    text-align: left;
+  }
+
+  .stages-viewport {
+    position: relative;
+    min-height: 220px;
+  }
+
+  .stage-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition:
+      opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .stage-slide.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .eyebrow {
+    font: 500 11px 'JetBrains Mono', ui-monospace, monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tx3);
+    margin-bottom: 12px;
+  }
+
+  .stage-title {
+    margin: 0 0 12px;
+    font-size: clamp(28px, 3.2vw, 42px);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: #ffffff;
+  }
+
+  .stage-sub {
+    margin: 0 0 20px;
+    max-width: 440px;
+    color: var(--tx2);
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  /* Quiet Pill Cluster (Liquid Glass) */
+  .pill-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+    max-width: 460px;
+  }
+
+  .info-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border-radius: 99px;
+    background: rgba(10, 14, 26, 0.44);
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    -webkit-backdrop-filter: blur(20px) saturate(190%);
+    backdrop-filter: blur(20px) saturate(190%);
+    font-size: 12px;
+    color: var(--tx);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.28),
+      inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .info-pill:hover {
+    border-color: rgba(255, 255, 255, 0.24);
+    background: rgba(16, 22, 38, 0.62);
+    transform: translateY(-1px);
+    box-shadow:
+      0 8px 20px rgba(0, 0, 0, 0.38),
+      inset 0 1px 1.5px rgba(255, 255, 255, 0.3);
+  }
+
+  .info-pill b {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .info-pill span {
+    color: var(--tx2);
+    font-size: 11.5px;
+  }
+
+  .dot-ind {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex: none;
+  }
+
+  /* Stage 4 Inline Brand Lockup Pill (Liquid Glass) */
+  .lockup-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 14px 5px 7px;
+    border-radius: 99px;
+    background: rgba(10, 14, 26, 0.44);
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    -webkit-backdrop-filter: blur(20px) saturate(190%);
+    backdrop-filter: blur(20px) saturate(190%);
+    margin-bottom: 12px;
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.28),
+      inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  }
+
+  .lockup-pill .li-logo-slot {
+    width: 22px;
+    height: 22px;
+  }
+
+  .lockup-pill .brand-word {
+    font-size: 12.5px;
+  }
+
+  /* Progress Indicator Dots */
+  .stage-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 28px;
+    padding: 6px 12px;
+    border-radius: 99px;
+    background: rgba(14, 16, 24, 0.6);
+    border: 1px solid var(--line);
+  }
+
+  .s-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 99px;
+    border: 0;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+  }
+
+  .s-dot:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .s-dot.on {
+    width: 24px;
+    background: var(--ac);
+  }
+
+  /* ══════════════════════════════════════
+     RIGHT-SIDE FLOATING LIQUID GLASS AUTH CARD
+     Ported from react-bits FluidGlass & GlassSurface
+  ══════════════════════════════════════ */
+  .login-stage {
+    position: fixed;
+    right: clamp(24px, 5vw, 72px);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 15;
+    width: min(405px, 92vw);
+    max-height: calc(100vh - 40px);
+  }
+
+  .auth-card,
+  .liquid-glass-card {
+    position: relative;
+    width: 100%;
+    background: rgba(10, 14, 26, 0.42);
+    backdrop-filter: blur(28px) saturate(210%) brightness(1.08);
+    -webkit-backdrop-filter: blur(28px) saturate(210%) brightness(1.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 20px;
+    padding: 26px 26px 22px;
+    box-shadow:
+      0 32px 84px -16px rgba(0, 0, 0, 0.85),
+      0 1px 2px 0 rgba(255, 255, 255, 0.12),
+      inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.45),
+      inset 0 -1px 1px 0 rgba(255, 255, 255, 0.08),
+      inset 0 0 28px 2px rgba(255, 255, 255, 0.04);
+    overflow: hidden;
+    user-select: auto;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .auth-card:hover,
+  .liquid-glass-card:hover {
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow:
+      0 38px 96px -16px rgba(0, 0, 0, 0.9),
+      0 1px 3px 0 rgba(255, 255, 255, 0.18),
+      inset 0 1px 2px 0 rgba(255, 255, 255, 0.55),
+      inset 0 -1px 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 0 32px 3px rgba(255, 255, 255, 0.05);
+  }
+
+  /* Liquid Glass Specular Sheen (from GlassSurface) */
+  .auth-card::before,
+  .liquid-glass-sheen {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.20) 0%,
+      rgba(255, 255, 255, 0.05) 32%,
+      transparent 55%,
+      rgba(255, 255, 255, 0.04) 85%,
+      rgba(255, 255, 255, 0.08) 100%
+    );
+    z-index: 1;
+  }
+
+  /* Precision Bottom Liquid Accent Horizon */
+  .auth-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.6), rgba(168, 85, 247, 0.35), transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .card-brand-header {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 16px;
+  }
+
+  .auth-title {
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: #ffffff;
+    margin-bottom: 4px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .auth-subtitle {
+    font-size: 0.78rem;
+    color: var(--tx2);
+    line-height: 1.45;
+  }
+
+  /* Segmented Auth / Clearance Mode Tabs (Liquid Glass) */
+  .auth-tabs-track {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    background: rgba(10, 14, 26, 0.45);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 99px;
+    padding: 3px;
+    margin-bottom: 16px;
+    box-shadow:
+      inset 0 1px 2px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .auth-tab-slider {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: calc(50% - 3px);
+    height: calc(100% - 6px);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 99px;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow:
+      0 4px 14px rgba(0, 0, 0, 0.35),
+      inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+  }
+
+  .auth-tab-btn {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 6px 10px;
+    font-size: 0.74rem;
+    font-weight: 500;
+    color: var(--tx2);
+    cursor: pointer;
+    border-radius: 99px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+    font-family: inherit;
+    letter-spacing: -0.01em;
+  }
+
+  .auth-tab-btn svg {
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+  }
+
+  .auth-tab-btn.active {
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .auth-tab-btn.active svg {
+    opacity: 1;
+    color: #ffffff;
+  }
+
+  /* Horizontal Panels Viewport */
+  .auth-viewport {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    overflow: hidden;
+    transition: height 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .auth-panels-slider {
+    display: flex;
+    align-items: flex-start;
+    width: 200%;
+    transition: transform 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .auth-panel {
+    width: 50%;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+
+  /* Keygen Elements (Liquid Glass) */
+  .keygen-trigger-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 9px;
+    border-radius: 6px;
+    background: rgba(37, 99, 235, 0.16);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(96, 165, 250, 0.32);
+    color: #93c5fd;
+    font-size: 0.7rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+
+  .keygen-trigger-btn:hover {
+    background: rgba(37, 99, 235, 0.28);
+    border-color: #60a5fa;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow:
+      0 4px 12px rgba(37, 99, 235, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+
+  .keygen-trigger-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+    transform: none;
+  }
+
+  .key-font {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.02em !important;
+  }
+
+  .entropy-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: #34d399;
+    opacity: 0;
+    transform: translateY(-3px);
+    transition: all 0.25s ease;
+  }
+
+  .entropy-badge.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Alert Box (Liquid Glass) */
+  .auth-alert {
+    position: relative;
+    z-index: 2;
+    padding: 9px 12px;
+    border-radius: 10px;
+    font-size: 0.78rem;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(239, 68, 68, 0.12);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(239, 68, 68, 0.28);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    color: #fca5a5;
+  }
+
+  .auth-alert.success {
+    background: rgba(6, 95, 70, 0.16);
+    border-color: rgba(4, 120, 87, 0.4);
+    color: #34d399;
+  }
+
+  /* Credentials Form */
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .form-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--tx2);
+    letter-spacing: 0.01em;
+  }
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .input-wrapper .input-icon {
+    position: absolute;
+    left: 12px;
+    color: var(--tx3);
+    pointer-events: none;
+    transition: color 0.2s ease;
+  }
+
+  /* Liquid Glass Input Fields */
+  .form-input {
+    width: 100%;
+    padding: 10px 12px 10px 38px;
+    border-radius: 10px;
+    background: rgba(10, 14, 26, 0.45);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    font-size: 0.84rem;
+    font-family: inherit;
+    outline: none;
+    box-shadow:
+      inset 0 1px 2px rgba(0, 0, 0, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .form-input:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(14, 19, 34, 0.55);
+  }
+
+  .form-input:focus {
+    border-color: rgba(96, 165, 250, 0.65);
+    box-shadow:
+      0 0 0 3px rgba(59, 130, 246, 0.2),
+      inset 0 1px 2px rgba(0, 0, 0, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    background: rgba(16, 22, 38, 0.7);
+  }
+
+  .form-input:focus + .input-icon,
+  .input-wrapper:focus-within .input-icon {
+    color: #93c5fd;
+  }
+
+  .form-input::placeholder {
+    color: rgba(148, 163, 184, 0.45);
+  }
+
+  .pw-toggle-btn {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: var(--tx3);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+  }
+
+  .pw-toggle-btn:hover {
+    color: var(--tx);
+  }
+
+  .form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.76rem;
+    color: var(--tx2);
+    margin-top: 2px;
+  }
+
+  .custom-checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .custom-checkbox-label input[type="checkbox"] {
+    display: none;
+  }
+
+  .custom-checkbox {
+    width: 15px;
+    height: 15px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.04);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.18s ease;
+  }
+
+  .custom-checkbox-label input[type="checkbox"]:checked + .custom-checkbox {
+    background: var(--ac);
+    border-color: var(--ac);
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+  }
+
+  .custom-checkbox-label input[type="checkbox"]:checked + .custom-checkbox svg {
+    opacity: 1;
+  }
+
+  .custom-checkbox svg {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  /* Precision Cobalt Liquid Action Button */
+  .btn-private-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px 18px;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
+    border: 1px solid rgba(147, 197, 253, 0.28);
+    color: #ffffff;
+    font-size: 0.84rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    margin-top: 4px;
+    box-shadow:
+      0 10px 28px -4px rgba(37, 99, 235, 0.42),
+      inset 0 1px 1.5px rgba(255, 255, 255, 0.35);
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-private-submit:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      0 14px 32px -4px rgba(37, 99, 235, 0.52),
+      inset 0 1px 1.5px rgba(255, 255, 255, 0.45);
+    background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+  }
+
+  .btn-private-submit:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .btn-arrow {
+    transition: transform 0.2s ease;
+  }
+
+  .btn-private-submit:hover .btn-arrow {
+    transform: translateX(3px);
+  }
+
+  /* Clean Card Footer */
+  .card-footer-clean {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line-subtle);
+  }
+
+  .footer-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--tx2);
+    text-decoration: none;
+    font-size: 0.74rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .footer-back-link svg {
+    transition: transform 0.2s ease;
+  }
+
+  .footer-back-link:hover {
+    color: #ffffff;
+  }
+
+  .footer-back-link:hover svg {
+    transform: translateX(-3px);
+  }
+
+  .footer-meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.04em;
+    color: var(--tx3);
+  }
+
+  .footer-meta-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #065f46;
+    display: inline-block;
+  }
+
+  /* ══════════════════════════════════════
+     RESPONSIVE OVERRIDES
+  ══════════════════════════════════════ */
+  @media (max-width: 960px) {
+    html, body {
+      overflow-y: auto !important;
+      height: auto !important;
+      min-height: 100dvh;
+    }
+
+    .brand-top {
+      top: 18px;
+      left: 16px;
+    }
+
+    .nav-back-pill {
+      top: 18px;
+      right: 16px;
+    }
+
+    .intro-stage {
+      position: relative;
+      left: auto;
+      top: auto;
+      transform: none;
+      margin: 100px auto 32px;
+      width: min(440px, 92vw);
+      text-align: center;
+    }
+
+    .stage-slide {
+      align-items: center;
+    }
+
+    .pill-cluster {
+      justify-content: center;
+    }
+
+    .stage-dots {
+      justify-content: center;
+    }
+
+    .login-stage {
+      position: relative;
+      right: auto;
+      top: auto;
+      transform: none;
+      margin: 0 auto 60px;
+      width: min(400px, 92vw);
+      max-height: none;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .brand-top {
+      padding: 5px 10px 5px 6px;
+      gap: 6px;
+    }
+    .brand-top .brand-tag,
+    .brand-top .brand-sep {
+      display: none;
+    }
+    .nav-back-pill {
+      padding: 6px 12px;
+      gap: 5px;
+      font-size: 11px;
+    }
+    .intro-stage {
+      margin: 88px auto 24px;
+    }
+    .stage-title {
+      font-size: 24px;
+    }
+    .stage-sub {
+      font-size: 13px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .liquid-chrome-canvas {
+      display: none;
+    }
+    .stage-slide {
+      transition: none !important;
+    }
+  }
+</style>
 </head>
 
-<body>
+<body data-v="">
 
-    <!-- ─── TOP NAVBAR ─── -->
-    <header class="navbar">
-        <div class="nav-inner">
-            <a href="index.html" class="logo">
-                <div class="logo-icon"><img src="leadintelai-logo.svg" alt="LeadintelAI Logo"></div>
-                <span>LeadintelAI</span><span class="maya-badge">Maya</span>
-            </a>
+<!-- ─── FULLSCREEN WEBGL LIQUID CHROME ANIMATION (DavidHDev/react-bits) ─── -->
+<div class="liquid-chrome-container" id="chromeContainer" aria-hidden="true">
+  <canvas class="liquid-chrome-canvas" id="chromeCanvas"></canvas>
+  <div class="chrome-vignette"></div>
+</div>
 
-            <div class="nav-status-pill">
-                <span class="status-dot-pulse"></span>
-                <span>Smart Site System // Node BLR-01</span>
-            </div>
+<!-- Top-Left Brand Pill -->
+<header class="brand-top">
+  <span class="li-logo-slot">
+    <canvas class="logo-cv" width="128" height="128" aria-label="LeadintelAI Logo"></canvas>
+  </span>
+  <span class="brand-word">LeadintelAI</span>
+  <span class="maya-badge">Maya</span>
+  <span class="brand-sep"></span>
+  <span class="brand-tag" id="topStageTag">NEURAL CORE</span>
+</header>
 
-            <a href="login.html" class="nav-back-btn">
-                <svg class="back-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                    <path d="M19 12H5M12 19l-7-7 7-7" />
-                </svg>
-                <span>Standard Login</span>
-            </a>
-        </div>
-    </header>
+<!-- Top-Right Standard Login Navigation Pill -->
+<a href="login.html" class="nav-back-pill">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+    <path d="M19 12H5M12 19l-7-7 7-7" />
+  </svg>
+  <span>Standard login</span>
+</a>
 
-    <!-- ─── SPLIT VIEWPORT ─── -->
-    <div class="smart-site-split">
+<!-- Left-Side 4-Stage Showcase Stage -->
+<main class="intro-stage" aria-live="polite">
+  <div class="stages-viewport">
 
-        <!-- ══ LEFT PANEL — Smart Site System 3D Command Visualizer ══ -->
-        <div class="left-viewport">
-            <!-- Crimson / Blood Red ambient glow -->
-            <div class="left-aurora" aria-hidden="true">
-                <div class="l-red-blob l-red-blob-1"></div>
-                <div class="l-red-blob l-red-blob-2"></div>
-            </div>
+    <!-- Stage 1: Meet Maya -->
+    <section class="stage-slide active" data-idx="0">
+      <div class="eyebrow">LeadintelAI · Maya Intelligence</div>
+      <h1 class="stage-title">Meet Maya.</h1>
+      <p class="stage-sub">Always learning. Always yours. Private autonomous intelligence built for high-velocity teams.</p>
+      <div class="pill-cluster">
+        <div class="info-pill"><span class="dot-ind" style="background:#38bdf8;"></span><b>Zero telemetry leak</b><span>· Local-first</span></div>
+        <div class="info-pill"><span class="dot-ind" style="background:#065f46;"></span><b>Air-gapped security</b><span>· Verified</span></div>
+        <div class="info-pill"><span class="dot-ind" style="background:#818cf8;"></span><b>Autonomous pipeline</b><span>· 24/7</span></div>
+      </div>
+    </section>
 
-            <!-- Blueprint Grid -->
-            <div class="left-grid" aria-hidden="true"></div>
+    <!-- Stage 2: Core Specialist Team -->
+    <section class="stage-slide" data-idx="1">
+      <div class="eyebrow">Core Specialist Team</div>
+      <h2 class="stage-title">Four specialists. One brain.</h2>
+      <p class="stage-sub">Every command is orchestrated across four dedicated agents working in real-time concert.</p>
+      <div class="pill-cluster">
+        <div class="info-pill"><span class="dot-ind" style="background:#38bdf8;"></span><b>Cipher</b><span>· Research</span></div>
+        <div class="info-pill"><span class="dot-ind" style="background:#065f46;"></span><b>Root</b><span>· Code</span></div>
+        <div class="info-pill"><span class="dot-ind" style="background:#f59e0b;"></span><b>Ghost</b><span>· Automation</span></div>
+        <div class="info-pill"><span class="dot-ind" style="background:#ef4444;"></span><b>Vault</b><span>· Security</span></div>
+      </div>
+    </section>
 
-            <!-- Interactive 3D Isometric Smart Site Canvas -->
-            <canvas id="siteCanvas"></canvas>
+    <!-- Stage 3: Local-First Neural Pathways -->
+    <section class="stage-slide" data-idx="2">
+      <div class="eyebrow">Local-First Neural Pathways</div>
+      <h2 class="stage-title">Private by architecture.</h2>
+      <p class="stage-sub">Auto-routed local models running directly on your hardware with zero cloud leaks.</p>
+      <div class="pill-cluster">
+        <div class="info-pill"><span class="dot-ind" style="background:#2563eb;"></span><b>Llama 3.2</b><span>· 96%</span></div>
+        <div class="info-pill"><span class="dot-ind" style="background:#38bdf8;"></span><b>DeepSeek R1</b><span>· 95%</span></div>
+        <div class="info-pill"><span class="dot-ind" style="background:#6366f1;"></span><b>Qwen 2.5 Coder</b><span>· 94%</span></div>
+        <div class="info-pill"><span class="dot-ind" style="background:#065f46;"></span><b>Mistral</b><span>· 91%</span></div>
+      </div>
+    </section>
 
-            <!-- Radar scanner sweep -->
-            <div class="left-scanner" aria-hidden="true"></div>
+    <!-- Stage 4: Autonomous Execution -->
+    <section class="stage-slide" data-idx="3">
+      <div class="lockup-pill">
+        <span class="li-logo-slot">
+          <canvas class="logo-cv" width="128" height="128" aria-label="LeadintelAI Logo"></canvas>
+        </span>
+        <span class="brand-word">LeadintelAI</span>
+        <span class="maya-badge">Maya</span>
+      </div>
+      <div class="eyebrow">Autonomous Execution</div>
+      <h2 class="stage-title">Ready when you are.</h2>
+      <p class="stage-sub">Real-time lead scouting, cold outreach, and pipeline intelligence—waiting for your command.</p>
+      <div class="pill-cluster">
+        <div class="info-pill"><span class="dot-ind" style="background:#38bdf8;"></span><b>Instant deploy</b><span>· Zero config</span></div>
+        <div class="info-pill"><span class="dot-ind" style="background:#065f46;"></span><b>Auto-healing pipelines</b><span>· Active</span></div>
+        <div class="info-pill"><span class="dot-ind" style="background:#60a5fa;"></span><b>Sub-second dispatch</b><span>· Real-time</span></div>
+      </div>
+    </section>
 
-            <!-- Fade Vignettes -->
-            <div class="left-vignette" aria-hidden="true"></div>
-            <div class="left-edge-fade" aria-hidden="true"></div>
+  </div>
 
-            <!-- Hero headline overlay -->
-            <div class="left-hero">
-                <div class="left-eyebrow">
-                    <span>Maya Core · Smart Site Architecture</span>
-                </div>
-                <h2 class="left-title">Private Neural Terminal.</h2>
-                <p class="left-sub">Command telemetry, private lead intelligence pipelines, and zero-trust operator authorization.</p>
-            </div>
+  <!-- Progress Indicator Dots -->
+  <div class="stage-dots" role="tablist" aria-label="Brand introduction stages">
+    <button class="s-dot on" data-go="0" aria-label="Stage 1: Meet Maya"></button>
+    <button class="s-dot" data-go="1" aria-label="Stage 2: Core Specialist Team"></button>
+    <button class="s-dot" data-go="2" aria-label="Stage 3: Local-First Neural Pathways"></button>
+    <button class="s-dot" data-go="3" aria-label="Stage 4: Autonomous Execution"></button>
+  </div>
+</main>
 
-            <!-- HUD telemetry chips (Dribbble FUI style) -->
-            <div class="hud-chips-container">
-                <div class="hud-chip">
-                    <span class="hud-chip-dot"></span>
-                    <span>PIPELINE_FLOW: ACTIVE</span>
-                    <span class="hud-chip-tag">// 100Gbps</span>
-                </div>
-                <div class="hud-chip">
-                    <span class="hud-chip-dot"></span>
-                    <span>CLEARANCE: LEVEL-5 ISOLATED</span>
-                    <span class="hud-chip-tag">// TLS_AES_256_GCM</span>
-                </div>
-            </div>
-        </div>
+<!-- Right-Side Floating Liquid Glass Authentication Card -->
+<aside class="login-stage">
+  <div class="auth-card liquid-glass-card" id="authCard">
+    <div class="liquid-glass-sheen" aria-hidden="true"></div>
 
-        <!-- ══ RIGHT PANEL — Glassmorphic Auth Card ══ -->
-        <div class="right-viewport">
-            <div class="auth-card">
-
-                <!-- Header -->
-                <div class="card-brand-header">
-                    <div class="card-logo-lockup">
-                        <div class="card-logo-icon">
-                            <img src="leadintelai-logo.svg" alt="LeadintelAI Maya Logo">
-                        </div>
-                        <div class="card-logo-title">
-                            <span>LeadintelAI</span><span class="maya-badge">Maya</span>
-                        </div>
-                    </div>
-                    <h1 class="auth-title">Private Login</h1>
-                    <p class="auth-subtitle">Authorized credentials required to access Maya intelligent operations.</p>
-                </div>
-
-                <!-- Alert Box -->
-                <div id="authAlert" class="auth-alert" style="display:none;" role="alert"></div>
-
-                <!-- Private Credentials Form -->
-                <form class="auth-form" id="privateForm" onsubmit="handlePrivateSubmit(event)">
-
-                    <!-- Operator Handle / Email -->
-                    <div class="form-group">
-                        <label for="privateUser" class="form-label">
-                            <span>Operator ID</span>
-                            <span class="label-meta">AUTH_ID</span>
-                        </label>
-                        <div class="input-wrapper">
-                            <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                                <circle cx="12" cy="7" r="4" />
-                            </svg>
-                            <input type="text" id="privateUser" class="form-input"
-                                placeholder="operator@internal.leadintel.ai" required autocomplete="username">
-                        </div>
-                    </div>
-
-                    <!-- Clearance Passkey -->
-                    <div class="form-group">
-                        <label for="privateKey" class="form-label">
-                            <span>Clearance Passkey</span>
-                            <span class="label-meta">SHA-256</span>
-                        </label>
-                        <div class="input-wrapper">
-                            <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                            </svg>
-                            <input type="password" id="privateKey" class="form-input" placeholder="••••••••••••" required
-                                autocomplete="current-password" style="padding-right: 36px;">
-                            <button type="button" class="pw-toggle-btn"
-                                onclick="togglePasswordVisibility('privateKey', this)"
-                                aria-label="Toggle password visibility">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                                    <circle cx="12" cy="12" r="3" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Remember Option -->
-                    <div class="form-options">
-                        <label class="custom-checkbox-label">
-                            <input type="checkbox" id="rememberSession" checked>
-                            <span class="custom-checkbox">
-                                <svg width="9" height="7" viewBox="0 0 10 8" fill="none">
-                                    <path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </span>
-                            <span>Trust this console session</span>
-                        </label>
-                    </div>
-
-                    <!-- Red Primary Action Button -->
-                    <button type="submit" id="privateSubmitBtn" class="btn-private-submit">
-                        <span id="btnText">Authenticate Terminal Access</span>
-                        <svg id="btnIcon" class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2.5">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </button>
-                </form>
-
-                <!-- Environment Switch Divider & Premium Return Button -->
-                <div class="card-divider">
-                    <span>SWITCH ENVIRONMENT</span>
-                </div>
-
-                <a href="login.html" class="btn-return-standard">
-                    <div class="return-left">
-                        <svg class="return-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M19 12H5M12 19l-7-7 7-7" />
-                        </svg>
-                        <span>Return to Standard Login</span>
-                    </div>
-                    <span class="return-chip">PORTAL_01</span>
-                </a>
-
-                <!-- Terminal Badges -->
-                <div class="private-badges">
-                    <span>NODE://BLR-01</span>
-                    <span>&middot;</span>
-                    <span>DPDP-READY</span>
-                    <span>&middot;</span>
-                    <span>ZERO-TRUST</span>
-                </div>
-
-            </div>
-        </div>
-
+    <!-- Card Brand Header -->
+    <div class="card-brand-header">
+      <h1 class="auth-title" id="authTitle">Private Login</h1>
+      <p class="auth-subtitle" id="authSubtitle">Authorized credentials required to access Maya intelligent operations.</p>
     </div>
 
-    <!-- ─── JAVASCRIPT ─── -->
-    <script>
-        const EYE_OPEN = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
-        const EYE_CLOSED = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
+    <!-- Segmented Auth / Clearance Mode Tabs -->
+    <div class="auth-tabs-track" role="tablist" aria-label="Authentication Mode">
+      <div class="auth-tab-slider" id="authTabSlider"></div>
+      <button type="button" class="auth-tab-btn active" id="tabAuth" onclick="switchPrivateMode('auth')" role="tab" aria-selected="true">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span>Authenticate</span>
+      </button>
+      <button type="button" class="auth-tab-btn" id="tabClearance" onclick="switchPrivateMode('clearance')" role="tab" aria-selected="false">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+          <line x1="8" y1="21" x2="16" y2="21"/>
+          <line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+        <span>Request clearance</span>
+      </button>
+    </div>
 
-        function togglePasswordVisibility(inputId, btn) {
-            const input = document.getElementById(inputId);
-            const isPassword = input.type === 'password';
-            input.type = isPassword ? 'text' : 'password';
-            btn.innerHTML = isPassword ? EYE_CLOSED : EYE_OPEN;
-        }
+    <!-- Status Alert Container -->
+    <div id="authAlert" class="auth-alert" style="display:none;" role="alert"></div>
 
-        function showAlert(message, isSuccess = false) {
-            const alert = document.getElementById('authAlert');
-            alert.textContent = message;
-            alert.className = 'auth-alert' + (isSuccess ? ' success' : '');
-            alert.style.display = 'flex';
-        }
+    <!-- Horizontal Panels Viewport -->
+    <div class="auth-viewport" id="panelsViewport">
+      <div class="auth-panels-slider" id="panelsSlider">
 
-        function hideAlert() {
-            document.getElementById('authAlert').style.display = 'none';
-        }
+        <!-- ═══ PANEL 1: AUTHENTICATE TERMINAL ═══ -->
+        <div class="auth-panel" id="panelAuth">
+          <form class="auth-form" id="privateForm" onsubmit="handlePrivateSubmit(event)">
 
-        async function handlePrivateSubmit(event) {
-            event.preventDefault();
-            hideAlert();
+            <!-- Operator Handle / Email -->
+            <div class="form-group">
+              <label for="privateUser" class="form-label">Operator ID</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                <input type="text" id="privateUser" class="form-input" placeholder="operator@internal.leadintel.ai" required autocomplete="username">
+              </div>
+            </div>
 
-            const user = document.getElementById('privateUser').value.trim();
-            const key = document.getElementById('privateKey').value;
+            <!-- Passkey -->
+            <div class="form-group">
+              <label for="privateKey" class="form-label">Passkey</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+                <input type="password" id="privateKey" class="form-input" placeholder="••••••••••••" required autocomplete="current-password" style="padding-right: 36px;">
+                <button type="button" class="pw-toggle-btn" onclick="togglePasswordVisibility('privateKey', this)" aria-label="Toggle password visibility">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
 
-            const submitBtn = document.getElementById('privateSubmitBtn');
-            const btnText = document.getElementById('btnText');
-            const btnIcon = document.getElementById('btnIcon');
+            <!-- Remember Option -->
+            <div class="form-options">
+              <label class="custom-checkbox-label">
+                <input type="checkbox" id="rememberSession" checked>
+                <span class="custom-checkbox">
+                  <svg width="9" height="7" viewBox="0 0 10 8" fill="none">
+                    <path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Trust this console session</span>
+              </label>
+            </div>
 
-            submitBtn.disabled = true;
-            btnText.textContent = 'Authenticating Terminal…';
-            btnIcon.style.display = 'none';
+            <!-- Primary Action Button -->
+            <button type="submit" id="privateSubmitBtn" class="btn-private-submit">
+              <span id="btnText">Authenticate terminal</span>
+              <svg id="btnIcon" class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </form>
+        </div>
 
-            setTimeout(() => {
-                showAlert('Clearance verified. Launching Maya…', true);
-                btnText.textContent = 'Launching Maya…';
-                setTimeout(() => {
-                    window.location.href = 'maya.html';
-                }, 750);
-            }, 600);
-        }
+        <!-- ═══ PANEL 2: NEURAL KEYGEN CLEARANCE CEREMONY ═══ -->
+        <div class="auth-panel" id="panelClearance">
+          <form class="auth-form" id="clearanceForm" onsubmit="handleClearanceSubmit(event)">
 
-        /* ─── 3D ISOMETRIC SMART SITE SYSTEM CANVAS ANIMATION ─── */
-        (function initSmartSiteCanvas() {
-            const canvas = document.getElementById('siteCanvas');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
+            <!-- Work Identity / Handle -->
+            <div class="form-group">
+              <label for="clearanceEmail" class="form-label">Operator work identity</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <input type="email" id="clearanceEmail" class="form-input" placeholder="operator@internal.company.com" required autocomplete="email">
+              </div>
+            </div>
 
-            let width = 0, height = 0, dpr = 1;
-            let animId = null;
-            let isTabActive = true;
-            let time = 0;
+            <!-- Clearance Token -->
+            <div class="form-group">
+              <label for="clearanceToken" class="form-label">Clearance token</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+                <input type="text" id="clearanceToken" class="form-input" placeholder="MYA-8041-ALPHA (optional)">
+              </div>
+            </div>
 
-            const mouse = { x: 0, y: 0, targetX: 0, targetY: 0, active: false };
+            <!-- Cryptographic Passkey with Keygen Ceremony -->
+            <div class="form-group">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                <label for="clearanceKey" class="form-label">Cryptographic passkey</label>
+                <button type="button" class="keygen-trigger-btn" id="keygenBtn" onclick="generateNeuralKeypair()">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                  </svg>
+                  <span>Generate passkey</span>
+                </button>
+              </div>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+                <input type="text" id="clearanceKey" class="form-input key-font" placeholder="Click 'Generate passkey' or enter key" required autocomplete="new-password" style="padding-right: 36px;">
+                <button type="button" class="pw-toggle-btn" onclick="togglePasswordVisibility('clearanceKey', this)" aria-label="Toggle password visibility">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </button>
+              </div>
+              <div class="entropy-badge" id="entropyBadge">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span id="entropyText">secp256k1 attestation seeded</span>
+              </div>
+            </div>
 
-            // 3D Nodes: Smart Site storage depots / tanks / telemetry processors
-            // Coordinates in local 3D isometric space (-150 to +150)
-            const siteNodes = [
-                { x: -140, y: -70,  z: 0,  h: 55, r: 24, label: "DEPOT_CORE_01", status: "STABLE" },
-                { x:  -40, y: -120, z: 0,  h: 40, r: 18, label: "PROCESSOR_ALPHA", status: "SYNC" },
-                { x:   80, y: -90,  z: 0,  h: 65, r: 28, label: "STORAGE_UNIT_B", status: "FLOW" },
-                { x: -110, y:   50, z: 0,  h: 45, r: 20, label: "VALVE_HUB_04", status: "ACTIVE" },
-                { x:    0, y:    0, z: 0,  h: 80, r: 32, label: "MAYA_CENTRAL_CORE", status: "MASTER" },
-                { x:  120, y:   30, z: 0,  h: 50, r: 22, label: "TELEMETRY_EAST", status: "ONLINE" },
-                { x:  -50, y:  120, z: 0,  h: 35, r: 16, label: "SUB_NODE_WEST", status: "SYNC" },
-                { x:   70, y:  110, z: 0,  h: 58, r: 26, label: "DEPOT_RESERVE_C", status: "SECURE" }
-            ];
+            <!-- Attestation Checkbox -->
+            <div class="form-options">
+              <label class="custom-checkbox-label">
+                <input type="checkbox" id="attestNode" checked>
+                <span class="custom-checkbox">
+                  <svg width="9" height="7" viewBox="0 0 10 8" fill="none">
+                    <path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Attest workstation as trusted node</span>
+              </label>
+            </div>
 
-            // Cybernetic connecting pipelines
-            const sitePipelines = [
-                [0, 1], [1, 2], [0, 3], [3, 4], [4, 2], [4, 5],
-                [3, 6], [6, 4], [4, 7], [5, 7], [1, 4]
-            ];
+            <!-- Submit Button -->
+            <button type="submit" id="clearanceSubmitBtn" class="btn-private-submit">
+              <span id="clearanceBtnText">Initialize operator node</span>
+              <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </form>
+        </div>
 
-            // Traveling energy pulses along pipelines
-            const pulses = [];
-            for (let i = 0; i < 9; i++) {
-                pulses.push({
-                    pipelineIdx: Math.floor(Math.random() * sitePipelines.length),
-                    progress: Math.random(),
-                    speed: 0.006 + Math.random() * 0.009
-                });
-            }
+      </div>
+    </div>
 
-            // Ambient floating crimson dust particles
-            const particles = [];
-            for (let i = 0; i < 45; i++) {
-                particles.push({
-                    x: (Math.random() - 0.5) * 440,
-                    y: (Math.random() - 0.5) * 440,
-                    z: Math.random() * 140,
-                    vz: 0.2 + Math.random() * 0.4,
-                    radius: 0.8 + Math.random() * 1.4,
-                    alpha: 0.2 + Math.random() * 0.5
-                });
-            }
+    <!-- Clean Single-Line Footer -->
+    <div class="card-footer-clean">
+      <a href="login.html" class="footer-back-link">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span>Standard login</span>
+      </a>
+      <div class="footer-meta-pill">
+        <span class="footer-meta-dot"></span>
+        <span>Zero-trust verified</span>
+      </div>
+    </div>
 
-            function resize() {
-                dpr = Math.min(window.devicePixelRatio || 1, 2);
-                const rect = canvas.parentElement.getBoundingClientRect();
-                width = rect.width;
-                height = rect.height;
-                canvas.width = Math.floor(width * dpr);
-                canvas.height = Math.floor(height * dpr);
-                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-            }
+  </div>
+</aside>
 
-            window.addEventListener('resize', resize, { passive: true });
+<script>
+/* =========================================================
+   1. DAVIDHDEV/REACT-BITS: WEBGL2 LIQUID CHROME ENGINE
+   Hardware-accelerated dark fluid metallic shader simulation
+   ========================================================= */
+const VERTEX_SRC = `#version 300 es
+const vec2 corners[3] = vec2[3](vec2(-1.0, -1.0), vec2(3.0, -1.0), vec2(-1.0, 3.0));
+void main() {
+  gl_Position = vec4(corners[gl_VertexID], 0.0, 1.0);
+}`;
 
-            canvas.parentElement.addEventListener('mousemove', (e) => {
-                const rect = canvas.getBoundingClientRect();
-                mouse.targetX = (e.clientX - rect.left - width / 2) / (width / 2);
-                mouse.targetY = (e.clientY - rect.top - height / 2) / (height / 2);
-                mouse.active = true;
-            }, { passive: true });
+const SIM_SRC = `#version 300 es
+precision highp float;
+uniform sampler2D uState;
+uniform vec2 uSize;
+uniform vec4 uStroke;
+uniform vec2 uImpulse;
+out vec4 fragColor;
 
-            canvas.parentElement.addEventListener('mouseleave', () => {
-                mouse.targetX = 0;
-                mouse.targetY = 0;
-                mouse.active = false;
-            }, { passive: true });
+float segment(vec2 p, vec2 a, vec2 b) {
+  vec2 ab = b - a;
+  float t = clamp(dot(p - a, ab) / max(dot(ab, ab), 1e-4), 0.0, 1.0);
+  return length(p - a - ab * t);
+}
 
-            document.addEventListener('visibilitychange', () => {
-                isTabActive = !document.hidden;
-                if (isTabActive && !animId) animId = requestAnimationFrame(render);
-            });
+void main() {
+  vec2 texel = 1.0 / uSize;
+  vec2 uv = gl_FragCoord.xy * texel;
+  vec2 state = texture(uState, uv).rg;
+  vec2 around =
+    texture(uState, uv - vec2(texel.x, 0.0)).rg +
+    texture(uState, uv + vec2(texel.x, 0.0)).rg +
+    texture(uState, uv - vec2(0.0, texel.y)).rg +
+    texture(uState, uv + vec2(0.0, texel.y)).rg -
+    4.0 * state;
+  float next = state.r + (state.r - state.g) * 0.982 + 0.3 * around.r + 0.08 * (around.r - around.g);
+  next *= 0.998;
+  if (uImpulse.x != 0.0) {
+    float d = segment(gl_FragCoord.xy, uStroke.xy, uStroke.zw) / uImpulse.y;
+    next += uImpulse.x * exp(-d * d);
+  }
+  fragColor = vec4(next, state.r, 0.0, 1.0);
+}`;
 
-            // Isometric 3D Projection with smooth mouse parallax
-            function project(x, y, z) {
-                const isoAngle = Math.PI / 6; // 30 deg
-                const cosA = Math.cos(isoAngle);
-                const sinA = Math.sin(isoAngle);
+const SLOPE_SRC = `#version 300 es
+precision highp float;
+uniform sampler2D uState;
+uniform vec2 uSize;
+out vec4 fragColor;
 
-                // Subtle mouse tilt
-                const rotX = x * Math.cos(mouse.x * 0.15) - y * Math.sin(mouse.x * 0.15);
-                const rotY = x * Math.sin(mouse.x * 0.15) + y * Math.cos(mouse.x * 0.15);
+void main() {
+  vec2 texel = 1.0 / uSize;
+  vec2 uv = gl_FragCoord.xy * texel;
+  float left = texture(uState, uv - vec2(texel.x, 0.0)).r;
+  float right = texture(uState, uv + vec2(texel.x, 0.0)).r;
+  float down = texture(uState, uv - vec2(0.0, texel.y)).r;
+  float up = texture(uState, uv + vec2(0.0, texel.y)).r;
+  fragColor = vec4((right - left) * 0.5, (up - down) * 0.5, 0.0, 1.0);
+}`;
 
-                const screenX = width * 0.5 + (rotX - rotY) * cosA * 1.35;
-                const screenY = height * 0.52 + (rotX + rotY) * sinA * 1.35 - (z * 1.25) + (mouse.y * 18);
-                return { x: screenX, y: screenY };
-            }
+const CHROME_SRC = `#version 300 es
+precision highp float;
+uniform vec2 uResolution;
+uniform float uUnit;
+uniform float uTime;
+uniform float uAmplitude;
+uniform vec2 uFrequency;
+uniform float uDetail;
+uniform float uSharpness;
+uniform float uDepth;
+uniform float uPresence;
+uniform vec3 uTint;
+uniform vec2 uShift;
+uniform float uRoughness;
+uniform float uExposure;
+uniform sampler2D uSlope;
+uniform vec2 uSlopeSize;
+uniform float uRipple;
+out vec4 fragColor;
 
-            function render() {
-                if (!isTabActive) { animId = null; return; }
-                time += 0.02;
+vec2 slopeAt(vec2 uv) {
+  vec2 st = uv * uSlopeSize - 0.5;
+  vec2 i = floor(st);
+  vec2 f = st - i;
+  vec2 f2 = f * f;
+  vec2 f3 = f2 * f;
+  vec2 w0 = (-f3 + 3.0 * f2 - 3.0 * f + 1.0) / 6.0;
+  vec2 w1 = (3.0 * f3 - 6.0 * f2 + 4.0) / 6.0;
+  vec2 w2 = (-3.0 * f3 + 3.0 * f2 + 3.0 * f + 1.0) / 6.0;
+  vec2 w3 = f3 / 6.0;
+  vec2 g0 = w0 + w1;
+  vec2 g1 = w2 + w3;
+  vec2 h0 = (i - 0.5 + w1 / g0) / uSlopeSize;
+  vec2 h1 = (i + 1.5 + w3 / g1) / uSlopeSize;
+  vec2 a = texture(uSlope, vec2(h0.x, h0.y)).rg;
+  vec2 b = texture(uSlope, vec2(h1.x, h0.y)).rg;
+  vec2 c = texture(uSlope, vec2(h0.x, h1.y)).rg;
+  vec2 d = texture(uSlope, vec2(h1.x, h1.y)).rg;
+  return g0.y * (g0.x * a + g1.x * b) + g1.y * (g0.x * c + g1.x * d);
+}
 
-                // Smooth mouse interpolation
-                mouse.x += (mouse.targetX - mouse.x) * 0.06;
-                mouse.y += (mouse.targetY - mouse.y) * 0.06;
+float lamp(vec2 p, vec2 center, vec2 size, float soft) {
+  vec2 grown = size + soft;
+  vec2 q = (p - center) / grown;
+  q *= q;
+  float d = sqrt(sqrt(dot(q, q)));
+  float edge = soft / min(grown.x, grown.y);
+  float shape = (1.0 - smoothstep(1.0 - edge, 1.0 + edge, d)) * (1.0 - 0.45 * d * d);
+  return shape * size.x * size.y / (grown.x * grown.y);
+}
 
-                ctx.clearRect(0, 0, width, height);
+vec3 studio(vec3 r, float blur) {
+  vec2 p = r.xy / max(r.z + 1.0, 0.05);
+  p += uShift * smoothstep(0.3, 1.0, length(p));
+  float radius = length(p);
+  float soft = 0.008 + blur;
+  vec2 dir = p / max(radius, 1e-3);
+  float key = lamp(p, vec2(-0.25, 0.42), vec2(0.3, 0.12), soft);
+  float side = lamp(p, vec2(0.48, 0.12), vec2(0.06, 0.3), soft);
+  float ground = lamp(p, vec2(-0.1, -0.55), vec2(0.45, 0.06), soft);
+  float rise = smoothstep(-1.0, 1.0, dir.y);
 
-                // 1. Draw 3D Isometric Ground Plane Grid (Red / Crimson wireframe)
-                const gridSize = 7;
-                const step = 42;
-                ctx.lineWidth = 0.5;
-                ctx.strokeStyle = "rgba(220, 38, 38, 0.075)";
+  float width = 0.015 + soft * 2.0;
+  float rim = exp(-abs(radius - 1.0) / width) * 0.031 / width * (0.8 + smoothstep(-0.5, 0.8, p.y));
+  float band = 1.0 - 0.95 * smoothstep(1.04 - soft, 1.12 + soft, radius);
+  float wall = smoothstep(1.25, 1.55, radius) * (0.6 + 0.4 * rise);
+  float streak = smoothstep(0.2, 0.8, 0.5 + 0.5 * sin(atan(dir.y, dir.x) * 3.0 + 0.6));
+  vec3 color = vec3(0.004, 0.004, 0.005) + 0.02 * smoothstep(-0.4, 0.6, p.y);
+  color += vec3(1.0, 0.97, 0.94) * key * 4.0 + vec3(0.9, 0.95, 1.0) * side * 3.0 + ground * 1.2;
+  color += vec3(1.0, 0.98, 0.95) * rim;
+  color *= band;
+  return color + vec3(mix(0.45, 1.8, streak)) * wall;
+}
 
-                for (let i = -gridSize; i <= gridSize; i++) {
-                    const p1 = project(i * step, -gridSize * step, 0);
-                    const p2 = project(i * step, gridSize * step, 0);
-                    ctx.beginPath();
-                    ctx.moveTo(p1.x, p1.y);
-                    ctx.lineTo(p2.x, p2.y);
-                    ctx.stroke();
+vec3 shade(vec2 slope, vec3 v, float blur, vec3 f0) {
+  float steep = length(slope);
+  slope *= 3.0 * tanh(steep / 3.0) / max(steep, 1e-6);
+  vec3 n = normalize(vec3(-slope, 1.0));
+  vec3 r = reflect(v, n);
+  float facing = clamp(dot(n, -v), 0.0, 1.0);
+  return studio(r, blur) * (f0 + (1.0 - f0) * pow(1.0 - facing, 5.0));
+}
 
-                    const p3 = project(-gridSize * step, i * step, 0);
-                    const p4 = project(gridSize * step, i * step, 0);
-                    ctx.beginPath();
-                    ctx.moveTo(p3.x, p3.y);
-                    ctx.lineTo(p4.x, p4.y);
-                    ctx.stroke();
-                }
+vec3 aces(vec3 x) {
+  return clamp((x * (2.51 * x + 0.03)) / (x * (2.43 * x + 0.59) + 0.14), 0.0, 1.0);
+}
 
-                // Radar coordinate rings expanding on ground
-                const radarPhase = (time * 0.4) % 1;
-                const radarRadius = radarPhase * 240;
-                ctx.beginPath();
-                for (let a = 0; a <= Math.PI * 2; a += 0.1) {
-                    const rx = Math.cos(a) * radarRadius;
-                    const ry = Math.sin(a) * radarRadius;
-                    const p = project(rx, ry, 0);
-                    if (a === 0) ctx.moveTo(p.x, p.y);
-                    else ctx.lineTo(p.x, p.y);
-                }
-                ctx.closePath();
-                ctx.strokeStyle = `rgba(239, 68, 68, ${(1 - radarPhase) * 0.22})`;
-                ctx.lineWidth = 1;
-                ctx.stroke();
+void main() {
+  vec2 frag = gl_FragCoord.xy;
+  vec2 uv = (2.0 * frag - uResolution) / uUnit;
+  vec2 p = uv;
+  vec2 rowX = vec2(1.0, 0.0);
+  vec2 rowY = vec2(0.0, 1.0);
+  float amplitude = uAmplitude * uPresence;
+  for (float i = 1.0; i < 9.0; i++) {
+    if (i > uDetail) break;
+    float a = amplitude / i;
+    float soften = exp(0.3 - 0.3 * i);
+    float argX = i * uFrequency.x * p.y + uTime;
+    p.x += a * cos(argX);
+    rowX -= a * sin(argX) * i * uFrequency.x * soften * rowY;
+    float argY = i * uFrequency.y * p.x + uTime;
+    p.y += a * cos(argY);
+    rowY -= a * sin(argY) * i * uFrequency.y * soften * rowX;
+  }
+  float phase = uTime - p.x - p.y;
+  vec2 field = -(rowX + rowY);
+  float density = max(length(field), 1e-3);
+  vec2 across = field / density;
+  float k = uSharpness;
+  float sn = sin(phase);
+  float cs = cos(phase);
+  float th = tanh(k * sn);
+  float bevel = (1.0 - th * th) / tanh(k);
+  float fade = smoothstep(3.0, 9.0, 3.14159 * uUnit / density);
+  float weight = uDepth * uPresence * fade;
+  vec2 slope = k * cs * bevel * weight * across + slopeAt(frag / uResolution) * uRipple;
+  vec2 sweep = -k * bevel * (sn + 2.0 * k * cs * cs * th) * weight * density * 2.0 / uUnit * across;
+  vec2 stepX = dFdx(slope);
+  vec2 stepY = dFdy(slope);
+  vec2 crease = dot(stepX, stepX) > dot(stepY, stepY) ? stepX : stepY;
+  if (dot(crease, crease) > dot(sweep, sweep)) sweep = crease;
+  float bend = length(sweep);
+  float alpha = smoothstep(0.0, 0.1, length(slope));
+  vec3 f0 = mix(vec3(1.0), uTint, smoothstep(0.05, 0.6, length(slope))) * 0.92;
+  vec3 v = normalize(vec3(uv * 0.08, -1.0));
+  float blur = uRoughness * 0.35;
+  vec3 light;
+  if (bend < 0.01) {
+    light = shade(slope, v, blur + bend * 0.5, f0);
+  } else {
+    light = vec3(0.0);
+    for (float t = -0.375; t < 0.4; t += 0.25) {
+      light += shade(slope + sweep * t, v, blur + bend * 0.15, f0);
+    }
+    light *= 0.25;
+  }
+  vec3 color = pow(aces(light * uExposure), vec3(1.0 / 2.2));
+  float grain = fract(52.9829189 * fract(dot(frag, vec2(0.06711056, 0.00583715))));
+  color += (grain - 0.5) / 255.0;
+  fragColor = vec4(clamp(color, 0.0, 1.0) * alpha, alpha);
+}`;
 
-                // 2. Draw Connecting Pipelines (Pipelines with traveling red data pulses)
-                for (let i = 0; i < sitePipelines.length; i++) {
-                    const [idxA, idxB] = sitePipelines[i];
-                    const nodeA = siteNodes[idxA];
-                    const nodeB = siteNodes[idxB];
+function compileShader(gl, type, source) {
+  const shader = gl.createShader(type);
+  if (!shader) return null;
+  gl.shaderSource(shader, source);
+  gl.compileShader(shader);
+  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    console.error(gl.getShaderInfoLog(shader));
+    gl.deleteShader(shader);
+    return null;
+  }
+  return shader;
+}
 
-                    // Base pipeline along the ground
-                    const pA0 = project(nodeA.x, nodeA.y, 4);
-                    const pB0 = project(nodeB.x, nodeB.y, 4);
+function linkProgram(gl, fragmentSource) {
+  const vertex = compileShader(gl, gl.VERTEX_SHADER, VERTEX_SRC);
+  const fragment = compileShader(gl, gl.FRAGMENT_SHADER, fragmentSource);
+  const program = vertex && fragment ? gl.createProgram() : null;
+  if (!vertex || !fragment || !program) {
+    if (vertex) gl.deleteShader(vertex);
+    if (fragment) gl.deleteShader(fragment);
+    return null;
+  }
+  gl.attachShader(program, vertex);
+  gl.attachShader(program, fragment);
+  gl.linkProgram(program);
+  gl.deleteShader(vertex);
+  gl.deleteShader(fragment);
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+    console.error(gl.getProgramInfoLog(program));
+    gl.deleteProgram(program);
+    return null;
+  }
+  const uniforms = {};
+  const count = gl.getProgramParameter(program, gl.ACTIVE_UNIFORMS);
+  for (let index = 0; index < count; index++) {
+    const info = gl.getActiveUniform(program, index);
+    if (info) uniforms[info.name] = gl.getUniformLocation(program, info.name);
+  }
+  return { program, uniforms };
+}
 
-                    ctx.beginPath();
-                    ctx.moveTo(pA0.x, pA0.y);
-                    ctx.lineTo(pB0.x, pB0.y);
-                    ctx.strokeStyle = "rgba(220, 38, 38, 0.28)";
-                    ctx.lineWidth = 1.2;
-                    ctx.stroke();
+function initLiquidChromeEngine() {
+  const container = document.getElementById('chromeContainer');
+  const canvas = document.getElementById('chromeCanvas');
+  if (!container || !canvas) return;
 
-                    // Faint elevated data bus
-                    const pA1 = project(nodeA.x, nodeA.y, nodeA.h * 0.7);
-                    const pB1 = project(nodeB.x, nodeB.y, nodeB.h * 0.7);
+  const gl = canvas.getContext('webgl2', {
+    alpha: true,
+    premultipliedAlpha: true,
+    antialias: false,
+    depth: false,
+    stencil: false,
+    powerPreference: 'high-performance'
+  });
+  if (!gl) return;
 
-                    ctx.beginPath();
-                    ctx.moveTo(pA1.x, pA1.y);
-                    ctx.lineTo(pB1.x, pB1.y);
-                    ctx.strokeStyle = "rgba(239, 68, 68, 0.12)";
-                    ctx.lineWidth = 0.6;
-                    ctx.stroke();
-                }
+  const chrome = linkProgram(gl, CHROME_SRC);
+  if (!chrome) return;
 
-                // 3. Render Traveling Energy Pulses (Fluid Smart Site Data Flow)
-                for (let k = 0; k < pulses.length; k++) {
-                    const pulse = pulses[k];
-                    pulse.progress += pulse.speed;
-                    if (pulse.progress >= 1) {
-                        pulse.progress = 0;
-                        pulse.pipelineIdx = Math.floor(Math.random() * sitePipelines.length);
-                    }
+  const fluid = Boolean(gl.getExtension('EXT_color_buffer_float'));
+  const sim = fluid ? linkProgram(gl, SIM_SRC) : null;
+  const slope = fluid ? linkProgram(gl, SLOPE_SRC) : null;
 
-                    const [idxA, idxB] = sitePipelines[pulse.pipelineIdx];
-                    const nodeA = siteNodes[idxA];
-                    const nodeB = siteNodes[idxB];
+  const settings = {
+    tint: [0.18, 0.36, 0.88], // Rich royal cobalt & liquid chrome
+    speed: 0.20,              // Smooth, fluid animation
+    amplitude: 0.35,          // Generous dynamic waves
+    frequency: [2.5, 2.5],
+    detail: 4,
+    thickness: 1.15,
+    depth: 1.05,
+    roughness: 0.24,          // Sleek satin reflection
+    exposure: 1.12,           // Bright, vivid highlights
+    interactive: true,
+    rippleStrength: 1.2,
+    rippleSize: 1.0,
+    tilt: 0.85,
+    maxRatio: 2
+  };
 
-                    const curX = nodeA.x + (nodeB.x - nodeA.x) * pulse.progress;
-                    const curY = nodeA.y + (nodeB.y - nodeA.y) * pulse.progress;
-                    const pos = project(curX, curY, 4);
+  const SIM_CELL = 4;
+  const SIM_STEP = 1 / 120;
+  const vao = gl.createVertexArray();
+  const grid = { width: 1, height: 1 };
+  const targets = [];
+  let slopeTarget = null;
+  let current = 0;
+  let unit = 1;
+  const pointer = { x: 0, y: 0, inside: false, nx: 0, ny: 0 };
+  const view = { yaw: 0, pitch: 0, vyaw: 0, vpitch: 0 };
+  const strokes = [];
+  let time = 10.0;
+  let presence = 1.0;
+  let accumulator = 0;
+  let last = performance.now();
 
-                    ctx.beginPath();
-                    ctx.arc(pos.x, pos.y, 2.2, 0, Math.PI * 2);
-                    ctx.fillStyle = "#ef4444";
-                    ctx.shadowColor = "rgba(239, 68, 68, 0.9)";
-                    ctx.shadowBlur = 8;
-                    ctx.fill();
-                    ctx.shadowBlur = 0;
-                }
+  const makeTarget = (w, h) => {
+    const texture = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RG16F, w, h, 0, gl.RG, gl.HALF_FLOAT, null);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    const framebuffer = gl.createFramebuffer();
+    gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
+    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
+    gl.clearColor(0, 0, 0, 1);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    return { texture, framebuffer };
+  };
 
-                // 4. Render 3D Isometric Depot Vessels & Central Maya Core
-                // Sort back-to-front for proper isometric depth layering
-                const sortedNodes = [...siteNodes].sort((a, b) => (a.x + a.y) - (b.x + b.y));
+  const dropTarget = target => {
+    if (!target) return;
+    gl.deleteTexture(target.texture);
+    gl.deleteFramebuffer(target.framebuffer);
+  };
 
-                for (let i = 0; i < sortedNodes.length; i++) {
-                    const node = sortedNodes[i];
-                    const isMaster = node.label.includes("MAYA");
+  const resize = () => {
+    const rect = container.getBoundingClientRect();
+    const cssWidth = Math.max(1, rect.width);
+    const cssHeight = Math.max(1, rect.height);
+    const ratio = Math.min(window.devicePixelRatio || 1, settings.maxRatio);
+    const width = Math.max(1, Math.round(cssWidth * ratio));
+    const height = Math.max(1, Math.round(cssHeight * ratio));
+    if (canvas.width !== width || canvas.height !== height) {
+      canvas.width = width;
+      canvas.height = height;
+    }
+    unit = Math.min(width, height);
+    if (!fluid || !sim || !slope) return;
+    const gridWidth = Math.max(16, Math.min(512, Math.round(cssWidth / SIM_CELL)));
+    const gridHeight = Math.max(16, Math.min(512, Math.round(cssHeight / SIM_CELL)));
+    if (gridWidth === grid.width && gridHeight === grid.height && targets.length) return;
+    targets.forEach(dropTarget);
+    targets.length = 0;
+    dropTarget(slopeTarget);
+    Object.assign(grid, { width: gridWidth, height: gridHeight });
+    targets.push(makeTarget(gridWidth, gridHeight), makeTarget(gridWidth, gridHeight));
+    slopeTarget = makeTarget(gridWidth, gridHeight);
+  };
 
-                    const base = project(node.x, node.y, 0);
-                    const top  = project(node.x, node.y, node.h);
+  const simulate = steps => {
+    if (!sim || !slope || !slopeTarget) return;
+    gl.useProgram(sim.program);
+    gl.viewport(0, 0, grid.width, grid.height);
+    gl.uniform2f(sim.uniforms.uSize, grid.width, grid.height);
+    gl.activeTexture(gl.TEXTURE0);
+    gl.uniform1i(sim.uniforms.uState, 0);
+    for (let step = 0; step < steps; step++) {
+      const stroke = step === 0 ? strokes.shift() : null;
+      if (stroke) {
+        gl.uniform4f(sim.uniforms.uStroke, stroke.ax, stroke.ay, stroke.bx, stroke.by);
+        gl.uniform2f(sim.uniforms.uImpulse, stroke.strength, stroke.radius);
+      } else {
+        gl.uniform2f(sim.uniforms.uImpulse, 0, 1);
+      }
+      const source = targets[current];
+      const destination = targets[1 - current];
+      gl.bindTexture(gl.TEXTURE_2D, source.texture);
+      gl.bindFramebuffer(gl.FRAMEBUFFER, destination.framebuffer);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+      current = 1 - current;
+    }
+    gl.useProgram(slope.program);
+    gl.uniform2f(slope.uniforms.uSize, grid.width, grid.height);
+    gl.uniform1i(slope.uniforms.uState, 0);
+    gl.bindTexture(gl.TEXTURE_2D, targets[current].texture);
+    gl.bindFramebuffer(gl.FRAMEBUFFER, slopeTarget.framebuffer);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  };
 
-                    // Base shadow glow
-                    ctx.beginPath();
-                    ctx.ellipse(base.x, base.y, node.r * 0.9, node.r * 0.45, 0, 0, Math.PI * 2);
-                    ctx.fillStyle = isMaster ? "rgba(220, 38, 38, 0.25)" : "rgba(139, 0, 0, 0.15)";
-                    ctx.fill();
+  const render = () => {
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    const u = chrome.uniforms;
+    gl.useProgram(chrome.program);
+    gl.uniform2f(u.uResolution, canvas.width, canvas.height);
+    gl.uniform1f(u.uUnit, unit);
+    gl.uniform1f(u.uTime, time);
+    gl.uniform1f(u.uAmplitude, settings.amplitude);
+    gl.uniform2f(u.uFrequency, settings.frequency[0], settings.frequency[1]);
+    gl.uniform1f(u.uDepth, settings.depth);
+    gl.uniform1f(u.uDetail, settings.detail);
+    gl.uniform1f(u.uSharpness, 5 / (3 * settings.thickness));
+    gl.uniform1f(u.uPresence, presence);
+    gl.uniform3fv(u.uTint, settings.tint);
+    gl.uniform2f(u.uShift, view.yaw, view.pitch);
+    gl.uniform1f(u.uRoughness, settings.roughness);
+    gl.uniform1f(u.uExposure, settings.exposure);
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, slopeTarget ? slopeTarget.texture : null);
+    gl.uniform1i(u.uSlope, 0);
+    gl.uniform2f(u.uSlopeSize, grid.width, grid.height);
+    gl.uniform1f(u.uRipple, slopeTarget ? settings.rippleStrength * 2.2 : 0);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  };
 
-                    // Vertical structural cylinder lines
-                    const leftEdgeBase  = project(node.x - node.r * 0.6, node.y + node.r * 0.6, 0);
-                    const leftEdgeTop   = project(node.x - node.r * 0.6, node.y + node.r * 0.6, node.h);
-                    const rightEdgeBase = project(node.x + node.r * 0.6, node.y - node.r * 0.6, 0);
-                    const rightEdgeTop  = project(node.x + node.r * 0.6, node.y - node.r * 0.6, node.h);
+  const frame = now => {
+    const dt = Math.min(0.05, Math.max(0, (now - last) / 1000 || 0));
+    last = now;
+    time += dt * settings.speed;
 
-                    // Cylinder body fill
-                    ctx.beginPath();
-                    ctx.moveTo(leftEdgeBase.x, leftEdgeBase.y);
-                    ctx.lineTo(leftEdgeTop.x, leftEdgeTop.y);
-                    ctx.lineTo(rightEdgeTop.x, rightEdgeTop.y);
-                    ctx.lineTo(rightEdgeBase.x, rightEdgeBase.y);
-                    ctx.closePath();
-                    ctx.fillStyle = isMaster ? "rgba(24, 12, 16, 0.88)" : "rgba(15, 14, 18, 0.82)";
-                    ctx.fill();
+    const hovering = settings.interactive && pointer.inside;
+    const targetYaw = (hovering ? pointer.nx * 0.35 : 0.22 * Math.sin(time * 1.3)) * settings.tilt;
+    const targetPitch = (hovering ? -pointer.ny * 0.28 : 0.16 * Math.sin(time * 0.9 + 1.7)) * settings.tilt;
+    const stiffness = 36;
+    const damping = 2 * Math.sqrt(stiffness) * 0.95;
+    view.vyaw += ((targetYaw - view.yaw) * stiffness - view.vyaw * damping) * dt;
+    view.vpitch += ((targetPitch - view.pitch) * stiffness - view.vpitch * damping) * dt;
+    view.yaw += view.vyaw * dt;
+    view.pitch += view.vpitch * dt;
 
-                    // Cylinder wireframe edges
-                    ctx.beginPath();
-                    ctx.moveTo(leftEdgeBase.x, leftEdgeBase.y);
-                    ctx.lineTo(leftEdgeTop.x, leftEdgeTop.y);
-                    ctx.strokeStyle = isMaster ? "rgba(239, 68, 68, 0.7)" : "rgba(220, 38, 38, 0.35)";
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
+    gl.bindVertexArray(vao);
+    if (slopeTarget) {
+      accumulator += dt;
+      const steps = Math.min(4, Math.floor(accumulator / SIM_STEP));
+      accumulator -= steps * SIM_STEP;
+      if (steps > 0) simulate(steps);
+    }
+    render();
+    requestAnimationFrame(frame);
+  };
 
-                    ctx.beginPath();
-                    ctx.moveTo(rightEdgeBase.x, rightEdgeBase.y);
-                    ctx.lineTo(rightEdgeTop.x, rightEdgeTop.y);
-                    ctx.stroke();
+  const onPointerMove = event => {
+    const rect = container.getBoundingClientRect();
+    pointer.inside = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
+    pointer.nx = Math.max(-1, Math.min(1, ((event.clientX - rect.left) / rect.width) * 2 - 1));
+    pointer.ny = Math.max(-1, Math.min(1, ((event.clientY - rect.top) / rect.height) * 2 - 1));
 
-                    // Top rim ellipse
-                    ctx.beginPath();
-                    ctx.ellipse(top.x, top.y, node.r * 0.85, node.r * 0.42, 0, 0, Math.PI * 2);
-                    ctx.fillStyle = isMaster ? "rgba(139, 0, 0, 0.75)" : "rgba(35, 15, 20, 0.75)";
-                    ctx.fill();
-                    ctx.strokeStyle = isMaster ? "rgba(239, 68, 68, 0.9)" : "rgba(220, 38, 38, 0.5)";
-                    ctx.lineWidth = isMaster ? 1.5 : 1;
-                    ctx.stroke();
+    if (fluid && Math.random() < 0.28) {
+      const px = (event.clientX / window.innerWidth) * grid.width;
+      const py = (1.0 - event.clientY / window.innerHeight) * grid.height;
+      strokes.push({
+        ax: px,
+        ay: py,
+        bx: px,
+        by: py,
+        strength: settings.rippleStrength * 0.45,
+        radius: settings.rippleSize * 1.6
+      });
+      if (strokes.length > 8) strokes.shift();
+    }
+  };
 
-                    // Mid accent glowing ring
-                    const midH = node.h * 0.5;
-                    const mid = project(node.x, node.y, midH);
-                    ctx.beginPath();
-                    ctx.ellipse(mid.x, mid.y, node.r * 0.85, node.r * 0.42, 0, 0, Math.PI * 2);
-                    ctx.strokeStyle = isMaster ? "rgba(239, 68, 68, 0.6)" : "rgba(220, 38, 38, 0.25)";
-                    ctx.lineWidth = 0.8;
-                    ctx.stroke();
+  const onPointerDown = event => {
+    if (!fluid) return;
+    const px = (event.clientX / window.innerWidth) * grid.width;
+    const py = (1.0 - event.clientY / window.innerHeight) * grid.height;
+    strokes.push({
+      ax: px,
+      ay: py,
+      bx: px,
+      by: py,
+      strength: settings.rippleStrength * 1.1,
+      radius: settings.rippleSize * 2.5
+    });
+    if (strokes.length > 8) strokes.shift();
+  };
 
-                    // Vertical glowing laser beacon on top of Maya Core
-                    if (isMaster) {
-                        const beaconTop = project(node.x, node.y, node.h + 50);
-                        ctx.beginPath();
-                        ctx.moveTo(top.x, top.y);
-                        ctx.lineTo(beaconTop.x, beaconTop.y);
-                        ctx.strokeStyle = "rgba(239, 68, 68, 0.75)";
-                        ctx.lineWidth = 1.8;
-                        ctx.shadowColor = "#ef4444";
-                        ctx.shadowBlur = 10;
-                        ctx.stroke();
-                        ctx.shadowBlur = 0;
+  window.addEventListener('pointermove', onPointerMove, { passive: true });
+  window.addEventListener('pointerdown', onPointerDown, { passive: true });
+  window.addEventListener('resize', resize, { passive: true });
+  resize();
+  requestAnimationFrame(frame);
+}
 
-                        // Beacon pulse point
-                        ctx.beginPath();
-                        ctx.arc(beaconTop.x, beaconTop.y, 2.5, 0, Math.PI * 2);
-                        ctx.fillStyle = "#ffffff";
-                        ctx.fill();
-                    }
+document.addEventListener('DOMContentLoaded', initLiquidChromeEngine);
 
-                    // Telemetry label in mono font
-                    ctx.font = "8px 'JetBrains Mono', monospace";
-                    ctx.fillStyle = isMaster ? "rgba(252, 165, 165, 0.88)" : "rgba(148, 163, 184, 0.6)";
-                    ctx.fillText(node.label, top.x + 8, top.y - 4);
-                }
+/* =========================================================
+   2. LEADINTELAI 3D BRUSHED-BLUE LOGO CANVAS RENDERER
+   ========================================================= */
+function drawBrushedRibbonLogo(targetCanvas) {
+  const S = 512;
+  const off = document.createElement('canvas');
+  off.width = S;
+  off.height = S;
+  const ctx = off.getContext('2d');
 
-                // 5. Ambient 3D Crimson Dust Particles
-                for (let p = 0; p < particles.length; p++) {
-                    const pt = particles[p];
-                    pt.z += pt.vz;
-                    if (pt.z > 140) pt.z = 0;
+  ctx.fillStyle = '#000000';
+  ctx.fillRect(0, 0, S, S);
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
 
-                    const screenPt = project(pt.x, pt.y, pt.z);
-                    ctx.beginPath();
-                    ctx.arc(screenPt.x, screenPt.y, pt.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(239, 68, 68, ${pt.alpha})`;
-                    ctx.fill();
-                }
+  function drawPolygonPiece(pts, x0, y0, x1, y1, stops, r = 20) {
+    ctx.save();
+    ctx.beginPath();
+    const n = pts.length;
+    for (let i = 0; i < n; i++) {
+      const p0 = pts[(i - 1 + n) % n];
+      const p1 = pts[i];
+      const p2 = pts[(i + 1) % n];
+      const v1x = p0[0] - p1[0], v1y = p0[1] - p1[1];
+      const v2x = p2[0] - p1[0], v2y = p2[1] - p1[1];
+      const l1 = Math.hypot(v1x, v1y) || 1;
+      const l2 = Math.hypot(v2x, v2y) || 1;
+      const cr = Math.min(r, l1 * 0.42, l2 * 0.42);
+      const sx = p1[0] + (v1x / l1) * cr;
+      const sy = p1[1] + (v1y / l1) * cr;
+      const ex = p1[0] + (v2x / l2) * cr;
+      const ey = p1[1] + (v2y / l2) * cr;
+      if (i === 0) ctx.moveTo(sx, sy);
+      else ctx.lineTo(sx, sy);
+      ctx.quadraticCurveTo(p1[0], p1[1], ex, ey);
+    }
+    ctx.closePath();
 
-                animId = requestAnimationFrame(render);
-            }
+    const g = ctx.createLinearGradient(x0, y0, x1, y1);
+    for (const [pos, col] of stops) g.addColorStop(pos, col);
+    ctx.fillStyle = g;
+    ctx.fill();
 
-            resize();
-            animId = requestAnimationFrame(render);
-        })();
-    </script>
+    ctx.clip();
+    ctx.strokeStyle = 'rgba(195, 230, 255, 0.065)';
+    ctx.lineWidth = 1.3;
+    for (let k = -S; k < S * 1.5; k += 4.5) {
+      ctx.beginPath();
+      ctx.moveTo(k, 0);
+      ctx.lineTo(k + S * 0.72, S);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  drawPolygonPiece([[252, 62], [308, 62], [344, 114], [344, 128], [282, 128], [250, 96]], 250, 62, 344, 128, [[0, '#05122e'], [0.55, '#0c275c'], [1, '#1c52ab']], 14);
+  drawPolygonPiece([[62, 212], [116, 260], [218, 360], [164, 384], [62, 280]], 62, 212, 200, 384, [[0, '#07193e'], [0.5, '#133d8a'], [1, '#2667c9']], 18);
+  drawPolygonPiece([[294, 148], [358, 148], [268, 238], [214, 198]], 294, 148, 250, 238, [[0, '#051330'], [0.6, '#0d2a63'], [1, '#1f56b0']], 14);
+  drawPolygonPiece([[138, 148], [206, 148], [114, 238], [54, 204]], 54, 148, 206, 238, [[0, '#103d8f'], [0.5, '#1e5fcf'], [1, '#2563eb']], 16);
+  drawPolygonPiece([[154, 128], [286, 128], [286, 250], [242, 290], [154, 200]], 154, 128, 286, 290, [[0, '#1e5fcf'], [0.4, '#2563eb'], [1, '#3b82f6']], 20);
+  drawPolygonPiece([[200, 224], [288, 312], [288, 384], [182, 384], [128, 332], [178, 246]], 128, 224, 288, 384, [[0, '#2563eb'], [0.5, '#3b82f6'], [1, '#60a5fa']], 22);
+  drawPolygonPiece([[286, 250], [420, 250], [450, 286], [450, 300], [388, 300], [288, 356]], 286, 250, 450, 356, [[0, '#3b82f6'], [0.5, '#60a5fa'], [1, '#7dd3fc']], 20);
+  drawPolygonPiece([[272, 356], [388, 300], [450, 300], [450, 384], [344, 450], [272, 396]], 272, 300, 450, 450, [[0, '#60a5fa'], [0.5, '#93c5fd'], [1, '#bfdbfe']], 22);
+
+  const tc = targetCanvas.getContext('2d');
+  tc.clearRect(0, 0, targetCanvas.width, targetCanvas.height);
+  tc.drawImage(off, 0, 0, targetCanvas.width, targetCanvas.height);
+}
+
+document.querySelectorAll('.logo-cv').forEach(cv => drawBrushedRibbonLogo(cv));
+
+const realLogo = new Image();
+realLogo.onload = () => {
+  document.querySelectorAll('.logo-cv').forEach(cv => {
+    const ctx = cv.getContext('2d');
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    ctx.drawImage(realLogo, 0, 0, cv.width, cv.height);
+  });
+};
+realLogo.src = 'leadintelai-logo.svg';
+
+/* =========================================================
+   3. 4-STAGE CINEMATIC BRAND SHOWCASE
+   ========================================================= */
+const slides = [...document.querySelectorAll('.stage-slide')];
+const dots = [...document.querySelectorAll('.s-dot')];
+const topTag = document.getElementById('topStageTag');
+const STAGE_STATES = ['', 'think', 'listen', 'speak'];
+const STAGE_TAGS = ['Neural Core', 'Core Team', 'Local AI', 'Autonomous'];
+
+let curStage = 0;
+let stageTimer = null;
+const STAGE_INTERVAL = 4500;
+
+function setStage(idx) {
+  curStage = (idx + slides.length) % slides.length;
+  document.body.dataset.v = STAGE_STATES[curStage];
+  if (topTag) topTag.textContent = STAGE_TAGS[curStage];
+  slides.forEach((s, i) => s.classList.toggle('active', i === curStage));
+  dots.forEach((d, i) => d.classList.toggle('on', i === curStage));
+}
+
+function startStageCycle() {
+  stopStageCycle();
+  stageTimer = setInterval(() => {
+    setStage(curStage + 1);
+  }, STAGE_INTERVAL);
+}
+
+function stopStageCycle() {
+  if (stageTimer) {
+    clearInterval(stageTimer);
+    stageTimer = null;
+  }
+}
+
+dots.forEach(d => {
+  d.addEventListener('click', e => {
+    e.stopPropagation();
+    setStage(+d.dataset.go);
+    startStageCycle();
+  });
+});
+
+const introStageEl = document.querySelector('.intro-stage');
+if (introStageEl) {
+  introStageEl.addEventListener('mouseenter', stopStageCycle);
+  introStageEl.addEventListener('mouseleave', startStageCycle);
+}
+
+startStageCycle();
+
+window.addEventListener('DOMContentLoaded', () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('mode') === 'clearance' || window.location.hash === '#clearance') {
+    switchPrivateMode('clearance');
+  } else {
+    updateViewportHeight('auth');
+  }
+});
+window.addEventListener('resize', () => updateViewportHeight());
+
+/* =========================================================
+   4. PRIVATE TERMINAL AUTHENTICATION & KEYGEN CEREMONY
+   ========================================================= */
+const EYE_OPEN = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+const EYE_CLOSED = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
+
+let currentPrivateMode = 'auth';
+
+function updateViewportHeight(mode = currentPrivateMode) {
+  const viewport = document.getElementById('panelsViewport');
+  const panel = mode === 'clearance' ? document.getElementById('panelClearance') : document.getElementById('panelAuth');
+  if (viewport && panel) {
+    viewport.style.height = panel.offsetHeight + 'px';
+  }
+}
+
+function togglePasswordVisibility(inputId, btn) {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+  const isPassword = input.type === 'password';
+  input.type = isPassword ? 'text' : 'password';
+  btn.innerHTML = isPassword ? EYE_CLOSED : EYE_OPEN;
+}
+
+function showAlert(message, isSuccess = false) {
+  const alert = document.getElementById('authAlert');
+  if (!alert) return;
+  alert.textContent = message;
+  alert.className = 'auth-alert' + (isSuccess ? ' success' : '');
+  alert.style.display = 'flex';
+}
+
+function hideAlert() {
+  const alert = document.getElementById('authAlert');
+  if (alert) alert.style.display = 'none';
+}
+
+function switchPrivateMode(mode) {
+  currentPrivateMode = mode;
+  const slider = document.getElementById('panelsSlider');
+  const tabSlider = document.getElementById('authTabSlider');
+  const tabAuth = document.getElementById('tabAuth');
+  const tabClearance = document.getElementById('tabClearance');
+  const title = document.getElementById('authTitle');
+  const subtitle = document.getElementById('authSubtitle');
+
+  hideAlert();
+
+  if (mode === 'clearance') {
+    if (slider) slider.style.transform = 'translateX(-50%)';
+    if (tabSlider) tabSlider.style.transform = 'translateX(100%)';
+    if (tabAuth) {
+      tabAuth.classList.remove('active');
+      tabAuth.setAttribute('aria-selected', 'false');
+    }
+    if (tabClearance) {
+      tabClearance.classList.add('active');
+      tabClearance.setAttribute('aria-selected', 'true');
+    }
+    if (title) title.textContent = 'Node Provisioning';
+    if (subtitle) subtitle.textContent = 'Attest your workstation & generate a cryptographic passkey to initialize clearance.';
+  } else {
+    if (slider) slider.style.transform = 'translateX(0%)';
+    if (tabSlider) tabSlider.style.transform = 'translateX(0%)';
+    if (tabAuth) {
+      tabAuth.classList.add('active');
+      tabAuth.setAttribute('aria-selected', 'true');
+    }
+    if (tabClearance) {
+      tabClearance.classList.remove('active');
+      tabClearance.setAttribute('aria-selected', 'false');
+    }
+    if (title) title.textContent = 'Private Login';
+    if (subtitle) subtitle.textContent = 'Authorized credentials required to access Maya intelligent operations.';
+  }
+  requestAnimationFrame(() => updateViewportHeight(mode));
+}
+
+let keygenInterval = null;
+function generateNeuralKeypair() {
+  const keyInput = document.getElementById('clearanceKey');
+  const keygenBtn = document.getElementById('keygenBtn');
+  const badge = document.getElementById('entropyBadge');
+  const badgeText = document.getElementById('entropyText');
+
+  if (!keyInput || !keygenBtn) return;
+
+  keygenBtn.disabled = true;
+  keygenBtn.innerHTML = `
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="animate-spin">
+      <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+    </svg>
+    <span>Synthesizing…</span>
+  `;
+
+  const hexChars = '0123456789abcdef';
+  let frames = 0;
+  clearInterval(keygenInterval);
+
+  keygenInterval = setInterval(() => {
+    let scramble = 'mya_';
+    for (let i = 0; i < 16; i++) {
+      scramble += hexChars[Math.floor(Math.random() * hexChars.length)];
+    }
+    keyInput.value = scramble;
+    frames++;
+
+    if (frames >= 14) {
+      clearInterval(keygenInterval);
+      let finalHex = '';
+      if (window.crypto && window.crypto.getRandomValues) {
+        const bytes = new Uint8Array(8);
+        window.crypto.getRandomValues(bytes);
+        finalHex = Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+      } else {
+        for (let k = 0; k < 16; k++) finalHex += hexChars[Math.floor(Math.random() * 16)];
+      }
+      keyInput.value = 'mya_sec_' + finalHex;
+      keygenBtn.disabled = false;
+      keygenBtn.innerHTML = `
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+        </svg>
+        <span>Re-roll passkey</span>
+      `;
+
+      if (badge && badgeText) {
+        badgeText.textContent = 'secp256k1 attestation seeded';
+        badge.classList.add('visible');
+        updateViewportHeight('clearance');
+      }
+    }
+  }, 40);
+}
+
+async function handleClearanceSubmit(event) {
+  event.preventDefault();
+  hideAlert();
+
+  const email = document.getElementById('clearanceEmail').value.trim();
+  const token = document.getElementById('clearanceToken').value.trim();
+  const key = document.getElementById('clearanceKey').value.trim();
+  const submitBtn = document.getElementById('clearanceSubmitBtn');
+  const btnText = document.getElementById('clearanceBtnText');
+
+  if (!key) {
+    showAlert('Please generate or provide an operator passkey.');
+    return;
+  }
+
+  submitBtn.disabled = true;
+  btnText.textContent = 'Attesting hardware node…';
+
+  setTimeout(() => {
+    btnText.textContent = 'Registering public key…';
+    setTimeout(() => {
+      btnText.textContent = 'Clearance initialized';
+      showAlert('Operator node provisioned. Initializing Maya…', true);
+
+      const privUser = document.getElementById('privateUser');
+      const privKey = document.getElementById('privateKey');
+      if (privUser) privUser.value = email;
+      if (privKey) privKey.value = key;
+
+      setTimeout(() => {
+        window.location.href = 'maya.html';
+      }, 850);
+    }, 650);
+  }, 600);
+}
+
+async function handlePrivateSubmit(event) {
+  event.preventDefault();
+  hideAlert();
+
+  const user = document.getElementById('privateUser').value.trim();
+  const key = document.getElementById('privateKey').value;
+
+  const submitBtn = document.getElementById('privateSubmitBtn');
+  const btnText = document.getElementById('btnText');
+  const btnIcon = document.getElementById('btnIcon');
+
+  submitBtn.disabled = true;
+  btnText.textContent = 'Authenticating terminal…';
+  if (btnIcon) btnIcon.style.display = 'none';
+
+  setTimeout(() => {
+    showAlert('Access verified. Launching Maya…', true);
+    btnText.textContent = 'Launching Maya…';
+    setTimeout(() => {
+      window.location.href = 'maya.html';
+    }, 750);
+  }, 600);
+}
+</script>
 </body>
-
 </html>

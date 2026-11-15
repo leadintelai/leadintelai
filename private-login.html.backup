@@ -1,0 +1,1864 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07080c">
+<title>LeadintelAI · Maya — Private Neural Access</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Silent Connection Detector -->
+<script>
+    window.addEventListener('offline', () => {
+        localStorage.setItem('leadintel_last_url', window.location.href);
+        window.location.href = 'offline.html';
+    });
+</script>
+
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #07080c;
+    --ac: #2563eb;
+    --ct: #38bdf8;
+    --tx: #f8fafc;
+    --tx2: #94a3b8;
+    --tx3: #64748b;
+    --line: rgba(255, 255, 255, 0.08);
+    --glass: rgba(14, 16, 24, 0.72);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg);
+    font: 13px/1.5 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+    color: var(--tx);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    user-select: none;
+  }
+
+  /* Full cinematic ambient radial blooms */
+  body {
+    background-image:
+      radial-gradient(55% 50% at 15% 15%, rgba(37, 99, 235, 0.11), transparent 70%),
+      radial-gradient(45% 45% at 85% 25%, rgba(15, 23, 42, 0.70), transparent 70%),
+      radial-gradient(50% 50% at 50% 100%, rgba(80, 60, 200, 0.10), transparent 70%);
+  }
+
+  /* 40px architectural grid mask focused around the left showcase stage */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center;
+    -webkit-mask-image: radial-gradient(circle at 28% 36%, #000 26%, transparent 74%);
+    mask-image: radial-gradient(circle at 28% 36%, #000 26%, transparent 74%);
+  }
+
+  /* Atmospheric film grain */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.07;
+    mix-blend-mode: screen;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E");
+  }
+
+  /* Full-screen Canvas for the Maya Neural Orb */
+  #orb {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    cursor: pointer;
+    animation: enter 1.8s cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  }
+
+  @keyframes enter {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+      filter: blur(8px);
+    }
+  }
+
+  /* Logo Canvas Slot */
+  .li-logo-slot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    background: #000000;
+    border-radius: 7px;
+    padding: 1.5px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  .logo-cv {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* Top-Left Brand Header Pill */
+  .brand-top {
+    position: fixed;
+    top: 28px;
+    left: clamp(24px, 5vw, 72px);
+    z-index: 20;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 15px 5px 7px;
+    border-radius: 99px;
+    background: var(--glass);
+    border: 1px solid var(--line);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    backdrop-filter: blur(22px) saturate(180%);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+  }
+
+  .brand-top .li-logo-slot {
+    width: 26px;
+    height: 26px;
+  }
+
+  .brand-word {
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--tx);
+  }
+
+  .maya-badge {
+    color: #8b0000;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-left: 2px;
+    line-height: 1;
+    display: inline-block;
+  }
+
+  .brand-sep {
+    width: 1px;
+    height: 12px;
+    background: var(--line);
+    margin: 0 2px;
+  }
+
+  .brand-tag {
+    font: 500 10px 'JetBrains Mono', ui-monospace, monospace;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--tx2);
+  }
+
+  /* Top-Right Navigation Pill */
+  .nav-back-pill {
+    position: fixed;
+    top: 28px;
+    right: clamp(24px, 5vw, 72px);
+    z-index: 20;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 16px;
+    border-radius: 99px;
+    background: var(--glass);
+    border: 1px solid var(--line);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    backdrop-filter: blur(22px) saturate(180%);
+    color: var(--tx2);
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .nav-back-pill svg {
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .nav-back-pill:hover {
+    color: var(--tx);
+    border-color: rgba(56, 189, 248, 0.35);
+    background: rgba(22, 26, 38, 0.85);
+    transform: translateY(-1px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 12px rgba(37, 99, 235, 0.25);
+  }
+
+  .nav-back-pill:hover svg {
+    transform: translateX(-3px);
+    color: var(--ct);
+  }
+
+  /* ─── LEFT-SIDE CINEMATIC BRAND INTRODUCTION STAGE ─── */
+  .intro-stage {
+    position: fixed;
+    left: 28vw;
+    top: calc(33vh + min(10.5vw, 13.5vh, 102px) + 50px);
+    transform: translateX(-50%);
+    width: min(460px, 44vw);
+    z-index: 3;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .stages-viewport {
+    position: relative;
+    min-height: 195px;
+  }
+
+  .stage-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+    filter: blur(6px);
+    transition:
+      opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.95s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+  }
+
+  .stage-slide.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+    pointer-events: auto;
+  }
+
+  .eyebrow {
+    font: 500 10px 'JetBrains Mono', ui-monospace, monospace;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(148, 163, 184, 0.78);
+    margin-bottom: 8px;
+  }
+
+  .stage-title {
+    margin: 0 0 8px;
+    font-size: clamp(24px, 2.6vw, 34px);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    background: linear-gradient(180deg, #ffffff 0%, #aab8d8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .stage-sub {
+    margin: 0 auto;
+    max-width: 390px;
+    color: var(--tx2);
+    font-size: 13.5px;
+    line-height: 1.55;
+    font-weight: 400;
+  }
+
+  /* Pill Grids for Stage 2 & Stage 3 */
+  .pill-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+    max-width: 430px;
+  }
+
+  .info-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 13px;
+    border-radius: 99px;
+    background: rgba(18, 20, 28, 0.75);
+    border: 1px solid var(--line);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    font-size: 11.5px;
+    color: var(--tx);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+    transition: border-color 0.35s ease, transform 0.35s ease;
+  }
+
+  .info-pill b {
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .info-pill span {
+    color: var(--tx2);
+    font-size: 11px;
+  }
+
+  .dot-ind {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex: none;
+  }
+
+  /* Stage 4 Inline Brand Lockup Pill */
+  .lockup-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 14px 5px 7px;
+    border-radius: 99px;
+    background: rgba(18, 20, 28, 0.78);
+    border: 1px solid var(--line);
+    margin-bottom: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+  }
+
+  .lockup-pill .li-logo-slot {
+    width: 22px;
+    height: 22px;
+  }
+
+  .lockup-pill .brand-word {
+    font-size: 12.5px;
+  }
+
+  /* Subtle Progress Indicator Dots at Bottom of Left Stage */
+  .stage-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 5px 10px;
+    border-radius: 99px;
+    background: rgba(14, 16, 24, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    pointer-events: auto;
+  }
+
+  .s-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 99px;
+    border: 0;
+    padding: 0;
+    background: rgba(148, 163, 184, 0.3);
+    cursor: pointer;
+    transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1), background 0.35s ease;
+  }
+
+  .s-dot:hover {
+    background: rgba(248, 250, 252, 0.65);
+  }
+
+  .s-dot.on {
+    width: 22px;
+    background: linear-gradient(90deg, #2563eb, #38bdf8);
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.45);
+  }
+
+  /* ══════════════════════════════════════
+     RIGHT-SIDE FLOATING AUTHENTICATION CARD
+  ══════════════════════════════════════ */
+  .login-stage {
+    position: fixed;
+    right: clamp(24px, 5vw, 72px);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 15;
+    width: min(390px, 92vw);
+    max-height: calc(100vh - 40px);
+  }
+
+  .auth-card {
+    width: 100%;
+    background: rgba(14, 18, 28, 0.72);
+    backdrop-filter: blur(28px) saturate(210%);
+    -webkit-backdrop-filter: blur(28px) saturate(210%);
+    border: 1px solid rgba(220, 38, 38, 0.35);
+    border-radius: 20px;
+    padding: 24px 24px 20px;
+    box-shadow:
+      0 24px 60px -12px rgba(0, 0, 0, 0.85),
+      0 0 32px rgba(220, 38, 38, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    position: relative;
+    user-select: auto;
+  }
+
+  .card-brand-header {
+    margin-bottom: 16px;
+  }
+
+  .auth-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    margin-bottom: 4px;
+    transition: color 0.3s ease;
+  }
+
+  .auth-subtitle {
+    font-size: 0.76rem;
+    color: var(--tx2);
+    line-height: 1.45;
+    transition: color 0.3s ease;
+  }
+
+  /* Segmented Auth / Clearance Mode Tabs */
+  .auth-tabs-track {
+    position: relative;
+    display: flex;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 99px;
+    padding: 3px;
+    margin-bottom: 16px;
+  }
+
+  .auth-tab-slider {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: calc(50% - 3px);
+    height: calc(100% - 6px);
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.38) 0%, rgba(153, 27, 27, 0.5) 100%);
+    border: 1px solid rgba(248, 113, 113, 0.4);
+    border-radius: 99px;
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 0 12px rgba(220, 38, 38, 0.22);
+    pointer-events: none;
+  }
+
+  .auth-tab-btn {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 6px 10px;
+    font-size: 0.73rem;
+    font-weight: 600;
+    color: var(--tx2);
+    cursor: pointer;
+    border-radius: 99px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+    font-family: inherit;
+    letter-spacing: -0.01em;
+  }
+
+  .auth-tab-btn svg {
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+  }
+
+  .auth-tab-btn.active {
+    color: #ffffff;
+  }
+
+  .auth-tab-btn.active svg {
+    opacity: 1;
+    color: #fca5a5;
+  }
+
+  /* Horizontal Panels Viewport */
+  .auth-viewport {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    transition: height 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .auth-panels-slider {
+    display: flex;
+    align-items: flex-start;
+    width: 200%;
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .auth-panel {
+    width: 50%;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+
+  /* Keygen Elements */
+  .keygen-trigger-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 9px;
+    border-radius: 6px;
+    background: rgba(37, 99, 235, 0.16);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: #7dd3fc;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+
+  .keygen-trigger-btn:hover {
+    background: rgba(37, 99, 235, 0.28);
+    border-color: #38bdf8;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+    color: #ffffff;
+    transform: translateY(-1px);
+  }
+
+  .keygen-trigger-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+    transform: none;
+  }
+
+  .key-font {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.02em !important;
+  }
+
+  .entropy-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: #86efac;
+    opacity: 0;
+    transform: translateY(-3px);
+    transition: all 0.25s ease;
+  }
+
+  .entropy-badge.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Alert Box */
+  .auth-alert {
+    padding: 9px 12px;
+    border-radius: 10px;
+    font-size: 0.78rem;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(220, 38, 38, 0.12);
+    border: 1px solid rgba(220, 38, 38, 0.35);
+    color: #fca5a5;
+  }
+
+  .auth-alert.success {
+    background: rgba(34, 197, 94, 0.12);
+    border-color: rgba(34, 197, 94, 0.35);
+    color: #86efac;
+  }
+
+  /* Credentials Form */
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .form-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--tx2);
+    letter-spacing: 0.01em;
+  }
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .input-wrapper .input-icon {
+    position: absolute;
+    left: 12px;
+    color: var(--tx3);
+    pointer-events: none;
+    transition: color 0.2s ease;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 9px 12px 9px 36px;
+    border-radius: 10px;
+    background: rgba(8, 9, 13, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    color: #ffffff;
+    font-size: 0.84rem;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.2s ease;
+  }
+
+  .form-input:focus {
+    border-color: rgba(220, 38, 38, 0.55);
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+    background: rgba(12, 14, 20, 0.95);
+  }
+
+  .form-input:focus + .input-icon,
+  .input-wrapper:focus-within .input-icon {
+    color: #ef4444;
+  }
+
+  .form-input::placeholder {
+    color: rgba(148, 163, 184, 0.45);
+  }
+
+  .pw-toggle-btn {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: var(--tx3);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+  }
+
+  .pw-toggle-btn:hover {
+    color: var(--tx);
+  }
+
+  .form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.76rem;
+    color: var(--tx2);
+    margin-top: 2px;
+  }
+
+  .custom-checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .custom-checkbox-label input[type="checkbox"] {
+    display: none;
+  }
+
+  .custom-checkbox {
+    width: 15px;
+    height: 15px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.03);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.18s ease;
+  }
+
+  .custom-checkbox-label input[type="checkbox"]:checked + .custom-checkbox {
+    background: #ef4444;
+    border-color: #ef4444;
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+    color: #ffffff;
+  }
+
+  .custom-checkbox-label input[type="checkbox"]:checked + .custom-checkbox svg {
+    opacity: 1;
+  }
+
+  .custom-checkbox svg {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  /* Red Action Button */
+  .btn-private-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px 18px;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    border: 1px solid rgba(248, 113, 113, 0.3);
+    color: #ffffff;
+    font-size: 0.84rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    margin-top: 4px;
+    box-shadow:
+      0 4px 16px rgba(220, 38, 38, 0.35),
+      0 1px 0 rgba(255, 255, 255, 0.2) inset;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-private-submit:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      0 8px 24px rgba(220, 38, 38, 0.5),
+      0 1px 0 rgba(255, 255, 255, 0.25) inset;
+    background: linear-gradient(135deg, #f87171 0%, #dc2626 100%);
+  }
+
+  .btn-private-submit:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .btn-arrow {
+    transition: transform 0.2s ease;
+  }
+
+  .btn-private-submit:hover .btn-arrow {
+    transform: translateX(3px);
+  }
+
+  /* Clean Card Footer */
+  .card-footer-clean {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .footer-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--tx2);
+    text-decoration: none;
+    font-size: 0.74rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .footer-back-link svg {
+    transition: transform 0.2s ease;
+  }
+
+  .footer-back-link:hover {
+    color: #ffffff;
+  }
+
+  .footer-back-link:hover svg {
+    transform: translateX(-3px);
+    color: #ef4444;
+  }
+
+  .footer-meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.64rem;
+    letter-spacing: 0.06em;
+    color: rgba(148, 163, 184, 0.6);
+  }
+
+  .footer-meta-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 6px rgba(34, 197, 94, 0.7);
+    display: inline-block;
+  }
+
+  /* ══════════════════════════════════════
+     RESPONSIVE OVERRIDES
+  ══════════════════════════════════════ */
+  @media (max-width: 960px) {
+    html, body {
+      overflow-y: auto !important;
+      height: auto !important;
+      min-height: 100dvh;
+    }
+
+    body::before {
+      -webkit-mask-image: radial-gradient(circle at 50% 34%, #000 30%, transparent 78%);
+      mask-image: radial-gradient(circle at 50% 34%, #000 30%, transparent 78%);
+    }
+
+    .brand-top {
+      top: 18px;
+      left: 16px;
+    }
+
+    .nav-back-pill {
+      top: 18px;
+      right: 16px;
+    }
+
+    .intro-stage {
+      position: relative;
+      left: auto;
+      top: auto;
+      transform: none;
+      margin: 340px auto 24px;
+      width: min(440px, 92vw);
+    }
+
+    .login-stage {
+      position: relative;
+      right: auto;
+      top: auto;
+      transform: none;
+      margin: 0 auto 60px;
+      width: min(400px, 92vw);
+      max-height: none;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .brand-top {
+      padding: 5px 10px 5px 6px;
+      gap: 6px;
+    }
+    .brand-top .brand-tag,
+    .brand-top .brand-sep {
+      display: none;
+    }
+    .nav-back-pill {
+      padding: 6px 12px;
+      gap: 5px;
+      font-size: 11px;
+    }
+    .intro-stage {
+      margin: 320px auto 20px;
+    }
+    .stage-title {
+      font-size: 22px;
+    }
+    .stage-sub {
+      font-size: 12.5px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #orb, .stage-slide {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>
+</head>
+
+<body data-v="">
+
+<!-- Full-screen Canvas for the Maya Neural Orb -->
+<canvas id="orb" role="img" aria-label="Maya neural orb background. Click to cycle stage."></canvas>
+
+<!-- Top-Left Brand Pill (from reference file) -->
+<header class="brand-top">
+  <span class="li-logo-slot">
+    <canvas class="logo-cv" width="128" height="128" aria-label="LeadintelAI Logo"></canvas>
+  </span>
+  <span class="brand-word">LeadintelAI</span>
+  <span class="maya-badge">Maya</span>
+  <span class="brand-sep"></span>
+  <span class="brand-tag" id="topStageTag">NEURAL CORE</span>
+</header>
+
+<!-- Top-Right Standard Login Navigation Pill -->
+<a href="login.html" class="nav-back-pill">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+    <path d="M19 12H5M12 19l-7-7 7-7" />
+  </svg>
+  <span>Standard Login</span>
+</a>
+
+<!-- Left-Side 4-Stage Cinematic Brand Introduction (from reference file) -->
+<main class="intro-stage" aria-live="polite">
+  <div class="stages-viewport">
+
+    <!-- Stage 1: Meet Maya -->
+    <section class="stage-slide active" data-idx="0">
+      <div class="eyebrow">LeadintelAI · Maya Intelligence</div>
+      <h1 class="stage-title">Meet Maya.</h1>
+      <p class="stage-sub">Always learning. Always yours. Private autonomous intelligence built for high-velocity teams.</p>
+    </section>
+
+    <!-- Stage 2: Core Specialist Team -->
+    <section class="stage-slide" data-idx="1">
+      <div class="eyebrow">Core Specialist Team</div>
+      <h2 class="stage-title">Four Specialists. One Brain.</h2>
+      <p class="stage-sub">Every command is orchestrated across four dedicated agents working in real-time concert.</p>
+      <div class="pill-cluster">
+        <div class="info-pill"><span class="dot-ind" style="background:#38bdf8;box-shadow:0 0 8px #38bdf8"></span><b>Cipher</b><span>· Research</span></div>
+        <div class="info-pill"><span class="dot-ind" style="background:#30a46c;box-shadow:0 0 8px #30a46c"></span><b>Root</b><span>· Code</span></div>
+        <div class="info-pill"><span class="dot-ind" style="background:#e8912d;box-shadow:0 0 8px #e8912d"></span><b>Ghost</b><span>· Automation</span></div>
+        <div class="info-pill"><span class="dot-ind" style="background:#e5484d;box-shadow:0 0 8px #e5484d"></span><b>Vault</b><span>· Security</span></div>
+      </div>
+    </section>
+
+    <!-- Stage 3: Local-First Neural Pathways -->
+    <section class="stage-slide" data-idx="2">
+      <div class="eyebrow">Local-First Neural Pathways</div>
+      <h2 class="stage-title">Private by Architecture.</h2>
+      <p class="stage-sub">Auto-routed local models running directly on your hardware with zero cloud leaks.</p>
+      <div class="pill-cluster">
+        <div class="info-pill"><span class="dot-ind" style="background:#2563eb"></span><b>Llama 3.2</b><span>· 96%</span></div>
+        <div class="info-pill"><span class="dot-ind" style="background:#38bdf8"></span><b>DeepSeek R1</b><span>· 95%</span></div>
+        <div class="info-pill"><span class="dot-ind" style="background:#6366f1"></span><b>Qwen 2.5 Coder</b><span>· 94%</span></div>
+        <div class="info-pill"><span class="dot-ind" style="background:#10b981"></span><b>Mistral</b><span>· 91%</span></div>
+      </div>
+    </section>
+
+    <!-- Stage 4: Autonomous Execution -->
+    <section class="stage-slide" data-idx="3">
+      <div class="lockup-pill">
+        <span class="li-logo-slot">
+          <canvas class="logo-cv" width="128" height="128" aria-label="LeadintelAI Logo"></canvas>
+        </span>
+        <span class="brand-word">LeadintelAI</span>
+        <span class="maya-badge">Maya</span>
+      </div>
+      <div class="eyebrow">Autonomous Execution</div>
+      <h2 class="stage-title">Ready when you are.</h2>
+      <p class="stage-sub">Real-time lead scouting, cold outreach, and pipeline intelligence—waiting for your command.</p>
+    </section>
+
+  </div>
+
+  <!-- Progress Indicator Dots -->
+  <div class="stage-dots" role="tablist" aria-label="Brand introduction stages">
+    <button class="s-dot on" data-go="0" aria-label="Stage 1: Meet Maya"></button>
+    <button class="s-dot" data-go="1" aria-label="Stage 2: Core Specialist Team"></button>
+    <button class="s-dot" data-go="2" aria-label="Stage 3: Local-First Neural Pathways"></button>
+    <button class="s-dot" data-go="3" aria-label="Stage 4: Autonomous Execution"></button>
+  </div>
+</main>
+
+<!-- Right-Side Floating Glassmorphic Authentication Card -->
+<aside class="login-stage">
+  <div class="auth-card">
+
+    <!-- Card Brand Header -->
+    <div class="card-brand-header">
+      <h1 class="auth-title" id="authTitle">Private Login</h1>
+      <p class="auth-subtitle" id="authSubtitle">Authorized credentials required to access Maya intelligent operations.</p>
+    </div>
+
+    <!-- Segmented Auth / Clearance Mode Tabs -->
+    <div class="auth-tabs-track">
+      <div class="auth-tab-slider" id="authTabSlider"></div>
+      <button type="button" class="auth-tab-btn active" id="tabAuth" onclick="switchPrivateMode('auth')">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Authenticate</span>
+      </button>
+      <button type="button" class="auth-tab-btn" id="tabClearance" onclick="switchPrivateMode('clearance')">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        <span>Request Clearance</span>
+      </button>
+    </div>
+
+    <!-- Alert Box -->
+    <div id="authAlert" class="auth-alert" style="display:none;" role="alert"></div>
+
+    <!-- Horizontal Panels Viewport -->
+    <div class="auth-viewport" id="panelsViewport">
+      <div class="auth-panels-slider" id="panelsSlider">
+
+        <!-- ═══ PANEL 1: AUTHENTICATE TERMINAL ═══ -->
+        <div class="auth-panel" id="panelAuth">
+          <form class="auth-form" id="privateForm" onsubmit="handlePrivateSubmit(event)">
+
+            <!-- Operator Handle / Email -->
+            <div class="form-group">
+              <label for="privateUser" class="form-label">Operator ID</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                <input type="text" id="privateUser" class="form-input" placeholder="operator@internal.leadintel.ai" required autocomplete="username">
+              </div>
+            </div>
+
+            <!-- Passkey -->
+            <div class="form-group">
+              <label for="privateKey" class="form-label">Passkey</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+                <input type="password" id="privateKey" class="form-input" placeholder="••••••••••••" required autocomplete="current-password" style="padding-right: 36px;">
+                <button type="button" class="pw-toggle-btn" onclick="togglePasswordVisibility('privateKey', this)" aria-label="Toggle password visibility">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Remember Option -->
+            <div class="form-options">
+              <label class="custom-checkbox-label">
+                <input type="checkbox" id="rememberSession" checked>
+                <span class="custom-checkbox">
+                  <svg width="9" height="7" viewBox="0 0 10 8" fill="none">
+                    <path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Trust this console session</span>
+              </label>
+            </div>
+
+            <!-- Red Primary Action Button -->
+            <button type="submit" id="privateSubmitBtn" class="btn-private-submit">
+              <span id="btnText">Authenticate Terminal Access</span>
+              <svg id="btnIcon" class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </form>
+        </div>
+
+        <!-- ═══ PANEL 2: NEURAL KEYGEN CLEARANCE CEREMONY ═══ -->
+        <div class="auth-panel" id="panelClearance">
+          <form class="auth-form" id="clearanceForm" onsubmit="handleClearanceSubmit(event)">
+
+            <!-- Work Identity / Handle -->
+            <div class="form-group">
+              <label for="clearanceEmail" class="form-label">Operator Work Identity</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <input type="email" id="clearanceEmail" class="form-input" placeholder="operator@internal.company.com" required autocomplete="email">
+              </div>
+            </div>
+
+            <!-- Clearance Token -->
+            <div class="form-group">
+              <label for="clearanceToken" class="form-label">Clearance / Invite Code</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+                <input type="text" id="clearanceToken" class="form-input" placeholder="MYA-8041-ALPHA (optional)">
+              </div>
+            </div>
+
+            <!-- Cryptographic Passkey with Keygen Ceremony -->
+            <div class="form-group">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                <label for="clearanceKey" class="form-label">Cryptographic Passkey</label>
+                <button type="button" class="keygen-trigger-btn" id="keygenBtn" onclick="generateNeuralKeypair()">
+                  <span>⚡ Generate Key</span>
+                </button>
+              </div>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+                <input type="text" id="clearanceKey" class="form-input key-font" placeholder="Click 'Generate Key' or enter passkey" required autocomplete="new-password" style="padding-right: 36px;">
+                <button type="button" class="pw-toggle-btn" onclick="togglePasswordVisibility('clearanceKey', this)" aria-label="Toggle password visibility">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </button>
+              </div>
+              <div class="entropy-badge" id="entropyBadge">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span id="entropyText">secp256k1 attestation seeded</span>
+              </div>
+            </div>
+
+            <!-- Attestation Checkbox -->
+            <div class="form-options">
+              <label class="custom-checkbox-label">
+                <input type="checkbox" id="attestNode" checked>
+                <span class="custom-checkbox">
+                  <svg width="9" height="7" viewBox="0 0 10 8" fill="none">
+                    <path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Attest workstation as trusted node</span>
+              </label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="clearanceSubmitBtn" class="btn-private-submit">
+              <span id="clearanceBtnText">Initialize Operator Node</span>
+              <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Clean Single-Line Footer -->
+    <div class="card-footer-clean">
+      <a href="login.html" class="footer-back-link">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span>Standard Login</span>
+      </a>
+      <div class="footer-meta-pill">
+        <span class="footer-meta-dot"></span>
+        <span>ZERO-TRUST SECURE</span>
+      </div>
+    </div>
+
+  </div>
+</aside>
+
+<script>
+(() => {
+  /* =========================================================
+     1. LEADINTELAI 3D BRUSHED-BLUE INTERLOCKING S-RIBBON LOGO
+     Renders cleanly onto all .logo-cv canvases
+     ========================================================= */
+  function drawBrushedRibbonLogo(targetCanvas) {
+    const S = 512;
+    const off = document.createElement('canvas');
+    off.width = S;
+    off.height = S;
+    const ctx = off.getContext('2d');
+
+    ctx.fillStyle = '#000000';
+    ctx.fillRect(0, 0, S, S);
+
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+
+    function drawPolygonPiece(pts, x0, y0, x1, y1, stops, r = 20) {
+      ctx.save();
+      ctx.beginPath();
+      const n = pts.length;
+      for (let i = 0; i < n; i++) {
+        const p0 = pts[(i - 1 + n) % n];
+        const p1 = pts[i];
+        const p2 = pts[(i + 1) % n];
+        const v1x = p0[0] - p1[0], v1y = p0[1] - p1[1];
+        const v2x = p2[0] - p1[0], v2y = p2[1] - p1[1];
+        const l1 = Math.hypot(v1x, v1y) || 1;
+        const l2 = Math.hypot(v2x, v2y) || 1;
+        const cr = Math.min(r, l1 * 0.42, l2 * 0.42);
+        const sx = p1[0] + (v1x / l1) * cr;
+        const sy = p1[1] + (v1y / l1) * cr;
+        const ex = p1[0] + (v2x / l2) * cr;
+        const ey = p1[1] + (v2y / l2) * cr;
+        if (i === 0) ctx.moveTo(sx, sy);
+        else ctx.lineTo(sx, sy);
+        ctx.quadraticCurveTo(p1[0], p1[1], ex, ey);
+      }
+      ctx.closePath();
+
+      const g = ctx.createLinearGradient(x0, y0, x1, y1);
+      for (const [pos, col] of stops) g.addColorStop(pos, col);
+      ctx.fillStyle = g;
+      ctx.fill();
+
+      ctx.clip();
+      ctx.strokeStyle = 'rgba(195, 230, 255, 0.065)';
+      ctx.lineWidth = 1.3;
+      for (let k = -S; k < S * 1.5; k += 4.5) {
+        ctx.beginPath();
+        ctx.moveTo(k, 0);
+        ctx.lineTo(k + S * 0.72, S);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    drawPolygonPiece(
+      [[252, 62], [308, 62], [344, 114], [344, 128], [282, 128], [250, 96]],
+      250, 62, 344, 128,
+      [[0, '#05122e'], [0.55, '#0c275c'], [1, '#1c52ab']],
+      14
+    );
+    drawPolygonPiece(
+      [[62, 212], [116, 260], [218, 360], [164, 384], [62, 280]],
+      62, 212, 200, 384,
+      [[0, '#07193e'], [0.5, '#133d8a'], [1, '#2667c9']],
+      18
+    );
+    drawPolygonPiece(
+      [[294, 148], [358, 148], [268, 238], [214, 198]],
+      294, 148, 250, 238,
+      [[0, '#051330'], [0.6, '#0d2a63'], [1, '#1f56b0']],
+      14
+    );
+    drawPolygonPiece(
+      [[138, 148], [206, 148], [114, 238], [54, 204]],
+      54, 148, 206, 238,
+      [[0, '#103d8f'], [0.5, '#1e5fcf'], [1, '#2563eb']],
+      16
+    );
+    drawPolygonPiece(
+      [[154, 128], [286, 128], [286, 250], [242, 290], [154, 200]],
+      154, 128, 286, 290,
+      [[0, '#1e5fcf'], [0.4, '#2563eb'], [1, '#3b82f6']],
+      20
+    );
+    drawPolygonPiece(
+      [[200, 224], [288, 312], [288, 384], [182, 384], [128, 332], [178, 246]],
+      128, 224, 288, 384,
+      [[0, '#2563eb'], [0.5, '#3b82f6'], [1, '#60a5fa']],
+      22
+    );
+    drawPolygonPiece(
+      [[286, 250], [420, 250], [450, 286], [450, 300], [388, 300], [288, 356]],
+      286, 250, 450, 356,
+      [[0, '#3b82f6'], [0.5, '#60a5fa'], [1, '#7dd3fc']],
+      20
+    );
+    drawPolygonPiece(
+      [[272, 356], [388, 300], [450, 300], [450, 384], [344, 450], [272, 396]],
+      272, 300, 450, 450,
+      [[0, '#60a5fa'], [0.5, '#93c5fd'], [1, '#bfdbfe']],
+      22
+    );
+
+    const tc = targetCanvas.getContext('2d');
+    tc.clearRect(0, 0, targetCanvas.width, targetCanvas.height);
+    tc.drawImage(off, 0, 0, targetCanvas.width, targetCanvas.height);
+  }
+
+  document.querySelectorAll('.logo-cv').forEach(cv => drawBrushedRibbonLogo(cv));
+
+  // If local SVG logo exists, load it
+  const realLogo = new Image();
+  realLogo.onload = () => {
+    document.querySelectorAll('.logo-cv').forEach(cv => {
+      const ctx = cv.getContext('2d');
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      ctx.drawImage(realLogo, 0, 0, cv.width, cv.height);
+    });
+  };
+  realLogo.src = 'leadintelai-logo.svg';
+
+  /* =========================================================
+     2. MAYA NEURAL ORB ENGINE
+     From maya_neural_orb_cinematic_login_brand_intro.html
+     ========================================================= */
+  const cv = document.getElementById('orb');
+  const c = cv.getContext('2d');
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const TAU = Math.PI * 2;
+
+  const ORB_R = [
+    { h: 215, f: 1,   v:  .9,  a: 1,   s: .9,  p: 0 },
+    { h: 0,   f: .9,  v: -.7,  a: .95, s: 1.1, p: 2.1 },
+    { h: 195, f: 1.1, v:  .6,  a: .65, s: .8,  p: 4 },
+    { h: 225, f: .8,  v: -.5,  a: .45, s: 1.3, p: 1 },
+    { h: 275, f: 1.2, v:  .45, a: .55, s: 1,   p: 5.3 },
+    { h: 330, f: .7,  v: -.4,  a: .4,  s: 1.2, p: 3.2 }
+  ];
+
+  const RINGS = [
+    [1.42, 0.34,  0.22,  0.00008, 0],
+    [1.62, 0.50, -0.50, -0.00006, 2],
+    [1.86, 0.22,  0.90,  0.000045, 4]
+  ];
+
+  let W = 0, H = 0, dpr = 1, t = 2, amp = 0.55, last = 0;
+  let px = 0, py = 0, tx = 0, ty = 0, P = [];
+
+  function resize() {
+    W = innerWidth;
+    H = innerHeight;
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    cv.width = Math.round(W * dpr);
+    cv.height = Math.round(H * dpr);
+    P = Array.from({ length: Math.min(64, Math.round(W / 22)) }, () => ({
+      x: Math.random() * 2 - 1,
+      y: Math.random(),
+      u: Math.random(),
+      z: Math.random(),
+      s: 0.4 + Math.random() * 0.7,
+      ph: Math.random() * TAU
+    }));
+    draw(performance.now());
+  }
+
+  function draw(now) {
+    c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    c.clearRect(0, 0, W, H);
+
+    const isMobile = W <= 960;
+    const cx = isMobile ? W * 0.5 : W * 0.28;
+    const cy = isMobile ? Math.min(H * 0.26, 210) : H * 0.33;
+    const R = isMobile
+      ? Math.min(W * 0.22, 92)
+      : Math.min(W * 0.105, H * 0.135, 102);
+
+    const sc = R / 72;
+    const lw = 1.8 * Math.pow(sc, 0.6);
+    const warm = 0.5 + 0.5 * Math.sin(t * 0.35);
+    const gh = (210 + 20 * warm) % 360;
+    let g;
+
+    // Floor light + reflection rings
+    c.save();
+    c.translate(cx, cy + R * 1.38);
+    c.scale(1, 0.16);
+    g = c.createRadialGradient(0, 0, 0, 0, 0, R * 2.1);
+    g.addColorStop(0, `hsla(${gh}, 95%, 62%, ${0.3 + 0.12 * amp})`);
+    g.addColorStop(0.45, `hsla(${gh + 30}, 90%, 55%, 0.09)`);
+    g.addColorStop(1, `hsla(${gh}, 90%, 55%, 0)`);
+    c.fillStyle = g;
+    c.beginPath();
+    c.arc(0, 0, R * 2.1, 0, TAU);
+    c.fill();
+    c.restore();
+
+    for (let k = 0; k < 3; k++) {
+      c.beginPath();
+      c.ellipse(cx, cy + R * 1.38, R * (1.1 + k * 0.45), R * (1.1 + k * 0.45) * 0.16, 0, 0, TAU);
+      c.strokeStyle = `hsla(${gh}, 90%, 70%, ${0.2 - k * 0.06})`;
+      c.lineWidth = 1;
+      c.stroke();
+    }
+
+    // Halo bloom
+    g = c.createRadialGradient(cx, cy, R * 0.8, cx, cy, R * 2.6);
+    g.addColorStop(0, `hsla(${gh}, 90%, 60%, ${0.22 + 0.1 * amp})`);
+    g.addColorStop(0.5, `hsla(${gh + 25}, 90%, 55%, 0.06)`);
+    g.addColorStop(1, `hsla(${gh}, 90%, 60%, 0)`);
+    c.fillStyle = g;
+    c.fillRect(0, 0, W, H);
+
+    // Voice spectrum ring
+    c.save();
+    c.translate(cx, cy);
+    c.globalCompositeOperation = 'lighter';
+    c.lineCap = 'round';
+    c.lineWidth = Math.max(1.1, sc * 0.9);
+    const NB = 120;
+    for (let i = 0; i < NB; i++) {
+      const a = (i / NB) * TAU;
+      const n = Math.abs(Math.sin(i * 0.55 + t * 2.2) * Math.sin(i * 0.17 - t * 0.9) + 0.45 * Math.sin(i * 1.3 + t * 3.2));
+      const len = R * (0.03 + 0.2 * amp * n * (0.6 + 0.4 * Math.sin(t * 0.6 + i * 0.05)));
+      const r0 = R * 1.13;
+      c.strokeStyle = `hsla(${gh - 20 + (i / NB) * 90}, 95%, 66%, ${0.2 + 0.5 * Math.min(1, n) * amp})`;
+      c.beginPath();
+      c.moveTo(Math.cos(a) * r0, Math.sin(a) * r0);
+      c.lineTo(Math.cos(a) * (r0 + len), Math.sin(a) * (r0 + len));
+      c.stroke();
+    }
+    c.restore();
+
+    // Orbital rings (back pass)
+    const rings = front => RINGS.forEach(([k, fl, tilt, spd, ph], i) => {
+      const rx = R * k, ry = rx * fl;
+      const rot = tilt + (RM ? 0 : Math.sin(now * spd + ph) * 0.15) + px * 0.08;
+      const hh = gh + i * 25;
+      c.beginPath();
+      c.ellipse(cx, cy, rx, ry, rot, front ? 0 : Math.PI, front ? Math.PI : TAU);
+      c.strokeStyle = `hsla(${hh}, 90%, 72%, ${front ? 0.5 : 0.16})`;
+      c.lineWidth = front ? 1.1 : 0.8;
+      c.stroke();
+
+      const th = (now * 0.00022 * (i % 2 ? -1 : 1) * (1 + i * 0.25) + ph) % TAU;
+      const sn = Math.sin(th);
+      if ((sn > 0) === front) {
+        const lx = Math.cos(th) * rx, ly = sn * ry;
+        const x = cx + lx * Math.cos(rot) - ly * Math.sin(rot);
+        const y = cy + lx * Math.sin(rot) + ly * Math.cos(rot);
+        c.save();
+        c.globalCompositeOperation = 'lighter';
+        const q = c.createRadialGradient(x, y, 0, x, y, 12);
+        q.addColorStop(0, `hsla(${hh}, 100%, 82%, 0.95)`);
+        q.addColorStop(1, `hsla(${hh}, 100%, 60%, 0)`);
+        c.fillStyle = q;
+        c.beginPath();
+        c.arc(x, y, 12, 0, TAU);
+        c.fill();
+        c.restore();
+      }
+    });
+    rings(false);
+
+    // Glass sphere body
+    g = c.createRadialGradient(cx, cy - R * 0.04, 0, cx, cy, R);
+    g.addColorStop(0, 'rgba(10, 11, 16, 0.66)');
+    g.addColorStop(0.75, 'rgba(15, 23, 42, 0.42)');
+    g.addColorStop(0.96, `hsla(${gh}, 70%, 72%, 0.14)`);
+    g.addColorStop(1, `hsla(${gh}, 80%, 78%, 0.3)`);
+    c.beginPath();
+    c.arc(cx, cy, R, 0, TAU);
+    c.fillStyle = g;
+    c.fill();
+
+    // Inside the sphere
+    c.save();
+    c.beginPath();
+    c.arc(cx, cy, R - 1, 0, TAU);
+    c.clip();
+    c.globalCompositeOperation = 'lighter';
+
+    g = c.createRadialGradient(cx, cy, 0, cx, cy, R * 0.85);
+    g.addColorStop(0, `hsla(${gh + 10}, 100%, 65%, ${0.14 + 0.18 * amp})`);
+    g.addColorStop(1, `hsla(${gh}, 100%, 60%, 0)`);
+    c.fillStyle = g;
+    c.fillRect(cx - R, cy - R, R * 2, R * 2);
+
+    for (const q of [0.45, 0.68, 0.88]) {
+      c.beginPath();
+      c.arc(cx, cy, R * q, 0, TAU);
+      c.strokeStyle = `hsla(${gh}, 80%, 70%, 0.05)`;
+      c.lineWidth = 0.8;
+      c.stroke();
+    }
+
+    const N = 110, x0 = cx - R, Wd = 2 * R, X = i => x0 + (Wd * i) / N;
+    for (const r of ORB_R) {
+      const ph = t * r.v * 1.6 + r.p;
+      const sep = 0.5 + 0.9 * (0.5 + 0.5 * Math.sin(t * 0.5 * r.s + r.p));
+      const A = amp * R * 0.9 * r.a * (0.75 + 0.25 * Math.sin(t * 0.8 * r.s + r.p * 2));
+      const y1 = [], y2 = [];
+      for (let i = 0; i <= N; i++) {
+        const x = i / N;
+        const env = Math.exp(-Math.pow((x - 0.5) / 0.3, 2));
+        const th = TAU * r.f * x;
+        y1.push(cy + env * A * Math.sin(th + ph));
+        y2.push(cy + env * A * Math.sin(th + ph + sep));
+      }
+      const f = c.createLinearGradient(x0, 0, x0 + Wd, 0);
+      f.addColorStop(0, `hsla(${r.h}, 100%, 60%, 0)`);
+      f.addColorStop(0.5, `hsla(${r.h}, 100%, 56%, 0.24)`);
+      f.addColorStop(1, `hsla(${r.h}, 100%, 60%, 0)`);
+      c.beginPath();
+      for (let i = 0; i <= N; i++) c.lineTo(X(i), y1[i]);
+      for (let i = N; i >= 0; i--) c.lineTo(X(i), y2[i]);
+      c.closePath();
+      c.fillStyle = f;
+      c.fill();
+
+      const e = c.createLinearGradient(x0, 0, x0 + Wd, 0);
+      e.addColorStop(0, `hsla(${r.h}, 100%, 58%, 0)`);
+      e.addColorStop(0.3, `hsla(${r.h}, 100%, 62%, 0.85)`);
+      e.addColorStop(0.7, `hsla(${r.h}, 100%, 62%, 0.85)`);
+      e.addColorStop(1, `hsla(${r.h}, 100%, 58%, 0)`);
+      c.strokeStyle = e;
+      for (const y of [y1, y2]) {
+        c.beginPath();
+        for (let i = 0; i <= N; i++) c.lineTo(X(i), y[i]);
+        c.lineWidth = lw * 4.5;
+        c.globalAlpha = 0.1;
+        c.stroke();
+        c.globalAlpha = 1;
+        c.lineWidth = lw;
+        c.stroke();
+      }
+    }
+
+    g = c.createLinearGradient(x0, 0, x0 + Wd, 0);
+    g.addColorStop(0, 'rgba(37, 99, 235, 0)');
+    g.addColorStop(0.5, 'rgba(120, 200, 255, 0.6)');
+    g.addColorStop(1, 'rgba(37, 99, 235, 0)');
+    c.strokeStyle = g;
+    c.lineWidth = 1.2;
+    c.beginPath();
+    c.moveTo(x0, cy);
+    c.lineTo(x0 + Wd, cy);
+    c.stroke();
+
+    // Bottom caustic + soft highlight
+    g = c.createRadialGradient(cx, cy + R * 0.95, 0, cx, cy + R * 0.95, R * 0.75);
+    g.addColorStop(0, `hsla(${gh + 40}, 100%, 70%, 0.3)`);
+    g.addColorStop(1, `hsla(${gh + 40}, 100%, 70%, 0)`);
+    c.fillStyle = g;
+    c.fillRect(cx - R, cy, R * 2, R);
+
+    const sx = cx - R * 0.38 + px * R * 0.08;
+    const sy = cy - R * 0.5 + py * R * 0.08;
+    g = c.createRadialGradient(sx, sy, 0, sx, sy, R * 0.6);
+    g.addColorStop(0, 'rgba(255, 255, 255, 0.2)');
+    g.addColorStop(1, 'rgba(255, 255, 255, 0)');
+    c.fillStyle = g;
+    c.fillRect(cx - R, cy - R, R * 2, R * 2);
+    c.restore();
+
+    // Rim highlights
+    c.save();
+    c.globalCompositeOperation = 'lighter';
+    for (const [dx, hh] of [[-0.8, gh - 40], [0.8, gh + 70]]) {
+      c.beginPath();
+      c.arc(cx + dx, cy, R, 0, TAU);
+      c.strokeStyle = `hsla(${hh}, 95%, 65%, 0.22)`;
+      c.lineWidth = 1;
+      c.stroke();
+    }
+    g = c.createLinearGradient(cx - R, cy - R, cx + R, cy + R);
+    g.addColorStop(0, `hsla(${gh}, 90%, 80%, 0.6)`);
+    g.addColorStop(0.5, `hsla(${gh + 60}, 90%, 80%, 0.16)`);
+    g.addColorStop(1, `hsla(${gh - 40}, 95%, 78%, 0.55)`);
+    c.beginPath();
+    c.arc(cx, cy, R, 0, TAU);
+    c.strokeStyle = g;
+    c.lineWidth = 6;
+    c.globalAlpha = 0.12;
+    c.stroke();
+    c.globalAlpha = 1;
+    c.lineWidth = 1.3;
+    c.stroke();
+    c.restore();
+
+    g = c.createLinearGradient(cx - R, cy - R, cx, cy);
+    g.addColorStop(0, 'rgba(255, 255, 255, 0.6)');
+    g.addColorStop(1, 'rgba(255, 255, 255, 0)');
+    c.strokeStyle = g;
+    c.lineWidth = 1.5;
+    c.beginPath();
+    c.arc(cx, cy, R - 2.5, Math.PI * 1.05, Math.PI * 1.7);
+    c.stroke();
+
+    g = c.createLinearGradient(cx + R, cy + R, cx, cy);
+    g.addColorStop(0, 'rgba(160, 210, 255, 0.5)');
+    g.addColorStop(1, 'rgba(160, 210, 255, 0)');
+    c.strokeStyle = g;
+    c.lineWidth = 1.1;
+    c.beginPath();
+    c.arc(cx, cy, R - 2.5, Math.PI * 0.15, Math.PI * 0.5);
+    c.stroke();
+
+    rings(true);
+
+    // Light motes
+    c.save();
+    c.globalCompositeOperation = 'lighter';
+    for (const p of P) {
+      const u = RM ? p.u : (p.u + now * 0.000014 * p.s) % 1;
+      const x = cx + p.x * R * 2.2 + (RM ? 0 : Math.sin(now * 0.0003 * p.s + p.ph) * 6);
+      const y = cy + R * 1.6 - u * R * 3.3;
+      const a = Math.sin(u * Math.PI) * 0.68;
+      const r = 0.9 + p.z * 1.5;
+      c.fillStyle = `hsla(${gh + p.z * 50}, 100%, 75%, ${a * 0.1})`;
+      c.beginPath();
+      c.arc(x, y, r * 3, 0, TAU);
+      c.fill();
+      c.fillStyle = `hsla(${gh + p.z * 50}, 100%, 85%, ${a})`;
+      c.beginPath();
+      c.arc(x, y, r, 0, TAU);
+      c.fill();
+    }
+    c.restore();
+  }
+
+  /* =========================================================
+     3. 4-STAGE CINEMATIC BRAND LOOP (14-Second Cycle)
+     ========================================================= */
+  const slides = [...document.querySelectorAll('.stage-slide')];
+  const dots = [...document.querySelectorAll('.s-dot')];
+  const topTag = document.getElementById('topStageTag');
+  const STAGE_STATES = ['', 'think', 'listen', 'speak'];
+  const STAGE_TAGS = ['NEURAL CORE', 'CORE TEAM', 'LOCAL AI', 'AUTONOMOUS'];
+
+  let curStage = 0;
+  let stageElapsed = 0;
+  const STAGE_DURATION = 3.5;
+
+  function setStage(idx) {
+    curStage = (idx + slides.length) % slides.length;
+    stageElapsed = 0;
+    document.body.dataset.v = STAGE_STATES[curStage];
+    if (topTag) topTag.textContent = STAGE_TAGS[curStage];
+    slides.forEach((s, i) => s.classList.toggle('active', i === curStage));
+    dots.forEach((d, i) => d.classList.toggle('on', i === curStage));
+  }
+
+  dots.forEach(d => {
+    d.addEventListener('click', e => {
+      e.stopPropagation();
+      setStage(+d.dataset.go);
+    });
+  });
+
+  cv.addEventListener('click', () => setStage(curStage + 1));
+
+  function loop(ts) {
+    const dt = Math.min((ts - last) / 1000 || 0, 0.05);
+    last = ts;
+
+    stageElapsed += dt;
+    if (stageElapsed >= STAGE_DURATION) {
+      setStage(curStage + 1);
+    }
+
+    const st = document.body.dataset.v || '';
+    t += dt * 0.45 * (st === 'think' ? 1.35 : st === 'speak' ? 1.25 : 1);
+
+    const target =
+      st === 'listen' ? 0.68 + 0.08 * Math.sin(t * 5) :
+      st === 'think'  ? 0.60 :
+      st === 'speak'  ? 0.76 + 0.10 * Math.sin(t * 6) * Math.sin(t * 2.4) :
+                        0.55;
+
+    amp += (target - amp) * Math.min(1, dt * 3.5);
+    px += (tx - px) * 0.04;
+    py += (ty - py) * 0.04;
+
+    draw(ts);
+    requestAnimationFrame(loop);
+  }
+
+  if (!RM) {
+    addEventListener('pointermove', e => {
+      tx = (e.clientX / W) * 2 - 1;
+      ty = (e.clientY / H) * 2 - 1;
+    }, { passive: true });
+  }
+
+  addEventListener('resize', resize, { passive: true });
+  resize();
+  if (!RM) requestAnimationFrame(loop);
+  window.mayaOrb = { setStage };
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('mode') === 'clearance' || window.location.hash === '#clearance') {
+      switchPrivateMode('clearance');
+    } else {
+      updateViewportHeight('auth');
+    }
+  });
+  window.addEventListener('resize', () => updateViewportHeight());
+})();
+
+/* =========================================================
+   4. PRIVATE TERMINAL AUTHENTICATION & KEYGEN CEREMONY
+   ========================================================= */
+const EYE_OPEN = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+const EYE_CLOSED = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
+
+let currentPrivateMode = 'auth';
+
+function updateViewportHeight(mode = currentPrivateMode) {
+    const viewport = document.getElementById('panelsViewport');
+    const panel = mode === 'clearance' ? document.getElementById('panelClearance') : document.getElementById('panelAuth');
+    if (viewport && panel) {
+        viewport.style.height = panel.offsetHeight + 'px';
+    }
+}
+
+function togglePasswordVisibility(inputId, btn) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    const isPassword = input.type === 'password';
+    input.type = isPassword ? 'text' : 'password';
+    btn.innerHTML = isPassword ? EYE_CLOSED : EYE_OPEN;
+}
+
+function showAlert(message, isSuccess = false) {
+    const alert = document.getElementById('authAlert');
+    if (!alert) return;
+    alert.textContent = message;
+    alert.className = 'auth-alert' + (isSuccess ? ' success' : '');
+    alert.style.display = 'flex';
+}
+
+function hideAlert() {
+    const alert = document.getElementById('authAlert');
+    if (alert) alert.style.display = 'none';
+}
+
+function switchPrivateMode(mode) {
+    currentPrivateMode = mode;
+    const slider = document.getElementById('panelsSlider');
+    const tabSlider = document.getElementById('authTabSlider');
+    const tabAuth = document.getElementById('tabAuth');
+    const tabClearance = document.getElementById('tabClearance');
+    const title = document.getElementById('authTitle');
+    const subtitle = document.getElementById('authSubtitle');
+
+    hideAlert();
+
+    if (mode === 'clearance') {
+        if (slider) slider.style.transform = 'translateX(-50%)';
+        if (tabSlider) tabSlider.style.transform = 'translateX(100%)';
+        if (tabAuth) tabAuth.classList.remove('active');
+        if (tabClearance) tabClearance.classList.add('active');
+        if (title) title.textContent = 'Node Provisioning';
+        if (subtitle) subtitle.textContent = 'Attest your workstation & generate a cryptographic passkey to initialize clearance.';
+    } else {
+        if (slider) slider.style.transform = 'translateX(0%)';
+        if (tabSlider) tabSlider.style.transform = 'translateX(0%)';
+        if (tabAuth) tabAuth.classList.add('active');
+        if (tabClearance) tabClearance.classList.remove('active');
+        if (title) title.textContent = 'Private Login';
+        if (subtitle) subtitle.textContent = 'Authorized credentials required to access Maya intelligent operations.';
+    }
+    requestAnimationFrame(() => updateViewportHeight(mode));
+}
+
+let keygenInterval = null;
+function generateNeuralKeypair() {
+    const keyInput = document.getElementById('clearanceKey');
+    const keygenBtn = document.getElementById('keygenBtn');
+    const badge = document.getElementById('entropyBadge');
+    const badgeText = document.getElementById('entropyText');
+
+    if (!keyInput || !keygenBtn) return;
+
+    keygenBtn.disabled = true;
+    keygenBtn.innerHTML = '<span>⚡ Synthesizing…</span>';
+
+    const hexChars = '0123456789abcdef';
+    let frames = 0;
+    clearInterval(keygenInterval);
+
+    // Matrix cryptographic scramble effect
+    keygenInterval = setInterval(() => {
+        let scramble = 'mya_';
+        for (let i = 0; i < 16; i++) {
+            scramble += hexChars[Math.floor(Math.random() * hexChars.length)];
+        }
+        keyInput.value = scramble;
+        frames++;
+
+        if (frames >= 14) {
+            clearInterval(keygenInterval);
+            // Final cryptographic entropy token
+            let finalHex = '';
+            if (window.crypto && window.crypto.getRandomValues) {
+                const bytes = new Uint8Array(8);
+                window.crypto.getRandomValues(bytes);
+                finalHex = Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+            } else {
+                for (let k = 0; k < 16; k++) finalHex += hexChars[Math.floor(Math.random() * 16)];
+            }
+            keyInput.value = 'mya_sec_' + finalHex;
+            keygenBtn.disabled = false;
+            keygenBtn.innerHTML = '<span>⚡ Re-Roll</span>';
+
+            if (badge && badgeText) {
+                badgeText.textContent = 'secp256k1 attestation seeded';
+                badge.classList.add('visible');
+                updateViewportHeight('clearance');
+            }
+        }
+    }, 40);
+}
+
+async function handleClearanceSubmit(event) {
+    event.preventDefault();
+    hideAlert();
+
+    const email = document.getElementById('clearanceEmail').value.trim();
+    const token = document.getElementById('clearanceToken').value.trim();
+    const key = document.getElementById('clearanceKey').value.trim();
+    const submitBtn = document.getElementById('clearanceSubmitBtn');
+    const btnText = document.getElementById('clearanceBtnText');
+
+    if (!key) {
+        showAlert('Please generate or provide an operator passkey.');
+        return;
+    }
+
+    submitBtn.disabled = true;
+    btnText.textContent = 'Attesting Hardware Node…';
+
+    setTimeout(() => {
+        btnText.textContent = 'Registering Public Key…';
+        setTimeout(() => {
+            btnText.textContent = 'Clearance Initialized!';
+            showAlert('Operator node provisioned. Initializing Maya…', true);
+
+            // Pre-fill credentials into Private Login form
+            const privUser = document.getElementById('privateUser');
+            const privKey = document.getElementById('privateKey');
+            if (privUser) privUser.value = email;
+            if (privKey) privKey.value = key;
+
+            setTimeout(() => {
+                window.location.href = 'maya.html';
+            }, 850);
+        }, 650);
+    }, 600);
+}
+
+async function handlePrivateSubmit(event) {
+    event.preventDefault();
+    hideAlert();
+
+    const user = document.getElementById('privateUser').value.trim();
+    const key = document.getElementById('privateKey').value;
+
+    const submitBtn = document.getElementById('privateSubmitBtn');
+    const btnText = document.getElementById('btnText');
+    const btnIcon = document.getElementById('btnIcon');
+
+    submitBtn.disabled = true;
+    btnText.textContent = 'Authenticating Terminal…';
+    if (btnIcon) btnIcon.style.display = 'none';
+
+    setTimeout(() => {
+        showAlert('Access verified. Launching Maya…', true);
+        btnText.textContent = 'Launching Maya…';
+        setTimeout(() => {
+            window.location.href = 'maya.html';
+        }, 750);
+    }, 600);
+}
+</script>
+</body>
+</html>

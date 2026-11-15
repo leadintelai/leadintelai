@@ -1,17 +1,13 @@
-<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <defs>
-    <clipPath id="c4"><rect width="400" height="400" rx="90" ry="90"/></clipPath>
-    <linearGradient id="bg4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0c1e35"/><stop offset="100%" stop-color="#0a3040"/></linearGradient>
-    <linearGradient id="up4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#0ea5e9"/></linearGradient>
-    <linearGradient id="lo4" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#0369a1"/><stop offset="100%" stop-color="#0284c7"/></linearGradient>
-    <linearGradient id="ar4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0ea5e9"/><stop offset="100%" stop-color="#0369a1"/></linearGradient>
-    <linearGradient id="ca4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7dd3fc"/><stop offset="100%" stop-color="#38bdf8"/></linearGradient>
+    <linearGradient id="fav-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
   </defs>
-  <g clip-path="url(#c4)">
-    <rect width="400" height="400" fill="url(#bg4)"/>
-    <polygon points="258,88  358,200  258,312" fill="url(#ar4)"/>
-    <polygon points="258,68  258,88  358,200  336,162" fill="url(#ca4)"/>
-    <polygon points="162,218  262,218  150,354  48,354" fill="url(#lo4)"/>
-    <polygon points="48,46  150,46  262,182  160,182" fill="url(#up4)"/>
-  </g>
+  <rect width="64" height="64" rx="14" fill="#07090e"/>
+  <rect x="1" y="1" width="62" height="62" rx="13" fill="none" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.5"/>
+  <path d="M22 18 L42 18 C46 18 49 21 49 25 L49 31 C49 35 46 38 42 38 L30 38 C26 38 23 41 23 45 L23 46 C23 49 26 51 29 51 L44 51" fill="none" stroke="url(#fav-blue)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="22" cy="18" r="3" fill="#60a5fa"/>
+  <circle cx="44" cy="51" r="3" fill="#60a5fa"/>
 </svg>

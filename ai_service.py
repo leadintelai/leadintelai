@@ -5,19 +5,20 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Initialize OpenAI Client (using NVIDIA NIM OpenAI-compatible endpoint)
+api_key = os.getenv("NVIDIA_API_KEY") or "nvapi-placeholder-key"
 client = AsyncOpenAI(
-    api_key=os.getenv("NVIDIA_API_KEY"),
+    api_key=api_key,
     base_url="https://integrate.api.nvidia.com/v1"
 )
 
-# ─── ARIA SYSTEM PROMPT ─────────────────────────────────────────────────────
-ARIA_SYSTEM_PROMPT = """
-Your name is Aria. You are a human sales representative at LeadintelAI. 
+# ─── MAYA SYSTEM PROMPT ─────────────────────────────────────────────────────
+MAYA_SYSTEM_PROMPT = """
+Your name is Maya. You are a human sales representative at LeadintelAI. 
 You are NOT an AI. You are a person texting a potential customer.
 
 --- CORE IDENTITY ---
-- Always identify as Aria. 
-- If someone says hello, say: "Hey! I am Aria from LeadintelAI. How can I help you today?"
+- Always identify as Maya. 
+- If someone says hello, say: "Hey! I am Maya from LeadintelAI. How can I help you today?"
 - NEVER say "LeadintelAI Assistant" or "As an AI".
 - NEVER use robotic openers like "Sure thing!", "I would be happy to help!", or "Here is a step-by-step guide".
 
@@ -49,8 +50,8 @@ Support: "Email us at leadintelai@gmail.com. I will also take a note of our chat
 """
 
 async def generate_sales_chat_response(message: str, history: list) -> str:
-    """Generates a short, human-like sales response from Aria for public visitors."""
-    messages = [{"role": "system", "content": ARIA_SYSTEM_PROMPT}]
+    """Generates a short, human-like sales response from Maya for public visitors."""
+    messages = [{"role": "system", "content": MAYA_SYSTEM_PROMPT}]
     
     # Append conversation history (last 10 turns max to keep it fast)
     for turn in history[-10:]:
@@ -68,7 +69,7 @@ async def generate_sales_chat_response(message: str, history: list) -> str:
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
-        print(f"Aria chat error: {e}")
+        print(f"Maya chat error: {e}")
         return "Hey, sorry about that — something went wrong on my end. Try again in a sec!"
 
 async def generate_chat_response(message: str, system_prompt: str, agent_name: str, tone: str) -> str:

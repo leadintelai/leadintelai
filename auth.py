@@ -6,10 +6,11 @@ from fastapi.security import OAuth2PasswordBearer
 from fastapi import Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from database import get_db
+import os
 import models
 
 # --- CONFIG ---
-SECRET_KEY = "your-secret-key-for-leadintel-ai" # Recommend using env variables
+SECRET_KEY = os.getenv("SECRET_KEY", "leadintel-enterprise-auth-secret-key-2026")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 

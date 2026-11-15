@@ -1,407 +1,1327 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leadintel MailEngine | Mass Outreach</title>
-    <meta name="description" content="Send high-volume, personalized email campaigns to your entire prospect database in a single click. Nurture leads over time and convert them with intelligent automated sequences.">
+    <meta name="robots" content="noindex, nofollow">
+    <title>MailEngine Console | Mass Cold Outreach & Deliverability — LeadintelAI</title>
+    <meta name="description" content="Enterprise MailEngine outbound console: Multi-inbox rotation, automated domain warming, multi-step sequences, and 98.7% primary inbox delivery.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="glass-theme.css?v=20261115">
+
     <style>
-/* ── Linear Layout System (Extracted from Production CSS) ── */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-    background: #000103;
-    color: #fff;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-}
-a { text-decoration: none; color: inherit; }
+        :root {
+            --mail-bg: #07090e;
+            --surface-panel: #0b0f17;
+            --surface-panel-sub: #080c13;
+            --border-panel: rgba(255, 255, 255, 0.08);
+            --border-subtle: rgba(255, 255, 255, 0.05);
+            --font-mono: 'JetBrains Mono', monospace;
+            --accent-saffron-deep: #ea580c;
+            --accent-saffron-border: #c2410c;
+            --accent-saffron-text: #fb923c;
+            --accent-saffron-tint: rgba(234, 88, 12, 0.16);
+            --accent-blue-deep: #1e3a8a;
+            --accent-blue-border: #1e40af;
+        }
 
-/* ── Navbar ── */
-.navbar {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 60px;
-    z-index: 9999;
-}
-.navbar.scrolled {
-    background: rgba(0,1,3,0.75);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1440px;
-    margin: 0 auto;
-    height: 60px;
-    padding: 0 48px;
-}
-.logo { display: flex; align-items: center; gap: 10px; }
-.logo-wordmark { font-size: 0.95rem; font-weight: 600; letter-spacing: -0.01em; color: #fff; }
-.logo-ai { opacity: 0.6; }
-.logo-icon { flex-shrink: 0; }
-.nav-links { display: flex; align-items: center; gap: 32px; }
-.nav-links a { font-size: 0.875rem; color: rgba(255,255,255,0.6); transition: color 0.2s; }
-.nav-links a:hover { color: #fff; }
-.nav-actions { display: flex; align-items: center; gap: 10px; }
-.nav-login { font-size: 0.875rem; color: rgba(255,255,255,0.6); padding: 6px 14px; border-radius: 6px; transition: color 0.2s; }
-.nav-login:hover { color: #fff; }
-.btn-nav-cta { background: #EAEAEC; color: #0B0B0D; font-size: 0.8rem; font-weight: 500; padding: 6px 14px; border-radius: 6px; transition: background 0.2s; }
-.btn-nav-cta:hover { background: #fff; }
-.nav-hamburger { display: none; }
-.nav-mobile-drawer { display: none; }
+        body {
+            background-color: var(--mail-bg);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 85% 15%, rgba(234, 88, 12, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 15% 85%, rgba(30, 58, 138, 0.06) 0%, transparent 45%);
+            background-attachment: fixed;
+            -webkit-font-smoothing: antialiased;
+        }
 
-/* ── Page container (Linear: width:100% + max-width) ── */
-.linear-container {
-    width: 100%;
-    max-width: 1440px;
-    padding-inline: 80px;
-    margin-inline: auto;
-}
+        /* ─── IN-SCREEN APPLICATION SHELL ─── */
+        .app-main-layout {
+            min-height: 100vh;
+            width: 100%;
+            margin-left: 0;
+            display: flex;
+            flex-direction: column;
+            transition: margin-left 0.25s cubic-bezier(0.16, 1, 0.3, 1), width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            box-sizing: border-box;
+            position: relative;
+        }
 
-/* ── Split Header (inspired by Linear homepage section headers) ── */
-.page-hero {
-    width: 100%;
-    padding-block: 128px;
-    padding-top: calc(60px + 80px);
-}
-.page-hero-inner {
-    width: 100%;
-    max-width: 1440px;
-    padding-inline: 80px;
-    margin-inline: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-}
-.page-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 4px 12px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.09);
-    border-radius: 99px;
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 28px;
-}
-.page-h1 {
-    font-size: clamp(2.8rem, 5vw, 5rem);
-    font-weight: 500;
-    letter-spacing: -0.04em;
-    line-height: 1.0;
-    color: #fff;
-    margin-bottom: 36px;
-}
-.page-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: rgba(255,255,255,0.4);
-    font-size: 0.83rem;
-    margin-bottom: 48px;
-    transition: color 0.2s;
-}
-.page-back:hover { color: #fff; }
-.page-desc {
-    font-size: 1.1rem;
-    line-height: 1.75;
-    color: rgba(255,255,255,0.7);
-    border-left: 2px solid;
-    padding-left: 24px;
-    margin-bottom: 0;
-}
-.page-cta {
-    margin-top: 40px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #fff;
-    color: #000;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-weight: 500;
-    font-size: 0.88rem;
-    transition: background 0.2s;
-}
-.page-cta:hover { background: #ddd; }
+        @media (min-width: 1024px) {
+            body.sidebar-open .app-main-layout {
+                margin-left: 260px;
+                width: calc(100% - 260px);
+            }
+        }
 
-/* ── Hairline divider ── */
-.section-divider {
-    width: 100%;
-    height: 1px;
-    background: rgba(255,255,255,0.08);
-    margin: 0;
-}
+        /* ─── ENTERPRISE IN-SCREEN COLLAPSIBLE SIDEBAR ─── */
+        .enterprise-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 260px;
+            background: #090c14;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            z-index: 1050;
+            box-shadow: none;
+            transform: translateX(-100%);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            box-sizing: border-box;
+        }
 
-/* ── Feature Grid (Linear-style) ── */
-.features-section {
-    width: 100%;
-    padding-block: 128px;
-}
-.features-inner {
-    width: 100%;
-    max-width: 1440px;
-    padding-inline: 80px;
-    margin-inline: auto;
-}
-.features-eyebrow {
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
-    margin-bottom: 48px;
-    font-weight: 500;
-}
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-    overflow: hidden;
-}
-.feature-cell {
-    padding: 48px;
-    background: #000103;
-    transition: background 0.2s;
-}
-.feature-cell:hover { background: rgba(255,255,255,0.02); }
-.feature-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    margin-bottom: 24px;
-}
-.feature-cell h4 {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: -0.02em;
-    margin-bottom: 12px;
-}
-.feature-cell p {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.65;
-}
+        body.sidebar-open .enterprise-sidebar,
+        .enterprise-sidebar.open {
+            transform: translateX(0);
+        }
 
-/* ── Founder block ── */
-.founder-section-full {
-    width: 100%;
-    padding-block: 0 128px;
-}
-.founder-inner-full {
-    width: 100%;
-    max-width: 1440px;
-    padding-inline: 80px;
-    margin-inline: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4px;
-    border-radius: 12px;
-    overflow: hidden;
-}
-.founder-quote-card {
-    padding: 64px;
-    background: rgba(255,255,255,0.025);
-    border: 1px solid rgba(255,255,255,0.08);
-}
-.founder-quote-card blockquote {
-    font-size: 1.4rem;
-    font-weight: 400;
-    color: #fff;
-    line-height: 1.55;
-    letter-spacing: -0.02em;
-    margin-bottom: 48px;
-}
-.founder-meta-row {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-.f-avatar {
-    width: 48px; height: 48px;
-    border-radius: 50%;
-    background: #111;
-    border: 1px solid rgba(255,255,255,0.1);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.1rem; font-weight: 700; color: #fff;
-}
-.f-name { font-size: 0.95rem; font-weight: 600; color: #fff; }
-.f-role { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 2px; }
-.founder-mission-card {
-    padding: 64px;
-    background: rgba(94,106,210,0.07);
-    border: 1px solid rgba(94,106,210,0.15);
-}
-.founder-mission-card h3 {
-    font-size: 1.3rem; font-weight: 600; color: #fff;
-    letter-spacing: -0.02em; margin-bottom: 16px;
-}
-.founder-mission-card p {
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.7;
-    margin-bottom: 40px;
-}
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1.15rem;
+            min-height: 56px;
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: #090c14;
+        }
 
-/* ── Footer ── */
-.page-footer {
-    width: 100%;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding: 32px 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1440px;
-    margin-inline: auto;
-}
-.page-footer p, .page-footer a { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
-.page-footer a:hover { color: rgba(255,255,255,0.7); }
-.footer-links { display: flex; gap: 20px; }
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-/* ── Mobile ── */
-@media (max-width: 900px) {
-    .nav-inner { padding: 0 24px; }
-    .nav-links { display: none; }
-    .page-hero-inner { grid-template-columns: 1fr; padding-inline: 24px; gap: 32px; }
-    .linear-container { padding-inline: 24px; }
-    .features-inner { padding-inline: 24px; }
-    .feature-grid { grid-template-columns: 1fr; }
-    .founder-inner-full { grid-template-columns: 1fr; padding-inline: 24px; gap: 2px; }
-    .page-footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
-}
+        .sidebar-collapse-btn {
+            background: #0d111a;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #94a3b8;
+            width: 30px;
+            height: 30px;
+            border-radius: 7px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
 
-    .page-tag { color: #E879F9; }
-    .page-desc { border-color: #E879F9; }
-    .feature-dot { background: #E879F9; }
-    
-        .nav-links { display: flex; align-items: center; gap: 24px; flex-wrap: nowrap; }
-        @media (max-width: 480px) {
-            .nav-inner { padding: 0 14px; height: 52px; }
-            .nav-actions { gap: 6px; }
-            .nav-login { display: none; }
-            .btn-nav-cta { font-size: 0.74rem; padding: 5px 10px; }
-            .page-hero-inner { padding-top: 80px; padding-inline: 14px; gap: 20px; }
-            .page-h1 { font-size: clamp(1.5rem, 7vw, 2.2rem) !important; }
-            .page-desc { font-size: 0.82rem; }
-            .page-cta { font-size: 0.82rem; padding: 10px 18px; }
-            .linear-container { padding-inline: 14px; }
-            .features-inner { padding-inline: 14px; }
-            .founder-inner-full { padding-inline: 14px; }
-            .footer-links { flex-wrap: wrap; gap: 10px; }
+        .sidebar-collapse-btn:hover {
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.2);
+            background: #141a29;
+        }
+
+        .sidebar-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem 0.85rem;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .sidebar-group-title {
+            font-size: 0.66rem;
+            font-weight: 700;
+            color: #64748b;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            font-family: var(--font-mono);
+            padding: 14px 10px 4px;
+        }
+
+        .sidebar-group-title:first-child {
+            padding-top: 0;
+        }
+
+        .sidebar-nav-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .sidebar-nav-item,
+        .sidebar-nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: #94a3b8;
+            text-decoration: none;
+            background: transparent;
+            border: 1px solid transparent;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: left;
+            transition: all 0.15s ease;
+            font-family: inherit;
+        }
+
+        .sidebar-nav-item:hover,
+        .sidebar-nav-btn:hover {
+            background: #111726;
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .sidebar-nav-item.active {
+            background: #ea580c;
+            border-color: #c2410c;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .sidebar-item-pill {
+            margin-left: auto;
+            font-size: 0.62rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-family: var(--font-mono);
+        }
+
+        .sidebar-footer {
+            padding: 0.85rem 1.15rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            background: #07090f;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar-user-block {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            overflow: hidden;
+        }
+
+        .sidebar-user-info {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .sidebar-user-name {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .sidebar-user-role {
+            font-size: 0.66rem;
+            color: #64748b;
+            font-family: var(--font-mono);
+        }
+
+        .sidebar-footer-btn {
+            background: #0d111a;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #94a3b8;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .sidebar-footer-btn:hover {
+            color: #ef4444;
+            border-color: rgba(239, 68, 68, 0.3);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* ─── MOBILE BACKDROP ─── */
+        .sidebar-backdrop {
+            display: none;
+        }
+
+        @media (max-width: 1023px) {
+            .sidebar-backdrop {
+                display: block;
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.45);
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                z-index: 1040;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.2s ease;
+            }
+
+            body.sidebar-open .sidebar-backdrop {
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
+
+        /* ─── CONSOLE TOP NAVIGATION ─── */
+        .hub-nav {
+            background: #090c14;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0.75rem 1.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .nav-brand-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .sidebar-toggle-btn {
+            background: #0d111a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            width: 32px;
+            height: 32px;
+            border-radius: 7px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            flex-shrink: 0;
+        }
+
+        .sidebar-toggle-btn:hover {
+            background: #111726;
+            border-color: rgba(255, 255, 255, 0.22);
+            color: #ffffff;
+        }
+
+        .hub-logo {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hub-logo img {
+            height: 28px;
+            width: auto;
+        }
+
+        .hub-logo span span {
+            color: #3b82f6;
+        }
+
+        .module-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 3px 9px;
+            border-radius: 6px;
+            background: rgba(234, 88, 12, 0.16);
+            border: 1px solid rgba(194, 65, 12, 0.4);
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #fb923c;
+            font-family: var(--font-mono);
+        }
+
+        .back-hub-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            background: #0d111a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.15s ease;
+        }
+
+        .back-hub-btn:hover {
+            background: #151b2a;
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ─── MAIN WORKSPACE ─── */
+        .workspace-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.75rem 1.75rem 3.5rem;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* ─── TELEMETRY STRIP ─── */
+        .telemetry-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+        }
+
+        .telemetry-card {
+            background: #0a0e16;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 1.1rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .telemetry-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-family: var(--font-mono);
+        }
+
+        .telemetry-val {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #f8fafc;
+            letter-spacing: -0.02em;
+            font-family: var(--font-mono);
+        }
+
+        .telemetry-sub {
+            font-size: 0.72rem;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .badge-status-saffron {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 2px 7px;
+            border-radius: 4px;
+            background: rgba(234, 88, 12, 0.2);
+            border: 1px solid #c2410c;
+            color: #fb923c;
+            font-size: 0.68rem;
+            font-weight: 600;
+            font-family: var(--font-mono);
+        }
+
+        .badge-status-green {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 2px 7px;
+            border-radius: 4px;
+            background: rgba(6, 95, 70, 0.2);
+            border: 1px solid #047857;
+            color: #34d399;
+            font-size: 0.68rem;
+            font-weight: 600;
+            font-family: var(--font-mono);
+        }
+
+        /* ─── TAB NAVIGATION ─── */
+        .tabs-header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 0.75rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tabs-switch-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #090c14;
+            padding: 4px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: #94a3b8;
+            padding: 7px 14px;
+            border-radius: 7px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .tab-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .tab-btn.active {
+            background: #ea580c;
+            border-color: #c2410c;
+            color: #ffffff;
+        }
+
+        .btn-action-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: #ea580c;
+            border: 1px solid #c2410c;
+            color: #ffffff;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-decoration: none;
+        }
+
+        .btn-action-primary:hover {
+            background: #c2410c;
+            filter: brightness(1.1);
+        }
+
+        /* ─── SECTION CARDS & DATA TABLES ─── */
+        .console-panel {
+            background: #0a0e16;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .panel-heading-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .panel-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #f8fafc;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .table-responsive-wrapper {
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            background: #080c13;
+        }
+
+        table.console-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.82rem;
+        }
+
+        table.console-table th {
+            padding: 10px 14px;
+            background: #0c111a;
+            color: #64748b;
+            font-weight: 700;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            font-family: var(--font-mono);
+        }
+
+        table.console-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: #cbd5e1;
+            vertical-align: middle;
+        }
+
+        table.console-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .canned-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+        }
+
+        .canned-btn:hover {
+            color: #fb923c;
+            border-color: #c2410c;
+            background: rgba(234, 88, 12, 0.12);
+        }
+
+        /* ─── SEQUENCE BUILDER FLOW ─── */
+        .sequence-flow-builder {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .flow-step-card {
+            background: #0c111b;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .flow-step-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .flow-step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            background: #ea580c;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            font-family: var(--font-mono);
+        }
+
+        .flow-connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #64748b;
+            font-size: 0.72rem;
+            font-family: var(--font-mono);
+        }
+
+        .flow-connector::before,
+        .flow-connector::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* ─── MODAL STYLES ─── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-card {
+            background: #0a0e17;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 540px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            box-sizing: border-box;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            font-family: var(--font-mono);
+        }
+
+        .form-input,
+        .form-select {
+            background: #080b12;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            padding: 9px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            outline: none;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        @media (max-width: 1024px) {
+            .telemetry-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .telemetry-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .hub-nav {
+                padding: 0.6rem 1rem;
+            }
+
+            .workspace-container {
+                padding: 1rem 0.85rem 3rem;
+            }
         }
     </style>
 </head>
-<body>
 
-    <header class="navbar" id="navbar">
-        <div class="nav-inner">
-            <a href="index.html" class="logo">
-                <svg class="logo-icon" width="26" height="26" viewBox="0 0 100 100" fill="none" style="vertical-align: middle;">
-                    <path class="ghost-body" d="M20,50 Q20,20 50,20 Q80,20 80,50 L80,80 Q70,75 60,80 Q50,85 40,80 Q30,75 20,80 Z" fill="white" />
-                    <ellipse class="ghost-eye" cx="40" cy="45" rx="4" ry="6" fill="black" />
-                    <ellipse class="ghost-eye" cx="60" cy="45" rx="4" ry="6" fill="black" />
+<body class="sidebar-open">
+
+    <!-- SIDEBAR BACKDROP (MOBILE DISMISS) -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeSidebar()" aria-hidden="true"></div>
+
+    <!-- ENTERPRISE IN-SCREEN COLLAPSIBLE SIDEBAR -->
+    <aside class="enterprise-sidebar" id="enterpriseSidebar" aria-label="Main Navigation">
+        <!-- Sidebar Brand Header -->
+        <div class="sidebar-header">
+            <div class="sidebar-brand">
+                <a href="index.html" class="hub-logo" style="font-size: 1.05rem; gap: 8px;">
+                    <img src="leadintelai-logo.svg" alt="LeadintelAI Logo" style="height: 22px;" onerror="this.src='favicon.svg'">
+                    <span>Leadintel<span>AI</span></span>
+                </a>
+                <span class="role-badge role-badge-super" style="font-size: 0.58rem; padding: 2px 6px; background:#ea580c; border:1px solid #c2410c; color:#fb923c;">SUPER ADMIN</span>
+            </div>
+            <button class="sidebar-collapse-btn" onclick="toggleSidebar()" aria-label="Collapse Navigation Sidebar" title="Collapse Sidebar (Ctrl+B)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="9" y1="3" x2="9" y2="21"></line>
+                    <polyline points="14 9 11 12 14 15"></polyline>
                 </svg>
-                <span class="logo-wordmark">Leadintel<span class="logo-ai">AI</span></span>
-            </a>
-            <nav class="nav-links">
-                <a href="index.html#services">Services</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="about.html">About</a>
-                <a href="index.html#contact">Contact</a>
+            </button>
+        </div>
+
+        <!-- Sidebar Navigation Body -->
+        <div class="sidebar-content">
+            <div class="sidebar-group-title">Command Center</div>
+            <nav class="sidebar-nav-list">
+                <a href="project.html" class="sidebar-nav-item" onclick="closeSidebarOnMobile()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    <span>Overview Hub</span>
+                    <span class="sidebar-item-pill">HUB</span>
+                </a>
+                <a href="project.html#team-management-section" class="sidebar-nav-item" onclick="closeSidebarOnMobile()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <span>Team & RBAC</span>
+                    <span class="sidebar-item-pill">5 Seats</span>
+                </a>
+                <a href="project.html#billing-section" class="sidebar-nav-item" onclick="closeSidebarOnMobile()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="21" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                    <span>Billing & Wallet</span>
+                </a>
             </nav>
-            <div class="nav-actions">
-                <a href="login.html" class="nav-login">Log in</a>
-                <a href="login.html" class="btn-nav-cta">Get Started</a>
-            </div>
-        </div>
-    </header>
 
-    <main>
-        <!-- Split Hero Header -->
-        <div class="page-hero">
-            <div class="page-hero-inner">
-                <div>
-                    <a href="index.html" class="page-back">
-                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-                        Back
-                    </a>
-                    <div class="page-tag">MailEngine</div>
-                    <h1 class="page-h1">Leadintel MailEngine</h1>
-                    <a href="login.html?mode=signup" class="page-cta">Start Mailing &rarr;</a>
+            <div class="sidebar-group-title">Revenue Engines</div>
+            <nav class="sidebar-nav-list">
+                <a href="dashboard.html" class="sidebar-nav-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="22" y1="12" x2="18" y2="12"></line>
+                        <line x1="6" y1="12" x2="2" y2="12"></line>
+                        <line x1="12" y1="6" x2="12" y2="2"></line>
+                        <line x1="12" y1="22" x2="12" y2="18"></line>
+                    </svg>
+                    <span>DataCloud Search</span>
+                    <span class="sidebar-item-pill" style="color: #60a5fa; border-color: rgba(96, 165, 250, 0.3);">52M+</span>
+                </a>
+                <a href="whatsapp.html" class="sidebar-nav-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                    </svg>
+                    <span>WhatsApp Suite</span>
+                    <span class="sidebar-item-pill" style="color: #34d399; border-color: rgba(52, 211, 153, 0.3);">META API</span>
+                </a>
+                <a href="mailing.html" class="sidebar-nav-item active">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <span>MailEngine Outreach</span>
+                    <span class="sidebar-item-pill" style="background: rgba(234, 88, 12, 0.4); border-color: #c2410c; color: #fb923c;">98.7%</span>
+                </a>
+                <a href="crm.html" class="sidebar-nav-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#93c5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                    <span>Predictive CRM</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-group-title">Quick Actions</div>
+            <nav class="sidebar-nav-list">
+                <button type="button" class="sidebar-nav-btn" onclick="openSequenceModal()">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <span>+ New Sequence</span>
+                </button>
+                <button type="button" class="sidebar-nav-btn" onclick="switchView('domains')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                        <path d="M2 12h20"></path>
+                    </svg>
+                    <span>Domain Warmup</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+            <div class="sidebar-user-block">
+                <div class="user-avatar-circle" style="width: 28px; height: 28px; font-size: 0.78rem; background:#ea580c; border:1px solid #c2410c; color:#fff; display:flex; align-items:center; justify-content:center; border-radius:50%;">G</div>
+                <div class="sidebar-user-info">
+                    <div class="sidebar-user-name">Gaurav Yadav</div>
+                    <div class="sidebar-user-role">Super Admin</div>
                 </div>
-                <div>
-                    <p class="page-desc">Send high-volume, personalized email campaigns to your entire prospect database in a single click. Nurture leads over time and convert them with intelligent automated sequences.</p>
+            </div>
+            <button class="sidebar-footer-btn" onclick="location.href='login.html'" title="Sign Out" aria-label="Sign Out">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+            </button>
+        </div>
+    </aside>
+
+    <!-- MAIN IN-SCREEN APP LAYOUT -->
+    <div class="app-main-layout" id="appMainLayout">
+
+        <!-- CONSOLE TOP NAVIGATION BAR -->
+        <header class="hub-nav">
+            <div class="nav-brand-group">
+                <button class="sidebar-toggle-btn" id="sidebarToggleBtn" onclick="toggleSidebar()" aria-label="Toggle Navigation Sidebar" title="Toggle Sidebar (Ctrl+B)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <a href="index.html" class="hub-logo" title="LeadintelAI Home">
+                    <img src="leadintelai-logo.svg" alt="LeadintelAI Logo" onerror="this.src='favicon.svg'">
+                    <span>Leadintel<span>AI</span></span>
+                </a>
+                <div class="module-badge">
+                    <span style="width:7px; height:7px; border-radius:50%; background:#ea580c; border:1px solid #c2410c;"></span>
+                    <span>MailEngine Mass Outreach · v4.2</span>
                 </div>
             </div>
-        </div>
 
-        <div class="section-divider"></div>
+            <a href="project.html" class="back-hub-btn" title="Return to Super Admin Hub">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Command Hub</span>
+            </a>
+        </header>
 
-        
+        <!-- WORKSPACE CONTENT -->
+        <main class="workspace-container">
 
-        <!-- Features -->
-        <div class="features-section">
-            <div class="features-inner">
-                <div class="features-eyebrow">Key Features</div>
-                <div class="feature-grid">
-                    
-                    <div class="feature-cell">
-                        <div class="feature-dot"></div>
-                        <h4>Bulk Campaign Engine</h4>
-                        <p>Dispatch thousands of personalized emails simultaneously with high deliverability rates.</p>
+            <!-- TELEMETRY KPI STRIP -->
+            <section class="telemetry-strip" aria-label="MailEngine Cold Outreach Telemetry">
+                <div class="telemetry-card">
+                    <div class="telemetry-label">Daily Sending Volume</div>
+                    <div class="telemetry-val">8,450 <span style="font-size:0.85rem; color:#64748b; font-weight:500;">/ 12,000</span></div>
+                    <div class="telemetry-sub">70.4% Pool Capacity · 6 Inboxes</div>
+                </div>
+
+                <div class="telemetry-card">
+                    <div class="telemetry-label">Primary Inbox Placement</div>
+                    <div class="telemetry-val" style="color: #fb923c;">98.7%</div>
+                    <div class="telemetry-sub">SPF / DKIM / DMARC 100% Validated</div>
+                </div>
+
+                <div class="telemetry-card">
+                    <div class="telemetry-label">Average Open Rate</div>
+                    <div class="telemetry-val">41.8%</div>
+                    <div class="telemetry-sub">Industry Benchmark: 21.5% · +20.3% Lift</div>
+                </div>
+
+                <div class="telemetry-card">
+                    <div class="telemetry-label">Reply & Booking Velocity</div>
+                    <div class="telemetry-val" style="color: #34d399;">12.4%</div>
+                    <div class="telemetry-sub">38 Demo Meetings Booked This Week</div>
+                </div>
+            </section>
+
+            <!-- TABS CONTROLLER BAR -->
+            <div class="tabs-header-bar">
+                <div class="tabs-switch-group" role="tablist">
+                    <button class="tab-btn active" onclick="switchView('sequences')" id="tab-btn-sequences">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                        </svg>
+                        <span>Active Sequences</span>
+                    </button>
+                    <button class="tab-btn" onclick="switchView('domains')" id="tab-btn-domains">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                            <path d="M2 12h20"></path>
+                        </svg>
+                        <span>Mailbox Pool & Health</span>
+                    </button>
+                    <button class="tab-btn" onclick="switchView('builder')" id="tab-btn-builder">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        <span>Sequence Flow Builder</span>
+                    </button>
+                </div>
+
+                <button class="btn-action-primary" onclick="openSequenceModal()">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span>+ New Cold Sequence</span>
+                </button>
+            </div>
+
+            <!-- VIEW 1: ACTIVE SEQUENCES -->
+            <section class="console-panel" id="view-sequences">
+                <div class="panel-heading-row">
+                    <div class="panel-title">
+                        <span>Multi-Step Cold Email Sequences</span>
+                        <span class="badge-status-saffron">Auto-Rotated</span>
                     </div>
-                    <div class="feature-cell">
-                        <div class="feature-dot"></div>
-                        <h4>Template Builder</h4>
-                        <p>Design professional campaigns with a clean template editor — no code required.</p>
-                    </div>
-                    <div class="feature-cell">
-                        <div class="feature-dot"></div>
-                        <h4>Automated Nurturing</h4>
-                        <p>Set up smart drip sequences that keep your leads warm over weeks and months.</p>
-                    </div>
-                    <div class="feature-cell">
-                        <div class="feature-dot"></div>
-                        <h4>Sales Conversion Campaigns</h4>
-                        <p>Build dedicated campaigns targeting replies and scheduled demo calls.</p>
+                    <div style="font-size:0.75rem; color:#94a3b8; font-family:var(--font-mono);">
+                        Domain Ramp: 40 emails / domain / day
                     </div>
                 </div>
+
+                <div class="table-responsive-wrapper">
+                    <table class="console-table">
+                        <thead>
+                            <tr>
+                                <th>Sequence Name</th>
+                                <th>Mailbox Pool</th>
+                                <th>Prospects</th>
+                                <th>Current Step</th>
+                                <th>Open Rate</th>
+                                <th>Reply Rate</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sequence-table-body">
+                            <tr>
+                                <td>
+                                    <strong style="color:#ffffff;">Enterprise CXO Pilot Sequence</strong>
+                                    <div style="font-size:0.68rem; color:#64748b;">A/B Subject: "Quick question on outbound" vs "Revenue Ops 2026"</div>
+                                </td>
+                                <td><span style="font-family:var(--font-mono); color:#fb923c;">4 Mailboxes</span></td>
+                                <td><span style="font-family:var(--font-mono); font-weight:600;">3,200</span></td>
+                                <td><span style="color:#60a5fa;">Step 2 (Case Study)</span></td>
+                                <td><strong style="color:#34d399; font-family:var(--font-mono);">44.8%</strong></td>
+                                <td><strong style="color:#fb923c; font-family:var(--font-mono);">14.2%</strong></td>
+                                <td><span class="badge-status-green">RUNNING</span></td>
+                                <td><button class="canned-btn" onclick="alert('Viewing sequence metrics...')">Analytics</button></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong style="color:#ffffff;">Bengaluru Seed & Series A Founders</strong>
+                                    <div style="font-size:0.68rem; color:#64748b;">Direct pitch on SIM-verified CXO mobile lists</div>
+                                </td>
+                                <td><span style="font-family:var(--font-mono); color:#fb923c;">3 Mailboxes</span></td>
+                                <td><span style="font-family:var(--font-mono); font-weight:600;">1,850</span></td>
+                                <td><span style="color:#60a5fa;">Step 1 (Cold Intro)</span></td>
+                                <td><strong style="color:#34d399; font-family:var(--font-mono);">41.2%</strong></td>
+                                <td><strong style="color:#fb923c; font-family:var(--font-mono);">11.8%</strong></td>
+                                <td><span class="badge-status-green">RUNNING</span></td>
+                                <td><button class="canned-btn" onclick="alert('Viewing sequence metrics...')">Analytics</button></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong style="color:#ffffff;">Q3 Inactive Prospect Re-Activation</strong>
+                                    <div style="font-size:0.68rem; color:#64748b;">Gentle break-up sequence with calendar link</div>
+                                </td>
+                                <td><span style="font-family:var(--font-mono); color:#fb923c;">2 Mailboxes</span></td>
+                                <td><span style="font-family:var(--font-mono); font-weight:600;">1,400</span></td>
+                                <td><span style="color:#94a3b8;">Step 3 (Final Nudge)</span></td>
+                                <td><strong style="color:#34d399; font-family:var(--font-mono);">38.5%</strong></td>
+                                <td><strong style="color:#fb923c; font-family:var(--font-mono);">9.4%</strong></td>
+                                <td><span class="badge-status-saffron">COMPLETED</span></td>
+                                <td><button class="canned-btn" onclick="alert('Viewing report...')">Report</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- VIEW 2: MAILBOX POOL & DOMAIN WARMING -->
+            <section class="console-panel" id="view-domains" style="display: none;">
+                <div class="panel-heading-row">
+                    <div class="panel-title">
+                        <span>Connected Sending Mailboxes & Domain Health</span>
+                        <span class="badge-status-green">All Health &gt; 95%</span>
+                    </div>
+                    <button class="btn-action-primary" onclick="alert('Connect new mailbox modal triggered.')">+ Connect Mailbox</button>
+                </div>
+
+                <div class="table-responsive-wrapper">
+                    <table class="console-table">
+                        <thead>
+                            <tr>
+                                <th>Sending Email</th>
+                                <th>Provider</th>
+                                <th>Health Score</th>
+                                <th>SPF / DKIM / DMARC</th>
+                                <th>Daily Sent</th>
+                                <th>Warmup Mode</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>gaurav@leadintel.ai</strong></td>
+                                <td>Google Workspace</td>
+                                <td><span style="color:#34d399; font-weight:700; font-family:var(--font-mono);">100 / 100</span></td>
+                                <td><span class="badge-status-green">VALIDATED</span></td>
+                                <td><span style="font-family:var(--font-mono);">40 / 40</span></td>
+                                <td><span class="badge-status-green">ACTIVE (40/day)</span></td>
+                                <td><button class="canned-btn" onclick="alert('Mailbox settings...')">Configure</button></td>
+                            </tr>
+                            <tr>
+                                <td><strong>outreach@leadintel.co</strong></td>
+                                <td>Microsoft 365</td>
+                                <td><span style="color:#34d399; font-weight:700; font-family:var(--font-mono);">99 / 100</span></td>
+                                <td><span class="badge-status-green">VALIDATED</span></td>
+                                <td><span style="font-family:var(--font-mono);">48 / 50</span></td>
+                                <td><span class="badge-status-green">ACTIVE (45/day)</span></td>
+                                <td><button class="canned-btn" onclick="alert('Mailbox settings...')">Configure</button></td>
+                            </tr>
+                            <tr>
+                                <td><strong>growth@leadintel.in</strong></td>
+                                <td>Google Workspace</td>
+                                <td><span style="color:#34d399; font-weight:700; font-family:var(--font-mono);">98 / 100</span></td>
+                                <td><span class="badge-status-green">VALIDATED</span></td>
+                                <td><span style="font-family:var(--font-mono);">36 / 40</span></td>
+                                <td><span class="badge-status-green">ACTIVE (35/day)</span></td>
+                                <td><button class="canned-btn" onclick="alert('Mailbox settings...')">Configure</button></td>
+                            </tr>
+                            <tr>
+                                <td><strong>connect@leadintelai.net</strong></td>
+                                <td>Custom SMTP / Dedicated IP</td>
+                                <td><span style="color:#34d399; font-weight:700; font-family:var(--font-mono);">97 / 100</span></td>
+                                <td><span class="badge-status-green">VALIDATED</span></td>
+                                <td><span style="font-family:var(--font-mono);">50 / 50</span></td>
+                                <td><span class="badge-status-green">ACTIVE (50/day)</span></td>
+                                <td><button class="canned-btn" onclick="alert('Mailbox settings...')">Configure</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- VIEW 3: SEQUENCE FLOW BUILDER -->
+            <section class="console-panel" id="view-builder" style="display: none;">
+                <div class="panel-heading-row">
+                    <div class="panel-title">
+                        <span>Multi-Step Sequence Flow Architecture</span>
+                        <span class="badge-status-saffron">Dynamic Personalization</span>
+                    </div>
+                    <button class="canned-btn" onclick="alert('Test sequence dispatch triggered.')">Send Test Email</button>
+                </div>
+
+                <div class="sequence-flow-builder">
+                    <!-- Step 1 -->
+                    <div class="flow-step-card">
+                        <div class="flow-step-header">
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <span class="flow-step-num">1</span>
+                                <strong style="color:#fff; font-size:0.88rem;">Step 1: Personalized Intro & Value Hook</strong>
+                            </div>
+                            <span class="badge-status-green">44.8% Open Rate</span>
+                        </div>
+                        <div style="font-size:0.75rem; color:#64748b; font-family:var(--font-mono);">Subject: Quick question regarding {{Company}} outbound velocity</div>
+                        <div style="font-size:0.82rem; color:#cbd5e1; line-height:1.5; background:#080b12; padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06);">
+                            Hi {{FirstName}}, noticed {{Company}} expanded regional B2B coverage. Most revenue teams struggle with stale phone directories—we verified 52M+ mobile SIMs with zero bounce. Would this help your reps this quarter?
+                        </div>
+                    </div>
+
+                    <div class="flow-connector">Wait 2 business days if no reply</div>
+
+                    <!-- Step 2 -->
+                    <div class="flow-step-card">
+                        <div class="flow-step-header">
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <span class="flow-step-num">2</span>
+                                <strong style="color:#fff; font-size:0.88rem;">Step 2: Proof Point & Benchmark Case Study</strong>
+                            </div>
+                            <span class="badge-status-green">38.4% Open Rate</span>
+                        </div>
+                        <div style="font-size:0.75rem; color:#64748b; font-family:var(--font-mono);">Subject: Re: Quick question regarding {{Company}} outbound velocity</div>
+                        <div style="font-size:0.82rem; color:#cbd5e1; line-height:1.5; background:#080b12; padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06);">
+                            Hi {{FirstName}}, following up on my note. Our client scaled pipeline deal velocity by 3.2x in 30 days using our MCA-verified CXO mobile list. Attaching a 1-page breakdown.
+                        </div>
+                    </div>
+
+                    <div class="flow-connector">Wait 3 business days if no reply</div>
+
+                    <!-- Step 3 -->
+                    <div class="flow-step-card">
+                        <div class="flow-step-header">
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <span class="flow-step-num">3</span>
+                                <strong style="color:#fff; font-size:0.88rem;">Step 3: Calendar Lock / Break-up Nudge</strong>
+                            </div>
+                            <span class="badge-status-saffron">29.1% Open Rate</span>
+                        </div>
+                        <div style="font-size:0.75rem; color:#64748b; font-family:var(--font-mono);">Subject: Closing the loop / {{Company}}</div>
+                        <div style="font-size:0.82rem; color:#cbd5e1; line-height:1.5; background:#080b12; padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06);">
+                            Hi {{FirstName}}, assume you are swamped. If now is not the right time, no worries at all. Feel free to grab 10 minutes on my calendar whenever timing aligns: leadintel.ai/meet
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- CREATE SEQUENCE MODAL -->
+    <div class="modal-overlay" id="sequenceModal" onclick="if(event.target===this) closeSequenceModal()">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div style="font-weight:700; font-size:1.1rem; color:#fff;">Create Multi-Step Cold Email Sequence</div>
+                <button onclick="closeSequenceModal()" style="background:none; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;">✕</button>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Sequence Campaign Name</label>
+                <input type="text" class="form-input" id="new-seq-name" placeholder="e.g. Fintech VP Sales Q4 Campaign">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Sending Mailbox Pool</label>
+                <select class="form-select" id="new-seq-pool">
+                    <option value="All 4 Validated Mailboxes (Auto-Rotation)">All 4 Validated Mailboxes (Auto-Rotation · 160 emails/day)</option>
+                    <option value="Google Workspace Pool (2 Mailboxes)">Google Workspace Pool (2 Mailboxes)</option>
+                    <option value="Microsoft 365 Dedicated (1 Mailbox)">Microsoft 365 Dedicated (1 Mailbox)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Audience Target Segment</label>
+                <select class="form-select" id="new-seq-audience">
+                    <option value="DataCloud CXO Contacts (3,200 Verified)">DataCloud CXO Contacts (3,200 Verified)</option>
+                    <option value="Bengaluru Tech Founders (1,850 Verified)">Bengaluru Tech Founders (1,850 Verified)</option>
+                    <option value="Custom Lead CSV (1,000 Contacts)">Custom Lead CSV (1,000 Contacts)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Warmup & Throttle Protection</label>
+                <div style="font-size:0.78rem; color:#fb923c; font-family:var(--font-mono); padding:8px; background:rgba(234,88,12,0.15); border:1px solid #c2410c; border-radius:6px;">
+                    Multi-inbox round-robin active · 40 emails / domain / day · SPF/DKIM checked
+                </div>
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:8px;">
+                <button class="canned-btn" onclick="closeSequenceModal()">Cancel</button>
+                <button class="btn-action-primary" onclick="submitSequence()">Launch Sequence</button>
             </div>
         </div>
-    </main>
+    </div>
 
-    <footer style="border-top: 1px solid rgba(255,255,255,0.08);">
-        <div class="page-footer">
-            <p>&copy; 2026 Leadintelai.in. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-            </div>
-        </div>
-    </footer>
-
+    <!-- SCRIPTS -->
     <script>
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 20);
-        }, { passive: true });
+        /* Sidebar Toggle Logic */
+        function toggleSidebar() {
+            if (document.body.classList.contains('sidebar-open')) {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
+        }
+
+        function openSidebar() {
+            const sb = document.getElementById('enterpriseSidebar');
+            if (sb) sb.classList.add('open');
+            document.body.classList.add('sidebar-open');
+            try { localStorage.setItem('leadintel_sidebar_state', 'open'); } catch (e) {}
+        }
+
+        function closeSidebar() {
+            const sb = document.getElementById('enterpriseSidebar');
+            if (sb) sb.classList.remove('open');
+            document.body.classList.remove('sidebar-open');
+            try { localStorage.setItem('leadintel_sidebar_state', 'closed'); } catch (e) {}
+        }
+
+        function closeSidebarOnMobile() {
+            if (window.innerWidth < 1024) closeSidebar();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedState = localStorage.getItem('leadintel_sidebar_state');
+            if (savedState === 'open' || (savedState !== 'closed' && window.innerWidth >= 1200)) {
+                openSidebar();
+            } else {
+                closeSidebar();
+            }
+
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && window.innerWidth < 1024) closeSidebar();
+                if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'b') {
+                    e.preventDefault();
+                    toggleSidebar();
+                }
+            });
+        });
+
+        /* Tabs Switching */
+        function switchView(viewName) {
+            document.getElementById('view-sequences').style.display = viewName === 'sequences' ? 'flex' : 'none';
+            document.getElementById('view-domains').style.display = viewName === 'domains' ? 'flex' : 'none';
+            document.getElementById('view-builder').style.display = viewName === 'builder' ? 'flex' : 'none';
+
+            document.getElementById('tab-btn-sequences').classList.toggle('active', viewName === 'sequences');
+            document.getElementById('tab-btn-domains').classList.toggle('active', viewName === 'domains');
+            document.getElementById('tab-btn-builder').classList.toggle('active', viewName === 'builder');
+        }
+
+        /* Modal Logic */
+        function openSequenceModal() {
+            document.getElementById('sequenceModal').classList.add('active');
+        }
+
+        function closeSequenceModal() {
+            document.getElementById('sequenceModal').classList.remove('active');
+        }
+
+        function submitSequence() {
+            const name = document.getElementById('new-seq-name').value.trim() || 'New Outbound Sequence';
+            const pool = document.getElementById('new-seq-pool').value;
+            const audience = document.getElementById('new-seq-audience').value;
+
+            const tbody = document.getElementById('sequence-table-body');
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>
+                    <strong style="color:#ffffff;">${name}</strong>
+                    <div style="font-size:0.68rem; color:#64748b;">Created by Gaurav Yadav · Just now</div>
+                </td>
+                <td><span style="font-family:var(--font-mono); color:#fb923c;">4 Mailboxes</span></td>
+                <td><span style="font-family:var(--font-mono); font-weight:600;">1,500</span></td>
+                <td><span style="color:#60a5fa;">Step 1 (Intro)</span></td>
+                <td><strong style="color:#34d399; font-family:var(--font-mono);">0.0%</strong></td>
+                <td><strong style="color:#fb923c; font-family:var(--font-mono);">0.0%</strong></td>
+                <td><span class="badge-status-green" style="background:#ea580c; color:#ffffff;">ENROLLING</span></td>
+                <td><button class="canned-btn" onclick="alert('Viewing sequence metrics...')">Analytics</button></td>
+            `;
+            tbody.insertBefore(tr, tbody.firstChild);
+
+            closeSequenceModal();
+            switchView('sequences');
+            alert(`Sequence "${name}" launched across ${pool}.`);
+        }
     </script>
 </body>
+
 </html>

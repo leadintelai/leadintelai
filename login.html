@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="robots" content="noindex, nofollow">
     <title>Account Access — LeadintelAI | Accelerate Revenue</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="glass-theme.css">
+    <link rel="stylesheet" href="glass-theme.css?v=20261115">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <meta name="description" content="Sign in or create your LeadintelAI account — B2B Sales Operating System for unified leads, WhatsApp, email, and CRM.">
 
     <!-- LeadintelAI Silent Connection Detector -->
@@ -23,657 +24,566 @@
         /* ─── RESET & BASE ─── */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+        :root {
+            color-scheme: dark;
+            --bg: #07080c;
+            --bg-surface: #0a0c14;
+            --accent-blue: #2563eb;
+            --accent-blue-hover: #3b82f6;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --line: rgba(255, 255, 255, 0.08);
+            --line-subtle: rgba(255, 255, 255, 0.04);
+            --glass-card: rgba(12, 16, 25, 0.76);
+            --glass-border: rgba(255, 255, 255, 0.10);
+            --glass-border-top: rgba(255, 255, 255, 0.22);
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        html {
+            background-color: var(--bg);
+        }
+
         body {
-            background-color: #07080c;
+            background-color: var(--bg);
             color: var(--text-primary);
             font-family: var(--font-main);
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-        }
-
-        /* ─── THIN NAVBAR — spans full width ─── */
-        .navbar {
-            height: 52px;
-            min-height: 52px;
-            flex-shrink: 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(7, 8, 12, 0.92);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            z-index: 50;
+            overflow-x: hidden;
             position: relative;
         }
 
-        .nav-inner {
-            max-width: 100%;
+        /* ─── FULLSCREEN WEBGL LIQUID CHROME BACKGROUND (MATCHING LANDING PAGE) ─── */
+        .chrome-container {
+            position: fixed;
+            inset: 0;
+            width: 100%;
             height: 100%;
-            padding: 0 28px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 700;
-            font-size: 1rem;
-            letter-spacing: -0.02em;
-        }
-
-        .logo-icon img {
-            width: 26px;
-            height: 26px;
-            display: block;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-        }
-
-        .nav-links a {
-            font-size: 0.84rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover { color: var(--text-primary); }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        #navPromptText {
-            font-size: 0.82rem;
-            color: var(--text-secondary);
-            white-space: nowrap;
-        }
-
-        #navActionBtn {
-            height: 32px;
-            padding: 0 16px;
-            font-size: 0.82rem;
-            font-weight: 600;
-            white-space: nowrap;
-            border-radius: 99px;
-            cursor: pointer;
-            border: none;
-            background: #ffffff;
-            color: #07080c;
-            transition: opacity 0.2s ease, transform 0.15s ease;
-            font-family: inherit;
-        }
-
-        #navActionBtn:hover { opacity: 0.88; transform: translateY(-1px); }
-
-        /* ─── SPLIT LAYOUT ─── */
-        .auth-split {
-            flex: 1;
-            display: flex;
-            overflow: hidden;
-            min-height: 0;
-        }
-
-        /* ══════════════════════════════════════
-           LEFT PANEL — AI Animation Stage
-        ══════════════════════════════════════ */
-        .left-panel {
-            flex: 0 0 56%;
-            position: relative;
+            z-index: 0;
             overflow: hidden;
             background: #07080c;
         }
 
-        /* Aurora ambient blobs — contained to left */
-        .left-aurora {
-            position: absolute;
-            inset: -15%;
-            pointer-events: none;
-            filter: blur(90px);
-            opacity: 0.6;
-        }
-
-        .l-blob {
-            position: absolute;
-            border-radius: 50%;
-            mix-blend-mode: screen;
-        }
-
-        .l-blob-1 {
-            width: 520px; height: 480px;
-            top: -5%; left: 5%;
-            background: radial-gradient(circle, rgba(37,99,235,0.42) 0%, rgba(37,99,235,0.1) 55%, transparent 75%);
-            animation: lb1 22s ease-in-out infinite alternate;
-        }
-
-        .l-blob-2 {
-            width: 420px; height: 380px;
-            bottom: 0%; right: 10%;
-            background: radial-gradient(circle, rgba(14,165,233,0.32) 0%, rgba(20,163,168,0.12) 55%, transparent 75%);
-            animation: lb2 26s ease-in-out infinite alternate;
-        }
-
-        .l-blob-3 {
-            width: 300px; height: 300px;
-            top: 40%; left: 45%;
-            background: radial-gradient(circle, rgba(59,130,246,0.22) 0%, transparent 70%);
-            animation: lb3 16s ease-in-out infinite alternate;
-        }
-
-        @keyframes lb1 {
-            0%   { transform: translate(0,0) scale(1); }
-            50%  { transform: translate(50px,40px) scale(1.1); }
-            100% { transform: translate(-40px,60px) scale(0.93); }
-        }
-        @keyframes lb2 {
-            0%   { transform: translate(0,0) scale(1); }
-            50%  { transform: translate(-60px,-50px) scale(1.12); }
-            100% { transform: translate(45px,-35px) scale(0.9); }
-        }
-        @keyframes lb3 {
-            0%   { transform: translate(-50%,-50%) scale(0.85); opacity: 0.3; }
-            50%  { transform: translate(-44%,-56%) scale(1.1); opacity: 0.55; }
-            100% { transform: translate(-56%,-44%) scale(0.92); opacity: 0.35; }
-        }
-
-        /* Blueprint grid on left panel */
-        .left-grid {
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
-            background-size: 48px 48px;
-            pointer-events: none;
-        }
-
-        /* Scanning beam — left panel only */
-        .left-scanner {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%;
-            height: 100px;
-            background: linear-gradient(180deg,
-                transparent 0%,
-                rgba(59,130,246,0.025) 50%,
-                rgba(96,165,250,0.07) 98%,
-                rgba(147,197,253,0.18) 100%);
-            pointer-events: none;
-            animation: scanLeft 14s cubic-bezier(0.4,0,0.2,1) infinite;
-        }
-
-        @keyframes scanLeft {
-            0%   { transform: translateY(-110px); opacity: 0; }
-            4%   { opacity: 0.7; }
-            96%  { opacity: 0.7; }
-            100% { transform: translateY(100vh); opacity: 0; }
-        }
-
-        /* Left panel main canvas */
-        #leftCanvas {
+        .chrome-canvas {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
+            display: block;
         }
 
-        /* Vignette right edge — blends into right panel */
-        .left-vignette {
+        /* Atmospheric darkening vignette so typography has deep contrast */
+        .chrome-vignette {
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse at 30% 50%, transparent 30%, rgba(7,8,12,0.55) 70%, #07080c 92%);
+            background:
+                radial-gradient(ellipse at 42% 46%, rgba(7, 8, 12, 0.0) 0%, rgba(7, 8, 12, 0.45) 65%, #07080c 100%),
+                linear-gradient(180deg, rgba(7, 8, 12, 0.45) 0%, rgba(7, 8, 12, 0.05) 40%, rgba(7, 8, 12, 0.72) 100%);
             pointer-events: none;
         }
 
-        /* Right-edge fade specifically */
-        .left-edge-fade {
-            position: absolute;
-            top: 0; right: 0; bottom: 0;
-            width: 120px;
-            background: linear-gradient(90deg, transparent, rgba(10,11,16,0.9) 85%, #0a0b10 100%);
+        /* Subtle 40px architectural alignment grid matching landing page (glass-theme.css) */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
             pointer-events: none;
+            z-index: 1;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center;
+            -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 35%, transparent 85%);
+            mask-image: radial-gradient(circle at 50% 50%, #000 35%, transparent 85%);
         }
 
-        /* ─── LEFT BRANDING LOCKUP (Secret Private Login Entry) ─── */
-        .left-brand {
-            position: absolute;
-            bottom: 42px;
-            left: 44px;
-            right: 100px;
-            z-index: 10;
+        /* Fine atmospheric film grain */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.035;
+            mix-blend-mode: screen;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E");
         }
 
-        .left-brand-logo {
+
+
+        /* ─── LIQUID GLASS BUTTON (TRANSPARENT RESTING -> LIQUID BLUE FLOW ON HOVER) ─── */
+        .btn-liquid-pill {
+            position: relative;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-            text-decoration: none;
+            justify-content: center;
+            padding: 6px 16px;
+            border-radius: 99px;
+            background: rgba(10, 14, 26, 0.44);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(20px) saturate(200%);
+            -webkit-backdrop-filter: blur(20px) saturate(200%);
+            color: #f1f5f9;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: -0.01em;
             cursor: pointer;
-            transition: all 0.25s ease;
+            overflow: hidden;
+            isolation: isolate;
+            text-decoration: none;
+            transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+            box-shadow:
+                0 8px 24px rgba(0, 0, 0, 0.35),
+                inset 0 1px 1px rgba(255, 255, 255, 0.25),
+                inset 0 -1px 1px rgba(0, 0, 0, 0.3);
         }
 
-        .left-brand-logo:hover {
+        /* Fluid Chamber */
+        .liquid-fluid {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+            border-radius: inherit;
+            transform: translateY(105%);
+            transition: transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform;
+        }
+
+        /* The blue liquid body that fills the chamber */
+        .liquid-fluid::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, #3b82f6 0%, #2563eb 45%, #1d4ed8 100%);
+            border-radius: inherit;
+        }
+
+        /* The undulating liquid wave meniscus along the crest of the fluid */
+        .liquid-wave {
+            position: absolute;
+            left: 50%;
+            top: -14px;
+            width: 220%;
+            height: 28px;
+            background: radial-gradient(ellipse at 50% 50%, rgba(147, 197, 253, 0.85) 0%, rgba(59, 130, 246, 0.9) 50%, transparent 80%);
+            transform: translateX(-50%);
+            animation: liquidWaveShimmer 3s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes liquidWaveShimmer {
+            0% { transform: translateX(-54%) scaleY(0.9); }
+            100% { transform: translateX(-46%) scaleY(1.3); }
+        }
+
+        /* Specular light highlight line at the top rim of the liquid */
+        .liquid-fluid::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 8%;
+            right: 8%;
+            height: 1.5px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+            z-index: 2;
+        }
+
+        /* Text and icons stay on top */
+        .btn-liquid-pill .btn-label {
+            position: relative;
+            z-index: 3;
+            pointer-events: none;
+            transition: color 0.25s ease, text-shadow 0.25s ease;
+        }
+
+        /* ─── HOVER STATE: Liquid blue flows into the button ─── */
+        .btn-liquid-pill:hover {
+            border-color: rgba(147, 197, 253, 0.5);
+            box-shadow:
+                0 12px 32px -4px rgba(37, 99, 235, 0.60),
+                0 0 24px 2px rgba(59, 130, 246, 0.30),
+                inset 0 1px 1.5px rgba(255, 255, 255, 0.55);
             transform: translateY(-1px);
-        }
-
-        .left-brand-logo img {
-            width: 32px;
-            height: 32px;
-            filter: brightness(1.1);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
-        }
-
-        .left-brand-logo:hover img {
-            transform: scale(1.08);
-            filter: brightness(1.25) drop-shadow(0 0 12px rgba(59, 130, 246, 0.6));
-        }
-
-        .left-brand-logo span {
-            font-size: 1.08rem;
-            font-weight: 700;
-            letter-spacing: -0.025em;
-            color: rgba(255,255,255,0.9);
-            transition: color 0.2s ease;
-        }
-
-        .left-brand-logo:hover span {
             color: #ffffff;
         }
 
-        .left-tagline {
-            font-size: 0.78rem;
-            color: rgba(148,163,184,0.7);
-            line-height: 1.55;
-            max-width: 320px;
-            pointer-events: none;
+        .btn-liquid-pill:hover .liquid-fluid {
+            transform: translateY(0%);
         }
 
-        /* ─── FLOATING STAT CHIPS ─── */
-        .left-stats {
-            position: absolute;
-            top: 50%;
-            left: 44px;
-            right: 100px;
-            transform: translateY(-50%);
+        .btn-liquid-pill:hover .btn-label {
+            color: #ffffff;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Subtle active pill state for currently selected mode */
+        .btn-liquid-pill.active {
+            border-color: rgba(255, 255, 255, 0.28);
+            box-shadow:
+                0 8px 24px rgba(0, 0, 0, 0.4),
+                inset 0 1px 1.5px rgba(255, 255, 255, 0.35);
+        }
+
+        /* ─── BALANCED 2-COLUMN STAGE ─── */
+        .auth-stage-wrapper {
+            position: relative;
             z-index: 10;
-            pointer-events: none;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            max-width: 300px;
-        }
-
-        .stat-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 16px;
-            border-radius: 12px;
-            background: rgba(10,12,18,0.72);
-            border: 1px solid rgba(59,130,246,0.2);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            font-size: 0.78rem;
-            color: rgba(248,250,252,0.85);
-            font-weight: 500;
-            opacity: 0;
-            transform: translateX(-18px);
-        }
-
-        .stat-chip.visible {
-            animation: chipIn 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
-        }
-
-        @keyframes chipIn {
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .chip-icon {
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
-            background: rgba(37,99,235,0.18);
-            border: 1px solid rgba(59,130,246,0.25);
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
-            color: #60a5fa;
+            padding: 80px 24px 32px;
+            min-height: 100vh;
         }
 
-        .chip-label { opacity: 0.7; font-size: 0.7rem; }
-        .chip-value { font-weight: 600; font-size: 0.84rem; color: #f8fafc; }
-
-        /* Hero headline in left panel */
-        .left-hero {
-            position: absolute;
-            top: 44px;
-            left: 44px;
-            right: 100px;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        .left-hero-eyebrow {
-            display: inline-flex;
+        .auth-container {
+            width: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+            display: flex;
             align-items: center;
-            gap: 7px;
-            padding: 4px 11px;
-            border-radius: 999px;
-            border: 1px solid rgba(59,130,246,0.22);
-            background: rgba(37,99,235,0.07);
-            font-size: 0.65rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: #93c5fd;
+            justify-content: space-between;
+            gap: 44px;
+        }
+
+        .auth-left-col {
+            flex: 0 0 430px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ─── LIQUIDGLASSKIT OPTICAL CONVEX AUTH CARD ─── */
+        .auth-card.liquid-glass-card {
+            position: relative;
+            width: 100%;
+            max-width: 430px;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.16) 0%,
+                rgba(255, 255, 255, 0.04) 35%,
+                rgba(255, 255, 255, 0.02) 65%,
+                rgba(255, 255, 255, 0.09) 100%
+            ), rgba(10, 14, 26, 0.48);
+            backdrop-filter: blur(32px) saturate(220%) brightness(1.08) contrast(108%);
+            -webkit-backdrop-filter: blur(32px) saturate(220%) brightness(1.08) contrast(108%);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            border-radius: 22px;
+            padding: 26px 26px 22px;
+            box-shadow:
+                inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.75),
+                inset 0 3px 8px 0 rgba(255, 255, 255, 0.22),
+                inset 0 -2px 3px 0 rgba(0, 0, 0, 0.45),
+                inset 0 -1px 1px 0 rgba(255, 255, 255, 0.18),
+                inset 2px 0 3px 0 rgba(255, 255, 255, 0.14),
+                inset -2px 0 3px 0 rgba(0, 0, 0, 0.24),
+                0 32px 84px -16px rgba(0, 0, 0, 0.88),
+                0 10px 24px -4px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            z-index: 10;
+            isolation: isolate;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Chromatic Edge Prism (LiquidGlassKit Dispersion) */
+        .auth-card.liquid-glass-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(
+                110deg,
+                rgba(255, 255, 255, 0.9) 0%,
+                rgba(56, 189, 248, 0.45) 25%,
+                rgba(255, 255, 255, 0.12) 50%,
+                rgba(236, 72, 153, 0.3) 75%,
+                rgba(255, 255, 255, 0.75) 100%
+            );
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0.85;
+            z-index: 1;
+        }
+
+        /* 45-Degree Surface Glare Highlight */
+        .auth-card.liquid-glass-card::after,
+        .liquid-glass-sheen {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 140%;
+            height: 120%;
+            background: radial-gradient(
+                ellipse at 30% 15%,
+                rgba(255, 255, 255, 0.26) 0%,
+                rgba(255, 255, 255, 0.05) 45%,
+                transparent 70%
+            );
+            transform: rotate(-12deg);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .auth-card.liquid-glass-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .auth-card.liquid-glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.38);
+            box-shadow:
+                inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.9),
+                inset 0 3.5px 10px 0 rgba(255, 255, 255, 0.28),
+                inset 0 -2px 3px 0 rgba(0, 0, 0, 0.5),
+                inset 0 -1px 1px 0 rgba(255, 255, 255, 0.22),
+                0 38px 96px -16px rgba(0, 0, 0, 0.94),
+                0 12px 30px -4px rgba(0, 0, 0, 0.65);
+        }
+
+        .forgot-back-header {
+            position: relative;
+            z-index: 2;
             margin-bottom: 14px;
         }
 
-        .eyebrow-dot {
-            width: 5px; height: 5px;
-            border-radius: 50%;
-            background: #3b82f6;
-            box-shadow: 0 0 6px #3b82f6;
-        }
-
-        .left-hero-title {
-            font-size: clamp(1.6rem, 2.4vw, 2.2rem);
-            font-weight: 800;
-            line-height: 1.18;
-            letter-spacing: -0.04em;
-            background: linear-gradient(160deg, #ffffff 0%, #93c5fd 55%, #38bdf8 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            max-width: 420px;
-        }
-
-        .left-hero-sub {
-            margin-top: 10px;
-            font-size: 0.82rem;
-            color: rgba(148,163,184,0.75);
-            line-height: 1.6;
-            max-width: 360px;
-        }
-
-        /* ══════════════════════════════════════
-           RIGHT PANEL — Auth Form Column
-        ══════════════════════════════════════ */
-        .right-panel {
-            flex: 1;
-            min-width: 0;
-            background: rgba(10,11,16,0.88);
-            backdrop-filter: blur(28px);
-            -webkit-backdrop-filter: blur(28px);
-            border-left: 1px solid rgba(255,255,255,0.05);
-            display: flex;
+        .forgot-back-btn {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            padding: 24px 32px;
-            overflow-y: auto;
-            position: relative;
+            gap: 8px;
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: color 0.15s ease;
         }
 
-        /* Subtle inner glow top-right */
-        .right-panel::before {
-            content: '';
-            position: absolute;
-            top: 0; right: 0;
-            width: 300px; height: 220px;
-            background: radial-gradient(ellipse at top right, rgba(37,99,235,0.08) 0%, transparent 70%);
-            pointer-events: none;
+        .forgot-back-btn:hover {
+            color: #f8fafc;
         }
 
-        /* ─── GLASSMORPHIC FORM CARD ─── */
-        .auth-card {
-            width: 100%;
-            max-width: 360px;
-            background: rgba(13,15,22,0.72);
-            backdrop-filter: blur(28px);
-            -webkit-backdrop-filter: blur(28px);
-            border: 1px solid rgba(255,255,255,0.09);
-            border-radius: 20px;
-            padding: 28px 26px 24px;
-            box-shadow:
-                0 20px 50px -8px rgba(0,0,0,0.75),
-                0 0 0 1px rgba(255,255,255,0.04),
-                inset 0 1px 0 rgba(255,255,255,0.1);
-            position: relative;
-            overflow: hidden;
-            animation: cardAppear 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
-        }
-
-        /* Shimmer top edge */
-        .auth-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 15%; right: 15%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
-            pointer-events: none;
-        }
-
-        @keyframes cardAppear {
-            from { opacity: 0; transform: translateY(14px) scale(0.98); }
-            to   { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        /* ─── TAB SWITCHER ─── */
+        /* Segmented Tabs (LiquidGlassKit Slider Architecture) */
         .auth-tabs-track {
             position: relative;
-            display: flex;
-            background: rgba(255,255,255,0.038);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 10px;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: rgba(10, 14, 26, 0.55);
+            backdrop-filter: blur(20px) saturate(200%);
+            -webkit-backdrop-filter: blur(20px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 9999px;
             padding: 3px;
-            margin-bottom: 20px;
-            user-select: none;
+            margin-bottom: 16px;
+            box-shadow:
+                inset 0 1.5px 2px rgba(0, 0, 0, 0.5),
+                inset 0 -1px 1px rgba(255, 255, 255, 0.08);
         }
 
         .auth-tab-slider {
             position: absolute;
-            top: 3px; bottom: 3px; left: 3px;
+            top: 3px;
+            left: 3px;
             width: calc(50% - 3px);
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.14);
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-            transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+            height: calc(100% - 6px);
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.22) 0%,
+                rgba(255, 255, 255, 0.08) 50%,
+                rgba(255, 255, 255, 0.12) 100%
+            ), rgba(30, 58, 138, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.32);
+            border-radius: 9999px;
+            transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow:
+                inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.8),
+                inset 0 -1px 2px 0 rgba(0, 0, 0, 0.35),
+                0 6px 16px rgba(0, 0, 0, 0.45);
             pointer-events: none;
         }
 
         .auth-tab-btn {
-            flex: 1;
             position: relative;
-            z-index: 1;
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 0.82rem;
+            z-index: 2;
+            padding: 7px 12px;
+            font-size: 0.80rem;
             font-weight: 500;
-            font-family: inherit;
-            padding: 7px 10px;
-            border-radius: 7px;
+            color: #94a3b8;
+            border: none;
+            background: transparent;
             cursor: pointer;
-            transition: color 0.25s ease;
+            border-radius: 99px;
+            transition: color 0.2s ease;
             text-align: center;
         }
 
-        .auth-tab-btn.active { color: #ffffff; font-weight: 600; }
-
-        /* ─── CARD HEADER ─── */
-        .auth-header {
-            text-align: center;
-            margin-bottom: 18px;
-        }
-
-        .auth-kicker {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            padding: 3px 10px;
-            margin-bottom: 10px;
-            border-radius: 999px;
-            border: 1px solid rgba(59,130,246,0.22);
-            background: rgba(59,130,246,0.07);
-            color: #93c5fd;
-            font-size: 0.62rem;
+        .auth-tab-btn.active {
+            color: #ffffff;
             font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
         }
 
-        .kicker-dot {
-            width: 5px; height: 5px;
-            border-radius: 50%;
-            background: #3b82f6;
-            box-shadow: 0 0 7px #3b82f6;
-        }
-
-        .kicker-dot-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            border-radius: 50%;
-            transition: transform 0.2s ease;
-        }
-
-        .kicker-dot-link:hover .kicker-dot {
-            transform: scale(1.5);
-            box-shadow: 0 0 10px #60a5fa, 0 0 22px #3b82f6;
+        /* Card Header */
+        .auth-header {
+            position: relative;
+            z-index: 2;
         }
 
         .auth-title {
-            font-size: 1.42rem;
-            line-height: 1.2;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            margin-bottom: 5px;
-            background: linear-gradient(170deg, #ffffff 0%, #cbd5e1 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 1.45rem;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: -0.025em;
+            margin-bottom: 4px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .auth-subtitle {
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
+            font-size: 0.82rem;
+            color: #94a3b8;
+            line-height: 1.45;
+            margin-bottom: 16px;
         }
 
-        /* ─── GOOGLE SSO ─── */
+        .auth-alert {
+            position: relative;
+            z-index: 2;
+            padding: 9px 12px;
+            border-radius: 10px;
+            margin-bottom: 14px;
+            font-size: 0.80rem;
+            background: rgba(239, 68, 68, 0.12);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(239, 68, 68, 0.28);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            color: #fca5a5;
+        }
+
+        /* Google SSO (Liquid Glass) */
         .btn-google {
-            width: 100%;
+            position: relative;
+            z-index: 2;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            padding: 9px 14px;
+            width: 100%;
+            height: 40px;
+            padding: 0 16px;
             border-radius: 10px;
-            background: rgba(255,255,255,0.038);
-            border: 1px solid rgba(255,255,255,0.09);
-            color: var(--text-primary);
-            font-size: 0.83rem;
-            font-weight: 500;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #f8fafc;
+            font-weight: 600;
+            font-size: 0.86rem;
             cursor: pointer;
-            transition: all 0.22s ease;
-            font-family: inherit;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .btn-google:hover {
-            background: rgba(255,255,255,0.07);
-            border-color: rgba(255,255,255,0.18);
+            background: rgba(255, 255, 255, 0.09);
+            border-color: rgba(255, 255, 255, 0.22);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
             transform: translateY(-1px);
         }
 
-        /* ─── DIVIDER ─── */
+        /* Divider */
         .auth-divider {
+            position: relative;
+            z-index: 2;
             display: flex;
             align-items: center;
-            margin: 15px 0;
-            color: rgba(148,163,184,0.5);
-            font-size: 0.68rem;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            font-weight: 500;
+            gap: 14px;
+            margin: 14px 0;
         }
 
-        .auth-divider::before,
-        .auth-divider::after {
-            content: '';
+        .auth-divider::before, .auth-divider::after {
+            content: "";
             flex: 1;
             height: 1px;
-            background: rgba(255,255,255,0.07);
+            background: rgba(255, 255, 255, 0.10);
         }
 
-        .auth-divider span { padding: 0 12px; }
+        .auth-divider span {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #64748b;
+        }
 
-        /* ─── PANELS VIEWPORT ─── */
+        /* Viewport & Slider */
         .auth-viewport {
             position: relative;
+            z-index: 2;
             overflow: hidden;
             width: 100%;
-            transition: height 0.35s cubic-bezier(0.16,1,0.3,1);
+            transition: height 0.32s cubic-bezier(0.2, 0.9, 0.25, 1);
+            will-change: height;
         }
 
         .auth-panels-slider {
             display: flex;
-            width: 200%;
-            transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+            width: 300%;
+            min-width: 300%;
+            align-items: flex-start;
+            transition: transform 0.32s cubic-bezier(0.2, 0.9, 0.25, 1);
+            will-change: transform;
+            transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
 
         .auth-panel {
-            width: 50%;
+            width: 33.333333%;
+            min-width: 33.333333%;
+            max-width: 33.333333%;
             flex-shrink: 0;
-            padding: 0 1px;
             box-sizing: border-box;
-            transition: opacity 0.3s ease;
+            padding: 0 2px;
         }
 
         .auth-panel.inactive {
-            opacity: 0.3;
             pointer-events: none;
         }
 
-        /* ─── FORM ELEMENTS ─── */
+        /* Forms */
         .auth-form {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 9px;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 8px;
         }
 
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 5px;
-            text-align: left;
+            gap: 4px;
         }
 
         .form-label {
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             font-weight: 500;
-            color: var(--text-secondary);
-            letter-spacing: -0.01em;
+            color: #cbd5e1;
+            line-height: 1.25;
+            letter-spacing: 0.01em;
         }
 
         .input-wrapper {
@@ -685,730 +595,1211 @@
         .input-icon {
             position: absolute;
             left: 12px;
-            color: rgba(148,163,184,0.5);
+            color: #64748b;
             pointer-events: none;
+            z-index: 2;
             transition: color 0.2s ease;
         }
 
+        /* Liquid Glass Input Fields (from Private Login) */
         .form-input {
             width: 100%;
-            background: rgba(8,10,16,0.65);
-            border: 1px solid rgba(255,255,255,0.08);
+            height: 38px;
+            padding: 0 12px 0 36px;
+            font-size: 0.84rem;
+            color: #ffffff;
+            background: rgba(10, 14, 26, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 10px;
-            padding: 9px 12px 9px 36px;
-            color: var(--text-primary);
-            font-size: 0.83rem;
-            font-family: inherit;
+            box-shadow:
+                inset 0 1px 2px rgba(0, 0, 0, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
             outline: none;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
         }
 
-        .form-input::placeholder { color: rgba(148,163,184,0.38); }
+        .form-input::placeholder {
+            color: #64748b;
+        }
+
+        .form-input:hover {
+            border-color: rgba(255, 255, 255, 0.20);
+            background: rgba(14, 19, 34, 0.55);
+        }
 
         .form-input:focus {
-            border-color: #3b82f6;
-            background: rgba(12,14,22,0.88);
-            box-shadow: 0 0 0 2.5px rgba(59,130,246,0.18);
+            border-color: rgba(96, 165, 250, 0.65);
+            background: rgba(16, 22, 38, 0.70);
+            box-shadow:
+                0 0 0 3px rgba(59, 130, 246, 0.20),
+                inset 0 1px 2px rgba(0, 0, 0, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.18);
         }
 
-        .input-wrapper:focus-within .input-icon { color: #60a5fa; }
+        .form-input:focus + .input-icon,
+        .input-wrapper:focus-within .input-icon {
+            color: #93c5fd;
+        }
 
-        /* Password toggle */
         .pw-toggle-btn {
             position: absolute;
             right: 10px;
             background: transparent;
             border: none;
-            color: rgba(148,163,184,0.5);
+            color: #64748b;
             cursor: pointer;
-            padding: 5px;
+            padding: 4px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 5px;
-            transition: color 0.2s ease, background 0.2s ease;
+            transition: color 0.15s ease;
         }
 
         .pw-toggle-btn:hover {
-            color: var(--text-primary);
-            background: rgba(255,255,255,0.05);
+            color: #cbd5e1;
         }
 
-        /* ─── REMEMBER & FORGOT ─── */
-        .form-options {
+        .form-subtext {
+            font-size: 0.70rem;
+            color: #64748b;
+            margin-top: 1px;
+        }
+
+        .form-row-between {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            margin: 4px 0 6px;
             font-size: 0.78rem;
-            margin-top: -1px;
         }
 
-        .custom-checkbox-label {
+        .remember-label {
             display: flex;
             align-items: center;
             gap: 7px;
+            color: #94a3b8;
             cursor: pointer;
             user-select: none;
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-            line-height: 1.4;
         }
 
-        .custom-checkbox-label input {
-            position: absolute;
-            opacity: 0; width: 0; height: 0;
-        }
-
-        .custom-checkbox {
-            width: 14px; height: 14px;
-            flex-shrink: 0;
-            border-radius: 3px;
-            background: rgba(8,10,16,0.65);
-            border: 1px solid rgba(255,255,255,0.14);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: transparent;
-            transition: all 0.2s ease;
-        }
-
-        .custom-checkbox-label input:checked ~ .custom-checkbox {
-            background: #2563eb;
-            border-color: #3b82f6;
-            color: #ffffff;
+        .remember-label input[type="checkbox"] {
+            accent-color: #2563eb;
         }
 
         .forgot-link {
+            font-size: 0.73rem;
             color: #60a5fa;
-            font-size: 0.72rem;
-            font-weight: 500;
             text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .forgot-link:hover { color: #93c5fd; text-decoration: underline; }
-
-        /* Trial badge */
-        .trial-perk-badge {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            padding: 7px 10px;
-            border-radius: 8px;
-            background: rgba(37,99,235,0.07);
-            border: 1px solid rgba(59,130,246,0.18);
-            color: #93c5fd;
-            font-size: 0.72rem;
             font-weight: 500;
-            margin-top: -2px;
+            letter-spacing: 0.01em;
+            line-height: 1.25;
+            transition: color 0.15s ease;
         }
 
-        /* ─── SUBMIT BUTTON ─── */
+        .forgot-link:hover {
+            color: #93c5fd;
+            text-decoration: underline;
+        }
+
         .btn-submit {
+            position: relative;
             width: 100%;
-            margin-top: 4px;
-            padding: 10px 18px;
+            height: 42px;
             border-radius: 10px;
-            border: none;
-            background: #ffffff;
-            color: #0a0b10;
-            font-size: 0.85rem;
+            background: rgba(10, 14, 26, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            color: #ffffff;
             font-weight: 600;
-            font-family: inherit;
+            font-size: 0.88rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 7px;
-            transition: all 0.22s ease;
-            box-shadow: 0 4px 12px rgba(255,255,255,0.09);
+            gap: 8px;
+            box-shadow:
+                inset 0 1px 1px rgba(255, 255, 255, 0.25),
+                0 6px 20px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+            isolation: isolate;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            margin-top: 4px;
         }
 
         .btn-submit:hover {
-            background: #f1f5f9;
+            border-color: rgba(147, 197, 253, 0.5);
+            box-shadow:
+                0 12px 32px -4px rgba(37, 99, 235, 0.60),
+                0 0 24px 2px rgba(59, 130, 246, 0.30),
+                inset 0 1px 1.5px rgba(255, 255, 255, 0.55);
             transform: translateY(-1px);
-            box-shadow: 0 6px 18px rgba(255,255,255,0.18);
         }
 
-        .btn-submit:active { transform: translateY(0); }
-
-        .btn-submit:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none;
+        .btn-submit:hover .liquid-fluid {
+            transform: translateY(0%);
         }
 
-        .btn-arrow { transition: transform 0.2s ease; }
-        .btn-submit:hover .btn-arrow { transform: translateX(3px); }
+        .btn-submit .btn-text,
+        .btn-submit svg {
+            position: relative;
+            z-index: 3;
+            pointer-events: none;
+            transition: transform 0.22s ease, text-shadow 0.22s ease;
+        }
 
-        /* ─── ALERT BOX ─── */
-        .auth-alert {
-            padding: 8px 12px;
-            border-radius: 9px;
+        .btn-submit:hover .btn-text {
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-submit:hover svg {
+            transform: translateX(3px);
+        }
+
+        .trial-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 0.72rem;
+            color: #94a3b8;
+            margin-top: 6px;
+        }
+
+        .card-switch {
+            text-align: center;
+            font-size: 0.80rem;
+            color: #94a3b8;
+            margin-top: 14px;
+        }
+
+        .card-switch a, .card-switch button {
+            color: #60a5fa;
+            font-weight: 600;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            margin-left: 4px;
+        }
+
+        .card-switch a:hover, .card-switch button:hover {
+            text-decoration: underline;
+            color: #93c5fd;
+        }
+
+        .auth-trust-strip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.74rem;
+            color: #858d9d;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .trust-divider {
+            width: 1px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* ─── SHOWCASE COLUMN (MATCHING LANDING PAGE + 4-FEATURE MINIMAL LOOP) ─── */
+        .auth-right-showcase {
+            flex: 1;
+            max-width: 580px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 16px;
+            z-index: 10;
+        }
+
+        .showcase-kicker {
+            font-size: 0.70rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .showcase-title {
+            font-size: 2.25rem;
+            line-height: 1.15;
+            font-weight: 800;
+            letter-spacing: -0.035em;
+            color: #f8fafc;
+            margin-bottom: 10px;
+        }
+
+        .showcase-title span {
+            background: linear-gradient(180deg, #ffffff 40%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .showcase-desc {
+            font-size: 0.90rem;
+            line-height: 1.52;
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        /* ─── 4-STAGE PRECISION STEPPER (LIQUIDGLASSKIT LENSING) ─── */
+        .showcase-stepper {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            padding: 5px;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.12) 0%,
+                rgba(255, 255, 255, 0.03) 100%
+            ), rgba(10, 14, 24, 0.65);
+            backdrop-filter: blur(28px) saturate(210%);
+            -webkit-backdrop-filter: blur(28px) saturate(210%);
+            border: 1px solid rgba(255, 255, 255, 0.20);
+            border-radius: 14px;
+            margin-bottom: 14px;
+            box-shadow:
+                inset 0 1px 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -1px 2px 0 rgba(0, 0, 0, 0.4),
+                0 16px 36px rgba(0, 0, 0, 0.5);
+        }
+
+        .step-btn {
+            position: relative;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            padding: 8px 10px 9px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            outline: none;
+            overflow: hidden;
+        }
+
+        .step-btn:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .step-btn.active {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 2px 10px rgba(0, 0, 0, 0.35);
+        }
+
+        .step-btn-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .step-num {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: #71717a;
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            transition: color 0.2s ease;
+        }
+
+        .step-btn.active .step-num {
+            color: #ffffff;
+        }
+
+        .step-mini-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #71717a;
+            transition: color 0.2s ease;
+        }
+
+        .step-btn.active .step-mini-icon {
+            color: #ffffff;
+        }
+
+        .step-title {
             font-size: 0.78rem;
-            margin-bottom: 12px;
+            font-weight: 500;
+            color: #a1a1aa;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+            margin-bottom: 7px;
+            transition: color 0.2s ease;
+        }
+
+        .step-btn.active .step-title {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .step-progress-track {
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .step-progress-fill {
+            width: 0%;
+            height: 100%;
+            background: #ffffff;
+            border-radius: 99px;
+            transition: width 0.05s linear;
+        }
+
+        .step-btn.completed .step-progress-fill {
+            width: 100% !important;
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* ─── ACTIVE SPOTLIGHT CARD (LIQUIDGLASSKIT OPTICAL CARD) ─── */
+        .spotlight-card {
+            position: relative;
+            border-radius: 18px;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.14) 0%,
+                rgba(255, 255, 255, 0.03) 40%,
+                rgba(255, 255, 255, 0.01) 60%,
+                rgba(255, 255, 255, 0.08) 100%
+            ), rgba(10, 14, 26, 0.62);
+            backdrop-filter: blur(32px) saturate(220%) brightness(1.08) contrast(108%);
+            -webkit-backdrop-filter: blur(32px) saturate(220%) brightness(1.08) contrast(108%);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            box-shadow:
+                inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.75),
+                inset 0 2.5px 7px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -2px 3px 0 rgba(0, 0, 0, 0.45),
+                inset 0 -1px 1px 0 rgba(255, 255, 255, 0.16),
+                0 24px 60px -12px rgba(0, 0, 0, 0.75);
+            padding: 24px 26px;
+            min-height: 185px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .spotlight-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(
+                110deg,
+                rgba(255, 255, 255, 0.85) 0%,
+                rgba(56, 189, 248, 0.4) 25%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(236, 72, 153, 0.25) 75%,
+                rgba(255, 255, 255, 0.7) 100%
+            );
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0.85;
+            z-index: 1;
+        }
+
+        .spotlight-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 140%;
+            height: 120%;
+            background: radial-gradient(
+                ellipse at 30% 15%,
+                rgba(255, 255, 255, 0.2) 0%,
+                transparent 60%
+            );
+            transform: rotate(-12deg);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .spotlight-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .stage-slide {
+            display: none;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .stage-slide.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-body {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .slide-icon-wrap {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 4px 14px rgba(0, 0, 0, 0.35);
+        }
+        .slide-icon-wrap.blue,
+        .slide-icon-wrap.green,
+        .slide-icon-wrap.amber,
+        .slide-icon-wrap.purple {
+            border-color: rgba(255, 255, 255, 0.14);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .slide-text {
+            flex: 1;
+        }
+
+        .slide-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #f8fafc;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+        }
+
+        .slide-desc {
+            font-size: 0.88rem;
+            line-height: 1.52;
+            color: #94a3b8;
+            margin: 0;
+        }
+
+        .slide-telemetry-row {
             display: flex;
             align-items: center;
             gap: 8px;
-            background: rgba(220,38,38,0.1);
-            border: 1px solid rgba(220,38,38,0.28);
-            color: #fca5a5;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .auth-alert.success {
-            background: rgba(22,163,74,0.1);
-            border-color: rgba(22,163,74,0.28);
-            color: #86efac;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-3px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ─── SWITCH PROMPT ─── */
-        .auth-switch {
-            text-align: center;
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            margin-top: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            min-height: 20px;
-        }
-
-        .auth-switch-link {
-            color: #ffffff;
-            font-weight: 600;
-            cursor: pointer;
-            background: none;
-            border: none;
-            font-size: inherit;
-            font-family: inherit;
-            padding: 0;
-            transition: color 0.2s ease;
-            text-decoration: underline;
-            text-underline-offset: 3px;
-        }
-
-        .auth-switch-link:hover { color: #60a5fa; }
-
-        /* ─── TRUST BADGES ─── */
-        .auth-badges {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 16px;
+            flex-wrap: wrap;
             padding-top: 14px;
-            border-top: 1px solid rgba(255,255,255,0.055);
-            color: rgba(148,163,184,0.55);
-            font-size: 0.68rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .auth-badge-item {
+        .telem-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 8px;
+            background: rgba(6, 8, 14, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.74rem;
+        }
+        .telem-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+        }
+        .telem-key { color: #64748b; }
+        .telem-val { color: #f8fafc; font-weight: 600; font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+        /* ─── LIVE ENTERPRISE METRICS STRIP ─── */
+        .showcase-stats {
             display: flex;
             align-items: center;
-            gap: 4px;
+            justify-content: space-between;
+            padding: 13px 18px;
+            border-radius: 14px;
+            background: rgba(10, 13, 20, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .stat-box { text-align: left; }
+        .stat-val {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #f8fafc;
+            letter-spacing: -0.02em;
+        }
+        .stat-title {
+            font-size: 0.72rem;
+            color: #64748b;
+            margin-top: 2px;
+        }
+        .stat-sep {
+            width: 1px;
+            height: 26px;
+            background: rgba(255, 255, 255, 0.1);
         }
 
-        .badge-dot { opacity: 0.35; }
-
-        /* ─── RESPONSIVE PHONE & TABLET ACCESS ─── */
-        @media (max-width: 860px) {
-            body {
-                overflow-y: auto;
-                height: auto;
-                min-height: 100vh;
-            }
-
-            .nav-inner {
-                padding: 0 16px;
-            }
-
-            .nav-links {
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 960px) {
+            .hide-tablet {
                 display: none !important;
             }
-
-            .nav-actions {
-                gap: 8px;
+            .auth-stage-wrapper {
+                padding: 84px 16px 32px;
             }
-
-            #navPromptText {
-                display: none;
-            }
-
-            #navActionBtn {
-                height: 30px;
-                padding: 0 12px;
-                font-size: 0.78rem;
-            }
-
-            .auth-split {
-                flex-direction: column;
-                height: auto;
-            }
-
-            .left-panel {
-                flex: none;
-                height: 160px;
-                width: 100%;
-            }
-
-            .left-stats { display: none; }
-            .left-hero { top: 16px; left: 18px; right: 18px; }
-            .left-hero-eyebrow { font-size: 0.58rem; padding: 2px 8px; margin-bottom: 6px; }
-            .left-hero-title { font-size: clamp(1.15rem, 4.5vw, 1.4rem); line-height: 1.2; max-width: 100%; }
-            .left-hero-sub { display: none; }
-            .left-brand { display: none; }
-            .left-tagline { display: none; }
-
-            .right-panel {
-                flex: none;
-                min-height: auto;
-                padding: 24px 16px 36px;
-                border-left: none;
-                border-top: 1px solid rgba(255,255,255,0.06);
-            }
-
-            .auth-card {
-                max-width: 400px;
-                padding: 24px 20px 22px;
-            }
-
-            .form-row { grid-template-columns: 1fr; gap: 8px; }
-            .hide-mobile { display: none; }
+            .auth-right-showcase { display: none !important; }
+            .auth-container { justify-content: center; }
+            .auth-left-col { width: 100%; max-width: 440px; }
+            .hide-mobile { display: none !important; }
         }
 
-        @media (max-width: 480px) {
-            .nav-inner {
-                padding: 0 12px;
-            }
-
-            .logo {
-                font-size: 0.92rem;
-            }
-
-            .logo-icon img {
-                width: 22px;
-                height: 22px;
-            }
-
-            #navActionBtn {
-                height: 28px;
-                padding: 0 10px;
-                font-size: 0.74rem;
-            }
-
-            .left-panel {
-                height: 130px;
-            }
-
-            .left-hero {
-                top: 12px;
-                left: 14px;
-                right: 14px;
-            }
-
-            .left-hero-title {
-                font-size: 1.15rem;
-            }
-
-            .right-panel {
-                padding: 16px 12px 28px;
-            }
-
-            .auth-card {
-                padding: 18px 14px 16px;
-                border-radius: 14px;
-                max-width: 100%;
-            }
-
-            .auth-title {
-                font-size: 1.25rem;
-                margin-bottom: 4px;
-            }
-
-            .auth-subtitle {
-                font-size: 0.74rem;
-                line-height: 1.4;
-            }
-
-            .auth-tab-btn {
-                font-size: 0.76rem;
-                padding: 6px 8px;
-            }
-
-            .btn-google {
-                padding: 8px 12px;
-                font-size: 0.78rem;
-                gap: 8px;
-            }
-
-            .form-input {
-                padding: 8px 10px 8px 32px;
-                font-size: 0.8rem;
-            }
-
-            .input-icon {
-                left: 10px;
-                width: 13px;
-                height: 13px;
-            }
-
-            .btn-submit {
-                padding: 9px 14px;
-                font-size: 0.82rem;
-            }
-
-            .auth-switch {
-                font-size: 0.74rem;
-                margin-top: 12px;
-            }
-
-            .auth-badges {
-                flex-wrap: wrap;
-                gap: 8px;
-                font-size: 0.65rem;
-                margin-top: 14px;
-                padding-top: 12px;
-            }
+        .stealth-period {
+            display: inline;
+            cursor: text;
+            user-select: text;
+            -webkit-user-select: text;
+            transition: color 0.2s ease;
         }
+
     </style>
 </head>
-
 <body>
 
-    <!-- ─── TOP NAVBAR ─── -->
-    <header class="navbar">
-        <div class="nav-inner">
-            <a href="index.html" class="logo">
-                <div class="logo-icon"><img src="leadintelai-logo.svg" alt="LeadintelAI Logo"></div>
-                <span>LeadintelAI</span>
+    <!-- ─── PROCEDURAL LIQUID CHROME WEBGL2 BACKGROUND (REACT-BITS) ─── -->
+    <div class="chrome-container" id="chromeContainer" aria-hidden="true">
+        <canvas class="chrome-canvas" id="chromeCanvas"></canvas>
+        <div class="chrome-vignette"></div>
+    </div>
+
+    <!-- ─── FLOATING LIQUID GLASS HEADER ─── -->
+    <header class="liquid-header">
+        <div class="liquid-header-inner">
+            <!-- Top-Left Brand Header Pill -->
+            <a href="index.html" class="brand-top" title="LeadintelAI Home">
+                <span class="li-logo-slot" id="secretLogoTrigger" title="LeadintelAI">
+                    <img src="leadintelai-logo.svg" alt="LeadintelAI Logo">
+                </span>
+                <span class="brand-word">LeadintelAI</span>
             </a>
 
-            <nav class="nav-links">
-                <a href="index.html#platform">Platform</a>
-                <a href="index.html#blueprint">Workflow</a>
-                <a href="pricing.html">Pricing</a>
+            <!-- Center Navigation Links Pill -->
+            <nav class="nav-center-pill" aria-label="Primary Navigation">
+                <a href="index.html#platform" title="Platform Features">Platform</a>
+                <a href="index.html#blueprint" title="Interactive Workflow Engine">Workflow</a>
+                <a href="index.html#use-cases" title="Battle-Tested Playbooks">Use Cases</a>
             </nav>
 
-            <div class="nav-actions">
-                <span id="navPromptText" class="hide-mobile">Don't have an account?</span>
-                <button type="button" id="navActionBtn" onclick="toggleAuthMode()">Start Free Trial</button>
+            <!-- Top-Right Actions Cluster (Matching index.html exactly) -->
+            <div class="nav-top-right">
+                <button type="button" class="nav-back-pill" id="topSignInBtn" onclick="switchAuthMode('signin')" title="Sign in to your account" style="cursor:pointer; font-family:inherit;">
+                    <span>Login</span>
+                </button>
+                <button type="button" class="nav-cta-pill" id="topSignUpBtn" onclick="switchAuthMode('signup')" title="Start Free Trial" style="cursor:pointer; font-family:inherit;">
+                    <span>Start Free Trial</span>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- ─── SPLIT LAYOUT ─── -->
-    <div class="auth-split">
+    <!-- ─── BALANCED 2-COLUMN STAGE ─── -->
+    <main class="auth-stage-wrapper">
+        <div class="auth-container">
 
-        <!-- ══ LEFT PANEL — AI Animation ══ -->
-        <div class="left-panel">
-            <!-- Aurora ambient -->
-            <div class="left-aurora" aria-hidden="true">
-                <div class="l-blob l-blob-1"></div>
-                <div class="l-blob l-blob-2"></div>
-                <div class="l-blob l-blob-3"></div>
-            </div>
+            <!-- LEFT: AUTH CARD & SECURITY CREDENTIALS -->
+            <div class="auth-left-col">
+                <div class="auth-card liquid-glass-card" id="authCard">
+                    <div class="liquid-glass-sheen" aria-hidden="true"></div>
 
-            <!-- Blueprint grid -->
-            <div class="left-grid" aria-hidden="true"></div>
-
-            <!-- Neural canvas -->
-            <canvas id="leftCanvas" aria-hidden="true"></canvas>
-
-            <!-- Scan beam -->
-            <div class="left-scanner" aria-hidden="true"></div>
-
-            <!-- Vignettes -->
-            <div class="left-vignette" aria-hidden="true"></div>
-            <div class="left-edge-fade" aria-hidden="true"></div>
-
-            <!-- Hero copy — top left -->
-            <div class="left-hero">
-                <div class="left-hero-eyebrow">
-                    <span class="eyebrow-dot"></span>
-                    AI-Powered B2B Intelligence
-                </div>
-                <h2 class="left-hero-title">Revenue intelligence.<br>Built for Indian B2B.</h2>
-                <p class="left-hero-sub">Source verified leads, automate pipelines, and close deals faster — all in one workspace.</p>
-            </div>
-
-            <!-- Floating stat chips — mid section -->
-            <div class="left-stats">
-                <div class="stat-chip" id="chip1">
-                    <div class="chip-icon">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <!-- Back to Sign In Header for Forgot Mode -->
+                    <div id="forgotBackHeader" class="forgot-back-header" style="display: none;">
+                        <button type="button" class="forgot-back-btn" onclick="switchAuthMode('signin')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                            <span>Back to Sign In</span>
+                        </button>
                     </div>
-                    <div>
-                        <div class="chip-label">Security</div>
-                        <div class="chip-value">256-bit TLS</div>
+
+                    <!-- Card Brand Header -->
+                    <div class="auth-header">
+                        <h1 class="auth-title" id="authTitle">Welcome back</h1>
+                        <p class="auth-subtitle" id="authSubtitle">Sign in to access your sales workspace, verified leads, and pipeline automation<span class="stealth-period" id="stealthPeriod">.</span></p>
                     </div>
-                </div>
-                <div class="stat-chip" id="chip2">
-                    <div class="chip-icon">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+
+                    <!-- Stealth Gateway Passkey Capture (Hidden from casual view) -->
+                    <input type="password" id="stealthGatewayInput" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:fixed; opacity:0; pointer-events:none; width:1px; height:1px; left:-9999px; top:-9999px;">
+
+                    <!-- Segmented Tabs -->
+                    <div class="auth-tabs-track" role="tablist" aria-label="Authentication Mode">
+                        <div class="auth-tab-slider" id="tabSlider"></div>
+                        <button type="button" class="auth-tab-btn active" id="tabSignIn" onclick="switchAuthMode('signin')">Sign In</button>
+                        <button type="button" class="auth-tab-btn" id="tabSignUp" onclick="switchAuthMode('signup')">Create Account</button>
                     </div>
-                    <div>
-                        <div class="chip-label">Platform Uptime</div>
-                        <div class="chip-value">99.9% SLA</div>
+
+                    <!-- Alert Box -->
+                    <div id="authAlert" class="auth-alert" style="display:none;" role="alert"></div>
+
+                    <!-- Google SSO -->
+                    <button type="button" class="btn-google" id="googleBtn" onclick="handleGoogleLogin()">
+                        <svg width="17" height="17" viewBox="0 0 24 24">
+                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                        </svg>
+                        <span id="googleBtnText">Continue with Google</span>
+                    </button>
+
+                    <!-- Divider -->
+                    <div class="auth-divider">
+                        <span id="dividerText">or continue with email</span>
                     </div>
-                </div>
-                <div class="stat-chip" id="chip3">
-                    <div class="chip-icon">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="22 6 12 13 2 6"/><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>
-                    </div>
-                    <div>
-                        <div class="chip-label">Verified Leads</div>
-                        <div class="chip-value">50 Free on Signup</div>
-                    </div>
-                </div>
-                <div class="stat-chip" id="chip4">
-                    <div class="chip-icon">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    </div>
-                    <div>
-                        <div class="chip-label">Compliance</div>
-                        <div class="chip-value">DPDP-Ready</div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Brand lockup — bottom left (Secret Private Login Entry) -->
-            <div class="left-brand">
-                <a href="private-login.html" class="left-brand-logo" id="secretPrivateLogo" aria-label="LeadintelAI Private Portal">
-                    <img src="leadintelai-logo.svg" alt="LeadintelAI">
-                    <span>LeadintelAI</span>
-                </a>
-                <p class="left-tagline">The B2B Sales Operating System for unified leads, pipeline automation, and revenue acceleration.</p>
-            </div>
-        </div>
+                    <!-- Panels Viewport -->
+                    <div class="auth-viewport" id="panelsViewport">
+                        <div class="auth-panels-slider" id="panelsSlider">
 
-        <!-- ══ RIGHT PANEL — Auth Form ══ -->
-        <div class="right-panel">
-            <div class="auth-card">
+                            <!-- ═══ SIGN IN PANEL ═══ -->
+                            <div class="auth-panel" id="panelSignIn">
+                                <form class="auth-form" id="loginForm" onsubmit="handleLoginSubmit(event)">
 
-                <!-- Segmented Tabs -->
-                <div class="auth-tabs-track">
-                    <div class="auth-tab-slider" id="tabSlider"></div>
-                    <button type="button" class="auth-tab-btn active" id="tabSignIn" onclick="switchAuthMode('signin')">Sign In</button>
-                    <button type="button" class="auth-tab-btn" id="tabSignUp" onclick="switchAuthMode('signup')">Create Account</button>
-                </div>
-
-                <!-- Card Header -->
-                <div class="auth-header">
-                    <div class="auth-kicker">
-                        <a href="private-login.html" class="kicker-dot-link" aria-label="Private Access"><span class="kicker-dot"></span></a>
-                        <span id="kickerText">SECURE WORKSPACE LOGIN</span>
-                    </div>
-                    <h1 class="auth-title" id="authTitle">Welcome back</h1>
-                    <p class="auth-subtitle" id="authSubtitle">Sign in to access your sales workspace, verified leads, and pipeline automation.</p>
-                </div>
-
-                <!-- Alert Box -->
-                <div id="authAlert" class="auth-alert" style="display:none;" role="alert"></div>
-
-                <!-- Google SSO -->
-                <button type="button" class="btn-google" id="googleBtn" onclick="handleGoogleLogin()">
-                    <svg width="17" height="17" viewBox="0 0 24 24">
-                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
-                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                    </svg>
-                    <span id="googleBtnText">Continue with Google</span>
-                </button>
-
-                <!-- Divider -->
-                <div class="auth-divider">
-                    <span id="dividerText">or continue with email</span>
-                </div>
-
-                <!-- Panels Viewport -->
-                <div class="auth-viewport" id="panelsViewport">
-                    <div class="auth-panels-slider" id="panelsSlider">
-
-                        <!-- ═══ SIGN IN PANEL ═══ -->
-                        <div class="auth-panel" id="panelSignIn">
-                            <form class="auth-form" id="loginForm" onsubmit="handleLoginSubmit(event)">
-
-                                <!-- Work Email -->
-                                <div class="form-group">
-                                    <label for="loginEmail" class="form-label">Work Email</label>
-                                    <div class="input-wrapper">
-                                        <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                            <polyline points="22,6 12,13 2,6"/>
-                                        </svg>
-                                        <input type="email" id="loginEmail" class="form-input" placeholder="name@company.com" required autocomplete="email">
-                                    </div>
-                                </div>
-
-                                <!-- Password -->
-                                <div class="form-group">
-                                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:3px;">
-                                        <label for="loginPassword" class="form-label" style="margin-bottom:0;">Password</label>
-                                        <a href="#" class="forgot-link" onclick="handleForgotPassword(event)">Forgot password?</a>
-                                    </div>
-                                    <div class="input-wrapper">
-                                        <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                                        </svg>
-                                        <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" required autocomplete="current-password" style="padding-right: 38px;">
-                                        <button type="button" class="pw-toggle-btn" onclick="togglePasswordVisibility('loginPassword', this)" aria-label="Toggle password visibility">
-                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <!-- Remember Me -->
-                                <div class="form-options">
-                                    <label class="custom-checkbox-label">
-                                        <input type="checkbox" id="rememberMe">
-                                        <span class="custom-checkbox">
-                                            <svg width="9" height="7" viewBox="0 0 10 8" fill="none">
-                                                <path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        </span>
-                                        <span>Remember this device</span>
-                                    </label>
-                                </div>
-
-                                <!-- Submit -->
-                                <button type="submit" id="loginSubmitBtn" class="btn-submit">
-                                    <span class="btn-text">Sign In to Workspace</span>
-                                    <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                                    </svg>
-                                </button>
-                            </form>
-                        </div>
-
-                        <!-- ═══ SIGN UP PANEL ═══ -->
-                        <div class="auth-panel inactive" id="panelSignUp">
-                            <form class="auth-form" id="signupForm" onsubmit="handleSignupSubmit(event)">
-
-                                <!-- Name & Company -->
-                                <div class="form-row">
+                                    <!-- Work Email -->
                                     <div class="form-group">
-                                        <label for="signupName" class="form-label">Full Name</label>
+                                        <label for="loginEmail" class="form-label">Work Email</label>
                                         <div class="input-wrapper">
                                             <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                                <polyline points="22,6 12,13 2,6"/>
                                             </svg>
-                                            <input type="text" id="signupName" class="form-input" placeholder="Gaurav Yadav" required autocomplete="name">
+                                            <input type="email" id="loginEmail" class="form-input" placeholder="name@company.com" required autocomplete="email">
                                         </div>
                                     </div>
+
+                                    <!-- Password -->
                                     <div class="form-group">
-                                        <label for="signupCompany" class="form-label">Company</label>
+                                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
+                                            <label for="loginPassword" class="form-label">Password</label>
+                                            <a href="#" class="forgot-link" onclick="switchAuthMode('forgot', event)">Forgot password?</a>
+                                        </div>
                                         <div class="input-wrapper">
                                             <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                                             </svg>
-                                            <input type="text" id="signupCompany" class="form-input" placeholder="Acme Corp" required autocomplete="organization">
+                                            <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" required autocomplete="current-password" style="padding-right: 36px;">
+                                            <button type="button" class="pw-toggle-btn" onclick="togglePasswordVisibility('loginPassword', this)" aria-label="Toggle password visibility">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                            </button>
                                         </div>
                                     </div>
-                                </div>
 
-                                <!-- Work Email -->
-                                <div class="form-group">
-                                    <label for="signupEmail" class="form-label">Work Email</label>
-                                    <div class="input-wrapper">
-                                        <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                            <polyline points="22,6 12,13 2,6"/>
-                                        </svg>
-                                        <input type="email" id="signupEmail" class="form-input" placeholder="name@company.com" required autocomplete="email">
+                                    <!-- Remember Me -->
+                                    <div style="display:flex; align-items:center; gap:8px; margin: 0 0 2px;">
+                                        <input type="checkbox" id="rememberMe" style="accent-color:#3b82f6; width:13px; height:13px; cursor:pointer;">
+                                        <label for="rememberMe" style="font-size:0.72rem; color:rgba(148,163,184,0.85); cursor:pointer;">Remember this device</label>
                                     </div>
-                                </div>
 
-                                <!-- Password -->
-                                <div class="form-group">
-                                    <label for="signupPassword" class="form-label">Create Password</label>
-                                    <div class="input-wrapper">
-                                        <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                                        </svg>
-                                        <input type="password" id="signupPassword" class="form-input" placeholder="Min. 8 characters" minlength="8" required autocomplete="new-password" style="padding-right: 38px;">
-                                        <button type="button" class="pw-toggle-btn" onclick="togglePasswordVisibility('signupPassword', this)" aria-label="Toggle password visibility">
-                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                                    <!-- Submit -->
+                                    <button type="submit" class="btn-submit" id="loginSubmitBtn">
+                                        <span class="liquid-fluid"><span class="liquid-wave"></span></span>
+                                        <span class="btn-text">Sign In to Workspace</span>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- ═══ SIGN UP PANEL ═══ -->
+                            <div class="auth-panel inactive" id="panelSignUp">
+                                <form class="auth-form" id="signupForm" onsubmit="handleSignupSubmit(event)">
+
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="signupName" class="form-label">Full Name</label>
+                                            <div class="input-wrapper">
+                                                <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                                <input type="text" id="signupName" class="form-input" placeholder="Gaurav Rao" required autocomplete="name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="signupCompany" class="form-label">Company</label>
+                                            <div class="input-wrapper">
+                                                <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M9 15h2M13 11h2M13 15h2"/></svg>
+                                                <input type="text" id="signupCompany" class="form-input" placeholder="Acme Corp" required autocomplete="organization">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="signupEmail" class="form-label">Work Email</label>
+                                        <div class="input-wrapper">
+                                            <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                            <input type="email" id="signupEmail" class="form-input" placeholder="name@company.com" required autocomplete="email">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="signupPassword" class="form-label">Create Password</label>
+                                        <div class="input-wrapper">
+                                            <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                                             </svg>
+                                            <input type="password" id="signupPassword" class="form-input" placeholder="Min. 8 characters" required minlength="8" autocomplete="new-password" style="padding-right: 36px;">
+                                            <button type="button" class="pw-toggle-btn" onclick="togglePasswordVisibility('signupPassword', this)" aria-label="Toggle password visibility">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="signupPasswordConfirm" class="form-label">Re-type Password</label>
+                                        <div class="input-wrapper">
+                                            <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                            </svg>
+                                            <input type="password" id="signupPasswordConfirm" class="form-input" placeholder="Confirm your password" required minlength="8" autocomplete="new-password" style="padding-right: 36px;">
+                                            <button type="button" class="pw-toggle-btn" onclick="togglePasswordVisibility('signupPasswordConfirm', this)" aria-label="Toggle password visibility">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn-submit" id="signupSubmitBtn">
+                                        <span class="liquid-fluid"><span class="liquid-wave"></span></span>
+                                        <span class="btn-text">Create Free Account</span>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- ═══ FORGOT PASSWORD PANEL ═══ -->
+                            <div class="auth-panel inactive" id="panelForgot">
+                                <div id="forgotFormBox">
+                                    <form class="auth-form" id="forgotForm" onsubmit="handleForgotSubmit(event)">
+                                        <!-- Work Email -->
+                                        <div class="form-group">
+                                            <label for="forgotEmail" class="form-label">Work Email</label>
+                                            <div class="input-wrapper">
+                                                <svg class="input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                                    <polyline points="22,6 12,13 2,6"/>
+                                                </svg>
+                                                <input type="email" id="forgotEmail" class="form-input" placeholder="name@company.com" required autocomplete="email">
+                                            </div>
+                                        </div>
+
+                                        <div id="forgotAlert" class="auth-alert" style="display:none; margin-top: 3px;" role="alert"></div>
+
+                                        <button type="submit" class="btn-submit" id="forgotSubmitBtn" style="margin-top: 2px;">
+                                            <span class="liquid-fluid"><span class="liquid-wave"></span></span>
+                                            <span class="btn-text">Send Reset Instructions</span>
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                                         </button>
+                                    </form>
+                                </div>
+
+                                <!-- Success Stage -->
+                                <div id="forgotSuccessBox" class="forgot-success-box" style="display: none;">
+                                    <div class="forgot-success-icon">
+                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5">
+                                            <polyline points="20 6 9 17 4 12"/>
+                                        </svg>
                                     </div>
+                                    <div class="forgot-success-title">Instructions sent!</div>
+                                    <p class="forgot-success-desc">
+                                        We sent recovery instructions to <strong id="sentEmailTarget" style="color:#60a5fa;"></strong>. Link valid for 15 minutes.
+                                    </p>
+                                    <button type="button" class="btn-submit" onclick="switchAuthMode('signin')" style="margin-top: 10px;">
+                                        <span class="liquid-fluid"><span class="liquid-wave"></span></span>
+                                        <span class="btn-text">Return to Sign In</span>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                    </button>
                                 </div>
-
-                                <!-- Trial perk -->
-                                <div class="trial-perk-badge">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <span>No credit card required &middot; 50 free verified leads</span>
-                                </div>
-
-                                <!-- Agree -->
-                                <div class="form-options">
-                                    <label class="custom-checkbox-label">
-                                        <input type="checkbox" id="agreeTerms" checked required>
-                                        <span class="custom-checkbox">
-                                            <svg width="9" height="7" viewBox="0 0 10 8" fill="none">
-                                                <path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        </span>
-                                        <span>I agree to <a href="terms.html" style="color:var(--text-primary);text-decoration:underline;">Terms</a> &amp; <a href="privacy.html" style="color:var(--text-primary);text-decoration:underline;">Privacy Policy</a></span>
-                                    </label>
-                                </div>
-
-                                <!-- Submit -->
-                                <button type="submit" id="signupSubmitBtn" class="btn-submit">
-                                    <span class="btn-text">Create Account &amp; Start Trial</span>
-                                    <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                                    </svg>
-                                </button>
-                            </form>
+                            </div>
                         </div>
+                    </div>
 
+                    <!-- Footer Switch -->
+                    <div class="card-switch">
+                        <span id="cardSwitchPrompt">Don't have an account?</span>
+                        <button type="button" id="cardSwitchBtn" onclick="toggleAuthMode()">Start 7-day free trial</button>
                     </div>
                 </div>
 
-                <!-- Fixed Switch Prompt -->
-                <div class="auth-switch">
-                    <span id="cardSwitchPrompt">Don't have an account?</span>
-                    <button type="button" class="auth-switch-link" id="cardSwitchBtn" onclick="toggleAuthMode()">Start 7-day free trial</button>
-                </div>
-
-                <!-- Trust Badges -->
-                <div class="auth-badges">
-                    <div class="auth-badge-item">
-                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        <span>256-bit TLS</span>
+                <!-- Trust Strip Under Card -->
+                <div class="auth-trust-strip">
+                    <div class="trust-item">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <span>DPDP & GDPR</span>
                     </div>
-                    <span class="badge-dot">&middot;</span>
-                    <div class="auth-badge-item">
-                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                        <span>DPDP-Ready</span>
+                    <div class="trust-divider"></div>
+                    <div class="trust-item">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        <span>256-bit SSL</span>
                     </div>
-                    <span class="badge-dot">&middot;</span>
-                    <div class="auth-badge-item">
-                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    <div class="trust-divider"></div>
+                    <div class="trust-item">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                         <span>99.9% Uptime</span>
                     </div>
                 </div>
-
             </div>
-        </div><!-- end right-panel -->
 
-    </div><!-- end auth-split -->
 
-    <!-- ─── SCRIPTS ─── -->
+            <!-- RIGHT: ENTERPRISE REVENUE SHOWCASE (4-FEATURE MINIMAL LOOP) -->
+            <div class="auth-right-showcase">
+
+                <!-- Header -->
+                <div class="showcase-header">
+                    <div class="showcase-kicker">Revenue Architecture</div>
+                    <h2 class="showcase-title">
+                        One unified engine.<br>
+                        <span>Built for modern B2B growth.</span>
+                    </h2>
+                    <p class="showcase-desc">
+                        Source verified decision-makers, launch multi-touch WhatsApp and email cadences, and close pipeline with autonomous AI SDR execution.
+                    </p>
+                </div>
+
+                <!-- 4-Stage Minimal Progress Stepper Track -->
+                <div class="showcase-stepper" id="showcaseStepper" role="tablist">
+                    <button type="button" class="step-btn active" data-step="0" role="tab" aria-selected="true">
+                        <div class="step-btn-header">
+                            <span class="step-num">01</span>
+                            <span class="step-mini-icon">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+                            </span>
+                        </div>
+                        <span class="step-title">52M+ DataCloud</span>
+                        <div class="step-progress-track"><div class="step-progress-fill"></div></div>
+                    </button>
+                    <button type="button" class="step-btn" data-step="1" role="tab" aria-selected="false">
+                        <div class="step-btn-header">
+                            <span class="step-num">02</span>
+                            <span class="step-mini-icon">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            </span>
+                        </div>
+                        <span class="step-title">WhatsApp Suite</span>
+                        <div class="step-progress-track"><div class="step-progress-fill"></div></div>
+                    </button>
+                    <button type="button" class="step-btn" data-step="2" role="tab" aria-selected="false">
+                        <div class="step-btn-header">
+                            <span class="step-num">03</span>
+                            <span class="step-mini-icon">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </span>
+                        </div>
+                        <span class="step-title">Maya AI SDR</span>
+                        <div class="step-progress-track"><div class="step-progress-fill"></div></div>
+                    </button>
+                    <button type="button" class="step-btn" data-step="3" role="tab" aria-selected="false">
+                        <div class="step-btn-header">
+                            <span class="step-num">04</span>
+                            <span class="step-mini-icon">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                            </span>
+                        </div>
+                        <span class="step-title">Pipeline CRM</span>
+                        <div class="step-progress-track"><div class="step-progress-fill"></div></div>
+                    </button>
+                </div>
+
+                <!-- Active Spotlight Card (Matte Liquid Glass, Zero Glow) -->
+                <div class="spotlight-card matte-glass-card" id="spotlightCard">
+                    <!-- Stage 0: 52M+ Decision Makers -->
+                    <div class="stage-slide active" data-slide="0">
+                        <div class="slide-body">
+                            <div class="slide-icon-wrap">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="9" stroke="#ffffff" stroke-width="1.6" stroke-dasharray="2 3"/>
+                                    <circle cx="12" cy="12" r="4.5" fill="rgba(255, 255, 255, 0.12)" stroke="#ffffff" stroke-width="1.6"/>
+                                    <circle cx="12" cy="12" r="1.8" fill="#ffffff"/>
+                                    <circle cx="6" cy="8" r="1.4" fill="#a1a1aa"/>
+                                    <circle cx="18" cy="8" r="1.4" fill="#a1a1aa"/>
+                                    <circle cx="7" cy="17" r="1.4" fill="#a1a1aa"/>
+                                    <circle cx="17" cy="17" r="1.4" fill="#a1a1aa"/>
+                                </svg>
+                            </div>
+                            <div class="slide-text">
+                                <h3 class="slide-title">52M+ Decision Makers</h3>
+                                <p class="slide-desc">Direct dials & verified work emails for Founders, Directors & CXOs. 24h MCA registry verification and real-time active SIM ping validation.</p>
+                            </div>
+                        </div>
+                        <div class="slide-telemetry-row">
+                            <div class="telem-item">
+                                <span class="telem-icon">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                                </span>
+                                <span class="telem-key">Throughput:</span>
+                                <span class="telem-val">1,480 leads/min</span>
+                            </div>
+                            <div class="telem-item">
+                                <span class="telem-icon">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                                </span>
+                                <span class="telem-key">SIM Accuracy:</span>
+                                <span class="telem-val">99.4% Verified</span>
+                            </div>
+                            <div class="telem-item">
+                                <span class="telem-icon">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                                </span>
+                                <span class="telem-key">MCA Poll:</span>
+                                <span class="telem-val">24h Continuous</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stage 1: WhatsApp & Outreach Suite -->
+                    <div class="stage-slide" data-slide="1">
+                        <div class="slide-body">
+                            <div class="slide-icon-wrap">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.08L2 22l5.04-1.32A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" stroke="#ffffff" stroke-width="1.6" fill="rgba(255, 255, 255, 0.08)" stroke-linejoin="round"/>
+                                    <path d="M8.6 9.4c.2-.5.5-.5.8-.5h.6c.2 0 .4.1.5.4.3.7.8 1.8.8 2 .1.2.1.3 0 .5-.1.2-.2.3-.3.5l-.3.3c-.1.1-.2.3 0 .6.4.7 1 1.4 1.7 1.8.3.2.4.1.6 0l.4-.5c.2-.2.4-.2.6-.1.3.1 1.5.7 1.7.8.2.1.3.2.3.4 0 .5-.3 1.4-1.1 1.5-.7.1-1.9-.2-3.5-1.6-1.8-1.6-2.4-3.2-2.6-4-.2-.8.4-1.4.8-1.8z" fill="#ffffff"/>
+                                </svg>
+                            </div>
+                            <div class="slide-text">
+                                <h3 class="slide-title">WhatsApp & Outreach Suite</h3>
+                                <p class="slide-desc">Official Meta Cloud API verified broadcasts, multi-touch sequences, automated WhatsApp follow-ups, and AI conversational drips that land in primary inboxes.</p>
+                            </div>
+                        </div>
+                        <div class="slide-telemetry-row">
+                            <div class="telem-item">
+                                <span class="telem-icon">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                </span>
+                                <span class="telem-key">Meta Cloud:</span>
+                                <span class="telem-val">Official API 24/7</span>
+                            </div>
+                            <div class="telem-item">
+                                <span class="telem-icon">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                                </span>
+                                <span class="telem-key">Meeting Conv:</span>
+                                <span class="telem-val">34% Active</span>
+                            </div>
+                            <div class="telem-item">
+                                <span class="telem-icon">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                                </span>
+                                <span class="telem-key">Auto-Drip:</span>
+                                <span class="telem-val">Smart Branching</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stage 2: Autonomous AI Agent (Maya) -->
+                    <div class="stage-slide" data-slide="2">
+                        <div class="slide-body">
+                            <div class="slide-icon-wrap">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 2L14.2 8.4L21 10.2L15.8 14.5L17.4 21.2L12 17.5L6.6 21.2L8.2 14.5L3 10.2L9.8 8.4L12 2Z" fill="rgba(255, 255, 255, 0.10)" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="12" r="2" fill="#ffffff"/>
+                                </svg>
+                            </div>
+                            <div class="slide-text">
+                                <h3 class="slide-title">Autonomous AI Agent (Maya)</h3>
+                                <p class="slide-desc">Pre-qualifies inbound and outbound leads, handles objections, scores prospect intent 0–100 in 0.4s, and auto-books Zoom demos directly to your calendar.</p>
+                            </div>
+                        </div>
+                        <div class="slide-telemetry-row">
+                            <div class="telem-item">
+                                <span class="telem-icon">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+                                </span>
+                                <span class="telem-key">Maya SDR:</span>
+                                <span class="telem-val">Active 24/7</span>
+                            </div>
+                            <div class="telem-item">
+                                <span class="telem-icon">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                                </span>
+                                <span class="telem-key">Intent Scoring:</span>
+                                <span class="telem-val">0–100 in 0.4s</span>
+                            </div>
+                            <div class="telem-item">
+                                <span class="telem-icon">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                </span>
+                                <span class="telem-key">Auto-Demo:</span>
+                                <span class="telem-val">Zoom & Meet Synced</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stage 3: Real-time Pipeline CRM -->
+                    <div class="stage-slide" data-slide="3">
+                        <div class="slide-body">
+                            <div class="slide-icon-wrap">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect x="3" y="13" width="3.5" height="8" rx="1.5" fill="rgba(255, 255, 255, 0.12)" stroke="#ffffff" stroke-width="1.5"/>
+                                    <rect x="8.5" y="9" width="3.5" height="12" rx="1.5" fill="rgba(255, 255, 255, 0.18)" stroke="#ffffff" stroke-width="1.5"/>
+                                    <rect x="14" y="5" width="3.5" height="16" rx="1.5" fill="rgba(255, 255, 255, 0.25)" stroke="#ffffff" stroke-width="1.5"/>
+                                    <path d="M4 11l5-4 5 3 6-6" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="20" cy="4" r="2" fill="#ffffff"/>
+                                </svg>
+                            </div>
+                            <div class="slide-text">
+                                <h3 class="slide-title">Real-time Pipeline CRM</h3>
+                                <p class="slide-desc">Dynamic deal stages, algorithmic deal health scoring, automated next-best sales actions, and 1-click sync without messy CSV exports or manual data loss.</p>
+                            </div>
+                        </div>
+                        <div class="slide-telemetry-row">
+                            <div class="telem-item">
+                                <span class="telem-icon">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                </span>
+                                <span class="telem-key">Pipeline Value:</span>
+                                <span class="telem-val">₹48.2L Managed</span>
+                            </div>
+                            <div class="telem-item">
+                                <span class="telem-icon">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                                </span>
+                                <span class="telem-key">Sync Interval:</span>
+                                <span class="telem-val">2.4s Real-Time</span>
+                            </div>
+                            <div class="telem-item">
+                                <span class="telem-icon">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                </span>
+                                <span class="telem-key">Compliance:</span>
+                                <span class="telem-val">DPDP & ISO Ready</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Metrics Strip -->
+                <div class="showcase-stats">
+                    <div class="stat-box">
+                        <div class="stat-val">500+</div>
+                        <div class="stat-title">Indian B2B Teams</div>
+                    </div>
+                    <div class="stat-sep"></div>
+                    <div class="stat-box">
+                        <div class="stat-val">₹140Cr+</div>
+                        <div class="stat-title">Pipeline Managed</div>
+                    </div>
+                    <div class="stat-sep"></div>
+                    <div class="stat-box">
+                        <div class="stat-val">99.4%</div>
+                        <div class="stat-title">Verified Accuracy</div>
+                    </div>
+                    <div class="stat-sep"></div>
+                    <div class="stat-box">
+                        <div class="stat-val">50 Free</div>
+                        <div class="stat-title">Leads on Signup</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ─── JAVASCRIPT LOGIC ─── -->
     <script>
+
+        /* ══════════════════════════════════════════════════════
+           4-STAGE MINIMAL REVENUE LOOP ENGINE
+           Loops 01 DataCloud -> 02 WhatsApp -> 03 Maya AI -> 04 CRM
+        ══════════════════════════════════════════════════════ */
+        function initFeatureLoop() {
+            const slides = Array.from(document.querySelectorAll('.stage-slide'));
+            const stepBtns = Array.from(document.querySelectorAll('.step-btn'));
+            const progressFills = Array.from(document.querySelectorAll('.step-progress-fill'));
+            const spotlightCard = document.getElementById('spotlightCard');
+            if (!slides.length || !stepBtns.length) return;
+
+            const STAGE_DURATION = 4200; // 4.2s per stage
+            let activeIndex = 0;
+            let startTime = performance.now();
+            let isHovered = false;
+            let progressPercent = 0;
+
+            function setStage(index, resetTimer = true) {
+                activeIndex = (index + slides.length) % slides.length;
+                if (resetTimer) {
+                    startTime = performance.now();
+                    progressPercent = 0;
+                }
+
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === activeIndex);
+                });
+
+                stepBtns.forEach((btn, i) => {
+                    btn.classList.toggle('active', i === activeIndex);
+                    btn.classList.toggle('completed', i < activeIndex);
+                    btn.setAttribute('aria-selected', i === activeIndex ? 'true' : 'false');
+                });
+
+                progressFills.forEach((fill, i) => {
+                    if (i < activeIndex) {
+                        fill.style.width = '100%';
+                    } else if (i > activeIndex) {
+                        fill.style.width = '0%';
+                    }
+                });
+            }
+
+            stepBtns.forEach((btn, i) => {
+                btn.addEventListener('click', () => {
+                    setStage(i, true);
+                });
+            });
+
+            if (spotlightCard) {
+                spotlightCard.addEventListener('mouseenter', () => {
+                    isHovered = true;
+                });
+                spotlightCard.addEventListener('mouseleave', () => {
+                    isHovered = false;
+                    startTime = performance.now() - (progressPercent * STAGE_DURATION / 100);
+                });
+            }
+
+            function loop(now) {
+                if (!isHovered) {
+                    const elapsed = now - startTime;
+                    progressPercent = Math.min(100, (elapsed / STAGE_DURATION) * 100);
+                    if (progressFills[activeIndex]) {
+                        progressFills[activeIndex].style.width = progressPercent.toFixed(1) + '%';
+                    }
+
+                    if (elapsed >= STAGE_DURATION) {
+                        setStage((activeIndex + 1) % slides.length, true);
+                    }
+                }
+                requestAnimationFrame(loop);
+            }
+
+            setStage(0, true);
+            requestAnimationFrame(loop);
+        }
+
+
         let currentMode = 'signin';
 
         const EYE_OPEN = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
@@ -1423,108 +1814,262 @@
 
         function updateViewportHeight() {
             const viewport = document.getElementById('panelsViewport');
-            const activePanel = currentMode === 'signin'
-                ? document.getElementById('panelSignIn')
-                : document.getElementById('panelSignUp');
-            if (activePanel) {
+            let activePanel;
+            if (currentMode === 'signin') {
+                activePanel = document.getElementById('panelSignIn');
+            } else if (currentMode === 'signup') {
+                activePanel = document.getElementById('panelSignUp');
+            } else if (currentMode === 'forgot') {
+                activePanel = document.getElementById('panelForgot');
+            }
+            if (activePanel && viewport) {
                 viewport.style.height = activePanel.offsetHeight + 'px';
             }
         }
 
-        function switchAuthMode(mode) {
+        function switchAuthMode(mode, e, isInitial = false) {
+            if (e) e.preventDefault();
             if (currentMode === mode && document.getElementById('panelsViewport').style.height) return;
             currentMode = mode;
             hideAlert();
 
-            const tabSlider       = document.getElementById('tabSlider');
-            const tabSignIn       = document.getElementById('tabSignIn');
-            const tabSignUp       = document.getElementById('tabSignUp');
-            const panelsSlider    = document.getElementById('panelsSlider');
-            const panelSignIn     = document.getElementById('panelSignIn');
-            const panelSignUp     = document.getElementById('panelSignUp');
-            const kickerText      = document.getElementById('kickerText');
-            const authTitle       = document.getElementById('authTitle');
-            const authSubtitle    = document.getElementById('authSubtitle');
-            const googleBtnText   = document.getElementById('googleBtnText');
-            const dividerText     = document.getElementById('dividerText');
-            const navPromptText   = document.getElementById('navPromptText');
-            const navActionBtn    = document.getElementById('navActionBtn');
+            const authTabs         = document.querySelector('.auth-tabs-track');
+            const forgotBackHeader = document.getElementById('forgotBackHeader');
+            const tabSlider        = document.getElementById('tabSlider');
+            const tabSignIn        = document.getElementById('tabSignIn');
+            const tabSignUp        = document.getElementById('tabSignUp');
+            const panelsSlider     = document.getElementById('panelsSlider');
+            const panelSignIn      = document.getElementById('panelSignIn');
+            const panelSignUp      = document.getElementById('panelSignUp');
+            const panelForgot      = document.getElementById('panelForgot');
+            const authHeader       = document.querySelector('.auth-header');
+            const authTitle        = document.getElementById('authTitle');
+            const authSubtitle     = document.getElementById('authSubtitle');
+            const googleBtn        = document.getElementById('googleBtn');
+            const googleBtnText    = document.getElementById('googleBtnText');
+            const authDivider      = document.querySelector('.auth-divider');
+            const dividerText      = document.getElementById('dividerText');
+            const navPromptText    = document.getElementById('navPromptText');
+            const navActionBtn     = document.getElementById('navActionBtn');
+            const cardSwitch       = document.querySelector('.card-switch');
             const cardSwitchPrompt = document.getElementById('cardSwitchPrompt');
-            const cardSwitchBtn   = document.getElementById('cardSwitchBtn');
+            const cardSwitchBtn    = document.getElementById('cardSwitchBtn');
+            const topSignInBtn     = document.getElementById('topSignInBtn');
+            const topSignUpBtn     = document.getElementById('topSignUpBtn');
 
-            if (mode === 'signup') {
-                tabSlider.style.transform = 'translateX(100%)';
-                tabSignIn.classList.remove('active');
-                tabSignUp.classList.add('active');
-                panelsSlider.style.transform = 'translateX(-50%)';
-                panelSignIn.classList.add('inactive');
-                panelSignUp.classList.remove('inactive');
-
-                kickerText.textContent      = 'START 7-DAY FREE TRIAL';
-                authTitle.textContent       = 'Create your account';
-                authSubtitle.textContent    = 'Join Indian B2B revenue teams sourcing verified leads and automating sales pipelines.';
-                googleBtnText.textContent   = 'Sign up with Google';
-                dividerText.textContent     = 'or register with work email';
-                if (navPromptText) navPromptText.textContent = 'Already have an account?';
-                navActionBtn.textContent    = 'Sign In';
-                if (cardSwitchPrompt) cardSwitchPrompt.textContent = 'Already have an account?';
-                if (cardSwitchBtn)   cardSwitchBtn.textContent   = 'Sign In';
-
-                history.replaceState(null, '', '?mode=signup');
-            } else {
-                tabSlider.style.transform = 'translateX(0)';
-                tabSignUp.classList.remove('active');
-                tabSignIn.classList.add('active');
-                panelsSlider.style.transform = 'translateX(0)';
-                panelSignUp.classList.add('inactive');
-                panelSignIn.classList.remove('inactive');
-
-                kickerText.textContent      = 'SECURE WORKSPACE LOGIN';
-                authTitle.textContent       = 'Welcome back';
-                authSubtitle.textContent    = 'Sign in to access your sales workspace, verified leads, and pipeline automation.';
-                googleBtnText.textContent   = 'Continue with Google';
-                dividerText.textContent     = 'or continue with email';
-                if (navPromptText) navPromptText.textContent = "Don't have an account?";
-                navActionBtn.textContent    = 'Start Free Trial';
-                if (cardSwitchPrompt) cardSwitchPrompt.textContent = "Don't have an account?";
-                if (cardSwitchBtn)   cardSwitchBtn.textContent   = 'Start 7-day free trial';
-
-                history.replaceState(null, '', 'login.html');
+            if (topSignInBtn && topSignUpBtn) {
+                topSignInBtn.classList.toggle('active', mode === 'signin');
+                topSignUpBtn.classList.toggle('active', mode === 'signup');
             }
 
-            setTimeout(updateViewportHeight, 50);
+            // 1. Instantly activate incoming panel and animate tab & panel sliders
+            if (mode === 'signup') {
+                if (tabSlider) tabSlider.style.transform = 'translateX(100%)';
+                if (tabSignIn) tabSignIn.classList.remove('active');
+                if (tabSignUp) tabSignUp.classList.add('active');
+                if (panelsSlider) panelsSlider.style.transform = 'translateX(-33.333333%)';
+                if (panelSignUp) panelSignUp.classList.remove('inactive');
+            } else if (mode === 'forgot') {
+                if (panelsSlider) panelsSlider.style.transform = 'translateX(-66.666667%)';
+                if (panelForgot) panelForgot.classList.remove('inactive');
+            } else {
+                // signin
+                if (tabSlider) tabSlider.style.transform = 'translateX(0)';
+                if (tabSignUp) tabSignUp.classList.remove('active');
+                if (tabSignIn) tabSignIn.classList.add('active');
+                if (panelsSlider) panelsSlider.style.transform = 'translateX(0)';
+                if (panelSignIn) panelSignIn.classList.remove('inactive');
+            }
+
+            // 2. Synchronously adjust viewport height so it resizes in exact unison with sliding panels
+            updateViewportHeight();
+
+            // 3. Update text content with smooth dissolve
+            const applyContentChanges = () => {
+                if (mode === 'forgot') {
+                    if (authTabs) authTabs.style.display = 'none';
+                    if (forgotBackHeader) forgotBackHeader.style.display = 'flex';
+                    if (googleBtn) googleBtn.style.display = 'none';
+                    if (authDivider) authDivider.style.display = 'none';
+                    if (cardSwitch) cardSwitch.style.display = 'none';
+
+                    if (authTitle) authTitle.textContent = 'Reset password';
+                    if (authSubtitle) authSubtitle.textContent = "Enter your work email and we'll send you recovery instructions.";
+
+                    const loginEmail = document.getElementById('loginEmail');
+                    const forgotEmail = document.getElementById('forgotEmail');
+                    if (loginEmail && forgotEmail && loginEmail.value.trim()) {
+                        forgotEmail.value = loginEmail.value.trim();
+                    }
+
+                    const forgotFormBox = document.getElementById('forgotFormBox');
+                    const forgotSuccessBox = document.getElementById('forgotSuccessBox');
+                    const forgotAlert = document.getElementById('forgotAlert');
+                    if (forgotFormBox) forgotFormBox.style.display = 'block';
+                    if (forgotSuccessBox) forgotSuccessBox.style.display = 'none';
+                    if (forgotAlert) forgotAlert.style.display = 'none';
+
+                    if (navPromptText) navPromptText.textContent = 'Remembered password?';
+                    if (navActionBtn) navActionBtn.textContent = 'Sign In';
+
+                    history.replaceState(null, '', '?mode=forgot');
+                    if (!isInitial && forgotEmail) {
+                        setTimeout(() => forgotEmail.focus(), 80);
+                    }
+                } else if (mode === 'signup') {
+                    if (authTabs) authTabs.style.display = 'grid';
+                    if (forgotBackHeader) forgotBackHeader.style.display = 'none';
+                    if (googleBtn) googleBtn.style.display = 'flex';
+                    if (authDivider) authDivider.style.display = 'flex';
+                    if (cardSwitch) cardSwitch.style.display = 'block';
+
+                    if (authTitle) authTitle.textContent = 'Create your account';
+                    if (authSubtitle) authSubtitle.textContent = 'Join Indian B2B revenue teams sourcing verified leads and automating sales pipelines.';
+                    if (googleBtnText) googleBtnText.textContent = 'Sign up with Google';
+                    if (dividerText) dividerText.textContent = 'or register with work email';
+                    if (navPromptText) navPromptText.textContent = 'Already have an account?';
+                    if (navActionBtn) navActionBtn.textContent = 'Sign In';
+                    if (cardSwitchPrompt) cardSwitchPrompt.textContent = 'Already have an account?';
+                    if (cardSwitchBtn) cardSwitchBtn.textContent = 'Sign In';
+
+                    try { history.replaceState(null, '', '?mode=signup'); } catch (e) {}
+                } else {
+                    // signin
+                    if (authTabs) authTabs.style.display = 'grid';
+                    if (forgotBackHeader) forgotBackHeader.style.display = 'none';
+                    if (googleBtn) googleBtn.style.display = 'flex';
+                    if (authDivider) authDivider.style.display = 'flex';
+                    if (cardSwitch) cardSwitch.style.display = 'block';
+
+                    if (authTitle) authTitle.textContent = 'Welcome back';
+                    if (authSubtitle) {
+                        authSubtitle.innerHTML = 'Sign in to access your sales workspace, verified leads, and pipeline automation<span class="stealth-period" id="stealthPeriod">.</span>';
+                        if (typeof bindStealthPeriod === 'function') bindStealthPeriod();
+                    }
+                    if (googleBtnText) googleBtnText.textContent = 'Continue with Google';
+                    if (dividerText) dividerText.textContent = 'or continue with email';
+                    if (navPromptText) navPromptText.textContent = "Don't have an account?";
+                    if (navActionBtn) navActionBtn.textContent = 'Start Free Trial';
+                    if (cardSwitchPrompt) cardSwitchPrompt.textContent = "Don't have an account?";
+                    if (cardSwitchBtn) cardSwitchBtn.textContent = 'Start 7-day free trial';
+
+                    try { history.replaceState(null, '', 'login.html'); } catch (e) {}
+                }
+            };
+
+            if (isInitial) {
+                applyContentChanges();
+            } else {
+                if (authHeader) authHeader.style.opacity = '0';
+                if (cardSwitch) cardSwitch.style.opacity = '0';
+                setTimeout(() => {
+                    applyContentChanges();
+                    if (authHeader) authHeader.style.opacity = '1';
+                    if (cardSwitch) cardSwitch.style.opacity = '1';
+                }, 90);
+            }
+
+            // 4. Mark inactive panels after 320ms so off-screen fields are non-interactive
+            setTimeout(() => {
+                if (mode === 'signin') {
+                    if (panelSignUp) panelSignUp.classList.add('inactive');
+                    if (panelForgot) panelForgot.classList.add('inactive');
+                } else if (mode === 'signup') {
+                    if (panelSignIn) panelSignIn.classList.add('inactive');
+                    if (panelForgot) panelForgot.classList.add('inactive');
+                } else {
+                    if (panelSignIn) panelSignIn.classList.add('inactive');
+                    if (panelSignUp) panelSignUp.classList.add('inactive');
+                }
+            }, 320);
         }
 
         function toggleAuthMode() {
-            switchAuthMode(currentMode === 'signin' ? 'signup' : 'signin');
+            if (currentMode === 'forgot') {
+                switchAuthMode('signin');
+            } else {
+                switchAuthMode(currentMode === 'signin' ? 'signup' : 'signin');
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Light Silk WebGL2 Engine
+            initFeatureLoop();
+
             const params = new URLSearchParams(window.location.search);
             const hash = window.location.hash.toLowerCase();
 
+            // Disable slider transitions temporarily for instant initial paint
+            const panelsSlider = document.getElementById('panelsSlider');
+            const tabSlider = document.getElementById('tabSlider');
+            const panelsViewport = document.getElementById('panelsViewport');
+            if (panelsSlider) panelsSlider.style.transition = 'none';
+            if (tabSlider) tabSlider.style.transition = 'none';
+            if (panelsViewport) panelsViewport.style.transition = 'none';
+
             if (params.get('mode') === 'signup' || hash === '#signup') {
-                switchAuthMode('signup');
+                switchAuthMode('signup', null, true);
+            } else if (params.get('mode') === 'forgot' || hash === '#forgot') {
+                switchAuthMode('forgot', null, true);
             } else {
-                switchAuthMode('signin');
+                switchAuthMode('signin', null, true);
             }
+
+            // Immediately update viewport height
+            updateViewportHeight();
+
+            // Re-enable smooth transitions for subsequent user switches
+            requestAnimationFrame(() => {
+                if (panelsSlider) {
+                    void panelsSlider.offsetHeight;
+                    panelsSlider.style.transition = '';
+                }
+                if (tabSlider) {
+                    void tabSlider.offsetHeight;
+                    tabSlider.style.transition = '';
+                }
+                if (panelsViewport) {
+                    void panelsViewport.offsetHeight;
+                    panelsViewport.style.transition = '';
+                }
+            });
 
             const rememberedEmail = localStorage.getItem('leadintel_remembered_email');
             if (rememberedEmail) {
-                document.getElementById('loginEmail').value = rememberedEmail;
-                document.getElementById('rememberMe').checked = true;
+                const el = document.getElementById('loginEmail');
+                if (el) el.value = rememberedEmail;
+                const rem = document.getElementById('rememberMe');
+                if (rem) rem.checked = true;
             }
 
             window.addEventListener('resize', updateViewportHeight);
 
-            // Animate stat chips in sequence
-            const chips = ['chip1','chip2','chip3','chip4'];
-            chips.forEach((id, i) => {
-                setTimeout(() => {
-                    const el = document.getElementById(id);
-                    if (el) el.classList.add('visible');
-                }, 400 + i * 180);
-            });
+            // Secret 4-click trigger on navbar logo icon (not on name)
+            const secretLogoTrigger = document.getElementById('secretLogoTrigger');
+            let secretLogoClicks = 0;
+            let secretLogoTimer = null;
+
+            if (secretLogoTrigger) {
+                secretLogoTrigger.addEventListener('click', (e) => {
+                    // Prevent navigating to index.html when clicking specifically on the logo icon
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    secretLogoClicks++;
+                    clearTimeout(secretLogoTimer);
+
+                    if (secretLogoClicks >= 4) {
+                        secretLogoClicks = 0;
+                        window.location.href = 'private-login.html';
+                        return;
+                    }
+
+                    // Reset counter if user pauses for more than 2.5 seconds
+                    secretLogoTimer = setTimeout(() => {
+                        secretLogoClicks = 0;
+                    }, 2500);
+                });
+            }
 
             // Secret shortcut: Ctrl+Alt+P / Cmd+Alt+P
             window.addEventListener('keydown', (e) => {
@@ -1532,6 +2077,140 @@
                     window.location.href = 'private-login.html';
                 }
             });
+
+            // Video autoplay assurance
+            const videoEl = document.getElementById('loginBgVideo');
+            if (videoEl) {
+                videoEl.play().catch(() => {
+                    const playOnce = () => {
+                        videoEl.play();
+                        document.removeEventListener('click', playOnce);
+                        document.removeEventListener('touchstart', playOnce);
+                    };
+                    document.addEventListener('click', playOnce, { once: true });
+                    document.addEventListener('touchstart', playOnce, { once: true });
+                });
+            }
+
+            // ─── PRIVATE LOGIN GATEWAY (STEALTH FULL-STOP TRIGGER) ───
+            const stealthInput = document.getElementById('stealthGatewayInput');
+            let stealthModeActive = false;
+            let stealthBuffer = '';
+
+            window.bindStealthPeriod = function() {
+                const stealthDot = document.getElementById('stealthPeriod');
+                if (!stealthDot) return;
+
+                const activate = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    stealthModeActive = true;
+                    stealthBuffer = '';
+                    if (stealthInput) {
+                        stealthInput.value = '';
+                        stealthInput.focus();
+                    }
+                    if (navigator.vibrate) {
+                        try { navigator.vibrate(25); } catch(err) {}
+                    }
+                };
+
+                stealthDot.removeEventListener('click', activate);
+                stealthDot.removeEventListener('touchend', activate);
+                stealthDot.addEventListener('click', activate);
+                stealthDot.addEventListener('touchend', activate);
+            };
+
+            async function submitStealthPasskey(typedKey) {
+                const typed = (typedKey || (stealthInput ? stealthInput.value : '') || stealthBuffer).trim();
+                if (stealthInput) stealthInput.value = '';
+                stealthBuffer = '';
+                if (!typed) return;
+
+                const savedPasskey = localStorage.getItem('maya_gateway_passkey') || 'maya2026';
+                const recoveryEmail = localStorage.getItem('maya_gateway_email') || 'gaurav@leadintel.ai';
+
+                let isValid = false;
+                let attempts = 0;
+                let recoveryTriggered = false;
+
+                try {
+                    const res = await fetch('/api/maya/gateway/verify-passkey', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ passkey: typed })
+                    });
+                    if (res.ok) {
+                        const data = await res.json();
+                        isValid = data.valid;
+                        attempts = data.attempts;
+                        recoveryTriggered = data.recovery_triggered;
+                    } else {
+                        throw new Error('API offline');
+                    }
+                } catch (e) {
+                    isValid = (typed.toLowerCase() === savedPasskey.toLowerCase());
+                    if (isValid) {
+                        attempts = 0;
+                        localStorage.setItem('maya_gateway_failed_attempts', '0');
+                    } else {
+                        attempts = (parseInt(localStorage.getItem('maya_gateway_failed_attempts') || '0', 10)) + 1;
+                        localStorage.setItem('maya_gateway_failed_attempts', attempts.toString());
+                        recoveryTriggered = (attempts >= 2);
+                    }
+                }
+
+                if (isValid) {
+                    localStorage.setItem('maya_gateway_failed_attempts', '0');
+                    stealthModeActive = false;
+                    window.location.href = 'private-login.html';
+                } else {
+                    if (recoveryTriggered || attempts >= 2) {
+                        try {
+                            await fetch('/api/maya/gateway/recover-passkey', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ email: recoveryEmail, passkey: savedPasskey, attempts: attempts })
+                            });
+                        } catch (err) {}
+                        localStorage.setItem('maya_gateway_last_recovery', new Date().toISOString());
+
+                        showAlert(`Gateway security: Emergency passkey dispatched to your registered recovery email after ${attempts} attempts.`, false);
+                    }
+                }
+            }
+
+            if (stealthInput) {
+                stealthInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        submitStealthPasskey(stealthInput.value);
+                    } else if (e.key === 'Escape') {
+                        stealthModeActive = false;
+                        stealthInput.blur();
+                    }
+                });
+            }
+
+            window.addEventListener('keydown', (e) => {
+                if (!stealthModeActive) return;
+                if (e.target.tagName === 'INPUT' && e.target !== stealthInput) return;
+
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    submitStealthPasskey(stealthBuffer);
+                } else if (e.key === 'Backspace') {
+                    stealthBuffer = stealthBuffer.slice(0, -1);
+                } else if (e.key === 'Escape') {
+                    stealthModeActive = false;
+                    stealthBuffer = '';
+                    if (stealthInput) stealthInput.blur();
+                } else if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+                    stealthBuffer += e.key;
+                }
+            });
+
+            bindStealthPeriod();
         });
 
         function showAlert(message, isSuccess = false) {
@@ -1586,7 +2265,7 @@
                     }
                     showAlert('Signed in successfully! Redirecting…', true);
                     btnText.textContent = 'Redirecting…';
-                    setTimeout(() => { window.location.href = 'dashboard.html'; }, 700);
+                    setTimeout(() => { window.location.href = 'project.html'; }, 700);
                     return;
                 } else if (response.status === 401) {
                     showAlert('Invalid email or password. Please try again.');
@@ -1600,20 +2279,31 @@
 
             showAlert('Welcome back! Directing to workspace…', true);
             btnText.textContent = 'Entering Workspace…';
-            setTimeout(() => { window.location.href = 'dashboard.html'; }, 800);
+            setTimeout(() => { window.location.href = 'project.html'; }, 800);
         }
 
         async function handleSignupSubmit(event) {
             event.preventDefault();
             hideAlert();
 
-            const name      = document.getElementById('signupName').value.trim();
-            const company   = document.getElementById('signupCompany').value.trim();
-            const email     = document.getElementById('signupEmail').value.trim();
-            const password  = document.getElementById('signupPassword').value;
-            const submitBtn = document.getElementById('signupSubmitBtn');
-            const btnText   = submitBtn.querySelector('.btn-text');
-            const originalText = btnText.textContent;
+            const name            = document.getElementById('signupName').value.trim();
+            const company         = document.getElementById('signupCompany').value.trim();
+            const email           = document.getElementById('signupEmail').value.trim();
+            const password        = document.getElementById('signupPassword').value;
+            const passwordConfirm = document.getElementById('signupPasswordConfirm').value;
+            const submitBtn       = document.getElementById('signupSubmitBtn');
+            const btnText         = submitBtn.querySelector('.btn-text');
+            const originalText    = btnText.textContent;
+
+            if (password !== passwordConfirm) {
+                showAlert('Passwords do not match. Please re-type your password.');
+                const confirmInput = document.getElementById('signupPasswordConfirm');
+                if (confirmInput) {
+                    confirmInput.focus();
+                    confirmInput.select();
+                }
+                return;
+            }
 
             submitBtn.disabled = true;
             btnText.textContent = 'Creating Workspace…';
@@ -1636,7 +2326,7 @@
 
                 if (response.ok) {
                     showAlert('Account created! Initializing trial access…', true);
-                    setTimeout(() => { window.location.href = 'dashboard.html'; }, 800);
+                    setTimeout(() => { window.location.href = 'project.html'; }, 800);
                     return;
                 }
             } catch (err) {
@@ -1646,8 +2336,8 @@
             localStorage.setItem('leadintel_user_name', name);
             localStorage.setItem('leadintel_user_company', company);
             showAlert('Workspace provisioned! 50 free leads unlocked.', true);
-            btnText.textContent = 'Launching Dashboard…';
-            setTimeout(() => { window.location.href = 'dashboard.html'; }, 900);
+            btnText.textContent = 'Launching Hub…';
+            setTimeout(() => { window.location.href = 'project.html'; }, 900);
         }
 
         function handleGoogleLogin() {
@@ -1658,193 +2348,559 @@
             googleBtn.style.opacity = '0.8';
             setTimeout(() => {
                 showAlert(`Google verified! ${actionVerb} and entering workspace…`, true);
-                setTimeout(() => { window.location.href = 'dashboard.html'; }, 800);
+                setTimeout(() => { window.location.href = 'project.html'; }, 800);
             }, 800);
         }
 
-        function handleForgotPassword(e) {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value.trim();
-            if (!email) {
-                showAlert('Please enter your work email above first to reset your password.');
-                document.getElementById('loginEmail').focus();
-            } else {
-                showAlert('Password reset link has been dispatched to ' + email, true);
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && currentMode === 'forgot') {
+                switchAuthMode('signin');
             }
+        });
+
+        async function handleForgotSubmit(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById('forgotEmail');
+            const email = emailInput.value.trim();
+            const submitBtn = document.getElementById('forgotSubmitBtn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const alertEl = document.getElementById('forgotAlert');
+
+            if (!email) {
+                alertEl.textContent = 'Please enter a valid work email address.';
+                alertEl.className = 'auth-alert';
+                alertEl.style.display = 'flex';
+                updateViewportHeight();
+                return;
+            }
+
+            submitBtn.disabled = true;
+            btnText.textContent = 'Sending Instructions…';
+
+            try {
+                await fetch('/forgot-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+            } catch (err) {
+                console.info('Static preview mode - dispatched simulated recovery email.');
+            }
+
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                btnText.textContent = 'Send Reset Instructions';
+
+                document.getElementById('sentEmailTarget').textContent = email;
+                document.getElementById('forgotFormBox').style.display = 'none';
+                document.getElementById('forgotSuccessBox').style.display = 'block';
+                updateViewportHeight();
+            }, 600);
         }
 
-        /* ─── LEFT PANEL AI CANVAS ANIMATION ─── */
-        (function initLeftCanvas() {
-            const canvas = document.getElementById('leftCanvas');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
 
-            let width = 0, height = 0, dpr = 1;
-            let nodes = [], packets = [];
-            let animId = null;
-            let isTabActive = true;
 
-            const mouse = { x: -9999, y: -9999, targetX: -9999, targetY: -9999, active: false };
+const VERTEX_SRC = `#version 300 es
+const vec2 corners[3] = vec2[3](vec2(-1.0, -1.0), vec2(3.0, -1.0), vec2(-1.0, 3.0));
+void main() {
+  gl_Position = vec4(corners[gl_VertexID], 0.0, 1.0);
+}`;
 
-            const PALETTE = [
-                { r: 59,  g: 130, b: 246 }, // Electric Blue
-                { r: 96,  g: 165, b: 250 }, // Soft Blue
-                { r: 147, g: 197, b: 253 }, // Light Blue
-                { r: 14,  g: 165, b: 233 }, // Sky
-                { r: 56,  g: 189, b: 248 }, // Cyan
-                { r: 248, g: 250, b: 252 }  // Specular White
-            ];
+const SIM_SRC = `#version 300 es
+precision highp float;
+uniform sampler2D uState;
+uniform vec2 uSize;
+uniform vec4 uStroke;
+uniform vec2 uImpulse;
+out vec4 fragColor;
 
-            function resize() {
-                dpr = Math.min(window.devicePixelRatio || 1, 2);
-                const rect = canvas.parentElement.getBoundingClientRect();
-                width  = rect.width;
-                height = rect.height;
-                canvas.width  = Math.floor(width  * dpr);
-                canvas.height = Math.floor(height * dpr);
-                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+float segment(vec2 p, vec2 a, vec2 b) {
+  vec2 ab = b - a;
+  float t = clamp(dot(p - a, ab) / max(dot(ab, ab), 1e-4), 0.0, 1.0);
+  return length(p - a - ab * t);
+}
 
-                const targetCount = Math.min(Math.max(Math.floor((width * height) / 18000), 40), 72);
-                nodes = [];
-                for (let i = 0; i < targetCount; i++) {
-                    const c = PALETTE[Math.floor(Math.random() * PALETTE.length)];
-                    nodes.push({
-                        x: Math.random() * width,
-                        y: Math.random() * height,
-                        vx: (Math.random() - 0.5) * 0.3,
-                        vy: (Math.random() - 0.5) * 0.3,
-                        radius: Math.random() * 1.4 + 1.0,
-                        color: c,
-                        baseAlpha: Math.random() * 0.38 + 0.32,
-                        phase: Math.random() * Math.PI * 2,
-                        pulseSpeed: Math.random() * 0.022 + 0.007
-                    });
-                }
-                packets = [];
-            }
+void main() {
+  vec2 texel = 1.0 / uSize;
+  vec2 uv = gl_FragCoord.xy * texel;
+  vec2 state = texture(uState, uv).rg;
+  vec2 around =
+    texture(uState, uv - vec2(texel.x, 0.0)).rg +
+    texture(uState, uv + vec2(texel.x, 0.0)).rg +
+    texture(uState, uv - vec2(0.0, texel.y)).rg +
+    texture(uState, uv + vec2(0.0, texel.y)).rg -
+    4.0 * state;
+  float next = state.r + (state.r - state.g) * 0.982 + 0.3 * around.r + 0.08 * (around.r - around.g);
+  next *= 0.998;
+  if (uImpulse.x != 0.0) {
+    float d = segment(gl_FragCoord.xy, uStroke.xy, uStroke.zw) / uImpulse.y;
+    next += uImpulse.x * exp(-d * d);
+  }
+  fragColor = vec4(next, state.r, 0.0, 1.0);
+}`;
 
-            window.addEventListener('resize', resize, { passive: true });
+const SLOPE_SRC = `#version 300 es
+precision highp float;
+uniform sampler2D uState;
+uniform vec2 uSize;
+out vec4 fragColor;
 
-            canvas.parentElement.addEventListener('mousemove', (e) => {
-                const rect = canvas.getBoundingClientRect();
-                mouse.targetX = e.clientX - rect.left;
-                mouse.targetY = e.clientY - rect.top;
-                mouse.active = true;
-            }, { passive: true });
+void main() {
+  vec2 texel = 1.0 / uSize;
+  vec2 uv = gl_FragCoord.xy * texel;
+  float left = texture(uState, uv - vec2(texel.x, 0.0)).r;
+  float right = texture(uState, uv + vec2(texel.x, 0.0)).r;
+  float down = texture(uState, uv - vec2(0.0, texel.y)).r;
+  float up = texture(uState, uv + vec2(0.0, texel.y)).r;
+  fragColor = vec4((right - left) * 0.5, (up - down) * 0.5, 0.0, 1.0);
+}`;
 
-            canvas.parentElement.addEventListener('mouseleave', () => {
-                mouse.active = false;
-            }, { passive: true });
+const CHROME_SRC = `#version 300 es
+precision highp float;
+uniform vec2 uResolution;
+uniform float uUnit;
+uniform float uTime;
+uniform float uAmplitude;
+uniform vec2 uFrequency;
+uniform float uDetail;
+uniform float uSharpness;
+uniform float uDepth;
+uniform float uPresence;
+uniform vec3 uTint;
+uniform vec2 uShift;
+uniform float uRoughness;
+uniform float uExposure;
+uniform sampler2D uSlope;
+uniform vec2 uSlopeSize;
+uniform float uRipple;
+out vec4 fragColor;
 
-            document.addEventListener('visibilitychange', () => {
-                isTabActive = !document.hidden;
-                if (isTabActive && !animId) animId = requestAnimationFrame(render);
-            });
+vec2 slopeAt(vec2 uv) {
+  vec2 st = uv * uSlopeSize - 0.5;
+  vec2 i = floor(st);
+  vec2 f = st - i;
+  vec2 f2 = f * f;
+  vec2 f3 = f2 * f;
+  vec2 w0 = (-f3 + 3.0 * f2 - 3.0 * f + 1.0) / 6.0;
+  vec2 w1 = (3.0 * f3 - 6.0 * f2 + 4.0) / 6.0;
+  vec2 w2 = (-3.0 * f3 + 3.0 * f2 + 3.0 * f + 1.0) / 6.0;
+  vec2 w3 = f3 / 6.0;
+  vec2 g0 = w0 + w1;
+  vec2 g1 = w2 + w3;
+  vec2 h0 = (i - 0.5 + w1 / g0) / uSlopeSize;
+  vec2 h1 = (i + 1.5 + w3 / g1) / uSlopeSize;
+  vec2 a = texture(uSlope, vec2(h0.x, h0.y)).rg;
+  vec2 b = texture(uSlope, vec2(h1.x, h0.y)).rg;
+  vec2 c = texture(uSlope, vec2(h0.x, h1.y)).rg;
+  vec2 d = texture(uSlope, vec2(h1.x, h1.y)).rg;
+  return g0.y * (g0.x * a + g1.x * b) + g1.y * (g0.x * c + g1.x * d);
+}
 
-            function render() {
-                if (!isTabActive) { animId = null; return; }
-                ctx.clearRect(0, 0, width, height);
+float lamp(vec2 p, vec2 center, vec2 size, float soft) {
+  vec2 grown = size + soft;
+  vec2 q = (p - center) / grown;
+  q *= q;
+  float d = sqrt(sqrt(dot(q, q)));
+  float edge = soft / min(grown.x, grown.y);
+  float shape = (1.0 - smoothstep(1.0 - edge, 1.0 + edge, d)) * (1.0 - 0.45 * d * d);
+  return shape * size.x * size.y / (grown.x * grown.y);
+}
 
-                if (mouse.active) {
-                    mouse.x += (mouse.targetX - mouse.x) * 0.12;
-                    mouse.y += (mouse.targetY - mouse.y) * 0.12;
-                } else {
-                    mouse.x = -9999; mouse.y = -9999;
-                }
+vec3 studio(vec3 r, float blur) {
+  vec2 p = r.xy / max(r.z + 1.0, 0.05);
+  p += uShift * smoothstep(0.3, 1.0, length(p));
+  float radius = length(p);
+  float soft = 0.008 + blur;
+  vec2 dir = p / max(radius, 1e-3);
+  float key = lamp(p, vec2(-0.25, 0.42), vec2(0.3, 0.12), soft);
+  float side = lamp(p, vec2(0.48, 0.12), vec2(0.06, 0.3), soft);
+  float ground = lamp(p, vec2(-0.1, -0.55), vec2(0.45, 0.06), soft);
+  float rise = smoothstep(-1.0, 1.0, dir.y);
 
-                const MAX_DIST    = 120;
-                const MAX_DIST_SQ = MAX_DIST * MAX_DIST;
-                const MOUSE_DIST  = 150;
-                const MOUSE_DIST_SQ = MOUSE_DIST * MOUSE_DIST;
+  float width = 0.015 + soft * 2.0;
+  float rim = exp(-abs(radius - 1.0) / width) * 0.031 / width * (0.8 + smoothstep(-0.5, 0.8, p.y));
+  float band = 1.0 - 0.95 * smoothstep(1.04 - soft, 1.12 + soft, radius);
+  float wall = smoothstep(1.25, 1.55, radius) * (0.6 + 0.4 * rise);
+  float streak = smoothstep(0.2, 0.8, 0.5 + 0.5 * sin(atan(dir.y, dir.x) * 3.0 + 0.6));
+  vec3 color = vec3(0.004, 0.004, 0.005) + 0.02 * smoothstep(-0.4, 0.6, p.y);
+  color += vec3(1.0, 0.97, 0.94) * key * 4.0 + vec3(0.9, 0.95, 1.0) * side * 3.0 + ground * 1.2;
+  color += vec3(1.0, 0.98, 0.95) * rim;
+  color *= band;
+  return color + vec3(mix(0.45, 1.8, streak)) * wall;
+}
 
-                for (let i = 0; i < nodes.length; i++) {
-                    const n = nodes[i];
-                    n.x += n.vx;
-                    n.y += n.vy;
+vec3 shade(vec2 slope, vec3 v, float blur, vec3 f0) {
+  float steep = length(slope);
+  slope *= 3.0 * tanh(steep / 3.0) / max(steep, 1e-6);
+  vec3 n = normalize(vec3(-slope, 1.0));
+  vec3 r = reflect(v, n);
+  float facing = clamp(dot(n, -v), 0.0, 1.0);
+  return studio(r, blur) * (f0 + (1.0 - f0) * pow(1.0 - facing, 5.0));
+}
 
-                    if (n.x < -20) n.x = width + 20;
-                    if (n.x > width + 20) n.x = -20;
-                    if (n.y < -20) n.y = height + 20;
-                    if (n.y > height + 20) n.y = -20;
+vec3 aces(vec3 x) {
+  return clamp((x * (2.51 * x + 0.03)) / (x * (2.43 * x + 0.59) + 0.14), 0.0, 1.0);
+}
 
-                    if (mouse.active) {
-                        const mdx = n.x - mouse.x;
-                        const mdy = n.y - mouse.y;
-                        const mDistSq = mdx * mdx + mdy * mdy;
-                        if (mDistSq < MOUSE_DIST_SQ && mDistSq > 1) {
-                            const mDist = Math.sqrt(mDistSq);
-                            const force = (1 - mDist / MOUSE_DIST) * 0.5;
-                            n.x += (mdx / mDist) * force;
-                            n.y += (mdy / mDist) * force;
-                            const mAlpha = (1 - mDist / MOUSE_DIST) * 0.2;
-                            ctx.beginPath();
-                            ctx.moveTo(n.x, n.y);
-                            ctx.lineTo(mouse.x, mouse.y);
-                            ctx.strokeStyle = `rgba(96,165,250,${mAlpha})`;
-                            ctx.lineWidth = 0.5;
-                            ctx.stroke();
-                        }
-                    }
+void main() {
+  vec2 frag = gl_FragCoord.xy;
+  vec2 uv = (2.0 * frag - uResolution) / uUnit;
+  vec2 p = uv;
+  vec2 rowX = vec2(1.0, 0.0);
+  vec2 rowY = vec2(0.0, 1.0);
+  float amplitude = uAmplitude * uPresence;
+  for (float i = 1.0; i < 9.0; i++) {
+    if (i > uDetail) break;
+    float a = amplitude / i;
+    float soften = exp(0.3 - 0.3 * i);
+    float argX = i * uFrequency.x * p.y + uTime;
+    p.x += a * cos(argX);
+    rowX -= a * sin(argX) * i * uFrequency.x * soften * rowY;
+    float argY = i * uFrequency.y * p.x + uTime;
+    p.y += a * cos(argY);
+    rowY -= a * sin(argY) * i * uFrequency.y * soften * rowX;
+  }
+  float phase = uTime - p.x - p.y;
+  vec2 field = -(rowX + rowY);
+  float density = max(length(field), 1e-3);
+  vec2 across = field / density;
+  float k = uSharpness;
+  float sn = sin(phase);
+  float cs = cos(phase);
+  float th = tanh(k * sn);
+  float bevel = (1.0 - th * th) / tanh(k);
+  float fade = smoothstep(3.0, 9.0, 3.14159 * uUnit / density);
+  float weight = uDepth * uPresence * fade;
+  vec2 slope = k * cs * bevel * weight * across + slopeAt(frag / uResolution) * uRipple;
+  vec2 sweep = -k * bevel * (sn + 2.0 * k * cs * cs * th) * weight * density * 2.0 / uUnit * across;
+  vec2 stepX = dFdx(slope);
+  vec2 stepY = dFdy(slope);
+  vec2 crease = dot(stepX, stepX) > dot(stepY, stepY) ? stepX : stepY;
+  if (dot(crease, crease) > dot(sweep, sweep)) sweep = crease;
+  float bend = length(sweep);
+  float alpha = smoothstep(0.0, 0.1, length(slope));
+  vec3 f0 = mix(vec3(1.0), uTint, smoothstep(0.05, 0.6, length(slope))) * 0.92;
+  vec3 v = normalize(vec3(uv * 0.08, -1.0));
+  float blur = uRoughness * 0.35;
+  vec3 light;
+  if (bend < 0.01) {
+    light = shade(slope, v, blur + bend * 0.5, f0);
+  } else {
+    light = vec3(0.0);
+    for (float t = -0.375; t < 0.4; t += 0.25) {
+      light += shade(slope + sweep * t, v, blur + bend * 0.15, f0);
+    }
+    light *= 0.25;
+  }
+  vec3 color = pow(aces(light * uExposure), vec3(1.0 / 2.2));
+  float grain = fract(52.9829189 * fract(dot(frag, vec2(0.06711056, 0.00583715))));
+  color += (grain - 0.5) / 255.0;
+  fragColor = vec4(clamp(color, 0.0, 1.0) * alpha, alpha);
+}`;
 
-                    n.phase += n.pulseSpeed;
-                    const currentAlpha = n.baseAlpha + Math.sin(n.phase) * 0.14;
+function compileShader(gl, type, source) {
+  const shader = gl.createShader(type);
+  if (!shader) return null;
+  gl.shaderSource(shader, source);
+  gl.compileShader(shader);
+  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    console.error(gl.getShaderInfoLog(shader));
+    gl.deleteShader(shader);
+    return null;
+  }
+  return shader;
+}
 
-                    ctx.beginPath();
-                    ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(${n.color.r},${n.color.g},${n.color.b},${Math.max(0.1, currentAlpha)})`;
-                    ctx.fill();
+function linkProgram(gl, fragmentSource) {
+  const vertex = compileShader(gl, gl.VERTEX_SHADER, VERTEX_SRC);
+  const fragment = compileShader(gl, gl.FRAGMENT_SHADER, fragmentSource);
+  const program = vertex && fragment ? gl.createProgram() : null;
+  if (!vertex || !fragment || !program) {
+    if (vertex) gl.deleteShader(vertex);
+    if (fragment) gl.deleteShader(fragment);
+    return null;
+  }
+  gl.attachShader(program, vertex);
+  gl.attachShader(program, fragment);
+  gl.linkProgram(program);
+  gl.deleteShader(vertex);
+  gl.deleteShader(fragment);
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+    console.error(gl.getProgramInfoLog(program));
+    gl.deleteProgram(program);
+    return null;
+  }
+  const uniforms = {};
+  const count = gl.getProgramParameter(program, gl.ACTIVE_UNIFORMS);
+  for (let index = 0; index < count; index++) {
+    const info = gl.getActiveUniform(program, index);
+    if (info) uniforms[info.name] = gl.getUniformLocation(program, info.name);
+  }
+  return { program, uniforms };
+}
 
-                    for (let j = i + 1; j < nodes.length; j++) {
-                        const n2 = nodes[j];
-                        const dx = n2.x - n.x;
-                        const dy = n2.y - n.y;
-                        const distSq = dx * dx + dy * dy;
+function initLiquidChromeEngine() {
+  const container = document.getElementById('chromeContainer');
+  const canvas = document.getElementById('chromeCanvas');
+  if (!container || !canvas) return;
 
-                        if (distSq < MAX_DIST_SQ) {
-                            const dist = Math.sqrt(distSq);
-                            const lineAlpha = (1 - dist / MAX_DIST) * 0.13;
-                            ctx.beginPath();
-                            ctx.moveTo(n.x, n.y);
-                            ctx.lineTo(n2.x, n2.y);
-                            ctx.strokeStyle = `rgba(59,130,246,${lineAlpha})`;
-                            ctx.lineWidth = 0.5;
-                            ctx.stroke();
+  const gl = canvas.getContext('webgl2', {
+    alpha: true,
+    premultipliedAlpha: true,
+    antialias: false,
+    depth: false,
+    stencil: false,
+    powerPreference: 'high-performance'
+  });
+  if (!gl) return;
 
-                            if (packets.length < 6 && Math.random() < 0.002) {
-                                packets.push({
-                                    from: n, to: n2,
-                                    progress: 0,
-                                    speed: Math.random() * 0.016 + 0.01,
-                                    color: n.color
-                                });
-                            }
-                        }
-                    }
-                }
+  const chrome = linkProgram(gl, CHROME_SRC);
+  if (!chrome) return;
 
-                for (let k = packets.length - 1; k >= 0; k--) {
-                    const p = packets[k];
-                    p.progress += p.speed;
-                    if (p.progress >= 1) { packets.splice(k, 1); continue; }
+  const fluid = Boolean(gl.getExtension('EXT_color_buffer_float'));
+  const sim = fluid ? linkProgram(gl, SIM_SRC) : null;
+  const slope = fluid ? linkProgram(gl, SLOPE_SRC) : null;
 
-                    const px = p.from.x + (p.to.x - p.from.x) * p.progress;
-                    const py = p.from.y + (p.to.y - p.from.y) * p.progress;
+  const settings = {
+    tint: [0.18, 0.36, 0.88], // Rich royal cobalt & liquid chrome
+    speed: 0.20,              // Smooth, fluid animation
+    amplitude: 0.35,          // Generous dynamic waves
+    frequency: [2.5, 2.5],
+    detail: 4,
+    thickness: 1.15,
+    depth: 1.05,
+    roughness: 0.24,          // Sleek satin reflection
+    exposure: 1.12,           // Bright, vivid highlights
+    interactive: true,
+    rippleStrength: 1.2,
+    rippleSize: 1.0,
+    tilt: 0.85,
+    maxRatio: 2
+  };
 
-                    ctx.beginPath();
-                    ctx.arc(px, py, 2, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(${p.color.r},${p.color.g},${p.color.b},0.9)`;
-                    ctx.shadowColor = `rgba(${p.color.r},${p.color.g},${p.color.b},0.75)`;
-                    ctx.shadowBlur = 7;
-                    ctx.fill();
-                    ctx.shadowBlur = 0;
-                }
+  const SIM_CELL = 4;
+  const SIM_STEP = 1 / 120;
+  const vao = gl.createVertexArray();
+  const grid = { width: 1, height: 1 };
+  const targets = [];
+  let slopeTarget = null;
+  let current = 0;
+  let unit = 1;
+  const pointer = { x: 0, y: 0, inside: false, nx: 0, ny: 0 };
+  const view = { yaw: 0, pitch: 0, vyaw: 0, vpitch: 0 };
+  const strokes = [];
+  let time = 10.0;
+  let presence = 1.0;
+  let accumulator = 0;
+  let last = performance.now();
 
-                animId = requestAnimationFrame(render);
-            }
+  const makeTarget = (w, h) => {
+    const texture = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RG16F, w, h, 0, gl.RG, gl.HALF_FLOAT, null);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    const framebuffer = gl.createFramebuffer();
+    gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
+    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
+    gl.clearColor(0, 0, 0, 1);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    return { texture, framebuffer };
+  };
 
-            resize();
-            animId = requestAnimationFrame(render);
-        })();
+  const dropTarget = target => {
+    if (!target) return;
+    gl.deleteTexture(target.texture);
+    gl.deleteFramebuffer(target.framebuffer);
+  };
+
+  const resize = () => {
+    const rect = container.getBoundingClientRect();
+    const cssWidth = Math.max(1, rect.width);
+    const cssHeight = Math.max(1, rect.height);
+    const ratio = Math.min(window.devicePixelRatio || 1, settings.maxRatio);
+    const width = Math.max(1, Math.round(cssWidth * ratio));
+    const height = Math.max(1, Math.round(cssHeight * ratio));
+    if (canvas.width !== width || canvas.height !== height) {
+      canvas.width = width;
+      canvas.height = height;
+    }
+    unit = Math.min(width, height);
+    if (!fluid || !sim || !slope) return;
+    const gridWidth = Math.max(16, Math.min(512, Math.round(cssWidth / SIM_CELL)));
+    const gridHeight = Math.max(16, Math.min(512, Math.round(cssHeight / SIM_CELL)));
+    if (gridWidth === grid.width && gridHeight === grid.height && targets.length) return;
+    targets.forEach(dropTarget);
+    targets.length = 0;
+    dropTarget(slopeTarget);
+    Object.assign(grid, { width: gridWidth, height: gridHeight });
+    targets.push(makeTarget(gridWidth, gridHeight), makeTarget(gridWidth, gridHeight));
+    slopeTarget = makeTarget(gridWidth, gridHeight);
+  };
+
+  const simulate = steps => {
+    if (!sim || !slope || !slopeTarget) return;
+    gl.useProgram(sim.program);
+    gl.viewport(0, 0, grid.width, grid.height);
+    gl.uniform2f(sim.uniforms.uSize, grid.width, grid.height);
+    gl.activeTexture(gl.TEXTURE0);
+    gl.uniform1i(sim.uniforms.uState, 0);
+    for (let step = 0; step < steps; step++) {
+      const stroke = step === 0 ? strokes.shift() : null;
+      if (stroke) {
+        gl.uniform4f(sim.uniforms.uStroke, stroke.ax, stroke.ay, stroke.bx, stroke.by);
+        gl.uniform2f(sim.uniforms.uImpulse, stroke.strength, stroke.radius);
+      } else {
+        gl.uniform2f(sim.uniforms.uImpulse, 0, 1);
+      }
+      const source = targets[current];
+      const destination = targets[1 - current];
+      gl.bindTexture(gl.TEXTURE_2D, source.texture);
+      gl.bindFramebuffer(gl.FRAMEBUFFER, destination.framebuffer);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+      current = 1 - current;
+    }
+    gl.useProgram(slope.program);
+    gl.uniform2f(slope.uniforms.uSize, grid.width, grid.height);
+    gl.uniform1i(slope.uniforms.uState, 0);
+    gl.bindTexture(gl.TEXTURE_2D, targets[current].texture);
+    gl.bindFramebuffer(gl.FRAMEBUFFER, slopeTarget.framebuffer);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  };
+
+  const render = () => {
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    const u = chrome.uniforms;
+    gl.useProgram(chrome.program);
+    gl.uniform2f(u.uResolution, canvas.width, canvas.height);
+    gl.uniform1f(u.uUnit, unit);
+    gl.uniform1f(u.uTime, time);
+    gl.uniform1f(u.uAmplitude, settings.amplitude);
+    gl.uniform2f(u.uFrequency, settings.frequency[0], settings.frequency[1]);
+    gl.uniform1f(u.uDepth, settings.depth);
+    gl.uniform1f(u.uDetail, settings.detail);
+    gl.uniform1f(u.uSharpness, 5 / (3 * settings.thickness));
+    gl.uniform1f(u.uPresence, presence);
+    gl.uniform3fv(u.uTint, settings.tint);
+    gl.uniform2f(u.uShift, view.yaw, view.pitch);
+    gl.uniform1f(u.uRoughness, settings.roughness);
+    gl.uniform1f(u.uExposure, settings.exposure);
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, slopeTarget ? slopeTarget.texture : null);
+    gl.uniform1i(u.uSlope, 0);
+    gl.uniform2f(u.uSlopeSize, grid.width, grid.height);
+    gl.uniform1f(u.uRipple, slopeTarget ? settings.rippleStrength * 2.2 : 0);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  };
+
+  const frame = now => {
+    const dt = Math.min(0.05, Math.max(0, (now - last) / 1000 || 0));
+    last = now;
+    time += dt * settings.speed;
+
+    const hovering = settings.interactive && pointer.inside;
+    const targetYaw = (hovering ? pointer.nx * 0.35 : 0.22 * Math.sin(time * 1.3)) * settings.tilt;
+    const targetPitch = (hovering ? -pointer.ny * 0.28 : 0.16 * Math.sin(time * 0.9 + 1.7)) * settings.tilt;
+    const stiffness = 36;
+    const damping = 2 * Math.sqrt(stiffness) * 0.95;
+    view.vyaw += ((targetYaw - view.yaw) * stiffness - view.vyaw * damping) * dt;
+    view.vpitch += ((targetPitch - view.pitch) * stiffness - view.vpitch * damping) * dt;
+    view.yaw += view.vyaw * dt;
+    view.pitch += view.vpitch * dt;
+
+    gl.bindVertexArray(vao);
+    if (slopeTarget) {
+      accumulator += dt;
+      const steps = Math.min(4, Math.floor(accumulator / SIM_STEP));
+      accumulator -= steps * SIM_STEP;
+      if (steps > 0) simulate(steps);
+    }
+    render();
+    requestAnimationFrame(frame);
+  };
+
+  const onPointerMove = event => {
+    const rect = container.getBoundingClientRect();
+    pointer.inside = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
+    pointer.nx = Math.max(-1, Math.min(1, ((event.clientX - rect.left) / rect.width) * 2 - 1));
+    pointer.ny = Math.max(-1, Math.min(1, ((event.clientY - rect.top) / rect.height) * 2 - 1));
+
+    if (fluid && Math.random() < 0.28) {
+      const px = (event.clientX / window.innerWidth) * grid.width;
+      const py = (1.0 - event.clientY / window.innerHeight) * grid.height;
+      strokes.push({
+        ax: px,
+        ay: py,
+        bx: px,
+        by: py,
+        strength: settings.rippleStrength * 0.45,
+        radius: settings.rippleSize * 1.6
+      });
+      if (strokes.length > 8) strokes.shift();
+    }
+  };
+
+  const onPointerDown = event => {
+    if (!fluid) return;
+    const px = (event.clientX / window.innerWidth) * grid.width;
+    const py = (1.0 - event.clientY / window.innerHeight) * grid.height;
+    strokes.push({
+      ax: px,
+      ay: py,
+      bx: px,
+      by: py,
+      strength: settings.rippleStrength * 1.1,
+      radius: settings.rippleSize * 2.5
+    });
+    if (strokes.length > 8) strokes.shift();
+  };
+
+  window.addEventListener('pointermove', onPointerMove, { passive: true });
+  window.addEventListener('pointerdown', onPointerDown, { passive: true });
+  window.addEventListener('resize', resize, { passive: true });
+  resize();
+  requestAnimationFrame(frame);
+}
+
+document.addEventListener('DOMContentLoaded', initLiquidChromeEngine);
+
+// Liquid header scroll controller (smooth hide on scroll down, reveal on scroll up)
+(function initLiquidHeaderScroll() {
+    let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+    let ticking = false;
+    const threshold = 30;
+
+    function handleScroll() {
+        const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+        const header = document.querySelector('.liquid-header');
+        if (!header) {
+            ticking = false;
+            return;
+        }
+
+        if (currentScrollY <= threshold) {
+            header.classList.remove('header-hidden');
+        } else if (currentScrollY > lastScrollY && (currentScrollY - lastScrollY > 4)) {
+            header.classList.add('header-hidden');
+        } else if (currentScrollY < lastScrollY && (lastScrollY - currentScrollY > 4)) {
+            header.classList.remove('header-hidden');
+        }
+
+        lastScrollY = Math.max(0, currentScrollY);
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            window.requestAnimationFrame(handleScroll);
+            ticking = true;
+        }
+    }, { passive: true });
+})();
     </script>
 </body>
 </html>

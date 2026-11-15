@@ -14,7 +14,8 @@ class OTPSend(BaseModel):
     identifier: str # email or phone_number
 
 class OTPVerify(BaseModel):
-    identifier: str
+    identifier: Optional[str] = None
+    email: Optional[str] = None
     otp_code: str
 
 class PasswordReset(BaseModel):
@@ -30,6 +31,9 @@ class UserBase(BaseModel):
     last_name: str
     company_name: str
     phone_number: Optional[str] = None
+    role: Optional[str] = "super_admin"
+    department: Optional[str] = "Executive Leadership"
+    credit_quota: Optional[float] = 0.0
 
 class UserCreate(UserBase):
     password: str
@@ -39,6 +43,43 @@ class UserUpdate(BaseModel):
     last_name: Optional[str] = None
     company_name: Optional[str] = None
     password: Optional[str] = None
+    role: Optional[str] = None
+    department: Optional[str] = None
+    credit_quota: Optional[float] = None
+
+class EmployeeCreate(BaseModel):
+    first_name: str
+    last_name: str
+    email: EmailStr
+    phone_number: Optional[str] = None
+    role: str = "manager" # super_admin, admin, manager
+    department: Optional[str] = "CXO Outbound"
+    credit_quota: Optional[float] = 5000.0
+    password: Optional[str] = "Leadintel2026!"
+
+class EmployeeUpdate(BaseModel):
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    role: Optional[str] = None
+    department: Optional[str] = None
+    credit_quota: Optional[float] = None
+    is_active: Optional[bool] = None
+
+class EmployeeOut(BaseModel):
+    id: int
+    first_name: str
+    last_name: str
+    email: str
+    phone_number: Optional[str] = None
+    role: str
+    department: Optional[str] = None
+    credit_quota: Optional[float] = 0.0
+    wallet_balance: float
+    is_active: bool
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
 
 class User(UserBase):
     id: Optional[int] = None # Added Optional and default for safety during migration
@@ -60,6 +101,7 @@ class LeadBase(BaseModel):
 class LeadDisplay(LeadBase):
     id: int
     price_to_unlock: float
+    is_unlocked: bool = False
 
     class Config:
         from_attributes = True
@@ -67,6 +109,15 @@ class LeadDisplay(LeadBase):
 class LeadDetail(LeadDisplay):
     email: str
     phone: str
+
+class BatchUnlockRequest(BaseModel):
+    lead_ids: List[int]
+
+class BatchUnlockResponse(BaseModel):
+    unlocked_count: int
+    total_cost: float
+    remaining_balance: float
+    leads: List[LeadDetail]
 
 # --- BILLING SCHEMAS ---
 class TransactionDisplay(BaseModel):
@@ -159,3 +210,137 @@ class ChatLeadDisplay(ChatLeadBase):
 class PublicChatRequest(BaseModel):
     message: str
     history: list = []
+
+# --- PAGINATED API RESPONSE WRAPPERS ---
+class PaginatedLeadsResponse(BaseModel):
+    items: List[LeadDisplay]
+    page: Optional[int] = 1
+    page_size: int = 20
+    total: int
+    has_more: bool
+    next_page: Optional[int] = None
+    next_cursor: Optional[int] = None
+
+class PaginatedUnlockedLeadsResponse(BaseModel):
+    items: List[LeadDetail]
+    page: Optional[int] = 1
+    page_size: int = 20
+    total: int
+    has_more: bool
+    next_page: Optional[int] = None
+    next_cursor: Optional[int] = None
+
+class PaginatedTransactionsResponse(BaseModel):
+    items: List[TransactionDisplay]
+    page: Optional[int] = 1
+    page_size: int = 20
+    total: Optional[int] = None
+    has_more: bool
+    next_page: Optional[int] = None
+    next_cursor: Optional[int] = None
+
+class PaginatedCampaignsResponse(BaseModel):
+    items: List[CampaignDisplay]
+    page: int = 1
+    page_size: int = 20
+    total: int
+    has_more: bool
+    next_page: Optional[int] = None
+
+class PaginatedChatLeadsResponse(BaseModel):
+    items: List[ChatLeadDisplay]
+    page: Optional[int] = 1
+    page_size: int = 20
+    total: int
+    has_more: bool
+    next_page: Optional[int] = None
+    next_cursor: Optional[int] = None
+
+# --- CRM SCHEMAS ---
+class CRMDealBase(BaseModel):
+    title: str
+    company: str
+    contact_name: Optional[str] = None
+    contact_email: Optional[str] = None
+    contact_phone: Optional[str] = None
+    value: float = 0.0
+    stage: str = "new"
+    probability: int = 20
+    notes: Optional[str] = None
+
+class CRMDealCreate(CRMDealBase):
+    pass
+
+class CRMDealUpdate(BaseModel):
+    title: Optional[str] = None
+    company: Optional[str] = None
+    contact_name: Optional[str] = None
+    contact_email: Optional[str] = None
+    contact_phone: Optional[str] = None
+    value: Optional[float] = None
+    stage: Optional[str] = None
+    probability: Optional[int] = None
+    notes: Optional[str] = None
+
+class CRMDealDisplay(CRMDealBase):
+    id: int
+    user_id: int
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        from_attributes = True
+
+class PaginatedDealsResponse(BaseModel):
+    items: List[CRMDealDisplay]
+    page: Optional[int] = 1
+    page_size: int = 20
+    total: int
+    has_more: bool
+    next_page: Optional[int] = None
+    next_cursor: Optional[int] = None
+
+class CRMMetricsResponse(BaseModel):
+    total_pipeline_value: float
+    total_deals: int
+    won_deals: int
+    won_value: float
+    conversion_rate: float
+    stage_breakdown: dict
+
+# --- WALLET TOPUP SCHEMAS ---
+class WalletTopUpRequest(BaseModel):
+    pack_id: str
+    amount: float
+    currency: str = "INR"
+
+class WalletTopUpResponse(BaseModel):
+    order_id: str
+    amount: float
+    currency: str
+    credits: float
+    status: str
+
+class WalletVerifyPaymentRequest(BaseModel):
+    order_id: str
+    payment_id: str
+    amount: float
+
+# --- MAYA AGENT SCHEMAS ---
+class MayaSessionCreate(BaseModel):
+    title: Optional[str] = "New Autonomous Session"
+    model_name: Optional[str] = "auto"
+
+class MayaSessionDisplay(BaseModel):
+    session_id: str
+    title: str
+    model_name: str
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+class MayaChatSendRequest(BaseModel):
+    session_id: str
+    message: str
+    model_override: Optional[str] = None

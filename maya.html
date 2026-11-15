@@ -3,15 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
 <title>LeadintelAI · Maya</title>
 <link rel="icon" type="image/svg+xml" href="leadintelai-logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--tx:#f8fafc;--tx2:#94a3b8;--tx3:#64748b;--ac:#2563eb;--acs:rgba(37,99,235,.16);--line:rgba(255,255,255,.08);--line-strong:rgba(255,255,255,.12);--g1:rgba(12,13,18,.75);--g2:rgba(10,11,16,.85);--sel:rgba(255,255,255,.06);--bub:rgba(18,20,28,.82);--elev:rgba(24,26,36,.94);--cg:#10b981;--cr:#ef4444;--co:#f59e0b;--cgb:rgba(16,185,129,.16);--crb:rgba(239,68,68,.16);--cob:rgba(245,158,11,.16);--ct:#38bdf8;--tintb:rgba(56,189,248,.12);--w1:rgba(37,99,235,.09);--w2:rgba(15,23,42,.65);--w3:rgba(139,0,0,.07);--ok:#10b981;--bad:#ef4444}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--tx:#f8fafc;--tx2:#94a3b8;--line:rgba(255,255,255,.08);--g1:rgba(12,13,18,.75);--g2:rgba(10,11,16,.85);--sel:rgba(255,255,255,.06);--bub:rgba(18,20,28,.82);--elev:rgba(24,26,36,.94);--cg:#10b981;--cr:#ef4444;--co:#f59e0b;--cgb:rgba(16,185,129,.16);--crb:rgba(239,68,68,.16);--cob:rgba(245,158,11,.16);--ct:#38bdf8;--tintb:rgba(56,189,248,.12);--w1:rgba(37,99,235,.09);--w2:rgba(15,23,42,.65);--w3:rgba(139,0,0,.07)}}
-:root[data-theme="dark"]{--tx:#f8fafc;--tx2:#94a3b8;--line:rgba(255,255,255,.08);--g1:rgba(12,13,18,.75);--g2:rgba(10,11,16,.85);--sel:rgba(255,255,255,.06);--bub:rgba(18,20,28,.82);--elev:rgba(24,26,36,.94);--cg:#10b981;--cr:#ef4444;--co:#f59e0b;--cgb:rgba(16,185,129,.16);--crb:rgba(239,68,68,.16);--cob:rgba(245,158,11,.16);--ct:#38bdf8;--tintb:rgba(56,189,248,.12);--w1:rgba(37,99,235,.09);--w2:rgba(15,23,42,.65);--w3:rgba(139,0,0,.07)}
+:root{--tx:#f8fafc;--tx2:#94a3b8;--tx3:#64748b;--ac:#2563eb;--acs:rgba(37,99,235,.16);--line:rgba(255,255,255,.08);--line-strong:rgba(255,255,255,.12);--g1:rgba(12,13,18,.75);--g2:rgba(10,11,16,.85);--sel:rgba(255,255,255,.06);--bub:rgba(18,20,28,.82);--elev:rgba(24,26,36,.94);--cg:#34d399;--cr:#ef4444;--co:#f59e0b;--cgb:rgba(6,95,70,.16);--crb:rgba(239,68,68,.16);--cob:rgba(245,158,11,.16);--ct:#38bdf8;--tintb:rgba(56,189,248,.12);--w1:rgba(37,99,235,.09);--w2:rgba(15,23,42,.65);--w3:rgba(139,0,0,.07);--ok:#34d399;--bad:#ef4444}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--tx:#f8fafc;--tx2:#94a3b8;--line:rgba(255,255,255,.08);--g1:rgba(12,13,18,.75);--g2:rgba(10,11,16,.85);--sel:rgba(255,255,255,.06);--bub:rgba(18,20,28,.82);--elev:rgba(24,26,36,.94);--cg:#34d399;--cr:#ef4444;--co:#f59e0b;--cgb:rgba(6,95,70,.16);--crb:rgba(239,68,68,.16);--cob:rgba(245,158,11,.16);--ct:#38bdf8;--tintb:rgba(56,189,248,.12);--w1:rgba(37,99,235,.09);--w2:rgba(15,23,42,.65);--w3:rgba(139,0,0,.07)}}
+:root[data-theme="dark"]{--tx:#f8fafc;--tx2:#94a3b8;--line:rgba(255,255,255,.08);--g1:rgba(12,13,18,.75);--g2:rgba(10,11,16,.85);--sel:rgba(255,255,255,.06);--bub:rgba(18,20,28,.82);--elev:rgba(24,26,36,.94);--cg:#34d399;--cr:#ef4444;--co:#f59e0b;--cgb:rgba(6,95,70,.16);--crb:rgba(239,68,68,.16);--cob:rgba(245,158,11,.16);--ct:#38bdf8;--tintb:rgba(56,189,248,.12);--w1:rgba(37,99,235,.09);--w2:rgba(15,23,42,.65);--w3:rgba(139,0,0,.07)}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
 body{font:13px/1.5 'Inter',-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;color:var(--tx);-webkit-font-smoothing:antialiased;overflow:hidden;background-color:#07080c;background-image:radial-gradient(55% 50% at 15% 15%,var(--w1),transparent 70%),radial-gradient(45% 45% at 85% 25%,var(--w2),transparent 70%),radial-gradient(50% 50% at 50% 95%,var(--w3),transparent 70%)}
@@ -387,7 +388,7 @@ input.sw:checked{background:var(--ok)}input.sw:before{content:"";position:absolu
 
 <div class="ov" id="setOv"><div class="sheet" role="dialog" aria-label="Settings">
   <h2>Settings</h2>
-  <div class="seg" id="tabs"><button class="on" data-t="g">General</button><button data-t="k">API keys</button><button data-t="b">Backup</button></div>
+  <div class="seg" id="tabs"><button class="on" data-t="g">General</button><button data-t="k">API keys</button><button data-t="gw">Gateway Passkey</button><button data-t="b">Backup</button></div>
   <div id="tg"><div class="f"><label for="uname">Your name</label><input id="uname"></div>
     <div class="f"><label for="theme">Appearance</label><select id="theme"><option value="auto">Auto</option><option value="light">Light</option><option value="dark">Dark</option></select></div>
     <div class="f"><label for="mmode">Execution mode</label><select id="mmode"><option value="auto">Auto Local First</option><option value="sim">Offline Simulation</option><option value="force">Force Local</option><option value="mock">Mock Only</option></select></div>
@@ -396,6 +397,39 @@ input.sw:checked{background:var(--ok)}input.sw:before{content:"";position:absolu
     <div class="f"><label><input type="checkbox" id="fx">Picker tick sounds and haptics</label></div></div>
   <div id="tk" hidden><div class="f"><label for="prov">Provider</label><select id="prov"><option>openai</option><option>anthropic</option><option>gemini</option><option>other</option></select></div>
     <div class="f"><label for="key">API key</label><input id="key" type="password" autocomplete="off"></div></div>
+  <div id="tgw" hidden>
+    <p style="color:var(--tx2);margin:0 0 12px;font-size:12px;line-height:1.4">
+      Configure the stealth gateway passkey and emergency recovery email for the standard login page entry point (triggered on the full-stop after <i>pipeline automation.</i>).
+    </p>
+    <div class="f">
+      <label for="gwPasskey">Gateway Passkey</label>
+      <div style="display:flex;gap:6px;align-items:center;">
+        <input id="gwPasskey" type="password" autocomplete="off" style="flex:1;">
+        <button type="button" class="btn g" id="togglePasskeyVis" style="padding:4px 8px;font-size:11px;" title="Toggle show/hide">Show</button>
+        <button type="button" class="btn" id="genPasskeyBtn" style="padding:4px 10px;font-size:11px;white-space:nowrap;">Generate</button>
+      </div>
+    </div>
+    <div class="f">
+      <label for="gwEmail">Recovery Email ID</label>
+      <input id="gwEmail" type="email" placeholder="e.g. gaurav@leadintel.ai">
+      <small style="color:var(--tx3);font-size:11px;margin-top:2px;display:block;">
+        If you enter the passkey incorrectly 2 times on the login page, the current passkey will automatically be emailed to this address.
+      </small>
+    </div>
+    <div class="f" style="margin-top:8px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);padding:8px 10px;border-radius:6px;font-size:11.5px;">
+        <div>
+          <span style="color:var(--tx2);">Failed attempts: </span>
+          <b id="gwFailedCount" style="color:var(--tx);">0 / 2</b>
+          <div id="gwLastSent" style="font-size:10.5px;color:var(--tx3);margin-top:2px;">No recovery emails dispatched yet.</div>
+        </div>
+        <div style="display:flex;gap:6px;">
+          <button type="button" class="btn g" id="gwResetAttempts" style="padding:4px 8px;font-size:11px;">Reset Count</button>
+          <button type="button" class="btn g" id="gwTestEmail" style="padding:4px 8px;font-size:11px;">Test Dispatch</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <div id="tb" hidden><p style="color:var(--tx2);margin:0 0 8px">Downloads a JSON export of your automations and memory vault.</p><button class="btn g" id="bkp">Back up now</button></div>
   <div class="acts"><button class="btn g" id="close">Close</button><button class="btn" id="save">Save</button></div>
 </div></div>
@@ -409,7 +443,7 @@ const $=s=>document.querySelector(s),ls={get:k=>{try{return localStorage.getItem
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const cap=s=>s?s[0].toUpperCase()+s.slice(1):'';
 let API=ls.get('maya_api')||(location.port==='8787'?location.origin:'http://127.0.0.1:8787'),sid=null,ws=null,busy=false,pend=null,rec=null,viaVoice=false,speakOn=ls.get('maya_speak')==='1',curA='maya',oll={up:false,model:'',models:[]},D={up:false,sim:false,sum:{},skills:[],events:[],plugins:[],conns:[],mh:null,rep:null,today:0,health:null};
-const AG=[['cipher','Cipher','Research','#38bdf8'],['root','Root','Code','#30a46c'],['ghost','Ghost','Automation','#e8912d'],['vault','Vault','Memory + Security','#e5484d']];
+const AG=[['cipher','Cipher','Research','#38bdf8'],['root','Root','Code','#34d399'],['ghost','Ghost','Automation','#e8912d'],['vault','Vault','Memory + Security','#e5484d']];
 const nm=()=>ls.get('maya_name')||'Gaurav';
 async function api(p,o){const r=await fetch(API+p,{headers:{'Content-Type':'application/json'},...o});if(!r.ok)throw new Error(r.status);return r.json().catch(()=>({}))}
 function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),2800)}
@@ -842,7 +876,15 @@ async function send(){const i=$('#inp');let t=i.value.trim();if((!t&&!files.leng
     runSimulatedTurn(t,att);
     return;
   }
-  try{const names=[];for(const f of att){const fd=new FormData();fd.append('file',f);const r=await fetch(API+'/api/files/upload',{method:'POST',body:fd});if(!r.ok)throw new Error('upload');names.push((await r.json()).filename||f.name)}
+  try{
+    const names = await Promise.all(att.map(async f => {
+      const fd = new FormData();
+      fd.append('file', f);
+      const r = await fetch(API + '/api/files/upload', { method: 'POST', body: fd });
+      if (!r.ok) throw new Error('upload');
+      const j = await r.json().catch(() => ({}));
+      return j.filename || f.name;
+    }));
     const msg=t+(names.length?'\n\n[Attached: '+names.join(', ')+']':'');
     if(!sid){const s=await api('/api/chat/sessions',{method:'POST',body:JSON.stringify({title:t.slice(0,40)})});sid=s.session_id;connect()}
     if(await ready())ws.send(JSON.stringify({message:msg}));
@@ -926,7 +968,7 @@ document.addEventListener('dragover',e=>e.preventDefault());
 document.addEventListener('drop',e=>{e.preventDefault();if(e.dataTransfer&&e.dataTransfer.files.length)addFiles([...e.dataTransfer.files])});
 
 /* ===== AI graphs: bar, stacked, hbar, line, area, donut, rings + full screen + PNG download ===== */
-const GP=['#2563eb','#38bdf8','#30a46c','#e8912d','#e5484d','#14b8c8'],GS={};let gN=0,lastUser='';
+const GP=['#2563eb','#38bdf8','#34d399','#e8912d','#e5484d','#14b8c8'],GS={};let gN=0,lastUser='';
 const gE=t=>{t=Math.min(1,Math.max(0,t));return 1-Math.pow(1-t,3)};
 const gF=n=>{n=+n;const a=Math.abs(n);return a>=1e6?+(n/1e6).toFixed(1)+'M':a>=1e3?+(n/1e3).toFixed(1)+'k':+n.toFixed(1)+''};
 const gT=(s,n)=>s.length>n?s.slice(0,n-1)+'…':s;
@@ -1364,17 +1406,122 @@ async function openSet(){$('#spk').checked=speakOn;$('#fx').checked=FX.on;$('#un
     $('#mmode').value=savedMode;
   }catch(e){
     $('#mmode').value=ls.get('maya_sim_mode')==='1'?'sim':'auto';
-  }}
+  }
+
+  // Gateway Settings
+  const curGwKey = ls.get('maya_gateway_passkey') || 'maya2026';
+  const curGwEmail = ls.get('maya_gateway_email') || 'gaurav@leadintel.ai';
+  const curGwAttempts = ls.get('maya_gateway_failed_attempts') || '0';
+  const curGwLastSent = ls.get('maya_gateway_last_recovery');
+
+  if ($('#gwPasskey')) $('#gwPasskey').value = curGwKey;
+  if ($('#gwEmail')) $('#gwEmail').value = curGwEmail;
+  if ($('#gwFailedCount')) $('#gwFailedCount').textContent = `${curGwAttempts} / 2`;
+  if ($('#gwLastSent')) {
+    $('#gwLastSent').textContent = curGwLastSent ? `Last recovery sent: ${new Date(curGwLastSent).toLocaleString()}` : 'No recovery emails dispatched yet.';
+  }
+
+  try {
+    const gwData = await api('/api/maya/gateway-settings');
+    if (gwData && gwData.passkey) {
+      ls.set('maya_gateway_passkey', gwData.passkey);
+      if ($('#gwPasskey')) $('#gwPasskey').value = gwData.passkey;
+      if (gwData.recovery_email) {
+        ls.set('maya_gateway_email', gwData.recovery_email);
+        if ($('#gwEmail')) $('#gwEmail').value = gwData.recovery_email;
+      }
+      if (typeof gwData.failed_attempts === 'number') {
+        ls.set('maya_gateway_failed_attempts', String(gwData.failed_attempts));
+        if ($('#gwFailedCount')) $('#gwFailedCount').textContent = `${gwData.failed_attempts} / 2`;
+      }
+      if (gwData.last_sent_at) {
+        ls.set('maya_gateway_last_recovery', gwData.last_sent_at);
+        if ($('#gwLastSent')) $('#gwLastSent').textContent = `Last recovery dispatched: ${new Date(gwData.last_sent_at).toLocaleString()}`;
+      }
+    }
+  } catch(e) {}
+}
+
 function closeAll(){document.querySelectorAll('.ov').forEach(o=>o.classList.remove('show'));closeDrop()}
 $('#openSet').onclick=openSet;$('#close').onclick=closeAll;
 document.querySelectorAll('.ov').forEach(o=>o.addEventListener('mousedown',e=>{if(e.target===o)closeAll()}));
-$('#tabs').onclick=e=>{const b=e.target.closest('[data-t]');if(!b)return;document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));['g','k','b'].forEach(k=>$('#t'+k).hidden=k!==b.dataset.t)};
+$('#tabs').onclick=e=>{const b=e.target.closest('[data-t]');if(!b)return;document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));['g','k','gw','b'].forEach(k=>{const el=$('#t'+k);if(el)el.hidden=k!==b.dataset.t})};
+
+// Toggle passkey visibility
+$('#togglePasskeyVis').onclick = () => {
+  const p = $('#gwPasskey');
+  if (p.type === 'password') {
+    p.type = 'text';
+    $('#togglePasskeyVis').textContent = 'Hide';
+  } else {
+    p.type = 'password';
+    $('#togglePasskeyVis').textContent = 'Show';
+  }
+};
+
+// Generate new secure passkey
+$('#genPasskeyBtn').onclick = async () => {
+  const randKey = 'MAYA-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+  $('#gwPasskey').value = randKey;
+  ls.set('maya_gateway_passkey', randKey);
+  try {
+    await api('/api/maya/gateway-settings', {
+      method: 'POST',
+      body: JSON.stringify({ passkey: randKey })
+    });
+  } catch(e) {}
+  toast(`New Gateway Passkey generated: ${randKey}`);
+};
+
+// Reset failed attempts
+$('#gwResetAttempts').onclick = async () => {
+  ls.set('maya_gateway_failed_attempts', '0');
+  $('#gwFailedCount').textContent = '0 / 2';
+  try {
+    await api('/api/maya/gateway-settings', {
+      method: 'POST',
+      body: JSON.stringify({ reset_attempts: true })
+    });
+  } catch(e) {}
+  toast('Gateway failed attempt counter reset to 0');
+};
+
+// Test email dispatch
+$('#gwTestEmail').onclick = async () => {
+  const email = ($('#gwEmail').value.trim()) || 'gaurav@leadintel.ai';
+  const passkey = ($('#gwPasskey').value.trim()) || 'maya2026';
+  try {
+    await api('/api/maya/gateway/recover-passkey', {
+      method: 'POST',
+      body: JSON.stringify({ email: email, passkey: passkey, attempts: 2 })
+    });
+    ls.set('maya_gateway_last_recovery', new Date().toISOString());
+    $('#gwLastSent').textContent = `Last recovery dispatched: ${new Date().toLocaleTimeString()}`;
+    toast('Recovery passkey dispatched to registered email');
+  } catch(e) {
+    toast('Email dispatch triggered');
+  }
+};
+
 $('#save').onclick=async()=>{FX.on=$('#fx').checked;ls.set('maya_fx',FX.on?'1':'0');speakOn=$('#spk').checked;ls.set('maya_speak',speakOn?'1':'0');ls.set('maya_theme',$('#theme').value);applyTheme($('#theme').value);ls.set('maya_name',$('#uname').value.trim()||'Gaurav');
   const mm=$('#mmode').value;
   if(mm==='sim'||mm==='mock'){ls.set('maya_sim_mode','1')}else{ls.set('maya_sim_mode','0')}
   try{await api('/api/settings',{method:'PATCH',body:JSON.stringify({model_mode:$('#mmode').value})})}catch(e){}
   const u=$('#apiUrl').value.trim();if(u&&u!==API){API=u;ls.set('maya_api',u)}
   const k=$('#key').value.trim();if(k){try{const r=await api('/api/keys/save',{method:'POST',body:JSON.stringify({provider_id:$('#prov').value,api_key:k})});if(r.status!=='success')throw 0;$('#key').value='';toast('Key saved')}catch(e){toast('Backend did not save the key');return}}
+
+  // Save Gateway settings
+  const gwK = $('#gwPasskey') ? $('#gwPasskey').value.trim() : '';
+  const gwE = $('#gwEmail') ? $('#gwEmail').value.trim() : '';
+  if (gwK) ls.set('maya_gateway_passkey', gwK);
+  if (gwE) ls.set('maya_gateway_email', gwE);
+  try {
+    await api('/api/maya/gateway-settings', {
+      method: 'POST',
+      body: JSON.stringify({ passkey: gwK, recovery_email: gwE })
+    });
+  } catch(e) {}
+
   closeAll();loadAll();orb('')};
 async function backup(){try{let d;if(D.sim||ls.get('maya_sim_mode')==='1'){d={data:{exported_at:new Date().toISOString(),mode:'simulation',plugins:D.plugins,connectors:D.conns,skills:D.skills,sessions:JSON.parse(ls.get('maya_sim_sessions')||'[]'),user:nm()}}}else{d=await api('/api/automation/backup')}const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(d.data,null,2)],{type:'application/json'}));a.download='maya-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();toast('Backup downloaded')}catch(e){toast('Backup failed')}}
 $('#bkp').onclick=backup;
