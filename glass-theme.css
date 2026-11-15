@@ -4775,6 +4775,113 @@ h5 {
     transform: translateY(-1px);
 }
 
+/* ─── UNIFIED ENTERPRISE CONSOLE ENGINE TABS (DATA-CLOUD, WHATSAPP, MAILENGINE, CRM, HUB) ─── */
+.console-engine-tabs {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #0a0d14;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    padding: 3px 5px;
+    border-radius: 9px;
+    margin: 0 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    max-width: 100%;
+}
+
+.console-engine-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.engine-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #94a3b8;
+    text-decoration: none;
+    border-radius: 7px;
+    transition: all 0.15s ease;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    background: transparent;
+}
+
+.engine-tab:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.engine-tab.active-hub,
+.engine-tab.active-datacloud,
+.engine-tab.active-crm {
+    background: #1e3a8a;
+    border-color: #1e40af;
+    color: #ffffff;
+}
+
+.engine-tab.active-whatsapp {
+    background: #065f46;
+    border-color: #047857;
+    color: #ffffff;
+}
+
+.engine-tab.active-mail {
+    background: #ea580c;
+    border-color: #c2410c;
+    color: #ffffff;
+}
+
+.engine-tab-tag {
+    font-size: 0.62rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 3px;
+    letter-spacing: 0.02em;
+}
+
+.engine-tab-tag.tag-blue {
+    background: rgba(30, 58, 138, 0.4);
+    color: #93c5fd;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.engine-tab-tag.tag-green {
+    background: rgba(6, 95, 70, 0.3);
+    color: #34d399;
+    border: 1px solid rgba(4, 120, 87, 0.4);
+}
+
+.engine-tab-tag.tag-orange {
+    background: rgba(234, 88, 12, 0.2);
+    color: #fb923c;
+    border: 1px solid rgba(194, 65, 12, 0.35);
+}
+
+@media (max-width: 1024px) {
+    .console-engine-tabs {
+        margin: 0 0.5rem;
+    }
+    .engine-tab {
+        padding: 5px 9px;
+        font-size: 0.74rem;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    .console-engine-tabs span.engine-tab-tag {
+        display: none;
+    }
+}
+
+
 
 /* ════════════════════════════════════════════════════════════════════════════════
    UNIVERSAL LIQUIDGLASSKIT OPTICAL ENGINE (PORTED MASTER SPECIFICATION)
@@ -4934,4 +5041,216 @@ h5 {
         0 24px 52px -8px rgba(0, 0, 0, 0.8),
         0 8px 20px -4px rgba(0, 0, 0, 0.55);
     transform: translateY(-1px);
+}
+
+/* ─── UNIFIED ENTERPRISE CONSOLE ENGINE TABS (DATA-CLOUD, WHATSAPP, MAILENGINE, CRM, HUB) ─── */
+.console-engine-tabs {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    background: #0a0d14;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    padding: 3px 4px;
+    border-radius: 8px;
+    margin: 0 0.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-shrink: 0;
+}
+
+.console-engine-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.engine-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #94a3b8;
+    text-decoration: none;
+    border-radius: 7px;
+    transition: all 0.15s ease;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    background: transparent;
+}
+
+.engine-tab:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.engine-tab.active-hub,
+.engine-tab.active-datacloud,
+.engine-tab.active-crm {
+    background: #1e3a8a;
+    border-color: #1e40af;
+    color: #ffffff;
+}
+
+.engine-tab.active-whatsapp {
+    background: #065f46;
+    border-color: #047857;
+    color: #ffffff;
+}
+
+.engine-tab.active-mail {
+    background: #ea580c;
+    border-color: #c2410c;
+    color: #ffffff;
+}
+
+.engine-tab-tag {
+    font-size: 0.62rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 3px;
+    letter-spacing: 0.02em;
+}
+
+.engine-tab-tag.tag-blue {
+    background: rgba(30, 58, 138, 0.4);
+    color: #93c5fd;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.engine-tab-tag.tag-green {
+    background: rgba(6, 95, 70, 0.3);
+    color: #34d399;
+    border: 1px solid rgba(4, 120, 87, 0.4);
+}
+
+.engine-tab-tag.tag-orange {
+    background: rgba(234, 88, 12, 0.2);
+    color: #fb923c;
+    border: 1px solid rgba(194, 65, 12, 0.35);
+}
+
+@media (max-width: 1024px) {
+    .console-engine-tabs {
+        margin: 0 0.5rem;
+    }
+    .engine-tab {
+        padding: 5px 9px;
+        font-size: 0.74rem;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    .console-engine-tabs span.engine-tab-tag {
+        display: none;
+    }
+}
+
+/* ─── UNIFIED ENTERPRISE CONSOLE ENGINE TABS (DATA-CLOUD, WHATSAPP, MAILENGINE, CRM, HUB) ─── */
+.console-engine-tabs {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #0a0d14;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    padding: 3px 5px;
+    border-radius: 9px;
+    margin: 0 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    max-width: 100%;
+}
+
+.console-engine-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.engine-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #94a3b8;
+    text-decoration: none;
+    border-radius: 7px;
+    transition: all 0.15s ease;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    background: transparent;
+}
+
+.engine-tab:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.engine-tab.active-hub,
+.engine-tab.active-datacloud,
+.engine-tab.active-crm {
+    background: #1e3a8a;
+    border-color: #1e40af;
+    color: #ffffff;
+}
+
+.engine-tab.active-whatsapp {
+    background: #065f46;
+    border-color: #047857;
+    color: #ffffff;
+}
+
+.engine-tab.active-mail {
+    background: #ea580c;
+    border-color: #c2410c;
+    color: #ffffff;
+}
+
+.engine-tab-tag {
+    font-size: 0.62rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 3px;
+    letter-spacing: 0.02em;
+}
+
+.engine-tab-tag.tag-blue {
+    background: rgba(30, 58, 138, 0.4);
+    color: #93c5fd;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.engine-tab-tag.tag-green {
+    background: rgba(6, 95, 70, 0.3);
+    color: #34d399;
+    border: 1px solid rgba(4, 120, 87, 0.4);
+}
+
+.engine-tab-tag.tag-orange {
+    background: rgba(234, 88, 12, 0.2);
+    color: #fb923c;
+    border: 1px solid rgba(194, 65, 12, 0.35);
+}
+
+@media (max-width: 1024px) {
+    .console-engine-tabs {
+        margin: 0 0.5rem;
+    }
+    .engine-tab {
+        padding: 5px 9px;
+        font-size: 0.74rem;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    .console-engine-tabs span.engine-tab-tag {
+        display: none;
+    }
 }
